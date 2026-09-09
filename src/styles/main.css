@@ -1,0 +1,57 @@
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  background: #f5f7f3;
+}
+
+body {
+  margin: 0;
+}
+
+.brand-mark {
+  align-items: center;
+  background: #0b6b56;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.brand-title,
+.brand-subtitle {
+  line-height: 1.15 !important;
+}
+
+.scanner-container {
+  max-width: 1040px !important;
+}
+
+.scanner-card {
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+
+.step-kicker {
+  color: #0b6b56;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.d-grid {
+  display: grid;
+}
+
+@media (max-width: 599px) {
+  .scanner-container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}

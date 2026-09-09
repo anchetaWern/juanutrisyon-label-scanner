@@ -1,0 +1,9 @@
+{
+  "name": "Juan Nutrisyon Nutrition Label Scanner",
+  "short_name": "Label Scanner",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7f3",
+  "theme_color": "#0b6b56",
+  "description": "Capture, crop, and OCR nutrition labels."
+}

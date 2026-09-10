@@ -10,7 +10,8 @@ vi.mock('@/services/image/preprocessForOcr', () => ({
   preprocessForOcr: vi.fn(async (image: Blob) => image),
 }))
 
-import { normalizePaddleItems, PADDLE_OCR_CONFIGS, PaddleOcrEngine } from './PaddleOcrEngine'
+import { normalizePaddleItems, PADDLE_OCR_CONFIGS, PADDLE_PREDICTION_DEFAULTS, PaddleOcrEngine } from './PaddleOcrEngine'
+import { preprocessForOcr, PRODUCTION_PREPROCESSING_CONFIG } from '@/services/image/preprocessForOcr'
 
 describe('normalizePaddleItems', () => {
   it('normalizes polygons, confidence, and empty text', () => {
@@ -98,7 +99,7 @@ describe('Paddle OCR adapter', () => {
           totalMs: expect.any(Number),
         },
         provider: {
-          configId: 'v6-tiny',
+          configId: 'v6-tiny-recall-v2',
           model: 'PP-OCRv6_tiny_det + PP-OCRv6_tiny_rec',
           backend: 'wasm',
           totalInitializationMs: expect.any(Number),
@@ -108,8 +109,33 @@ describe('Paddle OCR adapter', () => {
       },
     })
     expect(result.lines[0]).toMatchObject({ text: 'Protein 2g', confidence: 95 })
+    expect(result.diagnostics?.provider.predictionSettings).toEqual({
+      ...PADDLE_PREDICTION_DEFAULTS,
+      textDetBoxThresh: 0.45,
+    })
 
     await engine.terminate()
     expect(disposeMock).toHaveBeenCalledOnce()
+  })
+
+  it('applies experimental settings through the production path and retains raw recognition text', async () => {
+    const preprocessing = { ...PRODUCTION_PREPROCESSING_CONFIG, id: 'test-color', mode: 'original' as const }
+    const prediction = { textDetBoxThresh: 0.45 }
+    const engine = new PaddleOcrEngine({ ...PADDLE_OCR_CONFIGS.v6Tiny, preprocessing, prediction })
+    const blob = new Blob(['image'], { type: 'image/jpeg' })
+    predictMock.mockResolvedValue([{ image: { width: 100, height: 200 },
+      metrics: { detMs: 100, recMs: 50, detectedBoxes: 2, recognizedCount: 1 },
+      items: [{ text: 'Trans Fat Og', score: 0.99, poly: [[1, 2], [50, 2], [50, 12], [1, 12]] }] }])
+
+    const result = await engine.recognize(blob)
+    expect(preprocessForOcr).toHaveBeenCalledWith(blob, preprocessing)
+    expect(predictMock).toHaveBeenCalledWith(blob, { ...PADDLE_PREDICTION_DEFAULTS, ...prediction })
+    expect(result.text).toBe('Trans Fat Og')
+    expect(result.preprocessing).toBe('test-color')
+    expect(result.diagnostics).toMatchObject({
+      timing: { detectionMs: 100, textRecognitionMs: 50 },
+      provider: { predictionSettings: prediction, detectedBoxes: 2, recognizedCount: 1 },
+    })
+    await engine.terminate()
   })
 })

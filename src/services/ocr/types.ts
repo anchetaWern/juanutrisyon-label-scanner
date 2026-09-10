@@ -26,6 +26,8 @@ export interface OcrDiagnostics {
     preprocessingMs: number
     recognitionMs: number
     totalMs: number
+    detectionMs?: number
+    textRecognitionMs?: number
   }
   provider: {
     configId: string
@@ -37,6 +39,9 @@ export interface OcrDiagnostics {
     totalInitializationMs?: number
     providerInitializationMs?: number
     modelAssets?: Array<{ url: string; bytes: number }>
+    predictionSettings?: Record<string, unknown>
+    detectedBoxes?: number
+    recognizedCount?: number
   }
 }
 

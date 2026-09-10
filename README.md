@@ -36,11 +36,11 @@ The original `File` and its object URL remain separate from the generated JPEG c
 
 ## OCR provider decision
 
-`TesseractOcrEngine` uses Tesseract.js 6 with the English model. It was selected for Phase 1 because it executes in mainstream browsers and returns layout blocks, lines, words, confidence, and coordinates without a server. Its first use downloads the OCR worker/model, so initialization can be noticeably slower and requires network access unless those assets are self-hosted later.
+The default is PaddleOCR.js 0.4.2 with PP-OCRv6 tiny detection and recognition in a Web Worker. Configuration `v6-tiny-recall-v2` retains grayscale/contrast/sharpen preprocessing and lowers the detector box threshold from 0.6 to 0.45. Selection is based on the 30 verified labels and a separate exported iPhone crop; see [the mobile OCR iteration report](docs/ocr-iteration-2026-09-10.md).
 
-The OCR adapter prepares a separate lossless high-contrast image and uses automatic page segmentation with preserved word spacing. The user-visible crop remains unchanged. Debug output offers separate copy actions for raw text and the complete normalized JSON result, including confidence, preprocessing version, and geometry.
+The OCR adapter prepares a separate lossless image; the user-visible crop remains unchanged. Debug output offers raw text, OCR JSON, diagnostics copying, and crop saving/sharing. Diagnostics include the selected settings, preprocessing/detection/recognition timings, box counts, and browser information. Raw OCR text is not corrected or replaced with expected nutrition values.
 
-PaddleOCR remains a strong future candidate, but its browser deployment currently requires additional WASM/ONNX runtime and model packaging work. Provider-specific objects are normalized inside `src/services/ocr/TesseractOcrEngine.ts`; UI and scanner state depend only on `NutritionLabelOcrEngine` and `OcrResult`. A later provider only needs to implement `initialize`, `recognize`, `terminate`, and optionally progress updates.
+The Tesseract.js 6 adapter remains available with single-block segmentation; it is not an automatic retry after Paddle failures. UI and scanner state depend only on `NutritionLabelOcrEngine` and `OcrResult`. The first Paddle scan downloads the runtime and models, so initialization is slower and needs network access unless assets are self-hosted.
 
 ## Deployment
 
@@ -49,7 +49,7 @@ PaddleOCR remains a strong future candidate, but its browser deployment currentl
 ## Current limitations
 
 - English OCR only; nutrition parsing and table reconstruction belong to Phase 2.
-- Tesseract model assets are fetched on first OCR use and are not available offline yet.
+- OCR runtime/model assets are fetched on first use and are not available offline yet.
 - Quality thresholds are heuristics and deliberately advisory.
 - Glare detection uses clipped-highlight ratios; it can report bright white label backgrounds as possible glare.
 - Crop is rectangular and does not perform perspective correction or curved-label dewarping.

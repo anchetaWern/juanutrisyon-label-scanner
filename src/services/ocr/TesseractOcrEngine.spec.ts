@@ -87,7 +87,24 @@ describe('Tesseract OCR adapter', () => {
       text: 'Sodium 120 mg',
       engine: 'tesseract.js',
       sourceSize: { width: 1200, height: 900 },
+      diagnostics: {
+        timing: {
+          initializedDuringRequest: true,
+          initializationMs: expect.any(Number),
+          preprocessingMs: expect.any(Number),
+          recognitionMs: expect.any(Number),
+          totalMs: expect.any(Number),
+        },
+        provider: {
+          configId: 'tesseract-single-block-spacing-v2',
+          model: 'eng',
+          totalInitializationMs: expect.any(Number),
+          worker: true,
+        },
+      },
     })
+    expect(second.diagnostics?.timing.initializedDuringRequest).toBe(false)
+    expect(second.diagnostics?.timing.initializationMs).toBe(0)
     expect(second.lines).toHaveLength(1)
   })
 

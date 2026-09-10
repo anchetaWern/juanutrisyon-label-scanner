@@ -72,6 +72,7 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
   readonly id = 'tesseract.js'
   private worker: Worker | null = null
   private initialization: Promise<void> | null = null
+  private initializationDurationMs = 0
   private listeners = new Set<(progress: OcrProgress) => void>()
 
   onProgress(listener: (progress: OcrProgress) => void): () => void {
@@ -88,6 +89,7 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
     if (this.initialization) return this.initialization
 
     this.emit({ state: 'initializing', status: 'Loading English OCR model', progress: 0 })
+    const startedAt = performance.now()
     this.initialization = (async () => {
       try {
         this.worker = await createWorker('eng', 1, {
@@ -100,6 +102,7 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
           },
         })
         await applyTesseractConfig(this.worker, PRODUCTION_TESSERACT_CONFIG)
+        this.initializationDurationMs = performance.now() - startedAt
         this.emit({ state: 'ready', status: 'OCR is ready', progress: 1 })
       } catch (error) {
         this.emit({ state: 'error', status: error instanceof Error ? error.message : 'OCR initialization failed' })
@@ -113,17 +116,23 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
   }
 
   async recognize(image: Blob | File): Promise<OcrResult> {
+    const totalStartedAt = performance.now()
+    const initializedDuringRequest = this.worker === null
     await this.initialize()
     if (!this.worker) throw new Error('OCR engine is unavailable.')
 
     this.emit({ state: 'recognizing', status: 'Preparing a high-contrast OCR image', progress: 0 })
     try {
+      const preprocessingStartedAt = performance.now()
       const preparedImage = await preprocessForOcr(image)
+      const preprocessingMs = performance.now() - preprocessingStartedAt
       this.emit({ state: 'recognizing', status: 'Recognizing label text', progress: 0 })
+      const recognitionStartedAt = performance.now()
       const [dimensions, recognition] = await Promise.all([
         getImageDimensions(preparedImage),
         this.worker.recognize(preparedImage, {}, { blocks: true, text: true }),
       ])
+      const recognitionMs = performance.now() - recognitionStartedAt
       const text = recognition.data.text.trim()
       const lines = normalizeTesseractBlocks(recognition.data.blocks as Block[] | null)
 
@@ -135,6 +144,22 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
         engineVersion: '6',
         sourceSize: dimensions,
         preprocessing: PRODUCTION_PREPROCESSING_CONFIG.id,
+        diagnostics: {
+          completedAt: new Date().toISOString(),
+          timing: {
+            initializedDuringRequest,
+            initializationMs: initializedDuringRequest ? this.initializationDurationMs : 0,
+            preprocessingMs,
+            recognitionMs,
+            totalMs: performance.now() - totalStartedAt,
+          },
+          provider: {
+            configId: PRODUCTION_TESSERACT_CONFIG.id,
+            model: 'eng',
+            worker: true,
+            totalInitializationMs: this.initializationDurationMs,
+          },
+        },
       }
     } catch (error) {
       this.emit({ state: 'error', status: error instanceof Error ? error.message : 'OCR failed' })
@@ -145,6 +170,7 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
   async terminate(): Promise<void> {
     if (this.worker) await this.worker.terminate()
     this.worker = null
+    this.initializationDurationMs = 0
     this.emit({ state: 'idle' })
   }
 }

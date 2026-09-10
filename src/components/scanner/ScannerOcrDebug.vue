@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import type { CropCoordinates } from '@/composables/useImageCrop'
+import type { ImageQualityMetrics, ImageQualityWarning } from '@/composables/useImageQuality'
+import { buildScannerDiagnosticReport, cropDownloadFilename } from '@/services/diagnostics/scannerDiagnostics'
 import type { OcrBoundingBox, OcrResult } from '@/services/ocr/types'
 import { copyText } from '@/utils/clipboard'
 
 const props = defineProps<{
   originalUrl: string
   croppedUrl: string
+  originalFile: File
+  croppedBlob: Blob
+  cropCoordinates: CropCoordinates | null
+  qualityMetrics: ImageQualityMetrics | null
+  qualityWarnings: ImageQualityWarning[]
   result: OcrResult
 }>()
 
@@ -32,6 +40,32 @@ function copyRawText(): Promise<void> {
 
 function copyCompleteResult(): Promise<void> {
   return copy(JSON.stringify(props.result, null, 2), 'Complete OCR result copied')
+}
+
+function copyDiagnostics(): Promise<void> {
+  const report = buildScannerDiagnosticReport({
+    originalFile: props.originalFile,
+    croppedBlob: props.croppedBlob,
+    cropCoordinates: props.cropCoordinates,
+    qualityMetrics: props.qualityMetrics,
+    qualityWarnings: props.qualityWarnings,
+    result: props.result,
+  })
+  return copy(JSON.stringify(report, null, 2), 'Scanner diagnostics copied')
+}
+
+function downloadCrop(): void {
+  const url = URL.createObjectURL(props.croppedBlob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = cropDownloadFilename(props.originalFile.name, props.croppedBlob.type)
+  link.rel = 'noopener'
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+  window.setTimeout(() => URL.revokeObjectURL(url), 1_000)
+  snackbarMessage.value = 'Exact OCR crop downloaded'
+  snackbarVisible.value = true
 }
 
 function boxStyle(box: OcrBoundingBox): Record<string, string> {
@@ -72,12 +106,22 @@ function confidenceLabel(confidence?: number): string {
         Enhanced for OCR
       </v-chip>
       <v-spacer />
-      <v-btn color="primary" variant="outlined" prepend-icon="mdi-content-copy" @click="copyCompleteResult">
-        Copy complete result
+      <v-btn variant="outlined" prepend-icon="mdi-download" @click="downloadCrop">
+        Download crop
+      </v-btn>
+      <v-btn variant="outlined" prepend-icon="mdi-code-json" @click="copyCompleteResult">
+        Copy OCR JSON
+      </v-btn>
+      <v-btn color="primary" variant="flat" prepend-icon="mdi-clipboard-text-outline" @click="copyDiagnostics">
+        Copy diagnostics
       </v-btn>
     </div>
 
     <v-alert v-if="copyError" type="warning" variant="tonal" density="compact" class="mb-4" :text="copyError" />
+    <v-alert type="info" variant="tonal" density="compact" class="mb-4">
+      Diagnostics include browser/device details, crop metadata, quality checks, OCR timings, and the complete OCR result. Image
+      pixels are not copied.
+    </v-alert>
 
     <v-row>
       <v-col cols="12" md="5">

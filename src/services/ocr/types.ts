@@ -18,6 +18,28 @@ export interface OcrLine {
   tokens?: OcrToken[]
 }
 
+export interface OcrDiagnostics {
+  completedAt: string
+  timing: {
+    initializedDuringRequest: boolean
+    initializationMs: number
+    preprocessingMs: number
+    recognitionMs: number
+    totalMs: number
+  }
+  provider: {
+    configId: string
+    model?: string
+    backend?: string
+    detectionProvider?: string
+    recognitionProvider?: string
+    worker?: boolean
+    totalInitializationMs?: number
+    providerInitializationMs?: number
+    modelAssets?: Array<{ url: string; bytes: number }>
+  }
+}
+
 export interface OcrResult {
   text: string
   lines: OcrLine[]
@@ -28,6 +50,7 @@ export interface OcrResult {
     height: number
   }
   preprocessing?: string
+  diagnostics?: OcrDiagnostics
 }
 
 export type OcrEngineState = 'idle' | 'initializing' | 'ready' | 'recognizing' | 'error'

@@ -150,7 +150,7 @@ function progressLabel(): string {
       </v-card>
 
       <v-card
-        v-if="scanner.result.value && scanner.originalUrl.value && scanner.croppedUrl.value"
+        v-if="scanner.result.value && scanner.originalFile.value && scanner.originalUrl.value && scanner.croppedBlob.value && scanner.croppedUrl.value"
         class="scanner-card"
         elevation="1"
         border
@@ -163,6 +163,11 @@ function progressLabel(): string {
           <ScannerOcrDebug
             :original-url="scanner.originalUrl.value"
             :cropped-url="scanner.croppedUrl.value"
+            :original-file="scanner.originalFile.value"
+            :cropped-blob="scanner.croppedBlob.value"
+            :crop-coordinates="scanner.cropCoordinates.value"
+            :quality-metrics="scanner.quality.metrics.value"
+            :quality-warnings="scanner.quality.warnings.value"
             :result="scanner.result.value"
           />
         </v-card-text>

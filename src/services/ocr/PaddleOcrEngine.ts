@@ -54,6 +54,7 @@ export class PaddleOcrEngine implements NutritionLabelOcrEngine {
   readonly id = 'paddleocr.js'
   private instance: PaddleInstance | null = null
   private initialization: Promise<void> | null = null
+  private initializationDurationMs = 0
   private summary: InitializationSummary | null = null
   private listeners = new Set<(progress: OcrProgress) => void>()
 
@@ -77,6 +78,7 @@ export class PaddleOcrEngine implements NutritionLabelOcrEngine {
     if (this.initialization) return this.initialization
 
     this.emit({ state: 'initializing', status: `Loading ${this.config.title} English models`, progress: 0 })
+    const startedAt = performance.now()
     this.initialization = (async () => {
       try {
         const { PaddleOCR } = await import('@paddleocr/paddleocr-js')
@@ -92,6 +94,7 @@ export class PaddleOcrEngine implements NutritionLabelOcrEngine {
           },
         })
         this.summary = this.instance.getInitializationSummary()
+        this.initializationDurationMs = performance.now() - startedAt
         this.emit({ state: 'ready', status: 'PaddleOCR is ready', progress: 1 })
       } catch (error) {
         this.emit({ state: 'error', status: error instanceof Error ? error.message : 'PaddleOCR initialization failed' })
@@ -105,14 +108,20 @@ export class PaddleOcrEngine implements NutritionLabelOcrEngine {
   }
 
   async recognize(image: Blob | File): Promise<OcrResult> {
+    const totalStartedAt = performance.now()
+    const initializedDuringRequest = this.instance === null
     await this.initialize()
     if (!this.instance) throw new Error('PaddleOCR engine is unavailable.')
 
     this.emit({ state: 'recognizing', status: 'Preparing OCR image', progress: 0 })
     try {
+      const preprocessingStartedAt = performance.now()
       const preparedImage = await preprocessForOcr(image)
+      const preprocessingMs = performance.now() - preprocessingStartedAt
       this.emit({ state: 'recognizing', status: 'Recognizing label text', progress: 0 })
+      const recognitionStartedAt = performance.now()
       const [recognition] = await this.instance.predict(preparedImage)
+      const recognitionMs = performance.now() - recognitionStartedAt
       if (!recognition) throw new Error('PaddleOCR returned no result.')
       const lines = normalizePaddleItems(recognition.items)
 
@@ -124,6 +133,27 @@ export class PaddleOcrEngine implements NutritionLabelOcrEngine {
         engineVersion: PADDLE_OCR_VERSION,
         sourceSize: recognition.image,
         preprocessing: PRODUCTION_PREPROCESSING_CONFIG.id,
+        diagnostics: {
+          completedAt: new Date().toISOString(),
+          timing: {
+            initializedDuringRequest,
+            initializationMs: initializedDuringRequest ? this.initializationDurationMs : 0,
+            preprocessingMs,
+            recognitionMs,
+            totalMs: performance.now() - totalStartedAt,
+          },
+          provider: {
+            configId: this.config.id,
+            model: `${this.config.detectionModel} + ${this.config.recognitionModel}`,
+            backend: this.summary?.backend,
+            detectionProvider: this.summary?.detProvider,
+            recognitionProvider: this.summary?.recProvider,
+            worker: true,
+            totalInitializationMs: this.initializationDurationMs,
+            providerInitializationMs: this.summary?.elapsedMs,
+            modelAssets: this.summary?.assets,
+          },
+        },
       }
     } catch (error) {
       this.emit({ state: 'error', status: error instanceof Error ? error.message : 'PaddleOCR failed' })
@@ -135,6 +165,7 @@ export class PaddleOcrEngine implements NutritionLabelOcrEngine {
     if (this.instance) await this.instance.dispose()
     this.instance = null
     this.summary = null
+    this.initializationDurationMs = 0
     this.emit({ state: 'idle' })
   }
 }

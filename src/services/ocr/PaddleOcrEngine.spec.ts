@@ -89,6 +89,23 @@ describe('Paddle OCR adapter', () => {
       engine: 'paddleocr.js',
       sourceSize: { width: 100, height: 200 },
       preprocessing: 'grayscale-contrast-sharpen-v1',
+      diagnostics: {
+        timing: {
+          initializedDuringRequest: true,
+          initializationMs: expect.any(Number),
+          preprocessingMs: expect.any(Number),
+          recognitionMs: expect.any(Number),
+          totalMs: expect.any(Number),
+        },
+        provider: {
+          configId: 'v6-tiny',
+          model: 'PP-OCRv6_tiny_det + PP-OCRv6_tiny_rec',
+          backend: 'wasm',
+          totalInitializationMs: expect.any(Number),
+          providerInitializationMs: 10,
+          worker: true,
+        },
+      },
     })
     expect(result.lines[0]).toMatchObject({ text: 'Protein 2g', confidence: 95 })
 

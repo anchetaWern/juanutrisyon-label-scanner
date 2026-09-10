@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import type { OcrBoundingBox, OcrResult } from '@/services/ocr/types'
+import { copyText } from '@/utils/clipboard'
 
 const props = defineProps<{
   originalUrl: string
@@ -10,6 +11,28 @@ const props = defineProps<{
 
 const showBoxes = ref(true)
 const expanded = ref<number[]>([])
+const snackbarMessage = ref('')
+const snackbarVisible = ref(false)
+const copyError = ref<string | null>(null)
+
+async function copy(value: string, successMessage: string): Promise<void> {
+  copyError.value = null
+  try {
+    await copyText(value)
+    snackbarMessage.value = successMessage
+    snackbarVisible.value = true
+  } catch {
+    copyError.value = 'Clipboard access was blocked. Select the text below and copy it manually.'
+  }
+}
+
+function copyRawText(): Promise<void> {
+  return copy(props.result.text, 'Raw OCR text copied')
+}
+
+function copyCompleteResult(): Promise<void> {
+  return copy(JSON.stringify(props.result, null, 2), 'Complete OCR result copied')
+}
 
 function boxStyle(box: OcrBoundingBox): Record<string, string> {
   const width = props.result.sourceSize?.width ?? 1
@@ -45,7 +68,16 @@ function confidenceLabel(confidence?: number): string {
       <v-chip v-if="averageConfidence !== null" variant="tonal">
         {{ averageConfidence.toFixed(1) }}% avg. confidence
       </v-chip>
+      <v-chip v-if="result.preprocessing" variant="tonal" prepend-icon="mdi-image-filter-black-white">
+        Enhanced for OCR
+      </v-chip>
+      <v-spacer />
+      <v-btn color="primary" variant="outlined" prepend-icon="mdi-content-copy" @click="copyCompleteResult">
+        Copy complete result
+      </v-btn>
     </div>
+
+    <v-alert v-if="copyError" type="warning" variant="tonal" density="compact" class="mb-4" :text="copyError" />
 
     <v-row>
       <v-col cols="12" md="5">
@@ -76,7 +108,12 @@ function confidenceLabel(confidence?: number): string {
 
     <v-divider class="my-6" />
 
-    <div class="text-subtitle-1 font-weight-bold mb-2">Raw OCR text</div>
+    <div class="d-flex align-center justify-space-between flex-wrap ga-2 mb-2">
+      <div class="text-subtitle-1 font-weight-bold">Raw OCR text</div>
+      <v-btn size="small" variant="text" color="primary" prepend-icon="mdi-content-copy" @click="copyRawText">
+        Copy text
+      </v-btn>
+    </div>
     <pre class="raw-text">{{ result.text || 'No text returned.' }}</pre>
 
     <div class="text-subtitle-1 font-weight-bold mt-6 mb-2">OCR lines and geometry</div>
@@ -104,6 +141,10 @@ function confidenceLabel(confidence?: number): string {
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
+
+    <v-snackbar v-model="snackbarVisible" color="success" timeout="2200">
+      {{ snackbarMessage }}
+    </v-snackbar>
   </div>
 </template>
 

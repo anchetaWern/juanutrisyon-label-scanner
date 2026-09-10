@@ -27,6 +27,7 @@ export interface OcrResult {
     width: number
     height: number
   }
+  preprocessing?: string
 }
 
 export type OcrEngineState = 'idle' | 'initializing' | 'ready' | 'recognizing' | 'error'

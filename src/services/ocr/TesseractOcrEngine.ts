@@ -1,7 +1,8 @@
-import { createWorker, type Block, type LoggerMessage, type Worker } from 'tesseract.js'
+import { createWorker, PSM, type Block, type LoggerMessage, type Worker } from 'tesseract.js'
 import type { NutritionLabelOcrEngine } from './NutritionLabelOcrEngine'
 import type { OcrBoundingBox, OcrLine, OcrProgress, OcrResult, OcrToken } from './types'
 import { getImageDimensions } from '@/utils/image'
+import { OCR_PREPROCESSING_VARIANT, preprocessForOcr } from '@/services/image/preprocessForOcr'
 
 type TesseractBox = { x0: number; y0: number; x1: number; y1: number }
 
@@ -97,6 +98,11 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
             })
           },
         })
+        await this.worker.setParameters({
+          tessedit_pageseg_mode: PSM.AUTO,
+          preserve_interword_spaces: '1',
+          user_defined_dpi: '300',
+        })
         this.emit({ state: 'ready', status: 'OCR is ready', progress: 1 })
       } catch (error) {
         this.emit({ state: 'error', status: error instanceof Error ? error.message : 'OCR initialization failed' })
@@ -113,11 +119,13 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
     await this.initialize()
     if (!this.worker) throw new Error('OCR engine is unavailable.')
 
-    this.emit({ state: 'recognizing', status: 'Recognizing label text', progress: 0 })
+    this.emit({ state: 'recognizing', status: 'Preparing a high-contrast OCR image', progress: 0 })
     try {
+      const preparedImage = await preprocessForOcr(image)
+      this.emit({ state: 'recognizing', status: 'Recognizing label text', progress: 0 })
       const [dimensions, recognition] = await Promise.all([
-        getImageDimensions(image),
-        this.worker.recognize(image, {}, { blocks: true, text: true }),
+        getImageDimensions(preparedImage),
+        this.worker.recognize(preparedImage, {}, { blocks: true, text: true }),
       ])
       const text = recognition.data.text.trim()
       const lines = normalizeTesseractBlocks(recognition.data.blocks as Block[] | null)
@@ -129,6 +137,7 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
         engine: this.id,
         engineVersion: '6',
         sourceSize: dimensions,
+        preprocessing: OCR_PREPROCESSING_VARIANT,
       }
     } catch (error) {
       this.emit({ state: 'error', status: error instanceof Error ? error.message : 'OCR failed' })

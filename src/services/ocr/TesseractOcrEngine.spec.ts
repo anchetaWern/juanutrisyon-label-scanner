@@ -3,13 +3,20 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 const recognizeMock = vi.hoisted(() => vi.fn())
 const terminateMock = vi.hoisted(() => vi.fn())
 const createWorkerMock = vi.hoisted(() => vi.fn())
+const setParametersMock = vi.hoisted(() => vi.fn())
 
 vi.mock('tesseract.js', () => ({
   createWorker: createWorkerMock,
+  PSM: { AUTO: '3' },
 }))
 
 vi.mock('@/utils/image', () => ({
   getImageDimensions: vi.fn().mockResolvedValue({ width: 1200, height: 900 }),
+}))
+
+vi.mock('@/services/image/preprocessForOcr', () => ({
+  OCR_PREPROCESSING_VARIANT: 'grayscale-contrast-sharpen-v1',
+  preprocessForOcr: vi.fn(async (image: Blob) => image),
 }))
 
 import { normalizeTesseractBlocks, TesseractOcrEngine } from './TesseractOcrEngine'
@@ -38,7 +45,12 @@ describe('Tesseract OCR adapter', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     recognizeMock.mockResolvedValue({ data: { text: 'Sodium 120 mg\n', blocks } })
-    createWorkerMock.mockResolvedValue({ recognize: recognizeMock, terminate: terminateMock })
+    setParametersMock.mockResolvedValue(undefined)
+    createWorkerMock.mockResolvedValue({
+      recognize: recognizeMock,
+      terminate: terminateMock,
+      setParameters: setParametersMock,
+    })
   })
 
   it('normalizes lines, tokens, confidence and bounding boxes', () => {
@@ -65,6 +77,11 @@ describe('Tesseract OCR adapter', () => {
     const second = await engine.recognize(image)
 
     expect(createWorkerMock).toHaveBeenCalledTimes(1)
+    expect(setParametersMock).toHaveBeenCalledWith({
+      tessedit_pageseg_mode: '3',
+      preserve_interword_spaces: '1',
+      user_defined_dpi: '300',
+    })
     expect(recognizeMock).toHaveBeenCalledTimes(2)
     expect(first).toMatchObject({
       text: 'Sodium 120 mg',

@@ -26,6 +26,7 @@ npm run build
 take/upload photo
   → rectangular crop + rotation
   → advisory browser-side quality checks
+  → grayscale, contrast-stretch, and light sharpening preprocessing
   → provider-independent OCR adapter
   → text, lines, tokens, confidence, bounding boxes
   → debug output and overlay
@@ -36,6 +37,8 @@ The original `File` and its object URL remain separate from the generated JPEG c
 ## OCR provider decision
 
 `TesseractOcrEngine` uses Tesseract.js 6 with the English model. It was selected for Phase 1 because it executes in mainstream browsers and returns layout blocks, lines, words, confidence, and coordinates without a server. Its first use downloads the OCR worker/model, so initialization can be noticeably slower and requires network access unless those assets are self-hosted later.
+
+The OCR adapter prepares a separate lossless high-contrast image and uses automatic page segmentation with preserved word spacing. The user-visible crop remains unchanged. Debug output offers separate copy actions for raw text and the complete normalized JSON result, including confidence, preprocessing version, and geometry.
 
 PaddleOCR remains a strong future candidate, but its browser deployment currently requires additional WASM/ONNX runtime and model packaging work. Provider-specific objects are normalized inside `src/services/ocr/TesseractOcrEngine.ts`; UI and scanner state depend only on `NutritionLabelOcrEngine` and `OcrResult`. A later provider only needs to implement `initialize`, `recognize`, `terminate`, and optionally progress updates.
 

@@ -5,6 +5,7 @@ import type { ImageQualityMetrics, ImageQualityWarning } from '@/composables/use
 import { buildScannerDiagnosticReport, cropDownloadFilename } from '@/services/diagnostics/scannerDiagnostics'
 import type { OcrBoundingBox, OcrResult } from '@/services/ocr/types'
 import { copyText } from '@/utils/clipboard'
+import { canShareBlob, saveBlob } from '@/utils/saveBlob'
 
 const props = defineProps<{
   originalUrl: string
@@ -24,6 +25,8 @@ const snackbarVisible = ref(false)
 const copyError = ref<string | null>(null)
 const manualCopyText = ref('')
 const manualCopyField = ref<HTMLTextAreaElement | null>(null)
+const cropFilename = computed(() => cropDownloadFilename(props.originalFile.name, props.croppedBlob.type))
+const canShareCrop = computed(() => canShareBlob(props.croppedBlob, cropFilename.value))
 
 async function copy(value: string, successMessage: string): Promise<void> {
   copyError.value = null
@@ -65,18 +68,16 @@ function copyDiagnostics(): Promise<void> {
   return copy(JSON.stringify(report, null, 2), 'Scanner diagnostics copied')
 }
 
-function downloadCrop(): void {
-  const url = URL.createObjectURL(props.croppedBlob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = cropDownloadFilename(props.originalFile.name, props.croppedBlob.type)
-  link.rel = 'noopener'
-  document.body.appendChild(link)
-  link.click()
-  link.remove()
-  window.setTimeout(() => URL.revokeObjectURL(url), 1_000)
-  snackbarMessage.value = 'Exact OCR crop downloaded'
-  snackbarVisible.value = true
+async function downloadCrop(): Promise<void> {
+  copyError.value = null
+  try {
+    const outcome = await saveBlob(props.croppedBlob, cropFilename.value, 'Nutrition label OCR crop')
+    if (outcome === 'cancelled') return
+    snackbarMessage.value = outcome === 'shared' ? 'Crop shared' : 'Crop download or preview opened'
+    snackbarVisible.value = true
+  } catch {
+    copyError.value = 'The browser could not save the crop. Long-press the cropped image below and choose Save Image.'
+  }
 }
 
 function boxStyle(box: OcrBoundingBox): Record<string, string> {
@@ -118,7 +119,7 @@ function confidenceLabel(confidence?: number): string {
       </v-chip>
       <v-spacer />
       <v-btn variant="outlined" prepend-icon="mdi-download" @click="downloadCrop">
-        Download crop
+        {{ canShareCrop ? 'Save / share crop' : 'Download crop' }}
       </v-btn>
       <v-btn variant="outlined" prepend-icon="mdi-code-json" @click="copyCompleteResult">
         Copy OCR JSON

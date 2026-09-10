@@ -8,6 +8,11 @@
     "build": "npm-run-all type-check build-only",
     "build-only": "vite build",
     "preview": "vite preview",
+    "benchmark:annotations": "node --import tsx benchmark/src/generate-corpus.ts",
+    "benchmark:ocr": "node --import tsx benchmark/src/paddle-cli.ts",
+    "benchmark:tesseract": "node --import tsx benchmark/src/cli.ts",
+    "benchmark:paddle": "node --import tsx benchmark/src/paddle-cli.ts",
+    "benchmark:report": "node --import tsx benchmark/src/final-report.ts",
     "type-check": "vue-tsc --build --force",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -15,6 +20,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@paddleocr/paddleocr-js": "^0.4.2",
     "cropperjs": "^1.6.2",
     "roboto-fontface": "^0.10.0",
     "tesseract.js": "^6.0.1",
@@ -23,20 +29,24 @@
     "vuetify": "^3.8.0"
   },
   "devDependencies": {
-    "@types/node": "^22.13.10",
     "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.13.10",
+    "@types/ws": "^8.18.1",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/eslint-config-typescript": "^14.5.0",
-    "@vue/tsconfig": "^0.7.0",
     "@vue/test-utils": "2.4.6",
+    "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.22.0",
     "eslint-plugin-vue": "^10.0.0",
     "jsdom": "^26.0.0",
     "npm-run-all2": "^7.0.2",
+    "sharp": "^0.35.4",
+    "tsx": "^4.20.5",
     "typescript": "~5.7.3",
     "vite": "^6.2.2",
     "vite-plugin-vuetify": "^2.1.0",
-    "vitest": "^3.0.8",
-    "vue-tsc": "^2.2.8"
+    "vitest": "^4.1.11",
+    "vue-tsc": "^2.2.8",
+    "ws": "^8.21.0"
   }
 }

@@ -1,8 +1,9 @@
-import { createWorker, PSM, type Block, type LoggerMessage, type Worker } from 'tesseract.js'
+import { createWorker, type Block, type LoggerMessage, type Worker } from 'tesseract.js'
 import type { NutritionLabelOcrEngine } from './NutritionLabelOcrEngine'
 import type { OcrBoundingBox, OcrLine, OcrProgress, OcrResult, OcrToken } from './types'
-import { getImageDimensions } from '@/utils/image'
-import { OCR_PREPROCESSING_VARIANT, preprocessForOcr } from '@/services/image/preprocessForOcr'
+import { getImageDimensions } from '../../utils/image'
+import { PRODUCTION_PREPROCESSING_CONFIG, preprocessForOcr } from '../image/preprocessForOcr'
+import { applyTesseractConfig, PRODUCTION_TESSERACT_CONFIG } from './tesseractConfig'
 
 type TesseractBox = { x0: number; y0: number; x1: number; y1: number }
 
@@ -98,11 +99,7 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
             })
           },
         })
-        await this.worker.setParameters({
-          tessedit_pageseg_mode: PSM.AUTO,
-          preserve_interword_spaces: '1',
-          user_defined_dpi: '300',
-        })
+        await applyTesseractConfig(this.worker, PRODUCTION_TESSERACT_CONFIG)
         this.emit({ state: 'ready', status: 'OCR is ready', progress: 1 })
       } catch (error) {
         this.emit({ state: 'error', status: error instanceof Error ? error.message : 'OCR initialization failed' })
@@ -137,7 +134,7 @@ export class TesseractOcrEngine implements NutritionLabelOcrEngine {
         engine: this.id,
         engineVersion: '6',
         sourceSize: dimensions,
-        preprocessing: OCR_PREPROCESSING_VARIANT,
+        preprocessing: PRODUCTION_PREPROCESSING_CONFIG.id,
       }
     } catch (error) {
       this.emit({ state: 'error', status: error instanceof Error ? error.message : 'OCR failed' })

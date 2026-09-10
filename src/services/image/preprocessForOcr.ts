@@ -1,6 +1,28 @@
-import { canvasToBlob, loadImage } from '@/utils/image'
+import { canvasToBlob, loadImage } from '../../utils/image'
 
 export const OCR_PREPROCESSING_VARIANT = 'grayscale-contrast-sharpen-v1'
+
+export type OcrPreprocessingMode = 'original' | 'grayscale' | 'grayscale-contrast' | 'grayscale-contrast-sharpen' | 'otsu'
+
+export interface OcrPreprocessingConfig {
+  id: string
+  mode: OcrPreprocessingMode
+  scale: number
+  maxDimension: number
+  contrastLowPercentile: number
+  contrastHighPercentile: number
+  sharpenAmount: number
+}
+
+export const PRODUCTION_PREPROCESSING_CONFIG: OcrPreprocessingConfig = {
+  id: OCR_PREPROCESSING_VARIANT,
+  mode: 'grayscale-contrast-sharpen',
+  scale: 1,
+  maxDimension: 2400,
+  contrastLowPercentile: 0.01,
+  contrastHighPercentile: 0.99,
+  sharpenAmount: 0.32,
+}
 
 function percentileFromHistogram(histogram: Uint32Array, pixelCount: number, percentile: number): number {
   const target = Math.max(1, Math.round(pixelCount * percentile))
@@ -17,8 +39,44 @@ export function enhancePixelsForOcr(
   width: number,
   height: number,
 ): Uint8ClampedArray {
+  return transformPixelsForOcr(pixels, width, height, PRODUCTION_PREPROCESSING_CONFIG)
+}
+
+function otsuThreshold(histogram: Uint32Array, pixelCount: number): number {
+  let totalSum = 0
+  for (let value = 0; value < 256; value += 1) totalSum += value * (histogram[value] ?? 0)
+
+  let backgroundWeight = 0
+  let backgroundSum = 0
+  let bestVariance = -1
+  let threshold = 127
+  for (let value = 0; value < 256; value += 1) {
+    backgroundWeight += histogram[value] ?? 0
+    if (backgroundWeight === 0) continue
+    const foregroundWeight = pixelCount - backgroundWeight
+    if (foregroundWeight === 0) break
+    backgroundSum += value * (histogram[value] ?? 0)
+    const backgroundMean = backgroundSum / backgroundWeight
+    const foregroundMean = (totalSum - backgroundSum) / foregroundWeight
+    const variance = backgroundWeight * foregroundWeight * (backgroundMean - foregroundMean) ** 2
+    if (variance > bestVariance) {
+      bestVariance = variance
+      threshold = value
+    }
+  }
+  return threshold
+}
+
+export function transformPixelsForOcr(
+  pixels: Uint8ClampedArray,
+  width: number,
+  height: number,
+  config: OcrPreprocessingConfig,
+): Uint8ClampedArray {
   const pixelCount = width * height
   if (!pixelCount || pixels.length < pixelCount * 4) throw new Error('Image pixel data is incomplete.')
+
+  if (config.mode === 'original') return new Uint8ClampedArray(pixels)
 
   const grayscale = new Uint8ClampedArray(pixelCount)
   const histogram = new Uint32Array(256)
@@ -33,16 +91,28 @@ export function enhancePixelsForOcr(
     histogram[value] = (histogram[value] ?? 0) + 1
   }
 
-  const low = percentileFromHistogram(histogram, pixelCount, 0.01)
-  const high = percentileFromHistogram(histogram, pixelCount, 0.99)
+  const applyContrast = config.mode === 'grayscale-contrast' || config.mode === 'grayscale-contrast-sharpen'
+  const low = applyContrast
+    ? percentileFromHistogram(histogram, pixelCount, config.contrastLowPercentile)
+    : 0
+  const high = applyContrast
+    ? percentileFromHistogram(histogram, pixelCount, config.contrastHighPercentile)
+    : 255
   const range = Math.max(24, high - low)
   const contrasted = new Uint8ClampedArray(pixelCount)
   for (let index = 0; index < pixelCount; index += 1) {
     contrasted[index] = Math.max(0, Math.min(255, Math.round((((grayscale[index] ?? 0) - low) * 255) / range)))
   }
 
+  if (config.mode === 'otsu') {
+    const threshold = otsuThreshold(histogram, pixelCount)
+    for (let index = 0; index < contrasted.length; index += 1) {
+      contrasted[index] = (grayscale[index] ?? 0) > threshold ? 255 : 0
+    }
+  }
+
   const output = new Uint8ClampedArray(pixelCount * 4)
-  const sharpenAmount = 0.32
+  const sharpenAmount = config.mode === 'grayscale-contrast-sharpen' ? config.sharpenAmount : 0
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       const index = y * width + x
@@ -68,11 +138,15 @@ export function enhancePixelsForOcr(
   return output
 }
 
-export async function preprocessForOcr(blob: Blob): Promise<Blob> {
+export async function preprocessForOcr(
+  blob: Blob,
+  config: OcrPreprocessingConfig = PRODUCTION_PREPROCESSING_CONFIG,
+): Promise<Blob> {
   const url = URL.createObjectURL(blob)
   try {
     const image = await loadImage(url)
-    const scale = Math.min(1, 2400 / Math.max(image.naturalWidth, image.naturalHeight))
+    const requestedScale = Math.max(0.1, config.scale)
+    const scale = Math.min(requestedScale, config.maxDimension / Math.max(image.naturalWidth, image.naturalHeight))
     const width = Math.max(1, Math.round(image.naturalWidth * scale))
     const height = Math.max(1, Math.round(image.naturalHeight * scale))
     const canvas = document.createElement('canvas')
@@ -83,7 +157,7 @@ export async function preprocessForOcr(blob: Blob): Promise<Blob> {
 
     context.drawImage(image, 0, 0, width, height)
     const source = context.getImageData(0, 0, width, height)
-    const enhanced = enhancePixelsForOcr(source.data, width, height)
+    const enhanced = transformPixelsForOcr(source.data, width, height, config)
     context.putImageData(new ImageData(enhanced, width, height), 0, 0)
     return canvasToBlob(canvas, 'image/png')
   } catch {

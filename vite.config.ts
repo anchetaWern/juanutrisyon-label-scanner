@@ -10,9 +10,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  optimizeDeps: {
+    // PaddleOCR resolves its packaged module worker relative to its own ESM entry.
+    exclude: ['@paddleocr/paddleocr-js'],
+    include: ['@techstark/opencv-js', 'clipper-lib', 'js-yaml'],
+  },
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
-    include: ['src/**/*.spec.ts'],
+    include: ['src/**/*.spec.ts', 'benchmark/**/*.spec.ts'],
   },
 })

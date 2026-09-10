@@ -7,7 +7,7 @@ const setParametersMock = vi.hoisted(() => vi.fn())
 
 vi.mock('tesseract.js', () => ({
   createWorker: createWorkerMock,
-  PSM: { AUTO: '3' },
+  PSM: { AUTO: '3', SINGLE_BLOCK: '6' },
 }))
 
 vi.mock('@/utils/image', () => ({
@@ -15,7 +15,7 @@ vi.mock('@/utils/image', () => ({
 }))
 
 vi.mock('@/services/image/preprocessForOcr', () => ({
-  OCR_PREPROCESSING_VARIANT: 'grayscale-contrast-sharpen-v1',
+  PRODUCTION_PREPROCESSING_CONFIG: { id: 'grayscale-contrast-sharpen-v1' },
   preprocessForOcr: vi.fn(async (image: Blob) => image),
 }))
 
@@ -78,7 +78,7 @@ describe('Tesseract OCR adapter', () => {
 
     expect(createWorkerMock).toHaveBeenCalledTimes(1)
     expect(setParametersMock).toHaveBeenCalledWith({
-      tessedit_pageseg_mode: '3',
+      tessedit_pageseg_mode: '6',
       preserve_interword_spaces: '1',
       user_defined_dpi: '300',
     })

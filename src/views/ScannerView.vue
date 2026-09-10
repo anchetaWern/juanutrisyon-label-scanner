@@ -5,9 +5,9 @@ import ScannerImagePicker from '@/components/scanner/ScannerImagePicker.vue'
 import ScannerOcrDebug from '@/components/scanner/ScannerOcrDebug.vue'
 import ScannerQualityWarnings from '@/components/scanner/ScannerQualityWarnings.vue'
 import { useNutritionLabelScanner } from '@/composables/useNutritionLabelScanner'
-import { TesseractOcrEngine } from '@/services/ocr/TesseractOcrEngine'
+import { PADDLE_OCR_CONFIGS, PaddleOcrEngine } from '@/services/ocr/PaddleOcrEngine'
 
-const scanner = useNutritionLabelScanner(new TesseractOcrEngine())
+const scanner = useNutritionLabelScanner(new PaddleOcrEngine(PADDLE_OCR_CONFIGS.v6Tiny))
 
 function progressLabel(): string {
   const status = scanner.progress.value.status

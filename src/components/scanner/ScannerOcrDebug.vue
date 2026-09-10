@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import type { CropCoordinates } from '@/composables/useImageCrop'
 import type { ImageQualityMetrics, ImageQualityWarning } from '@/composables/useImageQuality'
 import { buildScannerDiagnosticReport, cropDownloadFilename } from '@/services/diagnostics/scannerDiagnostics'
@@ -22,16 +22,27 @@ const expanded = ref<number[]>([])
 const snackbarMessage = ref('')
 const snackbarVisible = ref(false)
 const copyError = ref<string | null>(null)
+const manualCopyText = ref('')
+const manualCopyField = ref<HTMLTextAreaElement | null>(null)
 
 async function copy(value: string, successMessage: string): Promise<void> {
   copyError.value = null
+  manualCopyText.value = ''
   try {
     await copyText(value)
     snackbarMessage.value = successMessage
     snackbarVisible.value = true
   } catch {
-    copyError.value = 'Clipboard access was blocked. Select the text below and copy it manually.'
+    copyError.value = 'Clipboard access was blocked by the browser. The requested content is ready below for manual copying.'
+    manualCopyText.value = value
+    await nextTick()
+    selectManualCopyText()
   }
+}
+
+function selectManualCopyText(): void {
+  manualCopyField.value?.focus()
+  manualCopyField.value?.select()
 }
 
 function copyRawText(): Promise<void> {
@@ -118,6 +129,13 @@ function confidenceLabel(confidence?: number): string {
     </div>
 
     <v-alert v-if="copyError" type="warning" variant="tonal" density="compact" class="mb-4" :text="copyError" />
+    <div v-if="manualCopyText" class="manual-copy mb-4">
+      <div class="d-flex align-center justify-space-between ga-2 mb-2">
+        <span class="text-caption text-medium-emphasis">Long-press or use your browser’s Copy command after selecting.</span>
+        <v-btn size="small" variant="outlined" prepend-icon="mdi-select-all" @click="selectManualCopyText">Select all</v-btn>
+      </div>
+      <textarea ref="manualCopyField" :value="manualCopyText" readonly rows="8" aria-label="Content ready for manual copying" />
+    </div>
     <v-alert type="info" variant="tonal" density="compact" class="mb-4">
       Diagnostics include browser/device details, crop metadata, quality checks, OCR timings, and the complete OCR result. Image
       pixels are not copied.
@@ -249,6 +267,18 @@ function confidenceLabel(confidence?: number): string {
   overflow: auto;
   padding: 16px;
   white-space: pre-wrap;
+}
+
+.manual-copy textarea {
+  background: #fff;
+  border: 1px solid #85aa9f;
+  border-radius: 8px;
+  color: #17201d;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  padding: 12px;
+  resize: vertical;
+  width: 100%;
 }
 
 .geometry {

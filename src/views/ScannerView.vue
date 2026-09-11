@@ -156,8 +156,8 @@ function progressLabel(): string {
         border
       >
         <v-card-title class="px-5 pt-5 px-md-7 pt-md-7">
-          <div class="step-kicker">Step 4 · Debug output</div>
-          <h2 class="text-h6 font-weight-bold">OCR text and bounding boxes</h2>
+          <div class="step-kicker">Step 4 · Review output</div>
+          <h2 class="text-h6 font-weight-bold">Nutrition values and OCR evidence</h2>
         </v-card-title>
         <v-card-text class="pa-5 pa-md-7">
           <ScannerOcrDebug

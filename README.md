@@ -1,6 +1,6 @@
 # Juan Nutrisyon Nutrition Label Scanner
 
-Standalone Phase 1 Vue application for capturing, cropping, quality-checking, and OCRing nutrition-label images. It does not import from, call, or otherwise depend on the Juan Nutrisyon frontend or API.
+Standalone Vue application for capturing, cropping, quality-checking, and OCRing nutrition-label images, with experimental, review-required nutrition extraction. It does not import from, call, or otherwise depend on the Juan Nutrisyon frontend or API.
 
 ## Run locally
 
@@ -20,7 +20,7 @@ npm test
 npm run build
 ```
 
-## Phase 1 pipeline
+## Scanner pipeline
 
 ```text
 take/upload photo
@@ -29,6 +29,7 @@ take/upload photo
   → grayscale, contrast-stretch, and light sharpening preprocessing
   → provider-independent OCR adapter
   → text, lines, tokens, confidence, bounding boxes
+  → conservative spatial nutrition extraction with source evidence
   → debug output and overlay
 ```
 
@@ -42,13 +43,21 @@ The OCR adapter prepares a separate lossless image; the user-visible crop remain
 
 The Tesseract.js 6 adapter remains available with single-block segmentation; it is not an automatic retry after Paddle failures. UI and scanner state depend only on `NutritionLabelOcrEngine` and `OcrResult`. The first Paddle scan downloads the runtime and models, so initialization is slower and needs network access unless assets are self-hosted.
 
+## Nutrition extraction (experimental)
+
+After OCR, `parseNutrition` matches nutrient names and amounts using inline text and bounding-box geometry, including complete ordered columns on slanted labels. It preserves raw OCR. The review panel offers a separate **Copy nutrition JSON** action using the agreed format: `"sugars": "4g"`, `"energy": "80kcal"`, `"niacin": "4%"`. Serving values are strings. Unknown values are JSON `null`, never inferred zeros. The ten core nutrient keys are always present; recognized additional nutrients, vitamins, and minerals are included. Percent-only amounts are retained when no mass is readable/present in the supported layout.
+
+Diagnostics schema version 2 adds `nutrition` with the data, parser version, warnings, and source line indexes. The existing `ocr` object and **Copy OCR JSON** remain unchanged. Numeric-slot corrections such as `Og` → `0g` and `mmg` → `mg` are flagged for review. Missing digits/units and ambiguous associations are not filled from a reference label. Multiple nutrition bases are conservatively rejected.
+
+The five mobile diagnostic exports are stored as sanitized OCR-only fixtures under `src/services/nutrition/fixtures/`; they contain no device/browser details or image bytes. See [the extraction validation report](docs/nutrition-extraction-2026-09-11.md) for results and limitations.
+
 ## Deployment
 
 `npm run build` produces the static `dist/` application. `vercel.json` and `public/_redirects` provide SPA routing defaults for Vercel and hosts that support Netlify-style redirects. No hostname is hard-coded.
 
 ## Current limitations
 
-- English OCR only; nutrition parsing and table reconstruction belong to Phase 2.
+- English OCR and heuristic, review-required nutrition parsing. Incomplete tables, unknown nutrient names, curved/multi-panel layouts, and OCR digit errors can still produce omissions or wrong values. This is not unattended extraction.
 - OCR runtime/model assets are fetched on first use and are not available offline yet.
 - Quality thresholds are heuristics and deliberately advisory.
 - Glare detection uses clipped-highlight ratios; it can report bright white label backgrounds as possible glare.

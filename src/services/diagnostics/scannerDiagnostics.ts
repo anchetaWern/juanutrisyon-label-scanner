@@ -1,6 +1,7 @@
 import type { CropCoordinates } from '@/composables/useImageCrop'
 import type { ImageQualityMetrics, ImageQualityWarning } from '@/composables/useImageQuality'
 import type { OcrResult } from '@/services/ocr/types'
+import { parseNutrition } from '@/services/nutrition/parseNutrition'
 
 interface NavigatorWithDiagnostics extends Navigator {
   deviceMemory?: number
@@ -104,7 +105,7 @@ export function buildScannerDiagnosticReport(
   environment: ScannerDiagnosticEnvironment = collectScannerEnvironment(),
 ): Record<string, unknown> {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     generatedAt: new Date().toISOString(),
     app: {
       name: 'juan-nutrisyon-label-scanner',
@@ -137,6 +138,7 @@ export function buildScannerDiagnosticReport(
       warnings: input.qualityWarnings,
     },
     ocr: input.result,
+    nutrition: parseNutrition(input.result),
   }
 }
 

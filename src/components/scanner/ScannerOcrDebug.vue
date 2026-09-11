@@ -6,6 +6,8 @@ import { buildScannerDiagnosticReport, cropDownloadFilename } from '@/services/d
 import type { OcrBoundingBox, OcrResult } from '@/services/ocr/types'
 import { copyText } from '@/utils/clipboard'
 import { canShareBlob, saveBlob } from '@/utils/saveBlob'
+import { parseNutrition } from '@/services/nutrition/parseNutrition'
+import ScannerNutritionResult from './ScannerNutritionResult.vue'
 
 const props = defineProps<{
   originalUrl: string
@@ -27,6 +29,7 @@ const manualCopyText = ref('')
 const manualCopyField = ref<HTMLTextAreaElement | null>(null)
 const cropFilename = computed(() => cropDownloadFilename(props.originalFile.name, props.croppedBlob.type))
 const canShareCrop = computed(() => canShareBlob(props.croppedBlob, cropFilename.value))
+const nutrition = computed(() => parseNutrition(props.result))
 
 async function copy(value: string, successMessage: string): Promise<void> {
   copyError.value = null
@@ -138,9 +141,11 @@ function confidenceLabel(confidence?: number): string {
       <textarea ref="manualCopyField" :value="manualCopyText" readonly rows="8" aria-label="Content ready for manual copying" />
     </div>
     <v-alert type="info" variant="tonal" density="compact" class="mb-4">
-      Diagnostics include browser/device details, crop metadata, quality checks, OCR timings, and the complete OCR result. Image
+      Diagnostics include browser/device details, crop metadata, quality checks, OCR timings, the complete OCR result, and nutrition extraction with evidence. Image
       pixels are not copied.
     </v-alert>
+
+    <ScannerNutritionResult :extraction="nutrition" @copy="copy" />
 
     <v-row>
       <v-col cols="12" md="5">

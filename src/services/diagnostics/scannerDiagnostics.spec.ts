@@ -34,13 +34,14 @@ describe('scanner diagnostics', () => {
     )
 
     expect(report).toMatchObject({
-      schemaVersion: 1,
+      schemaVersion: 2,
       app: { origin: 'https://example.test', pathname: '/scanner', mode: 'test' },
       images: {
         original: { filename: 'My Label.JPG', type: 'image/jpeg', bytes: 8 },
         crop: { type: 'image/jpeg', bytes: 4, width: 900, height: 1200 },
       },
       ocr: { text: 'Protein 7g', engine: 'mock' },
+      nutrition: { parserVersion: 'spatial-review-v1', data: { nutrients: { protein: null } } },
     })
     expect(JSON.stringify(report)).not.toContain('b3JpZ2luYWw=')
   })

@@ -13,7 +13,7 @@ export interface NutritionExtraction {
 }
 
 type Box = OcrLine & { index: number }
-type Anchor = { box: Box; key: string; tail: string; unit?: string }
+type Anchor = { box: Box; key: string; tail: string; unit?: string; corrected: boolean }
 type Amount = { text: string; boxes: Box[]; x: number; y: number; right: number; height: number }
 
 const core = ['energy', 'total_fat', 'saturated_fat', 'trans_fat', 'cholesterol', 'sodium', 'carbohydrate', 'fiber', 'sugars', 'protein']
@@ -28,10 +28,12 @@ const names: Array<[string, RegExp]> = [
   ['cholesterol', /^cholest(?:erol|rol)\b/i],
   ['sodium', /^sodium\b/i],
   ['carbohydrate', /^(?:total\s+)?carb(?:ohydrate)?s?\b/i],
+  ['soluble_fiber', /^soluble\s+fib(?:er|re)\b/i],
+  ['insoluble_fiber', /^insoluble\s+fib(?:er|re)\b/i],
   ['fiber', /^(?:dietary\s+)?fib(?:er|re)\b/i],
   ['sugars', /^(?:total\s+)?sugars?\b/i],
   ['protein', /^(?:total\s+)?protein\b/i],
-  ['vitamin', /^vitamin\s+(b12|b1|b2|b3|b5|b6|b7|b9|a|c|d3|d2|d|e|k)\b/i],
+  ['vitamin', /^(?:vitamin|vit\.)\s+(b12|b1|b2|b3|b5|b6|b7|b9|a|c|d3|d2|d|e|k)\b/i],
   ['calcium', /^calcium\b/i], ['iron', /^iron\b/i], ['potassium', /^potassium\b/i],
   ['niacin', /^niacin\b/i], ['thiamine', /^thiamin(?:e)?\b/i],
   ['riboflavin', /^riboflavin\b/i], ['folate', /^folate\b/i], ['folic_acid', /^folic\s+acid\b/i],
@@ -43,21 +45,28 @@ const names: Array<[string, RegExp]> = [
   ['taurine', /^taurine\b/i], ['caffeine', /^caffeine\b/i],
   ['l_carnitine_l_tartrate', /^l[- ]ca(?:r)?nitine\s+l[- ]tartrate\b/i],
 ]
+const vitaminNames: Record<string, RegExp> = {
+  vitamin_b1: /^\(thiamine\)\s*/i, vitamin_b2: /^\(riboflavin\)\s*/i, vitamin_b3: /^\(niacin\)\s*/i,
+}
 const cx = (b: Box) => b.bbox.x + b.bbox.width / 2
 const cy = (b: Box) => b.bbox.y + b.bbox.height / 2
 const right = (b: Box) => b.bbox.x + b.bbox.width
 const median = (values: number[]) => [...values].sort((a, b) => a - b)[Math.floor(values.length / 2)] ?? 1
 
 function anchor(box: Box): Anchor | undefined {
+  // Explicit observed OCR spellings only; retain the source and flag every match.
+  const text = box.text.trim().replace(/^Dletary\s+Fiber\b/i, 'Dietary Fiber')
+    .replace(/^Sodiun\b/i, 'Sodium').replace(/^Irón\b/i, 'Iron')
   for (const [name, pattern] of names) {
-    const match = box.text.trim().match(pattern)
+    const match = text.match(pattern)
     if (!match) continue
     const key = name === 'vitamin' ? `vitamin_${match[1]!.toLowerCase()}` : name
-    let tail = box.text.trim().slice(match[0].length).trim()
+    let tail = text.slice(match[0].length).trim()
+    if (vitaminNames[key]) tail = tail.replace(vitaminNames[key], '')
     if (key === 'added_sugars') tail = box.text.match(/[\d.Oo]+\s*g\b/i)?.[0] ?? tail
     const unit = tail.match(/^\((kcal|kJ|g|mg|mcg|[μµ]g)\)/i)?.[1]
     if (unit) tail = tail.replace(/^\([^)]+\)/, '').trim()
-    return { box, key, tail: tail.replace(/^:\s*/, ''), unit }
+    return { box, key, tail: tail.replace(/^:\s*/, ''), unit, corrected: text !== box.text.trim() }
   }
 }
 
@@ -65,10 +74,10 @@ function readAmount(text: string, unit?: string): { value: string; corrected: bo
   const source = text.trim()
   // These character fixes are restricted to the numeric/unit slot, never the raw OCR.
   const normalized = source.replace(/\b[Oo](?=\s*(?:g|mg|mcg|[μµ]g)\b)/g, '0').replace(/mmg\b/gi, 'mg')
-  const match = normalized.match(/^(less than\s+|<\s*|>\s*)?(\d+(?:\.\d+)?)\s*(kcal|kj|mcg|mg|[μµ]g|g|%)?(?:\s+\d+(?:\.\d+)?\s*%)?\s*$/i)
+  const match = normalized.match(/^(less than\s+|<\s*|>\s*)?(\d+(?:\.\d+)?)\s*(kcal|kj|mcg|mg|[μµ]g|g|%)?(\s+\d+(?:\.\d+)?\s*%)?\s*$/i)
   if (!match) return
   const suffix = match[3] ?? unit
-  if (!suffix) return
+  if (!suffix || (suffix === '%' && match[4])) return
   const canonicalUnit = /^(kcal|g|mg|mcg)$/i.test(suffix) ? suffix.toLowerCase() : suffix
   return { value: `${match[1] ?? ''}${match[2]}${canonicalUnit}`, corrected: normalized !== source }
 }
@@ -103,7 +112,7 @@ function orderedAlignment(names: Anchor[], values: Amount[]): boolean {
 /** Pure, conservative post-processing. Never modifies recognition results or infers missing digits. */
 export function parseNutrition(result: OcrResult): NutritionExtraction {
   const output: NutritionExtraction = {
-    parserVersion: 'spatial-review-v1',
+    parserVersion: 'spatial-review-v2',
     data: { serving: { serving_size: null, servings_per_container: null }, nutrients: Object.fromEntries(core.map((key) => [key, null])) },
     issues: [], evidence: {},
   }
@@ -118,6 +127,9 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   const footnote = boxes.find((b) => /(?:percent daily values are based|calories per gram|ingredients\s*:)/i.test(b.text))
   const cutoff = Math.min(referenceHeading?.bbox.y ?? Infinity, footnote?.bbox.y ?? Infinity)
   const anchors = found.filter((a) => cy(a.box) < cutoff)
+  for (const a of anchors.filter((a) => a.corrected)) {
+    issue(a.key, 'Normalized an OCR nutrient-name error; verify against the image.')
+  }
   if (cutoff < Infinity) issue('panel', 'Excluded the daily-reference table or footer below the nutrition panel.')
   const used = new Set<number>()
   const remember = (field: string, value: string, source: Box[], method: string) => {
@@ -138,15 +150,28 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   const firstNutrientY = anchors[0]?.box.bbox.y ?? 0
   const header = boxes.filter((b) => cy(b) < firstNutrientY)
   for (const [field, pattern] of [
-    ['serving_size', /^serving\s+size\s*:?\s*(.*)$/i],
+    ['serving_size', /^serving\s+size\b\s*:?\s*(.*)$/i],
     ['servings_per_container', /^(?:no\.\s*of\s+)?servings?\s+per\s+container\s*:?\s*(.*)$/i],
   ] as const) {
     const line = header.find((b) => pattern.test(b.text))
     const value = line?.text.match(pattern)?.[1]?.trim()
     if (line && value && /\d/.test(value)) remember(`serving.${field}`, value, [line], 'inline')
   }
-  const aboutCount = header.find((b) => /^about\s+\d+(?:\.\d+)?\s+servings?\s+per\s+container$/i.test(b.text))
+  const aboutCount = header.find((b) => /^(?:about\s+)?\d+(?:\.\d+)?\s+servings?\s+per\s+container$/i.test(b.text))
   if (aboutCount) remember('serving.servings_per_container', aboutCount.text.replace(/\s+servings?\s+per\s+container$/i, ''), [aboutCount], 'inline')
+  // A detached mass can complete a size label or a readable household measure.
+  // This does not depend on successfully reading the separate container count.
+  const detachedSize = header.find((b) => /^serving\s+size\s*:?\s*(\(\d+\s+slices?\))?\s*$/i.test(b.text))
+  if (detachedSize) {
+    const masses = header.filter((b) => b.bbox.x > right(detachedSize) &&
+      /^(?:\d+(?:\.\d+)?\s*(?:g|ml)|\(\d+(?:\.\d+)?\s*(?:g|ml)\))$/i.test(b.text.trim()) &&
+      Math.abs(cy(b) - cy(detachedSize)) < detachedSize.bbox.height * 0.6)
+    if (masses.length === 1) {
+      const measure = detachedSize.text.match(/\(\d+\s+slices?\)/i)?.[0]
+      remember('serving.serving_size', [measure, masses[0]!.text.trim()].filter(Boolean).join(' '),
+        [detachedSize, masses[0]!], 'spatial-serving-row')
+    }
+  }
   const sizeLabel = header.find((b) => /^serving size\s*:?\s*$/i.test(b.text))
   const countLabel = header.find((b) => /^servings? per container\s*:?\s*$/i.test(b.text))
   if (sizeLabel && countLabel) {
@@ -167,18 +192,48 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   }
 
   // Multiple per-serving/per-100g amount columns require explicit selection, not an arbitrary first column.
-  const multiBasis = boxes.some((b) => /(?:per\s*100\s*(?:g|ml)|as prepared|as sold)/i.test(b.text))
+  const basisHeadings = boxes.filter((b) => /(?:per\s*100\s*(?:g|ml)|as prepared|as sold)/i.test(b.text))
+  const per100 = basisHeadings.length === 1 && /^per\s*100\s*(?:g|ml)$/i.test(basisHeadings[0]!.text.trim())
+    ? basisHeadings[0] : undefined
+  const servingHeadings = boxes.filter((b) => /^per\s+serving$/i.test(b.text.trim()))
+  const perServing = servingHeadings.length === 1 ? servingHeadings[0] : undefined
+  const tableRows = per100 ? anchors.filter((a) => cy(a.box) > cy(per100)) : []
+  const upperRows = per100 ? anchors.filter((a) => cy(a.box) < per100.bbox.y) : []
+  // Narrow exception: inline per-serving macros above a separately headed,
+  // detached micronutrient table. All other multi-basis layouts still abstain.
+  const servingTable = per100 && perServing && right(perServing) < per100.bbox.x &&
+    Math.abs(cy(perServing) - cy(per100)) < Math.min(perServing.bbox.height, per100.bbox.height) * 0.5 &&
+    upperRows.length >= 3 && upperRows.length + tableRows.length === anchors.length &&
+    upperRows.every((a) => readAmount(a.tail, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined))) &&
+    boxes.some((b) => /^amount per serving$/i.test(b.text.trim()) && cy(b) < upperRows[0]!.box.bbox.y) &&
+    tableRows.length >= 3 && tableRows.every((a) => !core.includes(a.key) && !a.key.startsWith('energy') &&
+      !a.tail && right(a.box) < right(perServing))
+  const scopedRows = new Set(servingTable ? tableRows : [])
+  const multiBasis = basisHeadings.length > 0 && !servingTable
   if (multiBasis) issue('panel', 'Multiple or non-serving nutrition bases detected; automatic nutrient extraction is disabled.')
+  if (servingTable) issue('panel', 'Selected the explicitly headed per-serving micronutrient column; excluded the per-100g/ml column. Verify the basis against the image.')
   const duplicates = new Set(anchors.filter((a, i) => anchors.findIndex((b) => b.key === a.key) !== i).map((a) => a.key))
   for (const a of anchors) {
     output.data.nutrients[a.key] ??= null
     if (multiBasis || duplicates.has(a.key)) continue
     if (a.tail) store(a, a.tail, [], 'inline')
   }
+  if (servingTable && perServing && per100) {
+    // Include unreadable cells as blockers. Do not slide ordered percentages
+    // across a missing row or fall back to the adjacent per-100g column.
+    const cells = groupAmounts(boxes.filter((b) => b.bbox.x >= perServing.bbox.x && right(b) < per100.bbox.x &&
+      cy(b) > Math.max(cy(perServing), cy(per100)) && cy(b) < cutoff && !anchors.some((a) => a.box.index === b.index)))
+    for (const a of tableRows) {
+      if (duplicates.has(a.key)) continue
+      const options = cells.filter((v) => v.x > right(a.box) && !v.boxes.some((b) => used.has(b.index)) &&
+        Math.abs(v.y - cy(a.box)) < a.box.bbox.height * 0.45)
+      if (options.length === 1) store(a, options[0]!.text, [...options[0]!.boxes, perServing, per100], 'per-serving-table-row')
+    }
+  }
 
   // Group unresolved names by their horizontal label column (micronutrient tables may have two).
   const columns: Anchor[][] = []
-  for (const a of anchors.filter((a) => !multiBasis && !duplicates.has(a.key) && !output.data.nutrients[a.key])) {
+  for (const a of anchors.filter((a) => !multiBasis && !scopedRows.has(a) && !duplicates.has(a.key) && !output.data.nutrients[a.key])) {
     const column = columns.find((c) => Math.abs(c[0]!.box.bbox.x - a.box.bbox.x) < width * 0.18)
     if (column) column.push(a)
     else columns.push([a])

@@ -41,7 +41,7 @@ describe('scanner diagnostics', () => {
         crop: { type: 'image/jpeg', bytes: 4, width: 900, height: 1200 },
       },
       ocr: { text: 'Protein 7g', engine: 'mock' },
-      nutrition: { parserVersion: 'spatial-review-v1', data: { nutrients: { protein: null } } },
+      nutrition: { parserVersion: 'spatial-review-v2', data: { nutrients: { protein: null } } },
     })
     expect(JSON.stringify(report)).not.toContain('b3JpZ2luYWw=')
   })

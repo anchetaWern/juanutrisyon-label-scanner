@@ -1,3 +1,5 @@
+import type { PerspectiveGeometry } from '@/services/image/perspective'
+
 export interface CropCoordinates {
   x: number
   y: number
@@ -6,6 +8,7 @@ export interface CropCoordinates {
   rotate: number
   scaleX: number
   scaleY: number
+  perspective?: PerspectiveGeometry
 }
 
 export interface ConfirmedCrop {
@@ -22,5 +25,6 @@ export function normalizeCropCoordinates(coordinates: Partial<CropCoordinates>):
     rotate: coordinates.rotate ?? 0,
     scaleX: coordinates.scaleX ?? 1,
     scaleY: coordinates.scaleY ?? 1,
+    ...(coordinates.perspective ? { perspective: coordinates.perspective } : {}),
   }
 }

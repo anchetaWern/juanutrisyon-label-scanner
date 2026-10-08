@@ -19,7 +19,7 @@ function progressLabel(): string {
 <template>
   <v-container class="scanner-container py-7 py-md-10">
     <section class="hero mb-7">
-      <div class="step-kicker mb-2">Photo to OCR geometry</div>
+      <div class="step-kicker mb-2">Read your nutrition label</div>
       <h1 class="text-h4 text-md-h3 font-weight-bold mb-3">Scan a nutrition label</h1>
       <p class="text-body-1 text-medium-emphasis hero-copy">
         Take a clear photo, crop the nutrition panel, and inspect the text detected on your device.
@@ -42,7 +42,7 @@ function progressLabel(): string {
           <v-icon icon="mdi-nutrition" color="primary" size="50" class="mb-3" />
           <h2 class="text-h6 font-weight-bold mb-2">Add a label photo</h2>
           <p class="text-body-2 text-medium-emphasis mb-5">JPEG, PNG, WebP, or any image format your browser supports.</p>
-          <ScannerImagePicker @selected="scanner.selectImage" />
+          <ScannerImagePicker :disabled="scanner.ocrBusy.value" @selected="scanner.selectImage" />
         </div>
         <ScannerCaptureGuidance />
       </v-card-text>
@@ -56,7 +56,7 @@ function progressLabel(): string {
             <h2 class="text-h6 font-weight-bold">Choose the nutrition panel</h2>
           </div>
           <v-spacer />
-          <v-btn variant="text" color="error" prepend-icon="mdi-delete-outline" @click="scanner.removeImage">
+          <v-btn variant="text" color="error" prepend-icon="mdi-delete-outline" :disabled="scanner.ocrBusy.value" @click="scanner.removeImage">
             Remove
           </v-btn>
         </v-card-title>
@@ -64,7 +64,7 @@ function progressLabel(): string {
         <v-card-text class="pa-5 pa-md-7">
           <template v-if="scanner.stage.value === 'cropping' && scanner.originalUrl.value">
             <p class="text-body-2 text-medium-emphasis mb-4">
-              Drag the corners around the nutrition facts. Rotate the photo if needed, then confirm the crop.
+              Crop around one nutrition panel with a little margin. Rotate it upright, or straighten tilted sides before confirming.
             </p>
             <ScannerCropper
               :src="scanner.originalUrl.value"
@@ -81,13 +81,14 @@ function progressLabel(): string {
               </v-col>
               <v-col cols="12" sm="7">
                 <v-alert type="success" variant="tonal" density="comfortable" class="mb-4">
-                  Crop saved. The original photo is still available if you need to adjust it.
+                  {{ scanner.cropCoordinates.value?.perspective ? 'Straightened crop ready.' : 'Crop ready.' }}
+                  Check the smallest text and make sure the serving details and bottom row are visible.
                 </v-alert>
                 <div class="d-flex flex-wrap ga-2">
-                  <v-btn variant="outlined" color="primary" prepend-icon="mdi-crop" @click="scanner.editCrop">
+                  <v-btn variant="outlined" color="primary" prepend-icon="mdi-crop" :disabled="scanner.ocrBusy.value" @click="scanner.editCrop">
                     Adjust crop
                   </v-btn>
-                  <ScannerImagePicker @selected="scanner.selectImage" />
+                  <ScannerImagePicker :disabled="scanner.ocrBusy.value" @selected="scanner.selectImage" />
                 </div>
               </v-col>
             </v-row>
@@ -95,7 +96,7 @@ function progressLabel(): string {
         </v-card-text>
       </v-card>
 
-      <v-card v-if="scanner.croppedBlob.value" class="scanner-card mb-5" elevation="1" border>
+      <v-card v-if="scanner.croppedBlob.value && scanner.stage.value !== 'cropping'" class="scanner-card mb-5" elevation="1" border>
         <v-card-title class="px-5 pt-5 px-md-7 pt-md-7">
           <div class="step-kicker">Step 2</div>
           <h2 class="text-h6 font-weight-bold">Check image quality</h2>
@@ -111,7 +112,7 @@ function progressLabel(): string {
         </v-card-text>
       </v-card>
 
-      <v-card v-if="scanner.croppedBlob.value" class="scanner-card mb-5" elevation="1" border>
+      <v-card v-if="scanner.croppedBlob.value && scanner.stage.value !== 'cropping'" class="scanner-card mb-5" elevation="1" border>
         <v-card-title class="px-5 pt-5 px-md-7 pt-md-7">
           <div class="step-kicker">Step 3</div>
           <h2 class="text-h6 font-weight-bold">Recognize label text</h2>

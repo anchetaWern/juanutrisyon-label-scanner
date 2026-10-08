@@ -1,7 +1,9 @@
 import { ref } from 'vue'
 import { loadImage } from '@/utils/image'
+import { measureCaptureDetail, type CaptureDetailMetrics } from '@/services/image/captureQuality'
+import { distance, type PerspectiveGeometry } from '@/services/image/perspective'
 
-export type ImageQualityWarningCode = 'too_small' | 'blurry' | 'too_dark' | 'too_bright' | 'glare'
+export type ImageQualityWarningCode = 'too_small' | 'blurry' | 'too_dark' | 'too_bright' | 'glare' | 'small_text' | 'text_uncertain' | 'loose_crop' | 'tight_crop' | 'strong_perspective'
 
 export interface ImageQualityWarning {
   code: ImageQualityWarningCode
@@ -9,21 +11,27 @@ export interface ImageQualityWarning {
   message: string
 }
 
-export interface ImageQualityMetrics {
+export interface ImageQualityMetrics extends Partial<CaptureDetailMetrics> {
   width: number
   height: number
   meanLuminance: number
   clippedDarkRatio: number
   clippedHighlightRatio: number
   laplacianVariance: number
+  perspectiveStretch?: number
 }
 
 const warningCopy: Record<ImageQualityWarningCode, Omit<ImageQualityWarning, 'code'>> = {
-  too_small: { title: 'Image may be too small', message: 'Use a photo at least 900 px on its shortest side.' },
+  too_small: { title: 'Move closer to the panel', message: 'The selected area has limited detail. Retake a closer photo with the whole nutrition panel in focus.' },
   blurry: { title: 'Image may be blurry', message: 'Hold the phone steady and make sure small text has crisp edges.' },
   too_dark: { title: 'Image is quite dark', message: 'Move to brighter, even lighting before scanning.' },
   too_bright: { title: 'Highlights may be blown out', message: 'Reduce direct light or exposure so white areas retain detail.' },
   glare: { title: 'Possible glare detected', message: 'Tilt the package or light slightly so reflections do not cover text.' },
+  small_text: { title: 'Small text may be difficult to read', message: 'Move closer and focus on the smallest nutrient values. Enlarging this image cannot restore missing detail.' },
+  text_uncertain: { title: 'Check the smallest text', message: 'There is not enough distinct text detail to assess this crop. Zoom in and check that the small digits and units are clear.' },
+  loose_crop: { title: 'Crop closer to the nutrition panel', message: 'Text occupies a small part of this crop. Leave a little margin while including the serving details and every nutrient row.' },
+  tight_crop: { title: 'Check the edges of the crop', message: 'Some text appears to touch an edge. Expand the crop if any row names, values, or serving details are cut off.' },
+  strong_perspective: { title: 'A straighter photo may help', message: 'Part of this panel has been stretched substantially. Retake a more front-facing photo if its small text looks soft.' },
 }
 
 export function calculateImageQuality(
@@ -77,16 +85,24 @@ export function calculateImageQuality(
     clippedDarkRatio: clippedDark / count,
     clippedHighlightRatio: clippedHighlight / count,
     laplacianVariance,
+    ...measureCaptureDetail(gray, width, height, sourceHeight),
   }
 }
 
 export function warningsFromMetrics(metrics: ImageQualityMetrics): ImageQualityWarning[] {
   const codes: ImageQualityWarningCode[] = []
-  if (Math.min(metrics.width, metrics.height) < 900) codes.push('too_small')
+  const smallestSide = Math.min(metrics.width, metrics.height)
+  if (smallestSide < 600 || (smallestSide < 900 && (metrics.estimatedTextHeightPx ?? 0) < 12)) codes.push('too_small')
   if (metrics.laplacianVariance < 55) codes.push('blurry')
   if (metrics.meanLuminance < 48 || metrics.clippedDarkRatio > 0.45) codes.push('too_dark')
-  if (metrics.meanLuminance > 224 || metrics.clippedHighlightRatio > 0.42) codes.push('too_bright')
-  if (metrics.clippedHighlightRatio > 0.08 && metrics.meanLuminance < 224) codes.push('glare')
+  // Bright paper with distinct text is not evidence of glare or overexposure.
+  if (metrics.meanLuminance > 224 && metrics.clippedHighlightRatio > .8 && (metrics.textCandidateCount ?? 0) < 12) codes.push('too_bright')
+  if ((metrics.localizedHighlightRatio ?? 0) > .003) codes.push('glare')
+  if (metrics.estimatedTextHeightPx !== null && metrics.estimatedTextHeightPx !== undefined && metrics.estimatedTextHeightPx < 12) codes.push('small_text')
+  if (metrics.textCandidateCount !== undefined && metrics.textCandidateCount < 12) codes.push('text_uncertain')
+  if ((metrics.textAreaRatio ?? 1) < .28) codes.push('loose_crop')
+  if ((metrics.edgeTextCandidateCount ?? 0) >= 3) codes.push('tight_crop')
+  if ((metrics.perspectiveStretch ?? 1) > 1.8) codes.push('strong_perspective')
   return codes.map((code) => ({ code, ...warningCopy[code] }))
 }
 
@@ -115,23 +131,39 @@ export function useImageQuality() {
   const metrics = ref<ImageQualityMetrics | null>(null)
   const warnings = ref<ImageQualityWarning[]>([])
   const error = ref<string | null>(null)
+  let revision = 0
 
-  async function analyze(blob: Blob): Promise<void> {
+  async function analyze(blob: Blob, geometry?: PerspectiveGeometry): Promise<void> {
+    const current = ++revision
     isAnalyzing.value = true
     error.value = null
+    metrics.value = null
+    warnings.value = []
     try {
-      metrics.value = await analyzeImage(blob)
+      const next = await analyzeImage(blob)
+      if (current !== revision) return
+      if (geometry) {
+        const [a, b, c, d] = geometry.corners
+        const widths = [distance(a, b), distance(d, c)], heights = [distance(a, d), distance(b, c)]
+        next.perspectiveStretch = Math.max(Math.max(...widths) / Math.min(...widths), Math.max(...heights) / Math.min(...heights))
+        // A large output must not hide low source resolution on the foreshortened side.
+        const sourceScale = Math.min(1, Math.min(...widths) / geometry.outputSize.width, Math.min(...heights) / geometry.outputSize.height)
+        if (next.estimatedTextHeightPx) next.estimatedTextHeightPx *= sourceScale
+      }
+      metrics.value = next
       warnings.value = warningsFromMetrics(metrics.value)
     } catch (cause) {
+      if (current !== revision) return
       metrics.value = null
       warnings.value = []
       error.value = cause instanceof Error ? cause.message : 'Image quality analysis failed.'
     } finally {
-      isAnalyzing.value = false
+      if (current === revision) isAnalyzing.value = false
     }
   }
 
   function reset(): void {
+    revision++
     metrics.value = null
     warnings.value = []
     error.value = null

@@ -21,12 +21,15 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
   const error = ref<string | null>(null)
   const progress = ref<OcrProgress>({ state: 'idle' })
   const quality = useImageQuality()
+  const ocrBusy = ref(false)
+  let revision = 0
 
   const hasImage = computed(() => Boolean(originalFile.value && originalUrl.value))
-  const canRecognize = computed(() => Boolean(croppedBlob.value) && stage.value !== 'recognizing')
+  const canRecognize = computed(() => Boolean(croppedBlob.value) && !ocrBusy.value && !quality.isAnalyzing.value
+    && (stage.value === 'ready' || stage.value === 'complete'))
 
   const unsubscribe = engine.onProgress?.((update) => {
-    progress.value = update
+    if (stage.value === 'recognizing') progress.value = update
   })
 
   function revoke(url: string | null): void {
@@ -52,6 +55,7 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
       return
     }
 
+    const current = ++revision
     revoke(originalUrl.value)
     clearCrop()
     quality.reset()
@@ -59,10 +63,11 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
     originalUrl.value = URL.createObjectURL(file)
     stage.value = 'cropping'
     await quality.analyze(file)
-    if (quality.error.value) error.value = quality.error.value
+    if (current === revision && quality.error.value) error.value = quality.error.value
   }
 
   async function confirmCrop(crop: ConfirmedCrop): Promise<void> {
+    const current = ++revision
     error.value = null
     revoke(croppedUrl.value)
     croppedBlob.value = crop.blob
@@ -70,12 +75,17 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
     cropCoordinates.value = crop.coordinates
     result.value = null
     stage.value = 'ready'
-    await quality.analyze(crop.blob)
-    if (quality.error.value) error.value = quality.error.value
+    await quality.analyze(crop.blob, crop.coordinates.perspective)
+    if (current === revision && quality.error.value) error.value = quality.error.value
   }
 
   function editCrop(): void {
-    if (originalFile.value) stage.value = 'cropping'
+    if (originalFile.value) {
+      revision++
+      result.value = null
+      error.value = null
+      stage.value = 'cropping'
+    }
   }
 
   async function recognize(): Promise<void> {
@@ -83,24 +93,30 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
       error.value = 'Crop the nutrition panel before starting OCR.'
       return
     }
+    if (!canRecognize.value) return
 
+    const current = revision
+    ocrBusy.value = true
     error.value = null
     result.value = null
     stage.value = 'recognizing'
     try {
       const nextResult = await engine.recognize(croppedBlob.value)
+      if (current !== revision) return
       result.value = nextResult
       stage.value = 'complete'
       if (!nextResult.text.trim() || nextResult.lines.length === 0) {
         error.value = 'No readable text was found. Adjust the crop or try a clearer photo.'
       }
     } catch (cause) {
+      if (current !== revision) return
       error.value = errorMessage(cause, 'OCR failed. Please retry or choose another image.')
       stage.value = 'ready'
-    }
+    } finally { ocrBusy.value = false }
   }
 
   function removeImage(): void {
+    revision++
     revoke(originalUrl.value)
     clearCrop()
     originalFile.value = null
@@ -116,6 +132,8 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
   }
 
   onBeforeUnmount(() => {
+    revision++
+    quality.reset()
     unsubscribe?.()
     revoke(originalUrl.value)
     revoke(croppedUrl.value)
@@ -135,6 +153,7 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
     quality,
     hasImage,
     canRecognize,
+    ocrBusy,
     selectImage,
     confirmCrop,
     editCrop,

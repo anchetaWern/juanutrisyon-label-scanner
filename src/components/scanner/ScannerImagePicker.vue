@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+defineProps<{ disabled?: boolean }>()
 
 const emit = defineEmits<{
   selected: [file: File]
@@ -24,6 +25,7 @@ function handleSelection(event: Event): void {
       type="file"
       accept="image/*"
       capture="environment"
+      :disabled="disabled"
       aria-label="Take a nutrition label photo"
       @change="handleSelection"
     />
@@ -32,6 +34,7 @@ function handleSelection(event: Event): void {
       class="visually-hidden"
       type="file"
       accept="image/*"
+      :disabled="disabled"
       aria-label="Upload a nutrition label image"
       @change="handleSelection"
     />
@@ -41,6 +44,7 @@ function handleSelection(event: Event): void {
       size="large"
       prepend-icon="mdi-camera"
       rounded="lg"
+      :disabled="disabled"
       @click="cameraInput?.click()"
     >
       Take photo
@@ -51,6 +55,7 @@ function handleSelection(event: Event): void {
       size="large"
       prepend-icon="mdi-image-plus"
       rounded="lg"
+      :disabled="disabled"
       @click="uploadInput?.click()"
     >
       Upload image

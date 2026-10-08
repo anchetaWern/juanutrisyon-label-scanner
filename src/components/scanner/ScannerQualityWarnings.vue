@@ -18,8 +18,8 @@ defineProps<{
       type="success"
       variant="tonal"
       density="comfortable"
-      title="Image quality looks usable"
-      text="You can continue even if the label is not perfect."
+      title="No obvious capture issues found"
+      text="Before scanning, zoom in and check the smallest digits and units. These checks cannot guarantee readability."
     />
     <div v-else class="d-grid ga-2">
       <v-alert
@@ -33,8 +33,8 @@ defineProps<{
       />
     </div>
     <div v-if="metrics" class="text-caption text-medium-emphasis mt-2">
-      {{ metrics.width }} × {{ metrics.height }} px · brightness {{ Math.round(metrics.meanLuminance) }}/255 ·
-      sharpness {{ Math.round(metrics.laplacianVariance) }}
+      {{ metrics.width }} × {{ metrics.height }} px
+      <template v-if="metrics.estimatedTextHeightPx"> · estimated small-text height {{ Math.round(metrics.estimatedTextHeightPx) }} px</template>
     </div>
   </div>
 </template>

@@ -105,7 +105,7 @@ export function buildScannerDiagnosticReport(
   environment: ScannerDiagnosticEnvironment = collectScannerEnvironment(),
 ): Record<string, unknown> {
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     generatedAt: new Date().toISOString(),
     app: {
       name: 'juan-nutrisyon-label-scanner',
@@ -130,10 +130,13 @@ export function buildScannerDiagnosticReport(
         width: input.qualityMetrics?.width ?? null,
         height: input.qualityMetrics?.height ?? null,
         coordinatesInOriginal: input.cropCoordinates,
+        rectangleCoordinateSpace: 'cropperjs-rotated-image',
+        geometry: input.cropCoordinates?.perspective ?? null,
         ocrInputSize: input.result.sourceSize ?? null,
       },
     },
     quality: {
+      checksAreAdvisory: true,
       metrics: input.qualityMetrics,
       warnings: input.qualityWarnings,
     },

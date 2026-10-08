@@ -31,6 +31,7 @@ See the [evaluation guide](evaluation/README.md) for metric definitions and repr
 ```text
 take/upload photo
   → rectangular crop + rotation
+  → optional four-corner perspective correction + reviewed preview
   → advisory browser-side quality checks
   → grayscale, contrast-stretch, and light sharpening preprocessing
   → provider-independent OCR adapter
@@ -39,7 +40,9 @@ take/upload photo
   → debug output and overlay
 ```
 
-The original `File` and its object URL remain separate from the generated JPEG crop. Crop coordinates and rotation are retained so the selection can be reopened. Neither image is persisted or uploaded by this app.
+The original `File` and its object URL remain separate from the generated lossless PNG crop. Crop coordinates, rotation, and confirmed perspective corners are retained in memory so the selection can be reopened. Neither image is persisted or uploaded by this app.
+
+Choose **Straighten tilted panel** for a slanted label. Place the four corners just outside the panel (including serving information and the last row), preview the result, then confirm. **Suggest panel edges** is an optional border heuristic, not nutrition-panel recognition; review or replace its suggestions. **Back to rectangle** keeps ordinary cropping available. See the [Phase 3 implementation and validation notes](docs/phase-3-capture-geometry.md).
 
 ## OCR provider decision
 
@@ -53,7 +56,7 @@ The Tesseract.js 6 adapter remains available with single-block segmentation; it 
 
 After OCR, `parseNutrition` matches nutrient names and amounts using inline text and bounding-box geometry, including complete ordered columns on slanted labels. It preserves raw OCR. The review panel offers a separate **Copy nutrition JSON** action using the agreed format: `"sugars": "4g"`, `"energy": "80kcal"`, `"niacin": "4%"`. Serving values are strings. Unknown values are JSON `null`, never inferred zeros. The ten core nutrient keys are always present; recognized additional nutrients, vitamins, and minerals are included. Percent-only amounts are retained when no mass is readable/present in the supported layout.
 
-Diagnostics schema version 2 adds `nutrition` with the data, parser version, warnings, and source line indexes. The existing `ocr` object and **Copy OCR JSON** remain unchanged. Numeric-slot corrections such as `Og` → `0g` and `mmg` → `mg` are flagged for review. Missing digits/units and ambiguous associations are not filled from a reference label. Multiple nutrition bases are conservatively rejected, except for a separately headed micronutrient table with an unambiguous per-serving column below inline per-serving macros.
+Diagnostics schema version 3 retains `nutrition` with the data, parser version, warnings, and source line indexes, and adds crop geometry, explicit coordinate spaces, and advisory capture metrics. The existing `ocr` object and **Copy OCR JSON** remain unchanged. Numeric-slot corrections such as `Og` → `0g` and `mmg` → `mg` are flagged for review. Missing digits/units and ambiguous associations are not filled from a reference label. Multiple nutrition bases are conservatively rejected, except for a separately headed micronutrient table with an unambiguous per-serving column below inline per-serving macros.
 
 Eight mobile diagnostic exports are stored as sanitized OCR-only fixtures under `src/services/nutrition/fixtures/`; they contain no device/browser details or image bytes. See [the initial extraction validation report](docs/nutrition-extraction-2026-09-11.md) and [the September 18 format report](docs/nutrition-extraction-2026-09-18.md) for exact outputs and limitations. The current parser is `spatial-review-v2`; its narrowly supported OCR name corrections also produce review warnings.
 
@@ -66,7 +69,8 @@ Eight mobile diagnostic exports are stored as sanitized OCR-only fixtures under 
 - English OCR and heuristic, review-required nutrition parsing. Incomplete tables, unknown nutrient names, curved/multi-panel layouts, and OCR digit errors can still produce omissions or wrong values. This is not unattended extraction.
 - OCR runtime/model assets are fetched on first use and are not available offline yet.
 - Quality thresholds are heuristics and deliberately advisory.
-- Glare detection uses clipped-highlight ratios; it can report bright white label backgrounds as possible glare.
-- Crop is rectangular and does not perform perspective correction or curved-label dewarping.
+- Small-text and localized-glare checks can miss problems or raise false alarms. A clean quality report is not proof of readable text or correct OCR.
+- Four-corner correction handles flat-panel perspective, not curved-label dewarping, missing detail, or obscured text. Border suggestions can be incomplete or wrong.
+- Capture advice is shown before/after native photo selection, not as live camera analysis. Real-phone performance and before/after accuracy validation remain pending.
 - HEIC support depends on the browser's ability to decode it.
-- The manifest makes the shell installable-friendly, but no service worker/offline cache is included in Phase 1.
+- The manifest makes the shell installable-friendly, but no service worker/offline cache is included.

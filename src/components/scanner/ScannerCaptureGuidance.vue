@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const tips = [
-  'Fill the frame with the nutrition label.',
-  'Avoid glare.',
-  'Keep the label as flat as possible.',
-  'Hold the phone steady.',
-  'Make sure the text is readable.',
+  'Fill the frame with one nutrition panel, including serving details and the bottom row.',
+  'Face the camera toward the panel. Keep the package as flat as possible.',
+  'Use even light; move the light or package if a reflection covers any text.',
+  'Tap to focus on the smallest numbers and hold the phone steady.',
+  'Leave a little margin. You can adjust the crop and straighten tilted sides after taking the photo.',
 ]
 </script>
 

@@ -63,4 +63,33 @@ describe('scanner state flow', () => {
     expect(scanner.result.value).not.toBeNull()
     wrapper.unmount()
   })
+
+  it('ignores an old OCR completion after the image is removed or replaced', async () => {
+    const oldResult = { text: 'Old label', lines: [], engine: 'mock' }
+    const { scanner, engine, wrapper } = mountScanner(oldResult)
+    let finish!: (result: OcrResult) => void
+    vi.mocked(engine.recognize).mockImplementationOnce(() => new Promise((resolve) => { finish = resolve }))
+    await scanner.confirmCrop({ blob: new Blob(['old']), coordinates: { x: 0, y: 0, width: 400, height: 600, rotate: 0, scaleX: 1, scaleY: 1 } })
+    const recognition = scanner.recognize()
+    scanner.removeImage()
+    await scanner.selectImage(new File(['new'], 'new.png', { type: 'image/png' }))
+    finish(oldResult)
+    await recognition
+    expect(scanner.stage.value).toBe('cropping')
+    expect(scanner.result.value).toBeNull()
+    expect(scanner.error.value).toBeNull()
+    expect(scanner.ocrBusy.value).toBe(false)
+    wrapper.unmount()
+  })
+
+  it('prevents scanning an old crop while the user adjusts geometry', async () => {
+    const { scanner, engine, wrapper } = mountScanner({ text: '', lines: [], engine: 'mock' })
+    await scanner.selectImage(new File(['image'], 'label.png', { type: 'image/png' }))
+    await scanner.confirmCrop({ blob: new Blob(['crop']), coordinates: { x: 0, y: 0, width: 400, height: 600, rotate: 0, scaleX: 1, scaleY: 1 } })
+    scanner.editCrop()
+    expect(scanner.canRecognize.value).toBe(false)
+    await scanner.recognize()
+    expect(engine.recognize).not.toHaveBeenCalled()
+    wrapper.unmount()
+  })
 })

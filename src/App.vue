@@ -10,7 +10,7 @@
           <div class="text-caption text-medium-emphasis brand-subtitle">Nutrition Label Scanner</div>
         </div>
         <v-spacer />
-        <v-chip size="small" color="primary" variant="tonal">Phase 1</v-chip>
+        <v-chip size="small" color="primary" variant="tonal">Review required</v-chip>
       </v-container>
     </v-app-bar>
 

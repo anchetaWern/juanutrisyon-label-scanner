@@ -20,6 +20,12 @@ npm test
 npm run build
 ```
 
+## Accuracy baseline
+
+`npm run evaluate` replays the eight tracked mobile OCR fixtures against independent label annotations and produces field-level JSON, Markdown, and CSV reports. To also evaluate the 30-image local desktop corpus, run `npm run evaluate -- --legacy benchmark --out evaluation/results/phase-1`. This is a frozen OCR replay, not a new recognition or phone-performance run. Wrong values, missed readable values, correct abstentions, and unreviewed annotations are counted separately.
+
+See the [evaluation guide](evaluation/README.md) for metric definitions and reproduction, and the [Phase 1 baseline report](docs/accuracy-baseline-2026-10-08.md) for results and limitations. Run `npm run type-check:evaluation` when changing the harness.
+
 ## Scanner pipeline
 
 ```text

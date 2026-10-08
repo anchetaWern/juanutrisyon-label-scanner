@@ -1,0 +1,792 @@
+{
+  "reviewDate": "2026-10-08",
+  "command": "npm run evaluate -- --legacy benchmark --out evaluation/results/phase-1",
+  "metricVersion": "field-exact-v1",
+  "mode": "frozen-ocr-replay",
+  "parserVersions": [
+    "spatial-review-v2"
+  ],
+  "detectionRecall": {
+    "value": null,
+    "reason": "No independently annotated text regions; presence proxies do not measure detector recall."
+  },
+  "crossCohortSplitOverlaps": [
+    {
+      "productId": "label-030",
+      "cases": [
+        {
+          "id": "IMG_3584",
+          "cohort": "mobile-replay",
+          "split": "regression"
+        },
+        {
+          "id": "label-030",
+          "cohort": "legacy-desktop-replay",
+          "split": "holdout"
+        }
+      ],
+      "note": "Historical holdout product is exposed in another cohort. Do not treat this as a blind holdout."
+    }
+  ],
+  "byCohort": {
+    "legacy-desktop-replay": {
+      "cases": 30,
+      "providerFailures": 0,
+      "all": {
+        "readable": 430,
+        "correct": 195,
+        "wrong": 4,
+        "missing": 231,
+        "falsePositive": 1,
+        "correctAbstention": 0,
+        "unscored": 30,
+        "unscoredPredictions": 8,
+        "exactRecall": 0.45348837209302323,
+        "precision": 0.975,
+        "coverage": 0.4627906976744186,
+        "abstentionRate": 0.5372093023255814,
+        "falsePositiveRate": 1,
+        "namePresence": {
+          "matched": 323,
+          "total": 430
+        },
+        "valuePresence": {
+          "matched": 260,
+          "total": 430
+        }
+      },
+      "nutrients": {
+        "readable": 371,
+        "correct": 176,
+        "wrong": 0,
+        "missing": 195,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 30,
+        "unscoredPredictions": 8,
+        "exactRecall": 0.4743935309973046,
+        "precision": 1,
+        "coverage": 0.4743935309973046,
+        "abstentionRate": 0.5256064690026954,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 288,
+          "total": 371
+        },
+        "valuePresence": {
+          "matched": 222,
+          "total": 371
+        }
+      },
+      "serving": {
+        "readable": 59,
+        "correct": 19,
+        "wrong": 4,
+        "missing": 36,
+        "falsePositive": 1,
+        "correctAbstention": 0,
+        "unscored": 0,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.3220338983050847,
+        "precision": 0.7916666666666666,
+        "coverage": 0.3898305084745763,
+        "abstentionRate": 0.6101694915254238,
+        "falsePositiveRate": 1,
+        "namePresence": {
+          "matched": 35,
+          "total": 59
+        },
+        "valuePresence": {
+          "matched": 38,
+          "total": 59
+        }
+      },
+      "storedProcessingMs": {
+        "samples": 30,
+        "mean": 1486.0566666666418,
+        "p95": 2204.89999999851
+      }
+    },
+    "mobile-replay": {
+      "cases": 8,
+      "providerFailures": 0,
+      "all": {
+        "readable": 134,
+        "correct": 129,
+        "wrong": 0,
+        "missing": 5,
+        "falsePositive": 0,
+        "correctAbstention": 1,
+        "unscored": 7,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.9626865671641791,
+        "precision": 1,
+        "coverage": 0.9626865671641791,
+        "abstentionRate": 0.03731343283582089,
+        "falsePositiveRate": 0,
+        "namePresence": {
+          "matched": 127,
+          "total": 134
+        },
+        "valuePresence": {
+          "matched": 96,
+          "total": 134
+        }
+      },
+      "nutrients": {
+        "readable": 124,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 3,
+        "falsePositive": 0,
+        "correctAbstention": 1,
+        "unscored": 1,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.9758064516129032,
+        "precision": 1,
+        "coverage": 0.9758064516129032,
+        "abstentionRate": 0.024193548387096774,
+        "falsePositiveRate": 0,
+        "namePresence": {
+          "matched": 118,
+          "total": 124
+        },
+        "valuePresence": {
+          "matched": 90,
+          "total": 124
+        }
+      },
+      "serving": {
+        "readable": 10,
+        "correct": 8,
+        "wrong": 0,
+        "missing": 2,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 6,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.8,
+        "precision": 1,
+        "coverage": 0.8,
+        "abstentionRate": 0.2,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 9,
+          "total": 10
+        },
+        "valuePresence": {
+          "matched": 6,
+          "total": 10
+        }
+      },
+      "storedProcessingMs": {
+        "samples": 0,
+        "mean": null,
+        "p95": null
+      }
+    }
+  },
+  "bySplit": {
+    "legacy-desktop-replay/development": {
+      "cases": 18,
+      "providerFailures": 0,
+      "all": {
+        "readable": 248,
+        "correct": 122,
+        "wrong": 1,
+        "missing": 125,
+        "falsePositive": 1,
+        "correctAbstention": 0,
+        "unscored": 14,
+        "unscoredPredictions": 7,
+        "exactRecall": 0.49193548387096775,
+        "precision": 0.9838709677419355,
+        "coverage": 0.4959677419354839,
+        "abstentionRate": 0.5040322580645161,
+        "falsePositiveRate": 1,
+        "namePresence": {
+          "matched": 178,
+          "total": 248
+        },
+        "valuePresence": {
+          "matched": 153,
+          "total": 248
+        }
+      },
+      "nutrients": {
+        "readable": 213,
+        "correct": 109,
+        "wrong": 0,
+        "missing": 104,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 14,
+        "unscoredPredictions": 7,
+        "exactRecall": 0.5117370892018779,
+        "precision": 1,
+        "coverage": 0.5117370892018779,
+        "abstentionRate": 0.48826291079812206,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 158,
+          "total": 213
+        },
+        "valuePresence": {
+          "matched": 128,
+          "total": 213
+        }
+      },
+      "serving": {
+        "readable": 35,
+        "correct": 13,
+        "wrong": 1,
+        "missing": 21,
+        "falsePositive": 1,
+        "correctAbstention": 0,
+        "unscored": 0,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.37142857142857144,
+        "precision": 0.8666666666666667,
+        "coverage": 0.4,
+        "abstentionRate": 0.6,
+        "falsePositiveRate": 1,
+        "namePresence": {
+          "matched": 20,
+          "total": 35
+        },
+        "valuePresence": {
+          "matched": 25,
+          "total": 35
+        }
+      },
+      "storedProcessingMs": {
+        "samples": 18,
+        "mean": 1429.8555555554728,
+        "p95": 2452.400000002235
+      }
+    },
+    "legacy-desktop-replay/holdout": {
+      "cases": 8,
+      "providerFailures": 0,
+      "all": {
+        "readable": 117,
+        "correct": 62,
+        "wrong": 1,
+        "missing": 54,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 6,
+        "unscoredPredictions": 1,
+        "exactRecall": 0.5299145299145299,
+        "precision": 0.9841269841269841,
+        "coverage": 0.5384615384615384,
+        "abstentionRate": 0.46153846153846156,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 90,
+          "total": 117
+        },
+        "valuePresence": {
+          "matched": 59,
+          "total": 117
+        }
+      },
+      "nutrients": {
+        "readable": 101,
+        "correct": 58,
+        "wrong": 0,
+        "missing": 43,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 6,
+        "unscoredPredictions": 1,
+        "exactRecall": 0.5742574257425742,
+        "precision": 1,
+        "coverage": 0.5742574257425742,
+        "abstentionRate": 0.42574257425742573,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 82,
+          "total": 101
+        },
+        "valuePresence": {
+          "matched": 51,
+          "total": 101
+        }
+      },
+      "serving": {
+        "readable": 16,
+        "correct": 4,
+        "wrong": 1,
+        "missing": 11,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 0,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.25,
+        "precision": 0.8,
+        "coverage": 0.3125,
+        "abstentionRate": 0.6875,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 8,
+          "total": 16
+        },
+        "valuePresence": {
+          "matched": 8,
+          "total": 16
+        }
+      },
+      "storedProcessingMs": {
+        "samples": 8,
+        "mean": 1430.6750000002794,
+        "p95": 2044.5
+      }
+    },
+    "legacy-desktop-replay/regression": {
+      "cases": 4,
+      "providerFailures": 0,
+      "all": {
+        "readable": 65,
+        "correct": 11,
+        "wrong": 2,
+        "missing": 52,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 10,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.16923076923076924,
+        "precision": 0.8461538461538461,
+        "coverage": 0.2,
+        "abstentionRate": 0.8,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 55,
+          "total": 65
+        },
+        "valuePresence": {
+          "matched": 48,
+          "total": 65
+        }
+      },
+      "nutrients": {
+        "readable": 57,
+        "correct": 9,
+        "wrong": 0,
+        "missing": 48,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 10,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.15789473684210525,
+        "precision": 1,
+        "coverage": 0.15789473684210525,
+        "abstentionRate": 0.8421052631578947,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 48,
+          "total": 57
+        },
+        "valuePresence": {
+          "matched": 43,
+          "total": 57
+        }
+      },
+      "serving": {
+        "readable": 8,
+        "correct": 2,
+        "wrong": 2,
+        "missing": 4,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 0,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.25,
+        "precision": 0.5,
+        "coverage": 0.5,
+        "abstentionRate": 0.5,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 7,
+          "total": 8
+        },
+        "valuePresence": {
+          "matched": 5,
+          "total": 8
+        }
+      },
+      "storedProcessingMs": {
+        "samples": 4,
+        "mean": 1849.7249999996275,
+        "p95": 2088.5
+      }
+    },
+    "mobile-replay/regression": {
+      "cases": 8,
+      "providerFailures": 0,
+      "all": {
+        "readable": 134,
+        "correct": 129,
+        "wrong": 0,
+        "missing": 5,
+        "falsePositive": 0,
+        "correctAbstention": 1,
+        "unscored": 7,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.9626865671641791,
+        "precision": 1,
+        "coverage": 0.9626865671641791,
+        "abstentionRate": 0.03731343283582089,
+        "falsePositiveRate": 0,
+        "namePresence": {
+          "matched": 127,
+          "total": 134
+        },
+        "valuePresence": {
+          "matched": 96,
+          "total": 134
+        }
+      },
+      "nutrients": {
+        "readable": 124,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 3,
+        "falsePositive": 0,
+        "correctAbstention": 1,
+        "unscored": 1,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.9758064516129032,
+        "precision": 1,
+        "coverage": 0.9758064516129032,
+        "abstentionRate": 0.024193548387096774,
+        "falsePositiveRate": 0,
+        "namePresence": {
+          "matched": 118,
+          "total": 124
+        },
+        "valuePresence": {
+          "matched": 90,
+          "total": 124
+        }
+      },
+      "serving": {
+        "readable": 10,
+        "correct": 8,
+        "wrong": 0,
+        "missing": 2,
+        "falsePositive": 0,
+        "correctAbstention": 0,
+        "unscored": 6,
+        "unscoredPredictions": 0,
+        "exactRecall": 0.8,
+        "precision": 1,
+        "coverage": 0.8,
+        "abstentionRate": 0.2,
+        "falsePositiveRate": null,
+        "namePresence": {
+          "matched": 9,
+          "total": 10
+        },
+        "valuePresence": {
+          "matched": 6,
+          "total": 10
+        }
+      },
+      "storedProcessingMs": {
+        "samples": 0,
+        "mean": null,
+        "p95": null
+      }
+    }
+  },
+  "rankedErrors": [
+    {
+      "category": "expected-name-and-value-not-found-in-ocr",
+      "count": 65,
+      "examples": [
+        "new-1:serving.serving_size",
+        "label-002:serving.serving_size",
+        "label-002:trans_fat",
+        "label-003:cholesterol",
+        "label-003:potassium"
+      ]
+    },
+    {
+      "category": "expected-value-not-found-in-ocr",
+      "count": 59,
+      "examples": [
+        "IMG_3585:carbohydrate",
+        "IMG_3585:saturated_fat",
+        "new-2:serving.servings_per_container",
+        "new-3:total_fat",
+        "label-003:serving.serving_size"
+      ]
+    },
+    {
+      "category": "expected-name-not-found-in-ocr",
+      "count": 41,
+      "examples": [
+        "label-002:saturated_fat",
+        "label-002:serving.servings_per_container",
+        "label-002:sodium",
+        "label-003:carbohydrate",
+        "label-003:energy"
+      ]
+    },
+    {
+      "category": "abstention-with-name-and-value-somewhere-in-ocr",
+      "count": 37,
+      "examples": [
+        "label-002:potassium",
+        "label-002:vitamin_d",
+        "label-005:energy",
+        "label-006:energy",
+        "label-007:energy"
+      ]
+    },
+    {
+      "category": "unsupported-nutrition-basis",
+      "count": 22,
+      "examples": [
+        "label-001:calcium",
+        "label-001:carbohydrate",
+        "label-001:cholesterol",
+        "label-001:energy",
+        "label-001:fiber"
+      ]
+    },
+    {
+      "category": "duplicate-row-abstention",
+      "count": 12,
+      "examples": [
+        "label-002:sugars",
+        "label-008:calcium",
+        "label-008:carbohydrate",
+        "label-008:cholesterol",
+        "label-008:energy"
+      ]
+    },
+    {
+      "category": "wrong-value-or-association",
+      "count": 4,
+      "examples": [
+        "label-001:serving.serving_size",
+        "label-008:serving.serving_size",
+        "label-009:serving.serving_size",
+        "label-014:serving.serving_size"
+      ]
+    },
+    {
+      "category": "value-on-unreadable-field",
+      "count": 1,
+      "examples": [
+        "label-019:serving.serving_size"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "src/services/nutrition/parseNutrition.ts",
+      "sha256": "2d313f02390eb85a09336d682d77e3cf496d49bc69643be5c076660fb392b0a7"
+    },
+    {
+      "path": "evaluation/metrics.ts",
+      "sha256": "c55ec0258d5398dea33a6679375c15e28f1ea16ce8facaf564b7a0221c49aff5"
+    },
+    {
+      "path": "evaluation/load.ts",
+      "sha256": "3817bad655c31f6d5a26696e404a139ed2a241f78a244296d47428dd7fa27dd9"
+    },
+    {
+      "path": "evaluation/types.ts",
+      "sha256": "de3f182d6637203fca43048f54fe4a81af35d18f319c6387c3bb4f5a5123e34a"
+    },
+    {
+      "path": "evaluation/report.ts",
+      "sha256": "ad807c93adab3af8e5a57d07cf8a021d16f461f7d9967056df9bc7aa825df4ab"
+    },
+    {
+      "path": "evaluation/cli.ts",
+      "sha256": "b9da050d26befdf3a3c31cefce6a1012a72fe662a8b479c720a1346d512287fd"
+    },
+    {
+      "path": "evaluation/annotations/mobile.json",
+      "sha256": "a4b14033fdccc25f281ac9caa3bdd6445ed3509573ae433955aa601c14bb3fac"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "sha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29"
+    },
+    {
+      "path": "benchmark/manifest.json",
+      "sha256": "0d8ec67e308a8c780886be7f44ce92a1c722bbd6f9da321cc59def017d1db700"
+    },
+    {
+      "path": "benchmark/results/latest.json",
+      "sha256": "3347e749e0d7bb45d1f94ab75943961fc18db3ac8ea1fc6c911cff4bd9363474"
+    },
+    {
+      "path": "evaluation/annotations/legacy-corrections.json",
+      "sha256": "301152b52a85fff255c839476b14050d08258e47549a665f0b5ad4200b6bb0dc"
+    },
+    {
+      "path": "labels/processed/007/IMG_2337-cropped.jpeg",
+      "sha256": "ae674cf4c401de71fb9b91589e094c37e785293560a839ba5faae8f4a8395a0d"
+    },
+    {
+      "path": "labels/processed/017/IMG_2887-cropped.jpeg",
+      "sha256": "a8ff66c955b02ff223c1a0452063d8ac5db1da41451554e388bd7bb25fe8c19c"
+    },
+    {
+      "path": "labels/processed/001/IMG_1802-cropped.jpeg",
+      "sha256": "30e319ff9744f49073a68da4ad86e92bbd6ec221ecbd176a661bd2646f2d0a64"
+    },
+    {
+      "path": "labels/processed/009/IMG_2343-cropped.jpeg",
+      "sha256": "6cd69cdc303f44bb4f6ff9f146e35b6324fd3639a1249b26908d0fac6e36bd01"
+    },
+    {
+      "path": "labels/processed/019/IMG_2927-cropped.jpeg",
+      "sha256": "1390edaa9cc2ea3cf1c63fdf08798a15172fb29b68eb922ef0bda4f9bac61b71"
+    },
+    {
+      "path": "benchmark/annotations/label-001.json",
+      "sha256": "6425f6ba4b9f6f8c1690407d5c0c4620f3a5b2cc219e34a1e25ba3c4186078b0"
+    },
+    {
+      "path": "benchmark/annotations/label-002.json",
+      "sha256": "77fc1b066ab955e6ee2fced18cad0c7ba57d4f4c2975dfc907610b61bf8398b5"
+    },
+    {
+      "path": "benchmark/annotations/label-003.json",
+      "sha256": "7d0b69b3f80396987443ab02185da19141ce664059971afae0fd7b1a44761b0b"
+    },
+    {
+      "path": "benchmark/annotations/label-004.json",
+      "sha256": "92713eadc35a1d5a5df80f56efda02add43ee732b73beef2615ee23039eb0847"
+    },
+    {
+      "path": "benchmark/annotations/label-005.json",
+      "sha256": "de3e3ffa69e00db8bfbb18362a18bde8c3c2b79e37e3cd28ea7e4c41ad55f19b"
+    },
+    {
+      "path": "benchmark/annotations/label-006.json",
+      "sha256": "5c2b7859244aab8d0277756ebe23d0bf3b9a10cb1f9a94b2e79786b169896f8a"
+    },
+    {
+      "path": "benchmark/annotations/label-007.json",
+      "sha256": "ab04b25ed45c28197e550516fed368e80080615a7cb281c9684afdb4f8edc7fa"
+    },
+    {
+      "path": "benchmark/annotations/label-008.json",
+      "sha256": "045779240e73624486cc86f6d81a4b3bf07a7f374bd70fc641492089c6cb6465"
+    },
+    {
+      "path": "benchmark/annotations/label-009.json",
+      "sha256": "7f3fb54ff54fa864e179deb6a98b3bcfcfe46ac55c2c1d2a7cd096e166157799"
+    },
+    {
+      "path": "benchmark/annotations/label-010.json",
+      "sha256": "dd3b7516184291b8380bb0070c344d3e83da444559c6db4cc04ff1798fa617e8"
+    },
+    {
+      "path": "benchmark/annotations/label-011.json",
+      "sha256": "63fdfd86eb23af29d435409f541164f63d050b19a902675db3cd635a4a344c8b"
+    },
+    {
+      "path": "benchmark/annotations/label-012.json",
+      "sha256": "f0caafa85b3c4bdc7d78e3ea63ff1c8d6c529fbba2039de53855d534cc084f8d"
+    },
+    {
+      "path": "benchmark/annotations/label-013.json",
+      "sha256": "0778ff06829c11d6e7a4dcfa27ccb07b317727dac3c1c754a0b52cde60aafdd1"
+    },
+    {
+      "path": "benchmark/annotations/label-014.json",
+      "sha256": "9ba4b11c53ae98b4a78af89b1f165f21749757b26cab34e219bdd178026fe84e"
+    },
+    {
+      "path": "benchmark/annotations/label-015.json",
+      "sha256": "b01c4487991f302c018b330b5956de8e2a49162beac1b914dd3482682968d0b2"
+    },
+    {
+      "path": "benchmark/annotations/label-016.json",
+      "sha256": "93564cf5548d021d956295c97314007206593ef5c04bd84936410bf7551757f9"
+    },
+    {
+      "path": "benchmark/annotations/label-017.json",
+      "sha256": "0a2b39a218752b7825993769aea48709657dd55adfd5ac7a10d6797a8f2d0071"
+    },
+    {
+      "path": "benchmark/annotations/label-018.json",
+      "sha256": "31e4e7b0a95548e93facc803616f312476d455b64f391cd62676c0c98106c7b8"
+    },
+    {
+      "path": "benchmark/annotations/label-019.json",
+      "sha256": "6274758fbb91b2052f1bf2ae9cbaf7cfba425bdf7ef2495002e91e551b562cd7"
+    },
+    {
+      "path": "benchmark/annotations/label-020.json",
+      "sha256": "82f23d4c839f12cf445ccd4b0614906f97fa090f9c16600ae8dd96268c584d37"
+    },
+    {
+      "path": "benchmark/annotations/label-021.json",
+      "sha256": "ad470032645a602c8b5758f285ad8e1545965c0460cc1a663ad923f00b721a3f"
+    },
+    {
+      "path": "benchmark/annotations/label-022.json",
+      "sha256": "ae169a6c87042cd27e1e2cd689dbc1f7304f0668210ddbfdde94f8f6d70f276a"
+    },
+    {
+      "path": "benchmark/annotations/label-023.json",
+      "sha256": "164eed9149011a1dd461870f73d4385bb6b5037d132e83a460fed2a577f3a17e"
+    },
+    {
+      "path": "benchmark/annotations/label-024.json",
+      "sha256": "f682e5c5ec8f7fe4579a2f31b04b72791c1ed389a31c50dacafcc43dcf829a7f"
+    },
+    {
+      "path": "benchmark/annotations/label-025.json",
+      "sha256": "03d366bbc784bda04f45f39d80f71f7a7cfa83cb337cd76d26ecd023d0f9fd9d"
+    },
+    {
+      "path": "benchmark/annotations/label-026.json",
+      "sha256": "ecc0cfe28d91f2fd3d02bd1fd8947e44c9f1c5b93754a7d5d5776406d65e1103"
+    },
+    {
+      "path": "benchmark/annotations/label-027.json",
+      "sha256": "6f8fd20dd1b39c82cbf90d62e07c26958d0a65d20ceb16538a1476b1557291f4"
+    },
+    {
+      "path": "benchmark/annotations/label-028.json",
+      "sha256": "3524654b6bdf6c32fd0e9eae840b7717f4b0ae7316ee9afde94fa5c984e2e661"
+    },
+    {
+      "path": "benchmark/annotations/label-029.json",
+      "sha256": "e6668e611c3e80355855afccf1dba3d056d7a02290b9739dcabf17bf6bfcd0a9"
+    },
+    {
+      "path": "benchmark/annotations/label-030.json",
+      "sha256": "1631fa23961ff7ce8cb99e88b8e0724273f44c3109dbcc66d05dde5002ffb9d9"
+    }
+  ],
+  "notes": [
+    "Frozen OCR replay, not a fresh recognition run. No capture or preprocessing changes are evaluated.",
+    "All mobile cases were used in parser development and are regression cases; their accuracy is not a generalization estimate.",
+    "Missing annotations and legacy nulls are unreviewed, not absent or unreadable. Unscored outputs are reported separately.",
+    "Five older mobile annotations inherit prior image review; three September 18 images were rechecked on 2026-10-08.",
+    "Negative examples are sparse; false-positive counts must be read with their denominators. There is no representative unreadable-image negative set or independently annotated text-region boxes.",
+    "OCR name/value presence is a whole-panel proxy: matches can come from another row or column. Error categories are triage hints, not proven causes.",
+    "Serving matches preserve parentheses and household measures; semantically equivalent but differently formatted strings may need annotation review.",
+    "Legacy development/holdout/regression splits are preserved. The holdout was inspected in earlier work and is not a new blind test.",
+    "Legacy metrics are provisional: targeted image review covers the correction overlay and five serving outputs; remaining inherited annotations still need a full image audit.",
+    "Label 019 serving size is marked unreadable because glare obscures a digit; a populated partial string counts as an unsupported output. This single field does not establish performance on unreadable photos.",
+    "Stored desktop processing times exclude initialization and are not current phone latency. Mobile fixtures contain no timing.",
+    "The supplemental re-encoded label-030 desktop run is excluded to avoid counting the same product/crop repeatedly."
+  ]
+}

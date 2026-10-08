@@ -13,6 +13,8 @@
     "benchmark:tesseract": "node --import tsx benchmark/src/cli.ts",
     "benchmark:paddle": "node --import tsx benchmark/src/paddle-cli.ts",
     "benchmark:report": "node --import tsx benchmark/src/final-report.ts",
+    "evaluate": "node --import tsx evaluation/cli.ts",
+    "type-check:evaluation": "tsc -p tsconfig.evaluation.json",
     "type-check": "vue-tsc --build --force",
     "test": "vitest run",
     "test:watch": "vitest",

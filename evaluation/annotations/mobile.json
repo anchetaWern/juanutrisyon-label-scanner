@@ -1,0 +1,93 @@
+[
+  {
+    "id": "IMG_3584", "productId": "label-030", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Nutrients from the image review documented in docs/nutrition-extraction-2026-09-11.md; original image unavailable in this checkout. Serving fields not independently transcribed here.",
+    "tags": ["prior-image-review", "incomplete-serving-annotation"],
+    "fields": {
+      "serving.serving_size": { "status": "unreviewed", "note": "Parser null is not ground truth; source serving text needs image review." },
+      "serving.servings_per_container": { "status": "unreviewed", "note": "Needs image review." },
+      "energy": "80kcal", "total_fat": "1.5g", "saturated_fat": "1g", "trans_fat": "0g", "cholesterol": "20mg",
+      "sodium": "440mg", "carbohydrate": "10g", "fiber": "1g", "sugars": "4g", "protein": "7g", "added_sugars": "2g",
+      "vitamin_d": "0mcg", "calcium": "120mg", "iron": "0.3mg", "potassium": "10mg"
+    }
+  },
+  {
+    "id": "IMG_3585", "productId": "mobile-IMG_3585", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Image review in docs/nutrition-extraction-2026-09-11.md and image-derived values/comments in parseNutrition.spec.ts. Original image unavailable. Missing OCR values 2g and 16g are printed ground truth, not expected nulls.",
+    "tags": ["prior-image-review", "reference-table", "damaged-ocr"],
+    "fields": {
+      "serving.serving_size": "1/5 bag (100 g)", "serving.servings_per_container": "5",
+      "energy": "170kcal", "energy_from_fat": { "status": "unreviewed", "note": "Printed value not recorded in the prior review; do not derive it from fat." },
+      "total_fat": "8g", "saturated_fat": "2g", "trans_fat": { "status": "absent", "note": "Prior image review explicitly records that trans fat is absent." },
+      "cholesterol": "15mg", "sodium": "870mg", "carbohydrate": "16g", "fiber": "<1g", "sugars": "5g", "protein": "8g",
+      "vitamin_a": "0%", "vitamin_b1": "0%", "vitamin_b2": "0%", "calcium": "25%", "iron": "2%", "vitamin_d": "20%"
+    }
+  },
+  {
+    "id": "IMG_3586", "productId": "mobile-IMG_3586", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Image-derived nutrient review in docs/nutrition-extraction-2026-09-11.md and parseNutrition.spec.ts; original image unavailable.",
+    "tags": ["prior-image-review", "incomplete-serving-annotation"],
+    "fields": {
+      "serving.serving_size": { "status": "unreviewed", "note": "Needs image review." },
+      "serving.servings_per_container": { "status": "unreviewed", "note": "Needs image review." },
+      "energy": "180kcal", "total_fat": "0g", "saturated_fat": "0g", "trans_fat": "0g", "cholesterol": "0mg", "sodium": "0mg",
+      "carbohydrate": "40g", "fiber": "2g", "sugars": "0g", "added_sugars": "0g", "protein": "5g",
+      "vitamin_d": "0mcg", "calcium": "4mg", "iron": "3mg", "potassium": "65mg", "vitamin_a": "54mcg"
+    }
+  },
+  {
+    "id": "IMG_3587", "productId": "mobile-IMG_3587", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Image-derived serving and nutrient review in docs/nutrition-extraction-2026-09-11.md and parseNutrition.spec.ts; original image unavailable.",
+    "tags": ["prior-image-review", "ordered-columns"],
+    "fields": {
+      "serving.serving_size": "125 mL", "serving.servings_per_container": "2.8",
+      "energy": "133kcal", "energy_from_fat": "93kcal", "total_fat": "10g", "saturated_fat": "5g", "trans_fat": "0g",
+      "cholesterol": "7mg", "sodium": "77mg", "carbohydrate": "8g", "fiber": "2g", "sugars": "7g", "protein": "2g"
+    }
+  },
+  {
+    "id": "IMG_3588", "productId": "mobile-IMG_3588", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Image-derived nutrient review in docs/nutrition-extraction-2026-09-11.md and parseNutrition.spec.ts; original image unavailable.",
+    "tags": ["prior-image-review", "incomplete-serving-annotation", "additional-nutrients"],
+    "fields": {
+      "serving.serving_size": { "status": "unreviewed", "note": "Needs image review." },
+      "serving.servings_per_container": { "status": "unreviewed", "note": "Needs image review." },
+      "energy": "6kcal", "total_fat": "0g", "saturated_fat": "0g", "trans_fat": "0g", "cholesterol": "0mg", "sodium": "194mg",
+      "carbohydrate": "3g", "fiber": "0g", "sugars": "0g", "protein": "0g", "vitamin_b3": "20mg", "vitamin_b5": "4.8mg",
+      "vitamin_b6": "1mg", "vitamin_b12": "1.8μg", "taurine": "1015mg", "l_carnitine_l_tartrate": "36mg", "caffeine": "70mg"
+    }
+  },
+  {
+    "id": "new-1", "productId": "mobile-IMG_3655", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Visually rechecked labels/new/new-1.JPG on 2026-10-08. Image is readable, including 1/3 cup (40g); frozen OCR has a damaged fraction. Export is re-encoded, not exact OCR input bytes.",
+    "tags": ["image-reviewed-2026-10-08", "readable-image", "damaged-serving-ocr", "curved"],
+    "fields": {
+      "serving.serving_size": "1/3 cup (40g)", "serving.servings_per_container": "About 13",
+      "energy": "150kcal", "total_fat": "2.5g", "saturated_fat": "0.5g", "trans_fat": "0g", "cholesterol": "0mg",
+      "sodium": "0mg", "carbohydrate": "26g", "fiber": "7g", "sugars": "1g", "protein": "7g", "added_sugars": "0g",
+      "vitamin_d": "0mcg", "calcium": "20mg", "iron": "2mg", "potassium": "201mg"
+    }
+  },
+  {
+    "id": "new-2", "productId": "mobile-IMG_3653", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Visually rechecked labels/new/new-2.JPG on 2026-10-08. Micronutrients use the printed Per Serving column. About 6 is readable in the image. Re-encoded export, not exact OCR input bytes.",
+    "tags": ["image-reviewed-2026-10-08", "readable-image", "multiple-bases", "damaged-serving-ocr"],
+    "fields": {
+      "serving.serving_size": "(2 slices) 62g", "serving.servings_per_container": "About 6",
+      "energy": "178kcal", "energy_from_fat": "18kcal", "total_fat": "2g", "saturated_fat": "1g", "trans_fat": "0g",
+      "cholesterol": "1mg", "sodium": "225mg", "carbohydrate": "31g", "fiber": "3g", "soluble_fiber": "1g",
+      "insoluble_fiber": "2g", "sugars": "4g", "protein": "9g", "vitamin_a": "15%", "vitamin_c": "0%",
+      "calcium": "14%", "iron": "23%", "vitamin_b1": "6%", "vitamin_b2": "0%", "vitamin_b3": "12%", "folate": "0%"
+    }
+  },
+  {
+    "id": "new-3", "productId": "mobile-IMG_3638", "split": "regression", "cohort": "mobile-replay",
+    "provenance": "Visually rechecked labels/new/new-3.JPG on 2026-10-08. Total fat prints 3.3g although OCR says 3.39; vitamin D prints mg. Re-encoded export, not exact OCR input bytes.",
+    "tags": ["image-reviewed-2026-10-08", "readable-image", "damaged-unit-ocr", "colored-background"],
+    "fields": {
+      "serving.serving_size": "(34g)", "serving.servings_per_container": "10",
+      "energy": "65kcal", "total_fat": "3.3g", "saturated_fat": "1.3g", "trans_fat": "0g", "cholesterol": "18mg", "sodium": "250mg",
+      "carbohydrate": "3.8g", "fiber": "0g", "sugars": "1.1g", "protein": "3g", "vitamin_d": "0mg", "calcium": "0mg", "iron": "0mg", "potassium": "50mg"
+    }
+  }
+]

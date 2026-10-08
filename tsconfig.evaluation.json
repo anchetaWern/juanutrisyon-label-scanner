@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.benchmark.json",
+  "include": ["evaluation/**/*.ts"],
+  "exclude": [],
+  "compilerOptions": { "resolveJsonModule": true }
+}

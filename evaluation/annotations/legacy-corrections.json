@@ -1,0 +1,28 @@
+[
+  {
+    "id": "label-007", "field": "trans_fat", "before": "0g", "after": "1g",
+    "image": "labels/processed/007/IMG_2337-cropped.jpeg",
+    "reason": "Visually reconfirmed on 2026-10-08: trans fat row prints 1g. Previously documented in docs/nutrition-extraction-2026-09-11.md. Applies only to evaluation; original annotation stays frozen."
+  },
+  {
+    "id": "label-017", "field": "sodium", "before": "640mg", "after": "460mg",
+    "image": "labels/processed/017/IMG_2887-cropped.jpeg",
+    "reason": "Visually reconfirmed on 2026-10-08: sodium row prints 460mg. Previously documented in docs/nutrition-extraction-2026-09-11.md. Applies only to evaluation; original annotation stays frozen."
+  },
+  {
+    "id": "label-001", "field": "serving.serving_size", "before": "1 pc (50g)", "after": "(1 pc) 50g",
+    "image": "labels/processed/001/IMG_1802-cropped.jpeg",
+    "reason": "Visually checked on 2026-10-08: parenthesized household measure is printed beside Serving Size, with 50g detached on the right. Match printed grouping so a future correct extraction is not penalized. Current OCR output (1 pc) still omits mass."
+  },
+  {
+    "id": "label-009", "field": "serving.serving_size", "before": "5-6 cups (15g)", "after": "5-6 cups (25g)",
+    "image": "labels/processed/009/IMG_2343-cropped.jpeg",
+    "reason": "Visually checked crop and original on 2026-10-08: printed mass is 25g, not the legacy annotation's 15g. Current output 5-6 cu15 remains incorrect."
+  },
+  {
+    "id": "label-019", "field": "serving.serving_size", "before": "1 Tbsp (11mL)",
+    "after": { "status": "unreadable", "note": "Glare obscures a serving-volume digit in the supplied crop and original. Do not guess between 11mL and another volume. The complete serving value cannot be independently read from this image." },
+    "image": "labels/processed/019/IMG_2927-cropped.jpeg",
+    "reason": "Visually checked crop and original on 2026-10-08. Reclassify an unsupported legacy transcription as unreadable for this input. Current partial output 1 Tbsp (1 is not a complete reading."
+  }
+]

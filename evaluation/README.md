@@ -1,5 +1,7 @@
 # Accuracy evaluation — Phase 1
 
+For the fresh 15-photo Phase 2 batch and paired crop comparison, see the [pilot guide](pilot/README.md). The commands below continue to replay the original frozen cohorts.
+
 Run the portable baseline from a clean checkout with installed dependencies:
 
 ```sh

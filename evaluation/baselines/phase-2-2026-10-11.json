@@ -1,0 +1,769 @@
+{
+  "schemaVersion": 1,
+  "studyDate": "2026-10-11",
+  "datasetFingerprint": "425705706287eec5111d543c75e9b73eed8387d236a755603b8e39becb1c989c",
+  "metricVersion": "field-exact-v1",
+  "presenceVersion": "bounded-units-v2",
+  "photos": 15,
+  "developmentPhotos": 10,
+  "holdoutPhotos": 5,
+  "ocrCases": 45,
+  "artifacts": {
+    "dataset.json": "b968b95a4d8c3f8874f3fabd62836433605c81116238a886896f37fc04861d22",
+    "prepared.json": "5dfc166967d750210db56f56c3fe712fcf7dd14e21916b2993d9a6179436cb6f",
+    "run.json": "94d89ee83399c535e02129cfcaf72c41b64f6fb97a4786a841cfde5f82c5d57b",
+    "report.json": "f80b8e422ae506316ffccda7fc820718eed7845e6ee31f7f9ce1f7598b4e8cbc",
+    "comparison.json": "93bcec668931f00f14c887b15f970b33126c496a78be2e69ac8389dd0bfaecee",
+    "calibration.json": "fb1a1982253aae5cc4e7b634c7a5190d3628d73ab4c7bc72794d7cab3133131e"
+  },
+  "ownerOnly": {
+    "byVariant": {
+      "original": {
+        "cases": 15,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 191,
+          "correct": 71,
+          "wrong": 0,
+          "missing": 120,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 12,
+          "wrong": 4,
+          "missing": 14,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      },
+      "rectangle": {
+        "cases": 15,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 191,
+          "correct": 97,
+          "wrong": 2,
+          "missing": 92,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 13,
+          "wrong": 5,
+          "missing": 12,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      },
+      "perspective": {
+        "cases": 15,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 191,
+          "correct": 90,
+          "wrong": 1,
+          "missing": 100,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 13,
+          "wrong": 3,
+          "missing": 14,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      }
+    },
+    "bySplit": {
+      "original/development": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 47,
+          "wrong": 0,
+          "missing": 90,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 9,
+          "wrong": 4,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      },
+      "original/holdout": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 24,
+          "wrong": 0,
+          "missing": 30,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      },
+      "rectangle/development": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 70,
+          "wrong": 2,
+          "missing": 65,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 10,
+          "wrong": 5,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      },
+      "rectangle/holdout": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 27,
+          "wrong": 0,
+          "missing": 27,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      },
+      "perspective/development": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 62,
+          "wrong": 1,
+          "missing": 74,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 10,
+          "wrong": 3,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      },
+      "perspective/holdout": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 28,
+          "wrong": 0,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0
+        }
+      }
+    }
+  },
+  "expandedAudit": {
+    "phase-2-original": {
+      "cases": 15,
+      "providerFailures": 0,
+      "nutrients": {
+        "readable": 200,
+        "correct": 75,
+        "wrong": 1,
+        "missing": 124,
+        "falsePositive": 1,
+        "correctAbstention": 6
+      },
+      "serving": {
+        "readable": 30,
+        "correct": 12,
+        "wrong": 4,
+        "missing": 14,
+        "falsePositive": 0,
+        "correctAbstention": 0
+      }
+    },
+    "phase-2-perspective": {
+      "cases": 15,
+      "providerFailures": 0,
+      "nutrients": {
+        "readable": 200,
+        "correct": 95,
+        "wrong": 2,
+        "missing": 103,
+        "falsePositive": 0,
+        "correctAbstention": 7
+      },
+      "serving": {
+        "readable": 30,
+        "correct": 13,
+        "wrong": 3,
+        "missing": 14,
+        "falsePositive": 0,
+        "correctAbstention": 0
+      }
+    },
+    "phase-2-rectangle": {
+      "cases": 15,
+      "providerFailures": 0,
+      "nutrients": {
+        "readable": 200,
+        "correct": 102,
+        "wrong": 3,
+        "missing": 95,
+        "falsePositive": 0,
+        "correctAbstention": 7
+      },
+      "serving": {
+        "readable": 30,
+        "correct": 13,
+        "wrong": 5,
+        "missing": 12,
+        "falsePositive": 0,
+        "correctAbstention": 0
+      }
+    }
+  },
+  "captureWarnings": {
+    "original/development": {
+      "samples": 10,
+      "qualityFailures": 0,
+      "glare": {
+        "samples": 10,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "trueNegative": 7,
+        "falseNegative": 3,
+        "precision": null,
+        "recall": 0
+      },
+      "smallText": {
+        "samples": 10,
+        "truePositive": 2,
+        "falsePositive": 0,
+        "trueNegative": 6,
+        "falseNegative": 2,
+        "precision": 1,
+        "recall": 0.5
+      }
+    },
+    "original/holdout": {
+      "samples": 5,
+      "qualityFailures": 0,
+      "glare": {
+        "samples": 5,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 1,
+        "precision": null,
+        "recall": 0
+      },
+      "smallText": {
+        "samples": 5,
+        "truePositive": 1,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    "rectangle/development": {
+      "samples": 10,
+      "qualityFailures": 0,
+      "glare": {
+        "samples": 10,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "trueNegative": 7,
+        "falseNegative": 3,
+        "precision": null,
+        "recall": 0
+      },
+      "smallText": {
+        "samples": 10,
+        "truePositive": 2,
+        "falsePositive": 0,
+        "trueNegative": 6,
+        "falseNegative": 2,
+        "precision": 1,
+        "recall": 0.5
+      }
+    },
+    "rectangle/holdout": {
+      "samples": 5,
+      "qualityFailures": 0,
+      "glare": {
+        "samples": 5,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 1,
+        "precision": null,
+        "recall": 0
+      },
+      "smallText": {
+        "samples": 5,
+        "truePositive": 0,
+        "falsePositive": 1,
+        "trueNegative": 3,
+        "falseNegative": 1,
+        "precision": 0,
+        "recall": 0
+      }
+    },
+    "perspective/development": {
+      "samples": 10,
+      "qualityFailures": 0,
+      "glare": {
+        "samples": 10,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "trueNegative": 7,
+        "falseNegative": 3,
+        "precision": null,
+        "recall": 0
+      },
+      "smallText": {
+        "samples": 10,
+        "truePositive": 3,
+        "falsePositive": 0,
+        "trueNegative": 6,
+        "falseNegative": 1,
+        "precision": 1,
+        "recall": 0.75
+      }
+    },
+    "perspective/holdout": {
+      "samples": 5,
+      "qualityFailures": 0,
+      "glare": {
+        "samples": 5,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 1,
+        "precision": null,
+        "recall": 0
+      },
+      "smallText": {
+        "samples": 5,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 1,
+        "precision": null,
+        "recall": 0
+      }
+    }
+  },
+  "suggestions": {
+    "original/development": {
+      "samples": 10,
+      "offered": 2,
+      "close": 0,
+      "errors": 0
+    },
+    "rectangle/development": {
+      "samples": 10,
+      "offered": 3,
+      "close": 1,
+      "errors": 0
+    },
+    "original/holdout": {
+      "samples": 5,
+      "offered": 0,
+      "close": 0,
+      "errors": 0
+    },
+    "rectangle/holdout": {
+      "samples": 5,
+      "offered": 3,
+      "close": 2,
+      "errors": 0
+    }
+  },
+  "desktopTiming": {
+    "initializationMs": 4051.199999999255,
+    "byVariant": {
+      "original": {
+        "samples": 15,
+        "mean": 2257.5133333330355,
+        "p95": 2709.0999999996275
+      },
+      "rectangle": {
+        "samples": 15,
+        "mean": 908.153333333383,
+        "p95": 1463.7000000011176
+      },
+      "perspective": {
+        "samples": 15,
+        "mean": 915.2599999997765,
+        "p95": 1438
+      }
+    }
+  },
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 8,
+    "devicePixelRatio": 1,
+    "mode": "desktop-headless-chrome",
+    "provider": {
+      "backend": "wasm",
+      "webgpuAvailable": true,
+      "detProvider": "wasm",
+      "recProvider": "wasm",
+      "assets": [
+        {
+          "url": "https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv6_tiny_det_onnx_infer.tar",
+          "bytes": 1792000
+        },
+        {
+          "url": "https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv6_tiny_rec_onnx_infer.tar",
+          "bytes": 4526080
+        }
+      ],
+      "elapsedMs": 2858.699999999255,
+      "pipelineConfigWarnings": [
+        "DocPreprocessor is not yet supported in PaddleOCR.js: config will be ignored for now.",
+        "TextLineOrientation is not yet supported in PaddleOCR.js: config will be ignored for now."
+      ]
+    },
+    "sessions": [
+      {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "hardwareConcurrency": 8,
+        "devicePixelRatio": 1,
+        "mode": "desktop-headless-chrome",
+        "provider": {
+          "backend": "wasm",
+          "webgpuAvailable": true,
+          "detProvider": "wasm",
+          "recProvider": "wasm",
+          "assets": [
+            {
+              "url": "https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv6_tiny_det_onnx_infer.tar",
+              "bytes": 1792000
+            },
+            {
+              "url": "https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv6_tiny_rec_onnx_infer.tar",
+              "bytes": 4526080
+            }
+          ],
+          "elapsedMs": 2858.699999999255,
+          "pipelineConfigWarnings": [
+            "DocPreprocessor is not yet supported in PaddleOCR.js: config will be ignored for now.",
+            "TextLineOrientation is not yet supported in PaddleOCR.js: config will be ignored for now."
+          ]
+        },
+        "initializationMs": 4051.199999999255
+      }
+    ]
+  },
+  "config": {
+    "id": "v6-tiny-recall-v2",
+    "title": "PP-OCRv6 tiny",
+    "detectionModel": "PP-OCRv6_tiny_det",
+    "recognitionModel": "PP-OCRv6_tiny_rec",
+    "prediction": {
+      "textDetLimitSideLen": 64,
+      "textDetLimitType": "min",
+      "textDetMaxSideLimit": 4000,
+      "textDetThresh": 0.3,
+      "textDetBoxThresh": 0.45,
+      "textDetUnclipRatio": 1.5,
+      "textRecScoreThresh": 0
+    },
+    "preprocessing": {
+      "id": "grayscale-contrast-sharpen-v1",
+      "mode": "grayscale-contrast-sharpen",
+      "scale": 1,
+      "maxDimension": 2400,
+      "contrastLowPercentile": 0.01,
+      "contrastHighPercentile": 0.99,
+      "sharpenAmount": 0.32
+    }
+  },
+  "runtimeSources": [
+    {
+      "path": "package-lock.json",
+      "sha256": "e605b58f91756ac28c9f787526244491178a5b7701573564176dcfbeef9bd4f6"
+    },
+    {
+      "path": "evaluation/pilot/browser.ts",
+      "sha256": "3703f46302503b04f365dd940d774633f22d10dfd66a5f4799687788fd94e213"
+    },
+    {
+      "path": "evaluation/pilot/runner.ts",
+      "sha256": "746d000b8b8afdcf06fefc963094fe87eecd051799e76c4548484b9a099986ff"
+    },
+    {
+      "path": "src/services/ocr/PaddleOcrEngine.ts",
+      "sha256": "1bb0f8f2af61daa4c3c4827902e4e1cf01f1cc3125f53882252244e737f96bf6"
+    },
+    {
+      "path": "src/services/image/preprocessForOcr.ts",
+      "sha256": "a956052564ecf957a59eb6c4637bbad5116bb4ce7cd6d2efec24fa3721eafa87"
+    },
+    {
+      "path": "src/services/image/perspective.ts",
+      "sha256": "e4278cd5488bee2e276f82281ceb9cef5f036f00f9a9e75d8ab640ca2c021c5c"
+    },
+    {
+      "path": "src/services/image/detectPanel.ts",
+      "sha256": "fd69381b1c08e3ea6f4061069997c7e20b71a509a6fea54ed7a4d99aa894e3d9"
+    },
+    {
+      "path": "src/services/image/geometryClient.ts",
+      "sha256": "05a5e8ad0f059f4d0d33e5cc62ec351094eab519abc7495c7608f86b180764e9"
+    },
+    {
+      "path": "src/services/image/geometry.worker.ts",
+      "sha256": "0e21b9b2d16df96bb4314252bf30747f05b57f2add215b631c08719807a02e98"
+    },
+    {
+      "path": "src/services/image/captureQuality.ts",
+      "sha256": "f2fb5be82195b667295faad33f336db91adad7823f10712ac303b2c6f8c0aaae"
+    },
+    {
+      "path": "src/composables/useImageQuality.ts",
+      "sha256": "1b43eef6ea5e539c2fc1ceb52236860d8ad41a435eb6815b10616a3707581630"
+    }
+  ],
+  "scoringSources": [
+    {
+      "path": "evaluation/datasets/phase-2-pilot.json",
+      "sha256": "5c1a80843593aea3daf2f024b5690648c5caf78ee4f68226c2d0ce48924cd1d3"
+    },
+    {
+      "path": "labels/nutrition_labels_json/01_shrimp_snack.jpeg",
+      "sha256": "e82c21cac30b2a45355a97e8589129ef59a8004fb32acbccfa58468c3e408e5c"
+    },
+    {
+      "path": "labels/nutrition_labels_json/01_shrimp_snack.json",
+      "sha256": "40920c6daf24e96296a75cc9561706bd61d67ebbe704cd2e9df5aac8f272e22a"
+    },
+    {
+      "path": "labels/nutrition_labels_json/02_yellow_snack.jpeg",
+      "sha256": "8c29050020fba015baaa4dfca182ea25b8b908b4bbc3d850b132013cc483e844"
+    },
+    {
+      "path": "labels/nutrition_labels_json/02_yellow_snack.json",
+      "sha256": "954570195a9885158dcec6fea76cbca3586b6acbb704115375b83486c9690b29"
+    },
+    {
+      "path": "labels/nutrition_labels_json/03_tang_orange.jpeg",
+      "sha256": "7fca8c463b83e21a8b8d219f88ac9b64a72e1b6d2b92920452161b2ba23964e8"
+    },
+    {
+      "path": "labels/nutrition_labels_json/03_tang_orange.json",
+      "sha256": "8f48f9b609046773bf401216b080b28912ebf806fc93701bde30804805b1764f"
+    },
+    {
+      "path": "labels/nutrition_labels_json/04_blue_tub.jpeg",
+      "sha256": "8b03c65f76355835a668e436c81c11d26ed68fddd04699907e80ab78301d322f"
+    },
+    {
+      "path": "labels/nutrition_labels_json/04_blue_tub.json",
+      "sha256": "aa55c5733ff4376218a53c0fe22a2a55638c638b21f4673bba3219b124b88d72"
+    },
+    {
+      "path": "labels/nutrition_labels_json/05_spam.jpeg",
+      "sha256": "998548e6a0b4274017a1d3780590b8f3bf56468d4767a2ce9070e1353f7c8f92"
+    },
+    {
+      "path": "labels/nutrition_labels_json/05_spam.json",
+      "sha256": "f6184f7a0b2d63cbebb0e91265d38f997f092ffacff7810dab0dde09ae197161"
+    },
+    {
+      "path": "labels/nutrition_labels_json/06_555_fried_sardines_tausi.jpeg",
+      "sha256": "1f64f4ae502faa26a8c61d5b74fef2638d88a5611a91b1c073e7e54d7fc8a398"
+    },
+    {
+      "path": "labels/nutrition_labels_json/06_555_fried_sardines_tausi.json",
+      "sha256": "d3d81f813c669bd25c25d220c2a74592dbb58443e481010aad1f00553f88f378"
+    },
+    {
+      "path": "labels/nutrition_labels_json/07_cdo_sardines.jpeg",
+      "sha256": "6505bf51947aedd2b65c03a29973815edfc9ee494fc60f77914897e77028509c"
+    },
+    {
+      "path": "labels/nutrition_labels_json/07_cdo_sardines.json",
+      "sha256": "0150207a6c31afa7f14796f1684bc079f1f0d8a826b0d2e9ee260a2e4ac371ab"
+    },
+    {
+      "path": "labels/nutrition_labels_json/08_mega_sardines.jpeg",
+      "sha256": "8c1f69d6aa0564b5c004ac23c3b280bb7117151608f30678ac43be9b008c820b"
+    },
+    {
+      "path": "labels/nutrition_labels_json/08_mega_sardines.json",
+      "sha256": "ee5e478013dd632e6dd92060104c67f2d3840e3ba144f9aa64fa95aaba92d1d1"
+    },
+    {
+      "path": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil.jpeg",
+      "sha256": "7ed6189614aa4e438a9467183b01db571c7f603175168c77987775cba71cc362"
+    },
+    {
+      "path": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil.json",
+      "sha256": "7eb8547a520392d147015c820a36fb195a996b1a23c58ee8236ada9e6a03c8e3"
+    },
+    {
+      "path": "labels/nutrition_labels_json/10_sandwich_crackers.jpeg",
+      "sha256": "bb1ff1db3b5cbb81e845f29781291cc022470885322699ab980917ead999e575"
+    },
+    {
+      "path": "labels/nutrition_labels_json/10_sandwich_crackers.json",
+      "sha256": "2011da9f9d96560e2536cacb5c7f0022a10a3f489c28def054ce05b402908156"
+    },
+    {
+      "path": "labels/nutrition_labels_json/11_wafer_coconut_creme.jpeg",
+      "sha256": "ea5ec87a5002093dc5c66a209a53e9125cd9a9ba14877e9424163787c1b77a9a"
+    },
+    {
+      "path": "labels/nutrition_labels_json/11_wafer_coconut_creme.json",
+      "sha256": "bb2a7bb2a14c833f92b0de4192bb5c223031206ec5f98520ca19ded70cbcc5d1"
+    },
+    {
+      "path": "labels/nutrition_labels_json/12_green_potato_snack.jpeg",
+      "sha256": "1e56ea8bb979f409befd03c78b6a797736a1c7ac372c9ac0753ebb62bcc6071a"
+    },
+    {
+      "path": "labels/nutrition_labels_json/12_green_potato_snack.json",
+      "sha256": "d7c89b7e1aaee2342c5f0a5a629f5f2d5446512820728b195ea17a03dfa67557"
+    },
+    {
+      "path": "labels/nutrition_labels_json/13_green_biscuit.jpeg",
+      "sha256": "3063921a22624882084a568180d3eeb1c04ccc1092aa8ac1abc98599f9872803"
+    },
+    {
+      "path": "labels/nutrition_labels_json/13_green_biscuit.json",
+      "sha256": "997560a69fa0776e2178e2b767d9bd4e00c4899ee6af6c6f49b9db914015933e"
+    },
+    {
+      "path": "labels/nutrition_labels_json/14_yellow_milk_can.jpeg",
+      "sha256": "68204710dc4a558c82b1c829640cd57bdf15ebbb7697f6370d298308626545bd"
+    },
+    {
+      "path": "labels/nutrition_labels_json/14_yellow_milk_can.json",
+      "sha256": "2a5f57619e45d6f19a9e405d2bdb9625f8af18d60a51139f28b35c0403d6b69d"
+    },
+    {
+      "path": "labels/nutrition_labels_json/15_brown_cream_milk.jpeg",
+      "sha256": "0b71cbb2a331c6618e7bc790e3c98bfeaf08f11e4cb93ba09141b0323cf2b747"
+    },
+    {
+      "path": "labels/nutrition_labels_json/15_brown_cream_milk.json",
+      "sha256": "1799076421d13dd592dc36fe616102273c54a22a36e9a0105b6686479fed5ad3"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "e605b58f91756ac28c9f787526244491178a5b7701573564176dcfbeef9bd4f6"
+    },
+    {
+      "path": "evaluation/pilot/browser.ts",
+      "sha256": "3703f46302503b04f365dd940d774633f22d10dfd66a5f4799687788fd94e213"
+    },
+    {
+      "path": "evaluation/pilot/runner.ts",
+      "sha256": "746d000b8b8afdcf06fefc963094fe87eecd051799e76c4548484b9a099986ff"
+    },
+    {
+      "path": "src/services/ocr/PaddleOcrEngine.ts",
+      "sha256": "1bb0f8f2af61daa4c3c4827902e4e1cf01f1cc3125f53882252244e737f96bf6"
+    },
+    {
+      "path": "src/services/image/preprocessForOcr.ts",
+      "sha256": "a956052564ecf957a59eb6c4637bbad5116bb4ce7cd6d2efec24fa3721eafa87"
+    },
+    {
+      "path": "src/services/image/perspective.ts",
+      "sha256": "e4278cd5488bee2e276f82281ceb9cef5f036f00f9a9e75d8ab640ca2c021c5c"
+    },
+    {
+      "path": "src/services/image/detectPanel.ts",
+      "sha256": "fd69381b1c08e3ea6f4061069997c7e20b71a509a6fea54ed7a4d99aa894e3d9"
+    },
+    {
+      "path": "src/services/image/geometryClient.ts",
+      "sha256": "05a5e8ad0f059f4d0d33e5cc62ec351094eab519abc7495c7608f86b180764e9"
+    },
+    {
+      "path": "src/services/image/geometry.worker.ts",
+      "sha256": "0e21b9b2d16df96bb4314252bf30747f05b57f2add215b631c08719807a02e98"
+    },
+    {
+      "path": "src/services/image/captureQuality.ts",
+      "sha256": "f2fb5be82195b667295faad33f336db91adad7823f10712ac303b2c6f8c0aaae"
+    },
+    {
+      "path": "src/composables/useImageQuality.ts",
+      "sha256": "1b43eef6ea5e539c2fc1ceb52236860d8ad41a435eb6815b10616a3707581630"
+    },
+    {
+      "path": "src/services/nutrition/parseNutrition.ts",
+      "sha256": "2d313f02390eb85a09336d682d77e3cf496d49bc69643be5c076660fb392b0a7"
+    },
+    {
+      "path": "evaluation/metrics.ts",
+      "sha256": "316cea4019d4d1ea560106db43926f3ba67a2c79e4865cd7ab3c360703e6eb74"
+    },
+    {
+      "path": "evaluation/pilot/report.ts",
+      "sha256": "cb98bb00014d4b5409e5f9b246aca41dd562e865f4fc833aa3283cd9a4b423a6"
+    },
+    {
+      "path": "run.json",
+      "sha256": "94d89ee83399c535e02129cfcaf72c41b64f6fb97a4786a841cfde5f82c5d57b"
+    }
+  ],
+  "decision": "Retain production thresholds. The pilot lacks independently verified condition labels and unreadable/blurred negatives; no threshold was selected from validation outcomes.",
+  "notes": [
+    "Primary results use only the owner-verified 191 nutrient and 30 serving strings; strict field-exact-v1 scoring, not semantic quantity accuracy.",
+    "Expanded audit adds nine readable nutrient values and seven absent fields. Supplements, panel corners and capture-condition labels were reviewed by Codex, not independently human-verified.",
+    "Variants are paired observations of 15 photographs, not 45 independent images. Holdout has only five products from the same supplied collection.",
+    "Source photos, owner JSON and full generated reports remain local and gitignored. Artifact hashes refer to the original full pilot, not the isolated resume integration check.",
+    "Study date uses the client date; raw machine timestamps are retained without correction in local artifacts.",
+    "Production OCR, parsing and warning thresholds were not changed."
+  ]
+}

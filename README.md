@@ -26,6 +26,8 @@ npm run build
 
 See the [evaluation guide](evaluation/README.md) for metric definitions and reproduction, and the [Phase 1 baseline report](docs/accuracy-baseline-2026-10-08.md) for results and limitations. Run `npm run type-check:evaluation` when changing the harness.
 
+The [Phase 2 pilot](evaluation/pilot/README.md) runs fresh OCR on 15 owner-verified original photos and compares original, rectangular, and perspective inputs. `phase2:prepare` generates crops for review, `phase2:run` recognizes them with resumable checkpoints, and `phase2:report` replays the saved OCR. See [the pilot findings](docs/phase-2-pilot-2026-10-11.md) for measured gains, remaining errors, and the limits of this small dataset.
+
 ## Scanner pipeline
 
 ```text

@@ -17,6 +17,7 @@ const names: Record<string, string[]> = {
   carbohydrate: ['total carbohydrate', 'total carbohydrates', 'carbohydrate', 'carbohydrates', 'carbs'],
   fiber: ['dietary fiber', 'dietary fibre', 'fiber', 'fibre'], sugars: ['total sugars', 'sugars', 'sugar'],
   added_sugars: ['added sugars', 'added sugar'], protein: ['protein'],
+  omega_3: ['omega-3', 'omega 3'], omega_6: ['omega-6', 'omega 6'], omega_9: ['omega-9', 'omega 9'],
   'serving.serving_size': ['serving size'],
   'serving.servings_per_container': ['servings per container', 'serving per container'],
 }
@@ -26,7 +27,7 @@ export function nameInOcr(field: string, lines: string[]): boolean {
   const aliases = names[field] ?? (field.startsWith('vitamin_')
     ? [`vitamin ${field.slice(8)}`, `vit. ${field.slice(8)}`] : [field.replaceAll('_', ' ')])
   return lines.some((line) => aliases.some((alias) =>
-    new RegExp(`(?<![a-z0-9])${escape(alias).replaceAll(' ', '\\s+')}(?![a-z0-9])`, 'i').test(line)))
+    new RegExp(`(?<![a-z0-9])${escape(alias).replaceAll(' ', '\\s+')}(?![a-z0-9])`, 'i').test(line.normalize('NFKC'))))
 }
 
 // Whole-panel presence is a diagnostic proxy, NOT row association or detection
@@ -40,7 +41,7 @@ export function valueInOcr(field: string, expected: string, lines: string[]): bo
   }
   const amounts = lines.flatMap((line) => {
     const prepared = line.normalize('NFKC').toLowerCase().replace(/[μµ]g/g, 'mcg').replace(/\bless\s+than\s*/g, '<')
-    return [...prepared.matchAll(/(?<![a-z0-9.,/<>+\-])(?:[<>]\s*)?\d+(?:\.\d+)?\s*(?:kcal|kj|mcg|mg|g|%)(?![a-z0-9.,/%])/g)]
+    return [...prepared.matchAll(/(?<![a-z0-9.,/<>+\-])(?:[<>]\s*)?\d+(?:\.\d+)?\s*(?:kcal|kj|mcg(?:\s*re)?|mg|g|iu|%)(?![a-z0-9.,/%])/g)]
       .map((match) => normalize(match[0]))
   })
   if (amounts.includes(normalize(expected))) return true
@@ -136,7 +137,7 @@ export function buildReport(cases: CaseResult[]) {
     examples: failures.filter((f) => f.triage === category).slice(0, 5).map((f) => `${f.caseId}:${f.field}`),
   })).sort((a, b) => b.count - a.count || a.category.localeCompare(b.category))
   return {
-    metricVersion: METRIC_VERSION, mode: 'frozen-ocr-replay',
+    metricVersion: METRIC_VERSION, presenceVersion: 'bounded-units-v2', mode: 'frozen-ocr-replay',
     parserVersions: [...new Set(cases.map((c) => c.parserVersion))],
     detectionRecall: { value: null, reason: 'No independently annotated text regions; presence proxies do not measure detector recall.' },
     crossCohortSplitOverlaps: [...new Set(cases.map((c) => c.annotation.productId))].flatMap((productId) => {

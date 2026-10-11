@@ -65,6 +65,16 @@ describe('exact field metrics', () => {
     expect(valueInOcr('serving.serving_size', '1/3 cup (40g)', ['Serving sizen 3 cup (4og)'])).toBe(false)
   })
 
+  it('recognizes IU and RE qualifiers in presence probes without converting units or losing qualifiers', () => {
+    expect(valueInOcr('vitamin_d', '101IU', ['Vitamin D 101 IU'])).toBe(true)
+    expect(valueInOcr('vitamin_a', '190µg RE', ['Vitamin A 190 μg RE'])).toBe(true)
+    expect(valueInOcr('vitamin_a', '190µg RE', ['Vitamin A 190 µg'])).toBe(false)
+    expect(valueInOcr('vitamin_a', '190µg', ['Vitamin A 190 µg RE'])).toBe(false)
+    expect(valueInOcr('vitamin_d', '101IU', ['1101 IU'])).toBe(false)
+    expect(nameInOcr('omega_3', ['Omega-3 1135 mg'])).toBe(true)
+    expect(nameInOcr('vitamin_d3', ['Vitamin D₃'])).toBe(true)
+  })
+
   it('does not silently repair names or match a name substring', () => {
     expect(nameInOcr('sodium', ['Sodiun 225mg'])).toBe(false)
     expect(nameInOcr('fiber', ['Insoluble Fiber 2g'])).toBe(true) // explicitly whole-panel proxy

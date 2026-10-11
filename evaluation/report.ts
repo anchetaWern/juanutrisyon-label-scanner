@@ -8,7 +8,7 @@ const cell = (value: unknown) => String(value ?? '—').replaceAll('|', '\\|').r
 export function markdown(report: Report): string {
   const lines = [
     '# Nutrition extraction accuracy baseline', '',
-    `Metric: \`${report.metricVersion}\`. Parser: ${report.parserVersions.map((v) => `\`${v}\``).join(', ')}. Mode: frozen OCR replay.`, '',
+    `Metric: \`${report.metricVersion}\`. Parser: ${report.parserVersions.map((v) => `\`${v}\``).join(', ')}. Mode: ${report.mode}.`, '',
     '## Field-level results', '',
     'Exact recall counts correct field/value pairs over readable annotated fields. Precision counts correct outputs over scored outputs (including wrong and false-positive outputs). Unreviewed fields are excluded.', '',
     '| Cohort / fields | Readable | Correct | Wrong | Missing | Exact recall | Precision | Coverage | False positives / negative fields |',

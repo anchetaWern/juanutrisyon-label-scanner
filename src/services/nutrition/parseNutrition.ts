@@ -13,27 +13,27 @@ export interface NutritionExtraction {
 }
 
 type Box = OcrLine & { index: number }
-type Anchor = { box: Box; key: string; tail: string; unit?: string; corrected: boolean }
+type Anchor = { box: Box; key: string; tail: string; unit?: string; corrected: boolean; sources?: Box[] }
 type Amount = { text: string; boxes: Box[]; x: number; y: number; right: number; height: number }
 
 const core = ['energy', 'total_fat', 'saturated_fat', 'trans_fat', 'cholesterol', 'sodium', 'carbohydrate', 'fiber', 'sugars', 'protein']
 // Longest/specific labels must precede their parent nutrients.
 const names: Array<[string, RegExp]> = [
-  ['energy_from_fat', /^calor(?:ies|les)\s+from(?:\s+fat)?\b/i],
+  ['energy_from_fat', /^calor(?:ies|les)\s*from(?:\s*fat)?\b/i],
   ['added_sugars', /^(?:includes\s+)?(?:[\d.Oo]+\s*g\s+)?added\s+sugars?\b/i],
   ['energy', /^(?:calories|calorles|alories|energy)\b/i],
-  ['total_fat', /^total\s+fat\b/i],
+  ['total_fat', /^(?:total\s*fat|fat,\s*total)\b/i],
   ['saturated_fat', /^(?:saturated|sat\.?)\s+fat\b/i],
-  ['trans_fat', /^trans\s+fat\b/i],
+  ['trans_fat', /^trans\s*fat\b/i],
   ['cholesterol', /^cholest(?:erol|rol)\b/i],
   ['sodium', /^sodium\b/i],
-  ['carbohydrate', /^(?:total\s+)?carb(?:ohydrate)?s?\b/i],
+  ['carbohydrate', /^(?:total\s*)?carb(?:ohydrate)?s?\b/i],
   ['soluble_fiber', /^soluble\s+fib(?:er|re)\b/i],
   ['insoluble_fiber', /^insoluble\s+fib(?:er|re)\b/i],
   ['fiber', /^(?:dietary\s+)?fib(?:er|re)\b/i],
   ['sugars', /^(?:total\s+)?sugars?\b/i],
-  ['protein', /^(?:total\s+)?protein\b/i],
-  ['vitamin', /^(?:vitamin|vit\.)\s+(b12|b1|b2|b3|b5|b6|b7|b9|a|c|d3|d2|d|e|k)\b/i],
+  ['protein', /^(?:total\s*)?protein\b/i],
+  ['vitamin', /^(?:vitamin|vit\.)\s*(b12|b1|b2|b3|b5|b6|b7|b9|a|c|d3|d2|d|e|k)\b/i],
   ['calcium', /^calcium\b/i], ['iron', /^iron\b/i], ['potassium', /^potassium\b/i],
   ['niacin', /^niacin\b/i], ['thiamine', /^thiamin(?:e)?\b/i],
   ['riboflavin', /^riboflavin\b/i], ['folate', /^folate\b/i], ['folic_acid', /^folic\s+acid\b/i],
@@ -55,8 +55,10 @@ const median = (values: number[]) => [...values].sort((a, b) => a - b)[Math.floo
 
 function anchor(box: Box): Anchor | undefined {
   // Explicit observed OCR spellings only; retain the source and flag every match.
-  const text = box.text.trim().replace(/^Dletary\s+Fiber\b/i, 'Dietary Fiber')
+  const text = box.text.trim().normalize('NFKC').replace(/^Dletary\s+Fiber\b/i, 'Dietary Fiber')
     .replace(/^Sodiun\b/i, 'Sodium').replace(/^Irón\b/i, 'Iron')
+    .replace(/^Toial\s+Protein\b/i, 'Total Protein')
+    .replace(/^[•·-]\s*(?=(?:dietary\s+fiber|sugars?)\b)/i, '')
   for (const [name, pattern] of names) {
     const match = text.match(pattern)
     if (!match) continue
@@ -64,9 +66,12 @@ function anchor(box: Box): Anchor | undefined {
     let tail = text.slice(match[0].length).trim()
     if (vitaminNames[key]) tail = tail.replace(vitaminNames[key], '')
     if (key === 'added_sugars') tail = box.text.match(/[\d.Oo]+\s*g\b/i)?.[0] ?? tail
-    const unit = tail.match(/^\((kcal|kJ|g|mg|mcg|[μµ]g)\)/i)?.[1]
-    if (unit) tail = tail.replace(/^\([^)]+\)/, '').trim()
-    return { box, key, tail: tail.replace(/^:\s*/, ''), unit, corrected: text !== box.text.trim() }
+    tail = tail.replace(/^[,:]\s*/, '')
+    const unitMatch = tail.match(/^\(\s*(kcal|kJ|g|mg|mcg(?:\s+RE)?|[μµu]g(?:\s+RE)?|IU)\s*(?:\)|$)/i)
+    const rawUnit = unitMatch?.[1]
+    const unit = rawUnit?.replace(/^ug/i, 'μg')
+    if (unitMatch) tail = tail.slice(unitMatch[0].length).trim()
+    return { box, key, tail: tail.replace(/^:\s*/, ''), unit, corrected: text !== box.text.trim() || rawUnit !== unit }
   }
 }
 
@@ -74,11 +79,11 @@ function readAmount(text: string, unit?: string): { value: string; corrected: bo
   const source = text.trim()
   // These character fixes are restricted to the numeric/unit slot, never the raw OCR.
   const normalized = source.replace(/\b[Oo](?=\s*(?:g|mg|mcg|[μµ]g)\b)/g, '0').replace(/mmg\b/gi, 'mg')
-  const match = normalized.match(/^(less than\s+|<\s*|>\s*)?(\d+(?:\.\d+)?)\s*(kcal|kj|mcg|mg|[μµ]g|g|%)?(\s+\d+(?:\.\d+)?\s*%)?\s*$/i)
+  const match = normalized.match(/^(less than\s+|<\s*|>\s*)?(\d+(?:\.\d+)?)\s*(kcal|kj|mcg(?:\s+RE)?|mg|[μµ]g(?:\s+RE)?|g|IU|%)?(\s+\d+(?:\.\d+)?\s*%)?\s*$/i)
   if (!match) return
   const suffix = match[3] ?? unit
   if (!suffix || (suffix === '%' && match[4])) return
-  const canonicalUnit = /^(kcal|g|mg|mcg)$/i.test(suffix) ? suffix.toLowerCase() : suffix
+  const canonicalUnit = /^iu$/i.test(suffix) ? 'IU' : /^(kcal|g|mg|mcg)$/i.test(suffix) ? suffix.toLowerCase() : suffix
   return { value: `${match[1] ?? ''}${match[2]}${canonicalUnit}`, corrected: normalized !== source }
 }
 
@@ -105,14 +110,17 @@ function orderedAlignment(names: Anchor[], values: Amount[]): boolean {
   return scale > 0.75 && scale < 1.3 && values.every((value, i) => {
     const name = names[i]!
     const predicted = values[0]!.y + (cy(name.box) - cy(first.box)) * scale
-    return Math.abs(value.y - predicted) < spacing * 0.35 && Math.abs(value.y - cy(name.box)) < spacing * 0.9 && value.x > right(name.box)
+    const previousName = names[i - 1], previousValue = values[i - 1]
+    const localScale = previousName && previousValue ? (value.y - previousValue.y) / (cy(name.box) - cy(previousName.box)) : 1
+    return localScale > .7 && localScale < 1.4 && Math.abs(value.y - predicted) < spacing * .5 &&
+      Math.abs(value.y - cy(name.box)) < spacing * .9 && value.x > right(name.box)
   })
 }
 
 /** Pure, conservative post-processing. Never modifies recognition results or infers missing digits. */
 export function parseNutrition(result: OcrResult): NutritionExtraction {
   const output: NutritionExtraction = {
-    parserVersion: 'spatial-review-v2',
+    parserVersion: 'spatial-review-v3',
     data: { serving: { serving_size: null, servings_per_container: null }, nutrients: Object.fromEntries(core.map((key) => [key, null])) },
     issues: [], evidence: {},
   }
@@ -127,6 +135,13 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   const footnote = boxes.find((b) => /(?:percent daily values are based|calories per gram|ingredients\s*:)/i.test(b.text))
   const cutoff = Math.min(referenceHeading?.bbox.y ?? Infinity, footnote?.bbox.y ?? Infinity)
   const anchors = found.filter((a) => cy(a.box) < cutoff)
+  // A split "Includes 0g | Added Sugar" is one explicit amount, not an inferred unit.
+  for (const a of anchors.filter((a) => a.key === 'added_sugars' && !a.tail)) {
+    const prefixes = boxes.filter((b) => /^includes\s+[\d.Oo]+\s*g\s*$/i.test(b.text) &&
+      right(b) <= a.box.bbox.x + a.box.bbox.height * .5 && a.box.bbox.x - right(b) < a.box.bbox.height &&
+      Math.abs(cy(b) - cy(a.box)) < Math.min(b.bbox.height, a.box.bbox.height) * .45)
+    if (prefixes.length === 1) { a.tail = prefixes[0]!.text.replace(/^includes\s+/i, ''); a.sources = prefixes }
+  }
   for (const a of anchors.filter((a) => a.corrected)) {
     issue(a.key, 'Normalized an OCR nutrient-name error; verify against the image.')
   }
@@ -140,8 +155,15 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   const store = (a: Anchor, text: string, source: Box[], method: string) => {
     const amount = readAmount(text, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined))
     if (!amount) return false
-    remember(a.key, amount.value, [a.box, ...source], method)
-    source.forEach((b) => used.add(b.index))
+    // Validate printed units without supplying missing units or converting amounts.
+    const expectedUnit = a.unit ?? (method === 'inline' ? undefined : ['total_fat', 'saturated_fat', 'trans_fat', 'carbohydrate', 'fiber', 'sugars', 'added_sugars', 'protein'].includes(a.key) ? 'g'
+      : ['sodium', 'cholesterol'].includes(a.key) ? 'mg' : undefined)
+    const unitIdentity = (value: string) => value.toLowerCase().replace(/[μµ]/g, 'mc')
+    const actualUnit = amount.value.match(/(?:kcal|kj|mcg(?:\s+RE)?|mg|[μµ]g(?:\s+RE)?|g|IU|%)$/i)?.[0]
+    if (expectedUnit && actualUnit && unitIdentity(actualUnit) !== unitIdentity(expectedUnit)) return false
+    const sources = [...(a.sources ?? []), ...source]
+    remember(a.key, amount.value, [a.box, ...sources], method)
+    sources.forEach((b) => used.add(b.index))
     if (amount.corrected) issue(a.key, 'Normalized an OCR character/unit error; verify against the image.')
     return true
   }
@@ -149,13 +171,33 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   // Only accept legible serving fields. Garbled headers/values remain visible in raw OCR.
   const firstNutrientY = anchors[0]?.box.bbox.y ?? 0
   const header = boxes.filter((b) => cy(b) < firstNutrientY)
+  const servingValue = (value: string) => value.trim().replace(/^[,:;]\s*/, '').replace(/\boz[.,](?=\s*(?:\(|\d))/gi, 'oz')
   for (const [field, pattern] of [
     ['serving_size', /^serving\s+size\b\s*:?\s*(.*)$/i],
-    ['servings_per_container', /^(?:no\.\s*of\s+)?servings?\s+per\s+container\s*:?\s*(.*)$/i],
+    ['servings_per_container', /^(?:no\.?\s*of\s+)?servings?\s+per\s+(?:container|pack)\s*:?\s*(.*)$/i],
   ] as const) {
     const line = header.find((b) => pattern.test(b.text))
-    const value = line?.text.match(pattern)?.[1]?.trim()
-    if (line && value && /\d/.test(value)) remember(`serving.${field}`, value, [line], 'inline')
+    const rawValue = line?.text.match(pattern)?.[1]?.trim()
+    let value = rawValue ? servingValue(rawValue) : ''
+    let sources = line ? [line] : []
+    if (line && field === 'serving_size' && /^\d+(?:\/\d+|\.\d+)?$/.test(value)) {
+      const continuations = header.filter((b) => b.index !== line.index && /^(?:pieces?|slices?|cups?|bags?|packs?)\b.*\(\d+(?:\.\d+)?\s*(?:g|ml)\)$/i.test(b.text.trim()) &&
+        b.bbox.x >= right(line) - Math.min(line.bbox.width, b.bbox.width) * .2 && b.bbox.x - right(line) < line.bbox.height &&
+        Math.abs(cy(b) - cy(line)) < Math.min(line.bbox.height, b.bbox.height) * .6)
+      if (continuations.length === 1) { value += ` ${continuations[0]!.text.trim()}`; sources = [...sources, continuations[0]!] }
+      else value = '' // A detached household count alone is an incomplete size.
+    }
+    if (line && value && /\d/.test(value)) {
+      remember(`serving.${field}`, value, sources, sources.length > 1 ? 'spatial-serving-fragment' : 'inline')
+      if (rawValue !== value) issue(`serving.${field}`, 'Normalized serving punctuation or joined explicit fragments; verify against the image.')
+    }
+  }
+  const countPrefix = header.filter((b) => /^(?:no\.?\s*of\s+)?servings?\s*(?:per\s*)?$/i.test(b.text.trim()))
+  for (const prefix of countPrefix) {
+    const suffixes = header.filter((b) => /^(?:per\s+)?container(?:\s*\/\s*pack)?\s*:\s*(?:about\s+)?\d+(?:\.\d+)?\s*$/i.test(b.text.trim()) &&
+      b.bbox.x >= right(prefix) && b.bbox.x - right(prefix) < prefix.bbox.height &&
+      Math.abs(cy(b) - cy(prefix)) < Math.min(prefix.bbox.height, b.bbox.height) * .6)
+    if (countPrefix.length === 1 && suffixes.length === 1) remember('serving.servings_per_container', suffixes[0]!.text.split(':')[1]!.trim(), [prefix, suffixes[0]!], 'spatial-serving-fragment')
   }
   const aboutCount = header.find((b) => /^(?:about\s+)?\d+(?:\.\d+)?\s+servings?\s+per\s+container$/i.test(b.text))
   if (aboutCount) remember('serving.servings_per_container', aboutCount.text.replace(/\s+servings?\s+per\s+container$/i, ''), [aboutCount], 'inline')
@@ -213,9 +255,13 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   if (multiBasis) issue('panel', 'Multiple or non-serving nutrition bases detected; automatic nutrient extraction is disabled.')
   if (servingTable) issue('panel', 'Selected the explicitly headed per-serving micronutrient column; excluded the per-100g/ml column. Verify the basis against the image.')
   const duplicates = new Set(anchors.filter((a, i) => anchors.findIndex((b) => b.key === a.key) !== i).map((a) => a.key))
+  const panelHeadings = boxes.filter((b) => /^nutrition\s+(?:facts|information)\b/i.test(b.text.trim()))
+  const multiplePanels = duplicates.size >= 3 && panelHeadings.length > 1 &&
+    Math.max(...panelHeadings.map(cy)) - Math.min(...panelHeadings.map(cy)) > Math.max(...panelHeadings.map((b) => b.bbox.height)) * 2
+  if (multiplePanels) issue('panel', 'Multiple nutrition panels detected; automatic nutrient extraction is disabled. Crop one panel.')
   for (const a of anchors) {
     output.data.nutrients[a.key] ??= null
-    if (multiBasis || duplicates.has(a.key)) continue
+    if (multiBasis || multiplePanels || duplicates.has(a.key)) continue
     if (a.tail) store(a, a.tail, [], 'inline')
   }
   if (servingTable && perServing && per100) {
@@ -233,7 +279,7 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
 
   // Group unresolved names by their horizontal label column (micronutrient tables may have two).
   const columns: Anchor[][] = []
-  for (const a of anchors.filter((a) => !multiBasis && !scopedRows.has(a) && !duplicates.has(a.key) && !output.data.nutrients[a.key])) {
+  for (const a of anchors.filter((a) => !multiBasis && !multiplePanels && !scopedRows.has(a) && !duplicates.has(a.key) && !output.data.nutrients[a.key])) {
     const column = columns.find((c) => Math.abs(c[0]!.box.bbox.x - a.box.bbox.x) < width * 0.18)
     if (column) column.push(a)
     else columns.push([a])
@@ -246,14 +292,19 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
     const maxY = Math.max(...column.map((a) => cy(a.box)))
     const typicalHeight = median(column.map((a) => a.box.bbox.height))
     const candidates = boxes.filter((b) => !labelIndexes.has(b.index) && !used.has(b.index) && b.bbox.x >= minX &&
+      !anchors.some((other) => !column.includes(other) && other.box.bbox.x > minX && right(other.box) < b.bbox.x &&
+        Math.abs(cy(other.box) - cy(b)) < Math.max(other.box.bbox.height, b.bbox.height) * .85 &&
+        Math.abs(cy(other.box) - cy(b)) + typicalHeight * .05 < Math.min(...column.map((a) => Math.abs(cy(a.box) - cy(b))))) &&
       cy(b) > minY - typicalHeight && cy(b) < Math.min(cutoff, maxY + typicalHeight) &&
-      /^[\dOo<>.%μµ\s\-]+$|^(?:less than\s+)?[\dOo<>.]+\s*(?:kcal|kj|g|mg|mmg|mcg|[μµ]g|%)$|^(?:g|mg|mcg|[μµ]g)$/i.test(b.text.trim()) &&
+      /^[\dOo<>.%μµ\s\-]+$|^(?:less than\s+)?[\dOo<>.]+\s*(?:kcal|kj|g|mg|mmg|mcg(?:\s+RE)?|[μµ]g(?:\s+RE)?|IU|%)$|^(?:g|mg|mcg(?:\s+RE)?|[μµ]g(?:\s+RE)?|IU)$/i.test(b.text.trim()) &&
       b.bbox.height > typicalHeight * 0.2)
     const massBoxes = candidates.filter((b) => !b.text.includes('%') && (!percentHeading ||
       cy(b) < percentHeading.bbox.y || cx(b) < percentHeading.bbox.x))
     const amounts = groupAmounts(massBoxes)
     // Ordered complete columns handle curved/tilted labels where nearest-y assigns a value to the next row.
     const detached = column.filter((a) => !a.tail)
+    const rowSpacing = detached.length > 1 ? median(detached.slice(1).map((a, i) => cy(a.box) - cy(detached[i]!.box))) : Infinity
+    const compactRows = rowSpacing >= typicalHeight * .85 && column.every((a) => a.box.bbox.height <= typicalHeight * 1.3)
     let ordered = false
     if (detached.length >= 4 && amounts.length === detached.length) {
       ordered = orderedAlignment(detached, amounts)
@@ -262,7 +313,8 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
     for (const a of column) {
       if (output.data.nutrients[a.key] || a.tail) continue
       // Do not slide remaining values up/down an incomplete bare-number table.
-      if (a.unit && detached.length >= 4 && !ordered) continue
+      const bareUnitTable = a.unit || (a.key.startsWith('energy') && amounts.every((v) => /^[\d.]+$/.test(v.text)))
+      if (bareUnitTable && detached.length >= 4 && !ordered && !compactRows) continue
       const offsets = column.flatMap((other) => {
         const evidence = output.evidence[other.key]
         if (!evidence || evidence.method !== 'spatial-row' || Math.abs(cy(other.box) - cy(a.box)) > typicalHeight * 5) return []
@@ -271,7 +323,9 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
       })
       const expectedY = cy(a.box) + (offsets.length ? median(offsets) : 0)
       const options = amounts.filter((v) => !v.boxes.some((b) => used.has(b.index)) && v.x >= right(a.box) &&
-        Math.abs(v.y - expectedY) < Math.max(v.height, a.box.bbox.height) * 0.85)
+        Math.abs(v.y - expectedY) < (bareUnitTable && detached.length >= 4 && !ordered ? Math.min(v.height, a.box.bbox.height) * .4 : Math.max(v.height, a.box.bbox.height) * .85) &&
+        // A lower row's amount cannot be borrowed when the current cell is damaged.
+        (core.includes(a.key) || a.key.startsWith('energy') || !column.some((other) => other !== a && v.x >= right(other.box) && Math.abs(v.y - cy(other.box)) + typicalHeight * .15 < Math.abs(v.y - cy(a.box)))))
         .sort((x, y) => Math.abs(x.y - expectedY) - Math.abs(y.y - expectedY))
       const best = options[0]
       if (best && (options.length === 1 || Math.abs(options[1]!.y - expectedY) - Math.abs(best.y - expectedY) > a.box.bbox.height * 0.2)) {
@@ -285,7 +339,10 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
           Math.abs(cy(b) - cy(a.box)) < a.box.bbox.height * 0.45)
           .sort((x, y) => Math.abs(cy(x) - cy(a.box)) - Math.abs(cy(y) - cy(a.box)))
         // A neighboring amount, even if unreadable, must not be replaced by its %DV.
-        if (options.length === 0 && percents.length === 1) store(a, percents[0]!.text, [percents[0]!], 'percent-only-row')
+        const blocked = percents.length === 1 && boxes.some((b) => b.index !== percents[0]!.index && !labelIndexes.has(b.index) &&
+          /^\d/.test(b.text.trim()) && b.bbox.x > right(a.box) && right(b) < percents[0]!.bbox.x &&
+          Math.abs(cy(b) - cy(a.box)) < Math.max(b.bbox.height, a.box.bbox.height) * .6)
+        if (options.length === 0 && percents.length === 1 && !blocked) store(a, percents[0]!.text, [percents[0]!], 'percent-only-row')
       }
     }
     // Compact, percent-only vitamin/mineral columns can be slanted independently of the macro table.

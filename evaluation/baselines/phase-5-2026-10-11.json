@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": 1,
+  "studyDate": "2026-10-11",
+  "metricVersion": "field-exact-v1",
+  "mode": "saved-phase-2-ocr-parser-replay",
+  "baselineParserVersion": "spatial-review-v2",
+  "candidateParserVersion": "spatial-review-v3",
+  "baselineRevision": "57234a0",
+  "baselineParserSha256": "2d313f02390eb85a09336d682d77e3cf496d49bc69643be5c076660fb392b0a7",
+  "datasetFingerprint": "425705706287eec5111d543c75e9b73eed8387d236a755603b8e39becb1c989c",
+  "pilotRunSha256": "94d89ee83399c535e02129cfcaf72c41b64f6fb97a4786a841cfde5f82c5d57b",
+  "sources": [
+    {
+      "path": "src/services/nutrition/parseNutrition.ts",
+      "sha256": "e94476722f5f6cb85e06188afa75723b4a81ea094e5882e070d6d9f5dda15e4b"
+    },
+    {
+      "path": "evaluation/metrics.ts",
+      "sha256": "316cea4019d4d1ea560106db43926f3ba67a2c79e4865cd7ab3c360703e6eb74"
+    },
+    {
+      "path": "evaluation/load.ts",
+      "sha256": "3817bad655c31f6d5a26696e404a139ed2a241f78a244296d47428dd7fa27dd9"
+    },
+    {
+      "path": "evaluation/pilot/dataset.ts",
+      "sha256": "cf0519158772ae0760bdceb91a62ac5e1328ef41b6a2c03858dc578747ea6513"
+    },
+    {
+      "path": "evaluation/pilot/report.ts",
+      "sha256": "cb98bb00014d4b5409e5f9b246aca41dd562e865f4fc833aa3283cd9a4b423a6"
+    },
+    {
+      "path": "evaluation/phase5/cli.ts",
+      "sha256": "66fbec9023ef2630bf1441c1b14f9fbdc2350d74278e9de2770b83a18a9110d2"
+    },
+    {
+      "path": "evaluation/phase5/report.ts",
+      "sha256": "922f341b18285842201ac664e74dfab2ed8984883bc1447ccf69d1404e932ba5"
+    }
+  ],
+  "developmentSha256": "9829b2567f36006eba2a391e078e61b74bc7f1ec785449cf2b195a879cffa74e",
+  "developmentPhotos": 10,
+  "holdoutPhotos": 5,
+  "decision": "adopt-parser-v3",
+  "policy": "Filter to development products before parsing; compare against immutable v2 source at 57234a0. Reject new or changed wrong/false-positive fields, any loss of a previously correct scored field, or cohort nutrient/serving recovery loss, including supplemental annotations. Freeze exact source/input hashes before one reserved-product validation; do not retune after validation.",
+  "development": {
+    "before": {
+      "phase-2-original": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 47,
+          "wrong": 0,
+          "missing": 90,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 9,
+          "wrong": 4,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 62,
+          "wrong": 1,
+          "missing": 74,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 10,
+          "wrong": 3,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 70,
+          "wrong": 2,
+          "missing": 65,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 10,
+          "wrong": 5,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "after": {
+      "phase-2-original": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 72,
+          "wrong": 0,
+          "missing": 65,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 14,
+          "wrong": 0,
+          "missing": 6,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 83,
+          "wrong": 0,
+          "missing": 54,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 14,
+          "wrong": 0,
+          "missing": 6,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 137,
+          "correct": 97,
+          "wrong": 0,
+          "missing": 40,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 17,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "expandedBefore": {
+      "phase-2-original": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 144,
+          "correct": 50,
+          "wrong": 1,
+          "missing": 93,
+          "falsePositive": 1,
+          "correctAbstention": 2,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 9,
+          "wrong": 4,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 144,
+          "correct": 65,
+          "wrong": 2,
+          "missing": 77,
+          "falsePositive": 0,
+          "correctAbstention": 3,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 10,
+          "wrong": 3,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 144,
+          "correct": 73,
+          "wrong": 3,
+          "missing": 68,
+          "falsePositive": 0,
+          "correctAbstention": 3,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 10,
+          "wrong": 5,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "expandedAfter": {
+      "phase-2-original": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 144,
+          "correct": 77,
+          "wrong": 0,
+          "missing": 67,
+          "falsePositive": 1,
+          "correctAbstention": 2,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 14,
+          "wrong": 0,
+          "missing": 6,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 144,
+          "correct": 87,
+          "wrong": 0,
+          "missing": 57,
+          "falsePositive": 0,
+          "correctAbstention": 3,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 14,
+          "wrong": 0,
+          "missing": 6,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 10,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 144,
+          "correct": 102,
+          "wrong": 0,
+          "missing": 42,
+          "falsePositive": 0,
+          "correctAbstention": 3,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 20,
+          "correct": 17,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "gate": {
+      "passed": true,
+      "newlyWrong": [],
+      "lostCorrectFields": [],
+      "cohortsWithRecoveryLoss": []
+    }
+  },
+  "holdout": {
+    "before": {
+      "phase-2-original": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 24,
+          "wrong": 0,
+          "missing": 30,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 28,
+          "wrong": 0,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 27,
+          "wrong": 0,
+          "missing": 27,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "after": {
+      "phase-2-original": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 24,
+          "wrong": 0,
+          "missing": 30,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 28,
+          "wrong": 0,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 28,
+          "wrong": 0,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "expandedBefore": {
+      "phase-2-original": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 56,
+          "correct": 25,
+          "wrong": 0,
+          "missing": 31,
+          "falsePositive": 0,
+          "correctAbstention": 4,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 56,
+          "correct": 30,
+          "wrong": 0,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 4,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 56,
+          "correct": 29,
+          "wrong": 0,
+          "missing": 27,
+          "falsePositive": 0,
+          "correctAbstention": 4,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "expandedAfter": {
+      "phase-2-original": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 56,
+          "correct": 25,
+          "wrong": 0,
+          "missing": 31,
+          "falsePositive": 0,
+          "correctAbstention": 4,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-perspective": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 56,
+          "correct": 30,
+          "wrong": 0,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 4,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "phase-2-rectangle": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 56,
+          "correct": 30,
+          "wrong": 0,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 4,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "gate": {
+      "passed": true,
+      "newlyWrong": [],
+      "lostCorrectFields": [],
+      "cohortsWithRecoveryLoss": []
+    }
+  },
+  "allOwnerFieldsByVariant": {
+    "phase-2-original": {
+      "before": {
+        "nutrients": {
+          "readable": 191,
+          "correct": 71,
+          "wrong": 0,
+          "missing": 120
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 12,
+          "wrong": 4,
+          "missing": 14
+        }
+      },
+      "after": {
+        "nutrients": {
+          "readable": 191,
+          "correct": 96,
+          "wrong": 0,
+          "missing": 95
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 17,
+          "wrong": 0,
+          "missing": 13
+        }
+      }
+    },
+    "phase-2-perspective": {
+      "before": {
+        "nutrients": {
+          "readable": 191,
+          "correct": 90,
+          "wrong": 1,
+          "missing": 100
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 13,
+          "wrong": 3,
+          "missing": 14
+        }
+      },
+      "after": {
+        "nutrients": {
+          "readable": 191,
+          "correct": 111,
+          "wrong": 0,
+          "missing": 80
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 17,
+          "wrong": 0,
+          "missing": 13
+        }
+      }
+    },
+    "phase-2-rectangle": {
+      "before": {
+        "nutrients": {
+          "readable": 191,
+          "correct": 97,
+          "wrong": 2,
+          "missing": 92
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 13,
+          "wrong": 5,
+          "missing": 12
+        }
+      },
+      "after": {
+        "nutrients": {
+          "readable": 191,
+          "correct": 125,
+          "wrong": 0,
+          "missing": 66
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 20,
+          "wrong": 0,
+          "missing": 10
+        }
+      }
+    }
+  },
+  "regression": {
+    "before": {
+      "legacy-desktop-replay": {
+        "cases": 30,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 371,
+          "correct": 176,
+          "wrong": 0,
+          "missing": 195,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 8
+        },
+        "serving": {
+          "readable": 59,
+          "correct": 19,
+          "wrong": 4,
+          "missing": 36,
+          "falsePositive": 1,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "mobile-replay": {
+        "cases": 8,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 124,
+          "correct": 121,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 2,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "after": {
+      "legacy-desktop-replay": {
+        "cases": 30,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 371,
+          "correct": 176,
+          "wrong": 0,
+          "missing": 195,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 9
+        },
+        "serving": {
+          "readable": 59,
+          "correct": 19,
+          "wrong": 4,
+          "missing": 36,
+          "falsePositive": 1,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "mobile-replay": {
+        "cases": 8,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 124,
+          "correct": 121,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 2,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "expandedBefore": {
+      "legacy-desktop-replay": {
+        "cases": 30,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 371,
+          "correct": 176,
+          "wrong": 0,
+          "missing": 195,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 8
+        },
+        "serving": {
+          "readable": 59,
+          "correct": 19,
+          "wrong": 4,
+          "missing": 36,
+          "falsePositive": 1,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "mobile-replay": {
+        "cases": 8,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 124,
+          "correct": 121,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 2,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "expandedAfter": {
+      "legacy-desktop-replay": {
+        "cases": 30,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 371,
+          "correct": 176,
+          "wrong": 0,
+          "missing": 195,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 9
+        },
+        "serving": {
+          "readable": 59,
+          "correct": 19,
+          "wrong": 4,
+          "missing": 36,
+          "falsePositive": 1,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "mobile-replay": {
+        "cases": 8,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 124,
+          "correct": 121,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 2,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      }
+    },
+    "gate": {
+      "passed": true,
+      "newlyWrong": [],
+      "lostCorrectFields": [],
+      "cohortsWithRecoveryLoss": []
+    }
+  },
+  "holdoutChanges": [
+    {
+      "caseId": "11_wafer_coconut_creme/rectangle",
+      "field": "total_fat",
+      "truth": "5g",
+      "before": {
+        "outcome": "missing",
+        "predicted": null
+      },
+      "after": {
+        "outcome": "correct",
+        "predicted": "5g"
+      },
+      "evidence": {
+        "lineIndexes": [
+          12,
+          8
+        ],
+        "text": "Total Fat | 5g",
+        "method": "ordered-column"
+      }
+    }
+  ],
+  "unscoredRegressionChanges": [
+    {
+      "caseId": "label-026",
+      "field": "energy_from_fat",
+      "truth": {
+        "status": "unreviewed",
+        "note": "No ground-truth annotation for this field."
+      },
+      "before": {
+        "outcome": "unscored",
+        "predicted": null
+      },
+      "after": {
+        "outcome": "unscored",
+        "predicted": "10kcal"
+      },
+      "evidence": {
+        "lineIndexes": [
+          28,
+          26
+        ],
+        "text": "Calories from Fat | 10",
+        "method": "spatial-row"
+      }
+    }
+  ],
+  "regressionSources": [
+    {
+      "path": "src/services/nutrition/parseNutrition.ts",
+      "sha256": "e94476722f5f6cb85e06188afa75723b4a81ea094e5882e070d6d9f5dda15e4b"
+    },
+    {
+      "path": "evaluation/metrics.ts",
+      "sha256": "316cea4019d4d1ea560106db43926f3ba67a2c79e4865cd7ab3c360703e6eb74"
+    },
+    {
+      "path": "evaluation/load.ts",
+      "sha256": "3817bad655c31f6d5a26696e404a139ed2a241f78a244296d47428dd7fa27dd9"
+    },
+    {
+      "path": "evaluation/types.ts",
+      "sha256": "de3f182d6637203fca43048f54fe4a81af35d18f319c6387c3bb4f5a5123e34a"
+    },
+    {
+      "path": "evaluation/report.ts",
+      "sha256": "1d35b5504a46ee50c170671cbc3d2801487cdf5a774b0438114419f5435ac261"
+    },
+    {
+      "path": "evaluation/cli.ts",
+      "sha256": "b9da050d26befdf3a3c31cefce6a1012a72fe662a8b479c720a1346d512287fd"
+    },
+    {
+      "path": "evaluation/annotations/mobile.json",
+      "sha256": "a4b14033fdccc25f281ac9caa3bdd6445ed3509573ae433955aa601c14bb3fac"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "sha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29"
+    },
+    {
+      "path": "benchmark/manifest.json",
+      "sha256": "0d8ec67e308a8c780886be7f44ce92a1c722bbd6f9da321cc59def017d1db700"
+    },
+    {
+      "path": "benchmark/results/latest.json",
+      "sha256": "3347e749e0d7bb45d1f94ab75943961fc18db3ac8ea1fc6c911cff4bd9363474"
+    },
+    {
+      "path": "evaluation/annotations/legacy-corrections.json",
+      "sha256": "301152b52a85fff255c839476b14050d08258e47549a665f0b5ad4200b6bb0dc"
+    },
+    {
+      "path": "labels/processed/007/IMG_2337-cropped.jpeg",
+      "sha256": "ae674cf4c401de71fb9b91589e094c37e785293560a839ba5faae8f4a8395a0d"
+    },
+    {
+      "path": "labels/processed/017/IMG_2887-cropped.jpeg",
+      "sha256": "a8ff66c955b02ff223c1a0452063d8ac5db1da41451554e388bd7bb25fe8c19c"
+    },
+    {
+      "path": "labels/processed/001/IMG_1802-cropped.jpeg",
+      "sha256": "30e319ff9744f49073a68da4ad86e92bbd6ec221ecbd176a661bd2646f2d0a64"
+    },
+    {
+      "path": "labels/processed/009/IMG_2343-cropped.jpeg",
+      "sha256": "6cd69cdc303f44bb4f6ff9f146e35b6324fd3639a1249b26908d0fac6e36bd01"
+    },
+    {
+      "path": "labels/processed/019/IMG_2927-cropped.jpeg",
+      "sha256": "1390edaa9cc2ea3cf1c63fdf08798a15172fb29b68eb922ef0bda4f9bac61b71"
+    },
+    {
+      "path": "benchmark/annotations/label-001.json",
+      "sha256": "6425f6ba4b9f6f8c1690407d5c0c4620f3a5b2cc219e34a1e25ba3c4186078b0"
+    },
+    {
+      "path": "benchmark/annotations/label-002.json",
+      "sha256": "77fc1b066ab955e6ee2fced18cad0c7ba57d4f4c2975dfc907610b61bf8398b5"
+    },
+    {
+      "path": "benchmark/annotations/label-003.json",
+      "sha256": "7d0b69b3f80396987443ab02185da19141ce664059971afae0fd7b1a44761b0b"
+    },
+    {
+      "path": "benchmark/annotations/label-004.json",
+      "sha256": "92713eadc35a1d5a5df80f56efda02add43ee732b73beef2615ee23039eb0847"
+    },
+    {
+      "path": "benchmark/annotations/label-005.json",
+      "sha256": "de3e3ffa69e00db8bfbb18362a18bde8c3c2b79e37e3cd28ea7e4c41ad55f19b"
+    },
+    {
+      "path": "benchmark/annotations/label-006.json",
+      "sha256": "5c2b7859244aab8d0277756ebe23d0bf3b9a10cb1f9a94b2e79786b169896f8a"
+    },
+    {
+      "path": "benchmark/annotations/label-007.json",
+      "sha256": "ab04b25ed45c28197e550516fed368e80080615a7cb281c9684afdb4f8edc7fa"
+    },
+    {
+      "path": "benchmark/annotations/label-008.json",
+      "sha256": "045779240e73624486cc86f6d81a4b3bf07a7f374bd70fc641492089c6cb6465"
+    },
+    {
+      "path": "benchmark/annotations/label-009.json",
+      "sha256": "7f3fb54ff54fa864e179deb6a98b3bcfcfe46ac55c2c1d2a7cd096e166157799"
+    },
+    {
+      "path": "benchmark/annotations/label-010.json",
+      "sha256": "dd3b7516184291b8380bb0070c344d3e83da444559c6db4cc04ff1798fa617e8"
+    },
+    {
+      "path": "benchmark/annotations/label-011.json",
+      "sha256": "63fdfd86eb23af29d435409f541164f63d050b19a902675db3cd635a4a344c8b"
+    },
+    {
+      "path": "benchmark/annotations/label-012.json",
+      "sha256": "f0caafa85b3c4bdc7d78e3ea63ff1c8d6c529fbba2039de53855d534cc084f8d"
+    },
+    {
+      "path": "benchmark/annotations/label-013.json",
+      "sha256": "0778ff06829c11d6e7a4dcfa27ccb07b317727dac3c1c754a0b52cde60aafdd1"
+    },
+    {
+      "path": "benchmark/annotations/label-014.json",
+      "sha256": "9ba4b11c53ae98b4a78af89b1f165f21749757b26cab34e219bdd178026fe84e"
+    },
+    {
+      "path": "benchmark/annotations/label-015.json",
+      "sha256": "b01c4487991f302c018b330b5956de8e2a49162beac1b914dd3482682968d0b2"
+    },
+    {
+      "path": "benchmark/annotations/label-016.json",
+      "sha256": "93564cf5548d021d956295c97314007206593ef5c04bd84936410bf7551757f9"
+    },
+    {
+      "path": "benchmark/annotations/label-017.json",
+      "sha256": "0a2b39a218752b7825993769aea48709657dd55adfd5ac7a10d6797a8f2d0071"
+    },
+    {
+      "path": "benchmark/annotations/label-018.json",
+      "sha256": "31e4e7b0a95548e93facc803616f312476d455b64f391cd62676c0c98106c7b8"
+    },
+    {
+      "path": "benchmark/annotations/label-019.json",
+      "sha256": "6274758fbb91b2052f1bf2ae9cbaf7cfba425bdf7ef2495002e91e551b562cd7"
+    },
+    {
+      "path": "benchmark/annotations/label-020.json",
+      "sha256": "82f23d4c839f12cf445ccd4b0614906f97fa090f9c16600ae8dd96268c584d37"
+    },
+    {
+      "path": "benchmark/annotations/label-021.json",
+      "sha256": "ad470032645a602c8b5758f285ad8e1545965c0460cc1a663ad923f00b721a3f"
+    },
+    {
+      "path": "benchmark/annotations/label-022.json",
+      "sha256": "ae169a6c87042cd27e1e2cd689dbc1f7304f0668210ddbfdde94f8f6d70f276a"
+    },
+    {
+      "path": "benchmark/annotations/label-023.json",
+      "sha256": "164eed9149011a1dd461870f73d4385bb6b5037d132e83a460fed2a577f3a17e"
+    },
+    {
+      "path": "benchmark/annotations/label-024.json",
+      "sha256": "f682e5c5ec8f7fe4579a2f31b04b72791c1ed389a31c50dacafcc43dcf829a7f"
+    },
+    {
+      "path": "benchmark/annotations/label-025.json",
+      "sha256": "03d366bbc784bda04f45f39d80f71f7a7cfa83cb337cd76d26ecd023d0f9fd9d"
+    },
+    {
+      "path": "benchmark/annotations/label-026.json",
+      "sha256": "ecc0cfe28d91f2fd3d02bd1fd8947e44c9f1c5b93754a7d5d5776406d65e1103"
+    },
+    {
+      "path": "benchmark/annotations/label-027.json",
+      "sha256": "6f8fd20dd1b39c82cbf90d62e07c26958d0a65d20ceb16538a1476b1557291f4"
+    },
+    {
+      "path": "benchmark/annotations/label-028.json",
+      "sha256": "3524654b6bdf6c32fd0e9eae840b7717f4b0ae7316ee9afde94fa5c984e2e661"
+    },
+    {
+      "path": "benchmark/annotations/label-029.json",
+      "sha256": "e6668e611c3e80355855afccf1dba3d056d7a02290b9739dcabf17bf6bfcd0a9"
+    },
+    {
+      "path": "benchmark/annotations/label-030.json",
+      "sha256": "1631fa23961ff7ce8cb99e88b8e0724273f44c3109dbcc66d05dde5002ffb9d9"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evaluation/results/phase-5-release-2026-10-11/development.json",
+      "sha256": "9829b2567f36006eba2a391e078e61b74bc7f1ec785449cf2b195a879cffa74e"
+    },
+    {
+      "path": "evaluation/results/phase-5-release-2026-10-11/frozen.json",
+      "sha256": "87a09b9dbea1aedb834504b639c876bb020fd607a334ab67aff9a1d6fb5a251b"
+    },
+    {
+      "path": "evaluation/results/phase-5-release-2026-10-11/validation.json",
+      "sha256": "9987544c623df19b7f3d2c3d06ed47df27ab07e9575bccef4cfc6acaf1c00afd"
+    },
+    {
+      "path": "evaluation/results/phase-5-release-2026-10-11/development/comparison.json",
+      "sha256": "b7f0848dbd5cf5f6a559c18659abc791cfe7435c4e5e0becae9e8a9c9c75ce5f"
+    },
+    {
+      "path": "evaluation/results/phase-5-release-2026-10-11/regression/comparison.json",
+      "sha256": "c2f8641ca905528740269e62e0d6ef338517530f39d98b746f890302d5d831cd"
+    },
+    {
+      "path": "evaluation/results/phase-5-release-2026-10-11/holdout/comparison.json",
+      "sha256": "223fc3504ed444891a9abaf7784b8882ac6002923051bf0dbeb155a01b0b7931"
+    }
+  ],
+  "notes": [
+    "Primary pilot counts are 191 owner-verified nutrients and 30 serving strings per variant; supplements are audited separately.",
+    "The three input variants share 15 photos and are not 45 independent samples.",
+    "Reserved products were previously reported in Phase 2 and Phase 4; no Phase 5 parser tuning used their outcomes. This is not a fresh external blind dataset.",
+    "Historical desktop/mobile fixtures are exposed regression cases, not holdout validation.",
+    "Raw OCR and preprocessing are unchanged. Stored OCR runtimes are historical and do not measure parser speed or phone latency.",
+    "The extra legacy label-026 energy-from-fat output is unreviewed, not an accuracy gain.",
+    "No baseline-correct scored field was lost; zero errors in this small pilot is not a production accuracy guarantee."
+  ]
+}

@@ -4,6 +4,7 @@ import type { Quad, PerspectiveGeometry } from '../../src/services/image/perspec
 import type { ImageQualityMetrics, ImageQualityWarning } from '../../src/composables/useImageQuality'
 import type { PanelSuggestion } from '../../src/services/image/detectPanel'
 import type { OcrResult } from '../../src/services/ocr/types'
+import type { PaddleOcrEngineConfig } from '../../src/services/ocr/PaddleOcrEngine'
 
 export const VARIANTS = ['original', 'rectangle', 'perspective'] as const
 export type Variant = typeof VARIANTS[number]
@@ -65,6 +66,7 @@ export interface PilotRun {
   environment: Record<string, unknown>
   initializationMs: number | null
   config: Record<string, unknown>
+  request?: { split: 'all' | 'development' | 'holdout'; config: PaddleOcrEngineConfig }
   sources: SourceDigest[]
   results: PilotResult[]
 }

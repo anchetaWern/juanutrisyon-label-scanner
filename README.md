@@ -28,6 +28,10 @@ See the [evaluation guide](evaluation/README.md) for metric definitions and repr
 
 The [Phase 2 pilot](evaluation/pilot/README.md) runs fresh OCR on 15 owner-verified original photos and compares original, rectangular, and perspective inputs. `phase2:prepare` generates crops for review, `phase2:run` recognizes them with resumable checkpoints, and `phase2:report` replays the saved OCR. See [the pilot findings](docs/phase-2-pilot-2026-10-11.md) for measured gains, remaining errors, and the limits of this small dataset.
 
+The [Phase 4 study](evaluation/phase4/README.md) compares frozen preprocessing configurations on development images, selects a candidate using field recovery/error/runtime rules, and evaluates only the selected candidate on reserved images. Run `npm run phase4 -- --help` for commands. The [initial findings](docs/phase-4-preprocessing-2026-10-11.md) retain the current production settings because none of the five alternatives passed the development criteria.
+
+The [Phase 5 parser study](evaluation/phase5/README.md) compares parser changes on identical saved OCR, freezes a passing development candidate, then checks reserved products. The [findings](docs/phase-5-parser-2026-10-11.md) adopt `spatial-review-v3`: rectangle nutrient recovery rose from 97 to 125 of 191 across the pilot, with only one of those extra fields on the five reserved products. No previously correct scored fields were lost; broader unseen-label validation is still needed.
+
 ## Scanner pipeline
 
 ```text
@@ -60,7 +64,7 @@ After OCR, `parseNutrition` matches nutrient names and amounts using inline text
 
 Diagnostics schema version 3 retains `nutrition` with the data, parser version, warnings, and source line indexes, and adds crop geometry, explicit coordinate spaces, and advisory capture metrics. The existing `ocr` object and **Copy OCR JSON** remain unchanged. Numeric-slot corrections such as `Og` → `0g` and `mmg` → `mg` are flagged for review. Missing digits/units and ambiguous associations are not filled from a reference label. Multiple nutrition bases are conservatively rejected, except for a separately headed micronutrient table with an unambiguous per-serving column below inline per-serving macros.
 
-Eight mobile diagnostic exports are stored as sanitized OCR-only fixtures under `src/services/nutrition/fixtures/`; they contain no device/browser details or image bytes. See [the initial extraction validation report](docs/nutrition-extraction-2026-09-11.md) and [the September 18 format report](docs/nutrition-extraction-2026-09-18.md) for exact outputs and limitations. The current parser is `spatial-review-v2`; its narrowly supported OCR name corrections also produce review warnings.
+Eight mobile diagnostic exports and seven Phase 5 development OCR cases are stored as sanitized OCR-only fixtures under `src/services/nutrition/fixtures/`; they contain no device/browser details or image bytes. See [the initial extraction validation report](docs/nutrition-extraction-2026-09-11.md), [the September 18 format report](docs/nutrition-extraction-2026-09-18.md), and [Phase 5 findings](docs/phase-5-parser-2026-10-11.md) for exact outputs and limitations. The current parser is `spatial-review-v3`; its narrowly supported OCR name corrections also produce review warnings.
 
 ## Deployment
 

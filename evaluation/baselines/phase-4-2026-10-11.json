@@ -1,0 +1,750 @@
+{
+  "schemaVersion": 1,
+  "studyDate": "2026-10-11",
+  "datasetFingerprint": "425705706287eec5111d543c75e9b73eed8387d236a755603b8e39becb1c989c",
+  "metricVersion": "field-exact-v1",
+  "developmentPhotos": 10,
+  "holdoutPhotos": 5,
+  "developmentOcrCases": 180,
+  "holdoutOcrCases": 15,
+  "selected": "control",
+  "decision": "retain-control",
+  "policy": {
+    "primaryVariant": "rectangle",
+    "minimumAdditionalNutrients": 3,
+    "maximumMeanTimeRatio": 2.5,
+    "maximumP95TimeRatio": 3,
+    "description": "Development only: zero provider failures; at least three more exact owner nutrient fields on rectangles; no increase in wrong nutrients or wrong serving strings on any variant; no loss of total correct nutrients across variants; rectangle mean <=2.5x and p95 <=3x control. Rank eligible candidates by rectangle nutrient recovery, then fewer wrong fields, then lower mean time. Validation requires no loss of correct rectangle nutrients or serving fields and no increase in wrong fields on any variant. Otherwise retain control."
+  },
+  "development": {
+    "control": {
+      "config": {
+        "id": "v6-tiny-recall-v2",
+        "title": "PP-OCRv6 tiny",
+        "detectionModel": "PP-OCRv6_tiny_det",
+        "recognitionModel": "PP-OCRv6_tiny_rec",
+        "prediction": {
+          "textDetLimitSideLen": 64,
+          "textDetLimitType": "min",
+          "textDetMaxSideLimit": 4000,
+          "textDetThresh": 0.3,
+          "textDetBoxThresh": 0.45,
+          "textDetUnclipRatio": 1.5,
+          "textRecScoreThresh": 0
+        },
+        "preprocessing": {
+          "id": "grayscale-contrast-sharpen-v1",
+          "mode": "grayscale-contrast-sharpen",
+          "scale": 1,
+          "maxDimension": 2400,
+          "contrastLowPercentile": 0.01,
+          "contrastHighPercentile": 0.99,
+          "sharpenAmount": 0.32
+        }
+      },
+      "byVariant": {
+        "original": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 47,
+            "wrong": 0,
+            "missing": 90
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 4,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 2247,
+            "p95": 2557
+          }
+        },
+        "rectangle": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 70,
+            "wrong": 2,
+            "missing": 65
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 10,
+            "wrong": 5,
+            "missing": 5
+          },
+          "processingMs": {
+            "mean": 892,
+            "p95": 1456
+          }
+        },
+        "perspective": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 62,
+            "wrong": 1,
+            "missing": 74
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 10,
+            "wrong": 3,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 846,
+            "p95": 1406
+          }
+        }
+      },
+      "runSha256": "ee9f6053928e1905977ae9647c11f329b9b1ad7944a6913284ad3302259f6d27",
+      "gate": null
+    },
+    "color": {
+      "config": {
+        "id": "phase4-color",
+        "title": "PP-OCRv6 tiny",
+        "detectionModel": "PP-OCRv6_tiny_det",
+        "recognitionModel": "PP-OCRv6_tiny_rec",
+        "prediction": {
+          "textDetLimitSideLen": 64,
+          "textDetLimitType": "min",
+          "textDetMaxSideLimit": 4000,
+          "textDetThresh": 0.3,
+          "textDetBoxThresh": 0.45,
+          "textDetUnclipRatio": 1.5,
+          "textRecScoreThresh": 0
+        },
+        "preprocessing": {
+          "id": "phase4-color",
+          "mode": "original",
+          "scale": 1,
+          "maxDimension": 2400,
+          "contrastLowPercentile": 0.01,
+          "contrastHighPercentile": 0.99,
+          "sharpenAmount": 0.32
+        }
+      },
+      "byVariant": {
+        "original": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 43,
+            "wrong": 0,
+            "missing": 94
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 4,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 2257,
+            "p95": 2855
+          }
+        },
+        "rectangle": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 61,
+            "wrong": 0,
+            "missing": 76
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 10,
+            "wrong": 4,
+            "missing": 6
+          },
+          "processingMs": {
+            "mean": 879,
+            "p95": 1466
+          }
+        },
+        "perspective": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 66,
+            "wrong": 1,
+            "missing": 70
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 10,
+            "wrong": 4,
+            "missing": 6
+          },
+          "processingMs": {
+            "mean": 857,
+            "p95": 1384
+          }
+        }
+      },
+      "runSha256": "c1f6d973d53a05c251c81a795e2b8a05d455816746c34c75c92238c8b71459ff",
+      "gate": {
+        "eligible": false,
+        "failures": [
+          "perspective: more wrong serving strings",
+          "Insufficient rectangle nutrient improvement",
+          "Fewer nutrients across paired variants"
+        ]
+      }
+    },
+    "contrast": {
+      "config": {
+        "id": "phase4-contrast",
+        "title": "PP-OCRv6 tiny",
+        "detectionModel": "PP-OCRv6_tiny_det",
+        "recognitionModel": "PP-OCRv6_tiny_rec",
+        "prediction": {
+          "textDetLimitSideLen": 64,
+          "textDetLimitType": "min",
+          "textDetMaxSideLimit": 4000,
+          "textDetThresh": 0.3,
+          "textDetBoxThresh": 0.45,
+          "textDetUnclipRatio": 1.5,
+          "textRecScoreThresh": 0
+        },
+        "preprocessing": {
+          "id": "phase4-contrast",
+          "mode": "grayscale-contrast",
+          "scale": 1,
+          "maxDimension": 2400,
+          "contrastLowPercentile": 0.01,
+          "contrastHighPercentile": 0.99,
+          "sharpenAmount": 0
+        }
+      },
+      "byVariant": {
+        "original": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 44,
+            "wrong": 0,
+            "missing": 93
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 5,
+            "missing": 6
+          },
+          "processingMs": {
+            "mean": 2180,
+            "p95": 2556
+          }
+        },
+        "rectangle": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 63,
+            "wrong": 2,
+            "missing": 72
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 5,
+            "missing": 6
+          },
+          "processingMs": {
+            "mean": 881,
+            "p95": 1395
+          }
+        },
+        "perspective": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 58,
+            "wrong": 2,
+            "missing": 77
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 10,
+            "wrong": 3,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 830,
+            "p95": 1352
+          }
+        }
+      },
+      "runSha256": "bc137101c6f981ea9bc0d5f347732d6a1fcf5e955b30c8abd44acba6303e4165",
+      "gate": {
+        "eligible": false,
+        "failures": [
+          "original: more wrong serving strings",
+          "perspective: more wrong nutrients",
+          "Insufficient rectangle nutrient improvement",
+          "Fewer nutrients across paired variants"
+        ]
+      }
+    },
+    "upscale": {
+      "config": {
+        "id": "phase4-upscale",
+        "title": "PP-OCRv6 tiny",
+        "detectionModel": "PP-OCRv6_tiny_det",
+        "recognitionModel": "PP-OCRv6_tiny_rec",
+        "prediction": {
+          "textDetLimitSideLen": 64,
+          "textDetLimitType": "min",
+          "textDetMaxSideLimit": 4000,
+          "textDetThresh": 0.3,
+          "textDetBoxThresh": 0.45,
+          "textDetUnclipRatio": 1.5,
+          "textRecScoreThresh": 0
+        },
+        "preprocessing": {
+          "id": "phase4-upscale",
+          "mode": "grayscale-contrast-sharpen",
+          "scale": 2,
+          "maxDimension": 2400,
+          "contrastLowPercentile": 0.01,
+          "contrastHighPercentile": 0.99,
+          "sharpenAmount": 0.32
+        }
+      },
+      "byVariant": {
+        "original": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 45,
+            "wrong": 0,
+            "missing": 92
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 4,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 2606,
+            "p95": 2965
+          }
+        },
+        "rectangle": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 64,
+            "wrong": 1,
+            "missing": 72
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 8,
+            "wrong": 5,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 1505,
+            "p95": 2306
+          }
+        },
+        "perspective": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 68,
+            "wrong": 1,
+            "missing": 68
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 6,
+            "missing": 5
+          },
+          "processingMs": {
+            "mean": 1448,
+            "p95": 2262
+          }
+        }
+      },
+      "runSha256": "2476a931364d16930bc52f592ca38d9b82ae03f820060caea5b31b0d4804792a",
+      "gate": {
+        "eligible": false,
+        "failures": [
+          "perspective: more wrong serving strings",
+          "Insufficient rectangle nutrient improvement",
+          "Fewer nutrients across paired variants"
+        ]
+      }
+    },
+    "contrast-upscale": {
+      "config": {
+        "id": "phase4-contrast-upscale",
+        "title": "PP-OCRv6 tiny",
+        "detectionModel": "PP-OCRv6_tiny_det",
+        "recognitionModel": "PP-OCRv6_tiny_rec",
+        "prediction": {
+          "textDetLimitSideLen": 64,
+          "textDetLimitType": "min",
+          "textDetMaxSideLimit": 4000,
+          "textDetThresh": 0.3,
+          "textDetBoxThresh": 0.45,
+          "textDetUnclipRatio": 1.5,
+          "textRecScoreThresh": 0
+        },
+        "preprocessing": {
+          "id": "phase4-contrast-upscale",
+          "mode": "grayscale-contrast",
+          "scale": 2,
+          "maxDimension": 2400,
+          "contrastLowPercentile": 0.01,
+          "contrastHighPercentile": 0.99,
+          "sharpenAmount": 0
+        }
+      },
+      "byVariant": {
+        "original": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 54,
+            "wrong": 0,
+            "missing": 83
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 4,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 2627,
+            "p95": 3000
+          }
+        },
+        "rectangle": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 69,
+            "wrong": 0,
+            "missing": 68
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 8,
+            "wrong": 4,
+            "missing": 8
+          },
+          "processingMs": {
+            "mean": 1547,
+            "p95": 2305
+          }
+        },
+        "perspective": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 69,
+            "wrong": 1,
+            "missing": 67
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 7,
+            "wrong": 5,
+            "missing": 8
+          },
+          "processingMs": {
+            "mean": 1456,
+            "p95": 2282
+          }
+        }
+      },
+      "runSha256": "38b999d73dd4dba778d4c4e85f8e27dae77163d08a9313b138e41fd384eec323",
+      "gate": {
+        "eligible": false,
+        "failures": [
+          "perspective: more wrong serving strings",
+          "Insufficient rectangle nutrient improvement"
+        ]
+      }
+    },
+    "color-upscale": {
+      "config": {
+        "id": "phase4-color-upscale",
+        "title": "PP-OCRv6 tiny",
+        "detectionModel": "PP-OCRv6_tiny_det",
+        "recognitionModel": "PP-OCRv6_tiny_rec",
+        "prediction": {
+          "textDetLimitSideLen": 64,
+          "textDetLimitType": "min",
+          "textDetMaxSideLimit": 4000,
+          "textDetThresh": 0.3,
+          "textDetBoxThresh": 0.45,
+          "textDetUnclipRatio": 1.5,
+          "textRecScoreThresh": 0
+        },
+        "preprocessing": {
+          "id": "phase4-color-upscale",
+          "mode": "original",
+          "scale": 2,
+          "maxDimension": 2400,
+          "contrastLowPercentile": 0.01,
+          "contrastHighPercentile": 0.99,
+          "sharpenAmount": 0.32
+        }
+      },
+      "byVariant": {
+        "original": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 50,
+            "wrong": 0,
+            "missing": 87
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 5,
+            "missing": 6
+          },
+          "processingMs": {
+            "mean": 2734,
+            "p95": 3365
+          }
+        },
+        "rectangle": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 61,
+            "wrong": 4,
+            "missing": 72
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 4,
+            "missing": 7
+          },
+          "processingMs": {
+            "mean": 1539,
+            "p95": 2362
+          }
+        },
+        "perspective": {
+          "cases": 10,
+          "providerFailures": 0,
+          "nutrients": {
+            "readable": 137,
+            "correct": 70,
+            "wrong": 0,
+            "missing": 67
+          },
+          "serving": {
+            "readable": 20,
+            "correct": 9,
+            "wrong": 5,
+            "missing": 6
+          },
+          "processingMs": {
+            "mean": 1495,
+            "p95": 2348
+          }
+        }
+      },
+      "runSha256": "953326721b41b50f3ac3038a873f6966c3cc6bf13478e0bcfb94f69ea16e96db",
+      "gate": {
+        "eligible": false,
+        "failures": [
+          "original: more wrong serving strings",
+          "rectangle: more wrong nutrients",
+          "perspective: more wrong serving strings",
+          "Insufficient rectangle nutrient improvement"
+        ]
+      }
+    }
+  },
+  "validation": {
+    "selected": "control",
+    "gate": {
+      "accepted": true,
+      "failures": []
+    },
+    "control": {
+      "original": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 24,
+          "wrong": 0,
+          "missing": 30
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7
+        },
+        "processingMs": {
+          "mean": 2276,
+          "p95": 2895
+        }
+      },
+      "rectangle": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 27,
+          "wrong": 0,
+          "missing": 27
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7
+        },
+        "processingMs": {
+          "mean": 955,
+          "p95": 1349
+        }
+      },
+      "perspective": {
+        "cases": 5,
+        "providerFailures": 0,
+        "nutrients": {
+          "readable": 54,
+          "correct": 28,
+          "wrong": 0,
+          "missing": 26
+        },
+        "serving": {
+          "readable": 10,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 7
+        },
+        "processingMs": {
+          "mean": 986,
+          "p95": 1481
+        }
+      }
+    },
+    "runSha256": "273dedd840d904b75c2e07d326c239e9d35044961f68fde4646945a1b0e1a688"
+  },
+  "artifacts": {
+    "plan.json": "a0f88a8abfda5553b05cb0a9dca68e73b520a4cb0e92eba8a345ebad9cf99c96",
+    "dataset.json": "b968b95a4d8c3f8874f3fabd62836433605c81116238a886896f37fc04861d22",
+    "prepared.json": "cbce3cd62f82a40be1c370d6b9848d104d54a886b3ccb5e80dcfed8619b815a5",
+    "selection.json": "463fe355adb36200c77617edbbceeef2f66f364696f766407956a989ae6169a2",
+    "validation.json": "54c550df54ed85782bbd2a1cbde9c6fcfdf3be4bc4d4cad22096e6c702665138"
+  },
+  "runtimeSources": [
+    {
+      "path": "package-lock.json",
+      "sha256": "e605b58f91756ac28c9f787526244491178a5b7701573564176dcfbeef9bd4f6"
+    },
+    {
+      "path": "evaluation/pilot/browser.ts",
+      "sha256": "fa09adcd8ab5c9be6336fce0202ef149e9ee526ddb36b7105c79da7288c389b4"
+    },
+    {
+      "path": "evaluation/pilot/runner.ts",
+      "sha256": "0116c9a157686ebda85e69ab958933eca4367695f4f3d27933623345d273858c"
+    },
+    {
+      "path": "src/services/ocr/PaddleOcrEngine.ts",
+      "sha256": "1bb0f8f2af61daa4c3c4827902e4e1cf01f1cc3125f53882252244e737f96bf6"
+    },
+    {
+      "path": "src/services/image/preprocessForOcr.ts",
+      "sha256": "a956052564ecf957a59eb6c4637bbad5116bb4ce7cd6d2efec24fa3721eafa87"
+    },
+    {
+      "path": "src/services/image/perspective.ts",
+      "sha256": "e4278cd5488bee2e276f82281ceb9cef5f036f00f9a9e75d8ab640ca2c021c5c"
+    },
+    {
+      "path": "src/services/image/detectPanel.ts",
+      "sha256": "fd69381b1c08e3ea6f4061069997c7e20b71a509a6fea54ed7a4d99aa894e3d9"
+    },
+    {
+      "path": "src/services/image/geometryClient.ts",
+      "sha256": "05a5e8ad0f059f4d0d33e5cc62ec351094eab519abc7495c7608f86b180764e9"
+    },
+    {
+      "path": "src/services/image/geometry.worker.ts",
+      "sha256": "0e21b9b2d16df96bb4314252bf30747f05b57f2add215b631c08719807a02e98"
+    },
+    {
+      "path": "src/services/image/captureQuality.ts",
+      "sha256": "f2fb5be82195b667295faad33f336db91adad7823f10712ac303b2c6f8c0aaae"
+    },
+    {
+      "path": "src/composables/useImageQuality.ts",
+      "sha256": "1b43eef6ea5e539c2fc1ceb52236860d8ad41a435eb6815b10616a3707581630"
+    }
+  ],
+  "scoringSources": [
+    {
+      "path": "src/services/nutrition/parseNutrition.ts",
+      "sha256": "2d313f02390eb85a09336d682d77e3cf496d49bc69643be5c076660fb392b0a7"
+    },
+    {
+      "path": "evaluation/metrics.ts",
+      "sha256": "316cea4019d4d1ea560106db43926f3ba67a2c79e4865cd7ab3c360703e6eb74"
+    },
+    {
+      "path": "evaluation/phase4/experiments.ts",
+      "sha256": "b052379c3f1665e6e62a78006dcbfe123a266186423a406fb6832001ba58f44a"
+    },
+    {
+      "path": "evaluation/phase4/report.ts",
+      "sha256": "9652b5d6b5b2e5423dc540690adcebe11a2e27d2dde9d5cf81f783fdb94c57ec"
+    },
+    {
+      "path": "evaluation/phase4/cli.ts",
+      "sha256": "48ea92f6b919de42ebef9fb6ee1419aef2ca830e1ba9512837799a5280c061b5"
+    }
+  ],
+  "notes": [
+    "No production accuracy improvement established. Production OCR/preprocessing/parser/UI unchanged.",
+    "All 45 prepared PNG hashes match the Phase 2 inputs. Six configurations share ten development photos; these are paired observations.",
+    "Only owner-verified fields are scored for selection. Strict serving-string errors can include punctuation.",
+    "No alternative passed development criteria. Validation evaluated control only; rejected alternatives did not use validation OCR.",
+    "Desktop Chrome/WASM, single thread, one batch per configuration. Timings exclude initialization and do not establish phone performance.",
+    "Raw OCR and artifacts remain local and gitignored; source photos and labels are unchanged."
+  ]
+}

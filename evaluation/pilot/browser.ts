@@ -2,7 +2,7 @@ import { loadImage, canvasToBlob } from '../../src/utils/image'
 import { renderPerspective, suggestPanel } from '../../src/services/image/geometryClient'
 import { PERSPECTIVE_VERSION, type Quad } from '../../src/services/image/perspective'
 import { useImageQuality } from '../../src/composables/useImageQuality'
-import { PADDLE_OCR_CONFIGS, PADDLE_PREDICTION_DEFAULTS, PaddleOcrEngine } from '../../src/services/ocr/PaddleOcrEngine'
+import { PADDLE_PREDICTION_DEFAULTS, PaddleOcrEngine, type PaddleOcrEngineConfig } from '../../src/services/ocr/PaddleOcrEngine'
 import { PRODUCTION_PREPROCESSING_CONFIG } from '../../src/services/image/preprocessForOcr'
 import type { CaptureResult, PilotCase, PilotResult, Variant } from './types'
 import { VARIANTS } from './types'
@@ -82,16 +82,16 @@ async function main() {
   if (!response.ok) throw new Error('Could not load batch jobs')
   // Expected nutrient values are deliberately not sent to the OCR runner.
   const jobs = await response.json() as { mode: 'prepare' | 'run'; entries: Array<Pick<PilotCase, 'id' | 'image' | 'width' | 'height' | 'panel'>>;
-    captures: Array<{ capture: CaptureResult; url: string }>; variants: Variant[] }
+    captures: Array<{ capture: CaptureResult; url: string }>; variants: Variant[]; config: PaddleOcrEngineConfig }
   if (jobs.mode === 'prepare') for (const entry of jobs.entries) await prepare(entry)
   else {
-    const engine = new PaddleOcrEngine(PADDLE_OCR_CONFIGS.v6Tiny)
+    const engine = new PaddleOcrEngine(jobs.config)
     await status('Initializing production PaddleOCR models…')
     const start = performance.now()
     try {
       await engine.initialize()
       await post('initialized', { initializationMs: performance.now() - start,
-        config: { ...PADDLE_OCR_CONFIGS.v6Tiny, prediction: { ...PADDLE_PREDICTION_DEFAULTS, ...PADDLE_OCR_CONFIGS.v6Tiny.prediction }, preprocessing: PRODUCTION_PREPROCESSING_CONFIG },
+        config: { ...jobs.config, prediction: { ...PADDLE_PREDICTION_DEFAULTS, ...jobs.config.prediction }, preprocessing: jobs.config.preprocessing ?? PRODUCTION_PREPROCESSING_CONFIG },
         environment: { userAgent: navigator.userAgent, hardwareConcurrency: navigator.hardwareConcurrency, devicePixelRatio, mode: 'desktop-headless-chrome', provider: engine.getInitializationSummary() } })
       for (const { capture, url } of jobs.captures) {
         await status(`Recognizing ${capture.id}/${capture.variant}`)

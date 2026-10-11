@@ -7,6 +7,7 @@ import { createServer, type Plugin } from 'vite'
 import { validateOcr } from '../load'
 import { sha256 } from './dataset'
 import { VARIANTS, type CaptureResult, type PilotDataset, type PilotRun, type PilotResult } from './types'
+import { PADDLE_OCR_CONFIGS, type PaddleOcrEngineConfig } from '../../src/services/ocr/PaddleOcrEngine'
 
 const json = (value: unknown) => `${JSON.stringify(value, null, 2)}\n`
 export async function runtimeSources(root: string) {
@@ -15,7 +16,7 @@ export async function runtimeSources(root: string) {
     'src/services/image/geometry.worker.ts', 'src/services/image/captureQuality.ts', 'src/composables/useImageQuality.ts']
   return Promise.all(paths.map(async (path) => ({ path, sha256: sha256(await readFile(resolve(root, path))) })))
 }
-interface Prepared {
+export interface Prepared {
   datasetFingerprint: string
   sources: Awaited<ReturnType<typeof runtimeSources>>
   captures: Array<{ capture: CaptureResult; pngSha256: string }>
@@ -36,27 +37,37 @@ async function stop(child: ChildProcess) {
   })
 }
 
-export async function runBrowser(root: string, out: string, dataset: PilotDataset, mode: 'prepare' | 'run', resume = false) {
+export interface RunOptions {
+  config?: PaddleOcrEngineConfig
+  split?: 'development' | 'holdout'
+  preparedDirectory?: string
+}
+export async function runBrowser(root: string, out: string, dataset: PilotDataset, mode: 'prepare' | 'run', resume = false, options: RunOptions = {}) {
   await mkdir(join(out, 'crops'), { recursive: true })
   const sources = await runtimeSources(root)
-  const prepared: Prepared = mode === 'run' ? JSON.parse(await readFile(join(out, 'prepared.json'), 'utf8')) as Prepared
+  const preparedDirectory = options.preparedDirectory ?? out
+  const request = { split: options.split ?? 'all' as const, config: options.config ?? PADDLE_OCR_CONFIGS.v6Tiny }
+  const prepared: Prepared = mode === 'run' ? JSON.parse(await readFile(join(preparedDirectory, 'prepared.json'), 'utf8')) as Prepared
     : { datasetFingerprint: dataset.fingerprint, sources, captures: [], complete: false }
   if (mode === 'run' && (!prepared.complete || prepared.datasetFingerprint !== dataset.fingerprint || JSON.stringify(prepared.sources) !== JSON.stringify(sources))) throw new Error('Prepared inputs are incomplete or stale. Run phase2:prepare in a new output directory.')
-  const keys = new Set(dataset.cases.flatMap((entry) => VARIANTS.map((v) => `${entry.id}/${v}`)))
+  const allKeys = new Set(dataset.cases.flatMap((entry) => VARIANTS.map((v) => `${entry.id}/${v}`)))
+  const entries = dataset.cases.filter((entry) => mode === 'prepare' || !options.split || entry.split === options.split)
+  const keys = new Set(entries.flatMap((entry) => VARIANTS.map((v) => `${entry.id}/${v}`)))
   const received = new Set<string>()
   for (const row of prepared.captures) {
     const key = `${row.capture.id}/${row.capture.variant}`
-    if (!keys.has(key) || received.has(key)) throw new Error(`Invalid/duplicate prepared capture: ${key}`)
+    if (!allKeys.has(key) || received.has(key)) throw new Error(`Invalid/duplicate prepared capture: ${key}`)
     received.add(key)
-    if (mode === 'run' && sha256(await readFile(join(out, 'crops', `${row.capture.id}-${row.capture.variant}.png`))) !== row.pngSha256) throw new Error(`Prepared PNG changed: ${key}`)
+    if (mode === 'run' && sha256(await readFile(join(preparedDirectory, 'crops', `${row.capture.id}-${row.capture.variant}.png`))) !== row.pngSha256) throw new Error(`Prepared PNG changed: ${key}`)
   }
-  if (mode === 'run' && received.size !== keys.size) throw new Error('Prepared crop count mismatch.')
+  if (mode === 'run' && received.size !== allKeys.size) throw new Error('Prepared crop count mismatch.')
   received.clear()
   const run: PilotRun = resume ? JSON.parse(await readFile(join(out, 'run.json'), 'utf8')) as PilotRun
     : { version: 1, datasetFingerprint: dataset.fingerprint, startedAt: new Date().toISOString(), completedAt: null,
-      environment: {}, initializationMs: null, config: {}, sources, results: [] }
+      environment: {}, initializationMs: null, config: {}, request, sources, results: [] }
   if (resume) {
     if (run.version !== 1 || run.datasetFingerprint !== dataset.fingerprint || JSON.stringify(run.sources) !== JSON.stringify(sources)) throw new Error('Cannot resume: code or dataset changed.')
+    if (JSON.stringify(run.request) !== JSON.stringify(request)) throw new Error('Cannot resume: requested split or OCR configuration changed.')
     for (const row of run.results) {
       const key = `${row.id}/${row.variant}`
       if (!keys.has(key) || received.has(key)) throw new Error(`Invalid checkpoint: ${key}`)
@@ -86,9 +97,9 @@ export async function runBrowser(root: string, out: string, dataset: PilotDatase
         const route = req.url!.slice('/__pilot/'.length)
         if (route === 'jobs' && req.method === 'GET') {
           res.setHeader('Content-Type', 'application/json')
-          res.end(json({ mode, entries: dataset.cases.map(({ id, image, width, height, panel }) => ({ id, image, width, height, panel })),
-            captures: prepared.captures.filter(({ capture }) => !received.has(`${capture.id}/${capture.variant}`))
-              .map(({ capture }) => ({ capture, url: `/${relative(root, out).split('\\').join('/')}/crops/${capture.id}-${capture.variant}.png` })) }))
+          res.end(json({ mode, config: request.config, entries: entries.map(({ id, image, width, height, panel }) => ({ id, image, width, height, panel })),
+            captures: prepared.captures.filter(({ capture }) => keys.has(`${capture.id}/${capture.variant}`) && !received.has(`${capture.id}/${capture.variant}`))
+              .map(({ capture }) => ({ capture, url: `/${relative(root, preparedDirectory).split('\\').join('/')}/crops/${capture.id}-${capture.variant}.png` })) }))
           return
         }
         if (req.method !== 'POST') throw new Error('Expected POST')

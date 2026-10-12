@@ -62,6 +62,11 @@ function anchor(box: Box): Anchor | undefined {
     .replace(/^Sodiun\b/i, 'Sodium').replace(/^Irón\b/i, 'Iron')
     .replace(/^Toial\s+Protein\b/i, 'Total Protein')
     .replace(/^Total\s+Proten\b/i, 'Total Protein')
+    .replace(/^Dietayy\s+Fiber\b/i, 'Dietary Fiber')
+    .replace(/^Tolal\s+Carbohydrates?\b/i, 'Total Carbohydrates')
+    .replace(/^Calcum\b/i, 'Calcium').replace(/^Lodine\b/i, 'Iodine').replace(/^Selenlum\b/i, 'Selenium')
+    .replace(/^Calorlas(?=\s+from\s+Fat\b)/i, 'Calories')
+    .replace(/^sugarg\)(?=\s|$)/i, 'Sugar(g)')
     .replace(/^Calclum\b/i, 'Calcium').replace(/^Potasslum\b/i, 'Potassium')
     .replace(/^[•·-]\s*/, '')
     .replace(/^(cholesterol|zinc|dha|trans\s*fat)(?=\d)/i, '$1 ')
@@ -92,17 +97,21 @@ function anchorsInBox(box: Box): Anchor[] {
   }
   const starts = [0, ...boundaries.map((m) => m.index! + m[0].length)]
   const fragments = starts.map((start, i) => anchor({ ...box, text: box.text.slice(start, starts[i + 1]).replace(/[•·]\s*$/, '').trim() }))
-  if (fragments.some((a) => !a || !readAmount(a.tail, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined)))) {
+  if (fragments.some((a) => !a || !readAmount(a.tail, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined), a.key.startsWith('energy')))) {
     const a = anchor(box)
     return a ? [a] : []
   }
   return fragments.map((a) => ({ ...a!, box, inlineOnly: true }))
 }
 
-function readAmount(text: string, unit?: string): { value: string; corrected: boolean } | undefined {
+function readAmount(text: string, unit?: string, foodEnergy = false): { value: string; corrected: boolean } | undefined {
   const source = text.trim()
+  // Food-label Calories (Cal) are kcal. Never reinterpret cal on a mass
+  // nutrient or outside an explicitly named energy row; keep a review warning.
+  const calorieText = foodEnergy ? source.replace(/(\d)\s*cal(?=\s*(?:\d+(?:\.\d+)?\s*%)?\s*\.?$)/i, '$1kcal') : source
   // These character fixes are restricted to the numeric/unit slot, never the raw OCR.
-  const normalized = source.replace(/\b[Oo](?=\s*(?:g|mg|mcg|[μµ]g)\b)/g, '0').replace(/mmg\b/gi, 'mg')
+  const normalized = calorieText.replace(/\b[Oo](?=\s*(?:g|mg|mcg|[μµ]g)\b)/g, '0').replace(/mmg\b/gi, 'mg')
+    .replace(/(\d)\s*ug\b/gi, '$1μg')
     .replace(/(kcal|kj|mcg|mg|g|IU)\.$/i, '$1')
   const match = normalized.match(/^(less than\s+|<\s*|>\s*)?(\d+(?:\.\d+)?)\s*(kcal|kj|mcg(?:\s+RE)?|mg|[μµ]g(?:\s+RE)?|g|IU|%)?(\s+\d+(?:\.\d+)?\s*%)?\s*$/i)
   if (!match) return
@@ -145,7 +154,7 @@ function orderedAlignment(names: Anchor[], values: Amount[]): boolean {
 /** Pure, conservative post-processing. Never modifies recognition results or infers missing digits. */
 export function parseNutrition(result: OcrResult): NutritionExtraction {
   const output: NutritionExtraction = {
-    parserVersion: 'spatial-review-v4',
+    parserVersion: 'spatial-review-v5',
     data: { serving: { serving_size: null, servings_per_container: null }, nutrients: Object.fromEntries(core.map((key) => [key, null])) },
     issues: [], evidence: {},
   }
@@ -154,13 +163,20 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
     Object.values(line.bbox).every(Number.isFinite) && line.bbox.width > 0 && line.bbox.height > 0)
     .sort((a, b) => cy(a) - cy(b) || a.bbox.x - b.bbox.x || a.text.localeCompare(b.text))
   const width = result.sourceSize?.width ?? Math.max(1, ...boxes.map(right))
-  const found = boxes.flatMap(anchorsInBox).sort((a, b) => cy(a.box) - cy(b.box))
+  const found = boxes.flatMap(anchorsInBox)
   // Stop before the generic 2,000/2,500-calorie reference table, not at its repeated nutrient rows.
   const referenceHeading = boxes.find((b) => /^calories\s*:\s*$/i.test(b.text) &&
     boxes.some((n) => /2[,.]?000|2[,.]?500/.test(n.text) && Math.abs(cy(n) - cy(b)) < b.bbox.height * 2))
   const footnote = boxes.find((b) => /(?:percent daily values are based|calories per gram|ingredients\s*:)/i.test(b.text))
   const cutoff = Math.min(referenceHeading?.bbox.y ?? Infinity, footnote?.bbox.y ?? Infinity)
   const anchors = found.filter((a) => cy(a.box) < cutoff)
+  // Short subrow labels are used on some split tables. Require an explicit
+  // total-fat label before the footer; do not interpret standalone prose as fat.
+  if (anchors.some((a) => a.key === 'total_fat')) for (const box of boxes.filter((b) => cy(b) < cutoff)) {
+    const match = box.text.trim().match(/^[-•·]\s*(trans|saturated)\s*$/i)
+    if (match) anchors.push({ box, key: match[1]!.toLowerCase() === 'trans' ? 'trans_fat' : 'saturated_fat', tail: '', corrected: true })
+  }
+  anchors.sort((a, b) => cy(a.box) - cy(b.box))
   // A split "Includes 0g | Added Sugar" is one explicit amount, not an inferred unit.
   for (const a of anchors.filter((a) => a.key === 'added_sugars' && !a.tail)) {
     const prefixes = boxes.filter((b) => /^includes\s+[\d.Oo]+\s*g\s*$/i.test(b.text) &&
@@ -179,7 +195,7 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
     else output.data.nutrients[field] = value
   }
   const store = (a: Anchor, text: string, source: Box[], method: string) => {
-    const amount = readAmount(text, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined))
+    const amount = readAmount(text, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined), a.key.startsWith('energy'))
     if (!amount) return false
     // Validate printed units without supplying missing units or converting amounts.
     const expectedUnit = a.unit ?? (method === 'inline' ? undefined : ['total_fat', 'saturated_fat', 'trans_fat', 'carbohydrate', 'fiber', 'sugars', 'added_sugars', 'protein'].includes(a.key) ? 'g'
@@ -324,7 +340,7 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
   const servingTable = per100 && perServing && right(perServing) < per100.bbox.x &&
     Math.abs(cy(perServing) - cy(per100)) < Math.min(perServing.bbox.height, per100.bbox.height) * 0.5 &&
     upperRows.length >= 3 && upperRows.length + tableRows.length === anchors.length &&
-    upperRows.every((a) => readAmount(a.tail, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined))) &&
+    upperRows.every((a) => readAmount(a.tail, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined), a.key.startsWith('energy'))) &&
     boxes.some((b) => /^amount per serving$/i.test(b.text.trim()) && cy(b) < upperRows[0]!.box.bbox.y) &&
     tableRows.length >= 3 && tableRows.every((a) => !core.includes(a.key) && !a.key.startsWith('energy') &&
       !a.tail && right(a.box) < right(perServing))
@@ -375,7 +391,7 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
         Math.abs(cy(other.box) - cy(b)) + typicalHeight * .05 < Math.min(...column.map((a) => Math.abs(cy(a.box) - cy(b))))) &&
       cy(b) > Math.min(minY - typicalHeight, ...column.map((a) => cy(a.box) - a.box.bbox.height)) &&
       cy(b) < Math.min(cutoff, Math.max(maxY + typicalHeight, ...column.map((a) => cy(a.box) + a.box.bbox.height))) &&
-      /^[\dOo<>.%μµ\s\-]+$|^(?:less than\s+)?[\dOo<>.]+\s*(?:kcal|kj|g|mg|mmg|mcg(?:\s+RE)?|[μµ]g(?:\s+RE)?|IU|%)$|^(?:g|mg|mcg(?:\s+RE)?|[μµ]g(?:\s+RE)?|IU)$/i.test(b.text.trim()) &&
+      /^[\dOo<>.%μµ\s\-]+$|^(?:less than\s+)?[\dOo<>.]+\s*(?:kcal|cal|kj|g|mg|mmg|mcg(?:\s+RE)?|[μµu]g(?:\s+RE)?|IU|%)$|^(?:g|mg|mcg(?:\s+RE)?|[μµ]g(?:\s+RE)?|IU)$/i.test(b.text.trim()) &&
       b.bbox.height > typicalHeight * 0.2)
     const massBoxes = candidates.filter((b) => !b.text.includes('%') && (!percentHeading ||
       cy(b) < percentHeading.bbox.y || cx(b) < percentHeading.bbox.x))
@@ -519,6 +535,27 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
         !anchors.some((other) => other !== a && Math.abs(other.box.bbox.x - a.box.bbox.x) < width * .18 && right(other.box) <= b.bbox.x &&
           Math.abs(cy(other.box) - cy(b)) <= Math.abs(cy(a.box) - cy(b))))
       if (options.length === 1) store(a, options[0]!.text, [options[0]!], 'local-explicit-unit-row')
+    }
+  }
+  // A complete, explicitly per-serving statement can carry amounts outside
+  // the table. Do not search arbitrary prose for numbers, cross ingredient or
+  // reference-table boundaries, fill damaged table rows, or choose among claims.
+  if (!multiBasis && !multiplePanels && singleServingPanel && panelHeadings.length === 1 && anchors.length >= 3) {
+    const statementPattern = /^\*{0,2}\s*each\s+serving\s+contains\s+(\d+(?:\.\d+)?\s*(?:mg|[μµu]g|g))\s+DHA\s+of\s+the\s+(\d+(?:\.\d+)?\s*(?:mg|[μµu]g|g))\s+of\s+Omega[- ]?3\s*\.?$/i
+    const statementBoundary = Math.min(referenceHeading?.bbox.y ?? Infinity,
+      boxes.find((b) => /^ingredients\b/i.test(b.text.trim()))?.bbox.y ?? Infinity)
+    // Retain malformed competing claims as blockers too, not only the claims
+    // whose amounts happen to parse. Otherwise damaged duplicates look unique.
+    const statements = boxes.filter((b) => cy(b) > Math.max(...anchors.map((a) => cy(a.box))) && cy(b) < statementBoundary &&
+      /^\*{0,2}\s*each\s+serving\s+contains\b/i.test(b.text.trim()))
+    if (statements.length === 1) {
+      const box = statements[0]!, match = box.text.trim().match(statementPattern)
+      for (const [key, text] of match ? [['dha', match[1]!], ['omega_3', match[2]!]] as const : []) {
+        if (anchors.some((a) => a.key === key)) continue
+        if (store({ box, key, tail: text, corrected: false }, text, [], 'explicit-per-serving-statement')) {
+          issue(key, 'Read an explicit per-serving statement outside the table; verify against the image.')
+        }
+      }
     }
   }
   for (const key of duplicates) issue(key, 'Repeated nutrient rows or multiple panels detected; select one panel.')

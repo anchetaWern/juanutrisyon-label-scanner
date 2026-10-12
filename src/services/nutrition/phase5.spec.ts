@@ -17,7 +17,7 @@ describe('Phase 5 development regressions', () => {
       const input = fixtures[id]
       const original = JSON.stringify(input)
       const parsed = parseNutrition(input)
-      expect(parsed.parserVersion).toBe('spatial-review-v4')
+      expect(parsed.parserVersion).toBe('spatial-review-v5')
       expect(JSON.stringify(input)).toBe(original)
       const scaled = { ...input, sourceSize: { width: input.sourceSize.width * .5, height: input.sourceSize.height * .5 },
         lines: [...input.lines].reverse().map((l) => ({ ...l, bbox: { x: l.bbox.x * .5, y: l.bbox.y * .5, width: l.bbox.width * .5, height: l.bbox.height * .5 } })) }
@@ -39,7 +39,8 @@ describe('Phase 5 development regressions', () => {
     it(`07 ${variant}: keeps ordered bare values in the correct label column`, () => {
       const parsed = parseNutrition(fixtures[`07_cdo_sardines_${variant}`])
       expect(parsed.data.nutrients).toEqual({ energy: '58kcal', energy_from_fat: '20kcal', total_fat: '2g', saturated_fat: '1g',
-        trans_fat: '0g', cholesterol: '6mg', sodium: '393mg', carbohydrate: '4g', fiber: '2g', sugars: '2g', protein: '6g' })
+        trans_fat: '0g', cholesterol: '6mg', sodium: '393mg', carbohydrate: '4g', fiber: '2g', sugars: '2g', protein: '6g',
+        ...(variant === 'perspective' ? { dha: '17mg', omega_3: '151mg' } : {}) })
       expect(parsed.evidence.total_fat!.method).toBe('ordered-column')
     })
     it(`15 ${variant}: supports printed IU and joined names but not corrupted units`, () => {

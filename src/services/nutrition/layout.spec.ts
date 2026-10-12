@@ -33,8 +33,10 @@ describe('frozen single-basis phone regressions', () => {
     expect(parsed.data.serving.serving_size).toBe('1/2 cup (28g)')
     expect(parsed.data.nutrients).toMatchObject({ calcium: '0mg', potassium: '60mg', vitamin_d: null })
   })
-  it('reads palm oil inline vocabulary and merged calories without repairing the carbohydrate label', () => {
-    expect(parseNutrition(phone['09_golden_fiesta_palm_oil']).data.nutrients).toMatchObject({ energy: '140kcal', energy_from_fat: '140kcal', total_fat: '15g', unsaturated_fat: '8g', omega_9: '6g', omega_6: '2g', carbohydrate: null })
+  it('reads palm oil vocabulary and flags the narrow carbohydrate-name correction', () => {
+    const parsed = parseNutrition(phone['09_golden_fiesta_palm_oil'])
+    expect(parsed.data.nutrients).toMatchObject({ energy: '140kcal', energy_from_fat: '140kcal', total_fat: '15g', unsaturated_fat: '8g', omega_9: '6g', omega_6: '2g', carbohydrate: '0g' })
+    expect(parsed.issues.some((i) => i.field === 'carbohydrate' && i.message.includes('Normalized'))).toBe(true)
   })
   it('reads the crackers three-section serving block and merged mineral line', () => {
     const parsed = parseNutrition(phone['10_sandwich_crackers'])

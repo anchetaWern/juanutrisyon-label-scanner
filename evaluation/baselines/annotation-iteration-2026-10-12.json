@@ -1,0 +1,1136 @@
+{
+  "date": "2026-10-12",
+  "metricVersion": "field-exact-v1",
+  "parserVersion": "spatial-review-v5",
+  "baselineRevision": "d7c2b96",
+  "baselineParserSha256": "a909236cb0e90f21f11e33462dc06512b2a6c62c76874547355b26af9bcb53f5",
+  "savedExportRevision": "0927174",
+  "passed": true,
+  "sources": [
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/dataset.json",
+      "sha256": "b968b95a4d8c3f8874f3fabd62836433605c81116238a886896f37fc04861d22"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/run.json",
+      "sha256": "94d89ee83399c535e02129cfcaf72c41b64f6fb97a4786a841cfde5f82c5d57b"
+    },
+    {
+      "path": "labels/nutrition_labels_json/01_shrimp_snack.json",
+      "sha256": "40920c6daf24e96296a75cc9561706bd61d67ebbe704cd2e9df5aac8f272e22a"
+    },
+    {
+      "path": "labels/nutrition_labels_json/01_shrimp_snack-diagnostics.json",
+      "sha256": "70141a9ada63eef826dfa5c8a5cb022c5e8181c692111169a01b15406172b62d"
+    },
+    {
+      "path": "labels/nutrition_labels_json/01_shrimp_snack-ocr.json",
+      "sha256": "9fd656da0d80fe166fee7e18a4cec000240d36caf533bc88df492e3175c5f5cf"
+    },
+    {
+      "path": "labels/nutrition_labels_json/02_yellow_snack.json",
+      "sha256": "954570195a9885158dcec6fea76cbca3586b6acbb704115375b83486c9690b29"
+    },
+    {
+      "path": "labels/nutrition_labels_json/02_yellow_snack-diagnostics.json",
+      "sha256": "667e092eba6d0786c367f29d1a8098f8578d391076ee7924ab8bc6fec8963868"
+    },
+    {
+      "path": "labels/nutrition_labels_json/02_yellow_snack-ocr.json",
+      "sha256": "c5b59b625cda8a73bf511a78923185ed3eb0e6bec19a629853aed158efb0e0b5"
+    },
+    {
+      "path": "labels/nutrition_labels_json/03_tang_orange.json",
+      "sha256": "8f48f9b609046773bf401216b080b28912ebf806fc93701bde30804805b1764f"
+    },
+    {
+      "path": "labels/nutrition_labels_json/03_tang_orange-diagnostics.json",
+      "sha256": "fb48e56428d1b03b30b0c2e0834f4d9eca6a7a9f9366c1f1069afc81acb5e236"
+    },
+    {
+      "path": "labels/nutrition_labels_json/03_tang_orange-ocr.json",
+      "sha256": "8e7035ab0a2531746a82c41261923e58b302cc0abfefd749b973a75b2ed0e0d2"
+    },
+    {
+      "path": "labels/nutrition_labels_json/04_blue_tub.json",
+      "sha256": "aa55c5733ff4376218a53c0fe22a2a55638c638b21f4673bba3219b124b88d72"
+    },
+    {
+      "path": "labels/nutrition_labels_json/04_blue_tub-diagnostics.json",
+      "sha256": "9083e9704662db9dd0a18fabbfca9f269b09c154d97432d0f4dc9e74764c0924"
+    },
+    {
+      "path": "labels/nutrition_labels_json/04_blue_tub-ocr.json",
+      "sha256": "078184795675bdfbd55203616eb3b100e29d10e10fce1f5f1c3d7e5e76d9e68a"
+    },
+    {
+      "path": "labels/nutrition_labels_json/05_spam.json",
+      "sha256": "f6184f7a0b2d63cbebb0e91265d38f997f092ffacff7810dab0dde09ae197161"
+    },
+    {
+      "path": "labels/nutrition_labels_json/05_spam-diagnostics.json",
+      "sha256": "de60fe78d8290d4cb4109e2fc72b0427d4294c3439d1639b33e303492a8c9b2f"
+    },
+    {
+      "path": "labels/nutrition_labels_json/05_spam-ocr.json",
+      "sha256": "a78664c45b02a3133e3dea080eb086b5ae81cba9048b2303262cbf0cfc20ef0b"
+    },
+    {
+      "path": "labels/nutrition_labels_json/06_555_fried_sardines_tausi.json",
+      "sha256": "d3d81f813c669bd25c25d220c2a74592dbb58443e481010aad1f00553f88f378"
+    },
+    {
+      "path": "labels/nutrition_labels_json/06_555_fried_sardines_tausi-diagnostics.json",
+      "sha256": "6f46a5635c757fbac6e41995a6b45f402da1af1efc7555db8a00d1e2f37e2743"
+    },
+    {
+      "path": "labels/nutrition_labels_json/06_555_fried_sardines_tausi-ocr.json",
+      "sha256": "d95a8784afef0a5708246d05039e013358170922a7d2c54ca2b93b0d010dff26"
+    },
+    {
+      "path": "labels/nutrition_labels_json/07_cdo_sardines.json",
+      "sha256": "0150207a6c31afa7f14796f1684bc079f1f0d8a826b0d2e9ee260a2e4ac371ab"
+    },
+    {
+      "path": "labels/nutrition_labels_json/07_cdo_sardines-diagnostics.json",
+      "sha256": "39ee831c1c318ed698938408dbbe6807c45d625f5a8a0487ed3f2b9dca6a41d6"
+    },
+    {
+      "path": "labels/nutrition_labels_json/07_cdo_sardines-ocr.json",
+      "sha256": "093ac5168d758721091603024ce101e395c79855756f4f3add64c4778971c79c"
+    },
+    {
+      "path": "labels/nutrition_labels_json/08_mega_sardines.json",
+      "sha256": "ee5e478013dd632e6dd92060104c67f2d3840e3ba144f9aa64fa95aaba92d1d1"
+    },
+    {
+      "path": "labels/nutrition_labels_json/08_mega_sardines-diagnostics.json",
+      "sha256": "45dc223ed4ed1c05e24a6f7fe51d3419fa00e20bd96dfcbc8057e062c35815b9"
+    },
+    {
+      "path": "labels/nutrition_labels_json/08_mega_sardines-ocr.json",
+      "sha256": "46d38ba91f31968979a5fb494f9d029f261cd3b8151bb654f6f67f3444dd1702"
+    },
+    {
+      "path": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil.json",
+      "sha256": "7eb8547a520392d147015c820a36fb195a996b1a23c58ee8236ada9e6a03c8e3"
+    },
+    {
+      "path": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil-diagnostics.json",
+      "sha256": "fb44fe6391094f1381f71c40b377f223debb6d7b8e6ff663d56340e8bd8291ea"
+    },
+    {
+      "path": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil-ocr.json",
+      "sha256": "dd546095d1c2e5a2888e4b733cd721bcca05b76acc4785100d1f3781a1b58074"
+    },
+    {
+      "path": "labels/nutrition_labels_json/10_sandwich_crackers.json",
+      "sha256": "2011da9f9d96560e2536cacb5c7f0022a10a3f489c28def054ce05b402908156"
+    },
+    {
+      "path": "labels/nutrition_labels_json/10_sandwich_crackers-diagnostics.json",
+      "sha256": "d18ee52ebf8c378ec52c2b0493abad6f2906770222901a7e2ef208d5c4706479"
+    },
+    {
+      "path": "labels/nutrition_labels_json/10_sandwich_crackers-ocr.json",
+      "sha256": "cd3db508416563d18dbfb081ae314bc21292edde7c2cb20595b13ce881a5a36e"
+    },
+    {
+      "path": "labels/nutrition_labels_json/11_wafer_coconut_creme.json",
+      "sha256": "bb2a7bb2a14c833f92b0de4192bb5c223031206ec5f98520ca19ded70cbcc5d1"
+    },
+    {
+      "path": "labels/nutrition_labels_json/11_wafer_coconut_creme-diagnostics.json",
+      "sha256": "55179c1725599531e9143bfb13e188a7040c7a3b54b1eca46c616599acce1421"
+    },
+    {
+      "path": "labels/nutrition_labels_json/11_wafer_coconut_creme-ocr.json",
+      "sha256": "52f9aeb7050495921fdeb246ddcf1e4d07bd19cb9288dd0eca3098ffb9b03e93"
+    },
+    {
+      "path": "labels/nutrition_labels_json/12_green_potato_snack.json",
+      "sha256": "d7c89b7e1aaee2342c5f0a5a629f5f2d5446512820728b195ea17a03dfa67557"
+    },
+    {
+      "path": "labels/nutrition_labels_json/12_green_potato_snack-diagnostics.json",
+      "sha256": "2b0f9bedd7139dde67ebd8ec8591fa9f00490c7acac58a6b680f2997a54ec911"
+    },
+    {
+      "path": "labels/nutrition_labels_json/12_green_potato_snack-ocr.json",
+      "sha256": "d0eadd24e9a4d09009b0ff9b7b95ec8aa4500d8bbbf9a43c89923823f296db06"
+    },
+    {
+      "path": "labels/nutrition_labels_json/13_green_biscuit.json",
+      "sha256": "997560a69fa0776e2178e2b767d9bd4e00c4899ee6af6c6f49b9db914015933e"
+    },
+    {
+      "path": "labels/nutrition_labels_json/13_green_biscuit-diagnostics.json",
+      "sha256": "157dd6ca063267144b518afbd634c5d1dfccf9261df8c9e602ef53b5c1a658ca"
+    },
+    {
+      "path": "labels/nutrition_labels_json/13_green_biscuit-ocr.json",
+      "sha256": "b61ade20eeca66070332d3bd049b18ad9cb50babbd39319f85bf2fa6639bcf9b"
+    },
+    {
+      "path": "labels/nutrition_labels_json/14_yellow_milk_can.json",
+      "sha256": "2a5f57619e45d6f19a9e405d2bdb9625f8af18d60a51139f28b35c0403d6b69d"
+    },
+    {
+      "path": "labels/nutrition_labels_json/14_yellow_milk_can-diagnostics.json",
+      "sha256": "b23b696c188ae6459ccada4e71594daeee64a9b3d62fc09860902e748ecacf4d"
+    },
+    {
+      "path": "labels/nutrition_labels_json/14_yellow_milk_can-ocr.json",
+      "sha256": "70e8c08d51daec54fca34bc17d2fbb4dc8af7a72c67f3556e29efc9f62cb694e"
+    },
+    {
+      "path": "labels/nutrition_labels_json/15_brown_cream_milk.json",
+      "sha256": "1799076421d13dd592dc36fe616102273c54a22a36e9a0105b6686479fed5ad3"
+    },
+    {
+      "path": "labels/nutrition_labels_json/15_brown_cream_milk-diagnostics.json",
+      "sha256": "51e3400bab2212ed4bfcadf0f6463516f4e74e6d38586bb22e42dcc8e551bb5a"
+    },
+    {
+      "path": "labels/nutrition_labels_json/15_brown_cream_milk-ocr.json",
+      "sha256": "705c7d19a0fbf3747cc2e8bdc03f3179e52fcb29e63f14e494189a8917f45585"
+    },
+    {
+      "path": "src/services/nutrition/parseNutrition.ts",
+      "sha256": "99942b104233e6b250a0c1da5a46f0ca87f55b5b9c7ece174f9c5c9a23039195"
+    },
+    {
+      "path": "evaluation/metrics.ts",
+      "sha256": "316cea4019d4d1ea560106db43926f3ba67a2c79e4865cd7ab3c360703e6eb74"
+    },
+    {
+      "path": "evaluation/load.ts",
+      "sha256": "3817bad655c31f6d5a26696e404a139ed2a241f78a244296d47428dd7fa27dd9"
+    },
+    {
+      "path": "evaluation/types.ts",
+      "sha256": "de3f182d6637203fca43048f54fe4a81af35d18f319c6387c3bb4f5a5123e34a"
+    },
+    {
+      "path": "evaluation/report.ts",
+      "sha256": "1d35b5504a46ee50c170671cbc3d2801487cdf5a774b0438114419f5435ac261"
+    },
+    {
+      "path": "evaluation/cli.ts",
+      "sha256": "b9da050d26befdf3a3c31cefce6a1012a72fe662a8b479c720a1346d512287fd"
+    },
+    {
+      "path": "evaluation/annotations/mobile.json",
+      "sha256": "a4b14033fdccc25f281ac9caa3bdd6445ed3509573ae433955aa601c14bb3fac"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "sha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29"
+    },
+    {
+      "path": "benchmark/manifest.json",
+      "sha256": "0d8ec67e308a8c780886be7f44ce92a1c722bbd6f9da321cc59def017d1db700"
+    },
+    {
+      "path": "benchmark/results/latest.json",
+      "sha256": "3347e749e0d7bb45d1f94ab75943961fc18db3ac8ea1fc6c911cff4bd9363474"
+    },
+    {
+      "path": "evaluation/annotations/legacy-corrections.json",
+      "sha256": "301152b52a85fff255c839476b14050d08258e47549a665f0b5ad4200b6bb0dc"
+    },
+    {
+      "path": "labels/processed/007/IMG_2337-cropped.jpeg",
+      "sha256": "ae674cf4c401de71fb9b91589e094c37e785293560a839ba5faae8f4a8395a0d"
+    },
+    {
+      "path": "labels/processed/017/IMG_2887-cropped.jpeg",
+      "sha256": "a8ff66c955b02ff223c1a0452063d8ac5db1da41451554e388bd7bb25fe8c19c"
+    },
+    {
+      "path": "labels/processed/001/IMG_1802-cropped.jpeg",
+      "sha256": "30e319ff9744f49073a68da4ad86e92bbd6ec221ecbd176a661bd2646f2d0a64"
+    },
+    {
+      "path": "labels/processed/009/IMG_2343-cropped.jpeg",
+      "sha256": "6cd69cdc303f44bb4f6ff9f146e35b6324fd3639a1249b26908d0fac6e36bd01"
+    },
+    {
+      "path": "labels/processed/019/IMG_2927-cropped.jpeg",
+      "sha256": "1390edaa9cc2ea3cf1c63fdf08798a15172fb29b68eb922ef0bda4f9bac61b71"
+    },
+    {
+      "path": "benchmark/annotations/label-001.json",
+      "sha256": "6425f6ba4b9f6f8c1690407d5c0c4620f3a5b2cc219e34a1e25ba3c4186078b0"
+    },
+    {
+      "path": "benchmark/annotations/label-002.json",
+      "sha256": "77fc1b066ab955e6ee2fced18cad0c7ba57d4f4c2975dfc907610b61bf8398b5"
+    },
+    {
+      "path": "benchmark/annotations/label-003.json",
+      "sha256": "7d0b69b3f80396987443ab02185da19141ce664059971afae0fd7b1a44761b0b"
+    },
+    {
+      "path": "benchmark/annotations/label-004.json",
+      "sha256": "92713eadc35a1d5a5df80f56efda02add43ee732b73beef2615ee23039eb0847"
+    },
+    {
+      "path": "benchmark/annotations/label-005.json",
+      "sha256": "de3e3ffa69e00db8bfbb18362a18bde8c3c2b79e37e3cd28ea7e4c41ad55f19b"
+    },
+    {
+      "path": "benchmark/annotations/label-006.json",
+      "sha256": "5c2b7859244aab8d0277756ebe23d0bf3b9a10cb1f9a94b2e79786b169896f8a"
+    },
+    {
+      "path": "benchmark/annotations/label-007.json",
+      "sha256": "ab04b25ed45c28197e550516fed368e80080615a7cb281c9684afdb4f8edc7fa"
+    },
+    {
+      "path": "benchmark/annotations/label-008.json",
+      "sha256": "045779240e73624486cc86f6d81a4b3bf07a7f374bd70fc641492089c6cb6465"
+    },
+    {
+      "path": "benchmark/annotations/label-009.json",
+      "sha256": "7f3fb54ff54fa864e179deb6a98b3bcfcfe46ac55c2c1d2a7cd096e166157799"
+    },
+    {
+      "path": "benchmark/annotations/label-010.json",
+      "sha256": "dd3b7516184291b8380bb0070c344d3e83da444559c6db4cc04ff1798fa617e8"
+    },
+    {
+      "path": "benchmark/annotations/label-011.json",
+      "sha256": "63fdfd86eb23af29d435409f541164f63d050b19a902675db3cd635a4a344c8b"
+    },
+    {
+      "path": "benchmark/annotations/label-012.json",
+      "sha256": "f0caafa85b3c4bdc7d78e3ea63ff1c8d6c529fbba2039de53855d534cc084f8d"
+    },
+    {
+      "path": "benchmark/annotations/label-013.json",
+      "sha256": "0778ff06829c11d6e7a4dcfa27ccb07b317727dac3c1c754a0b52cde60aafdd1"
+    },
+    {
+      "path": "benchmark/annotations/label-014.json",
+      "sha256": "9ba4b11c53ae98b4a78af89b1f165f21749757b26cab34e219bdd178026fe84e"
+    },
+    {
+      "path": "benchmark/annotations/label-015.json",
+      "sha256": "b01c4487991f302c018b330b5956de8e2a49162beac1b914dd3482682968d0b2"
+    },
+    {
+      "path": "benchmark/annotations/label-016.json",
+      "sha256": "93564cf5548d021d956295c97314007206593ef5c04bd84936410bf7551757f9"
+    },
+    {
+      "path": "benchmark/annotations/label-017.json",
+      "sha256": "0a2b39a218752b7825993769aea48709657dd55adfd5ac7a10d6797a8f2d0071"
+    },
+    {
+      "path": "benchmark/annotations/label-018.json",
+      "sha256": "31e4e7b0a95548e93facc803616f312476d455b64f391cd62676c0c98106c7b8"
+    },
+    {
+      "path": "benchmark/annotations/label-019.json",
+      "sha256": "6274758fbb91b2052f1bf2ae9cbaf7cfba425bdf7ef2495002e91e551b562cd7"
+    },
+    {
+      "path": "benchmark/annotations/label-020.json",
+      "sha256": "82f23d4c839f12cf445ccd4b0614906f97fa090f9c16600ae8dd96268c584d37"
+    },
+    {
+      "path": "benchmark/annotations/label-021.json",
+      "sha256": "ad470032645a602c8b5758f285ad8e1545965c0460cc1a663ad923f00b721a3f"
+    },
+    {
+      "path": "benchmark/annotations/label-022.json",
+      "sha256": "ae169a6c87042cd27e1e2cd689dbc1f7304f0668210ddbfdde94f8f6d70f276a"
+    },
+    {
+      "path": "benchmark/annotations/label-023.json",
+      "sha256": "164eed9149011a1dd461870f73d4385bb6b5037d132e83a460fed2a577f3a17e"
+    },
+    {
+      "path": "benchmark/annotations/label-024.json",
+      "sha256": "f682e5c5ec8f7fe4579a2f31b04b72791c1ed389a31c50dacafcc43dcf829a7f"
+    },
+    {
+      "path": "benchmark/annotations/label-025.json",
+      "sha256": "03d366bbc784bda04f45f39d80f71f7a7cfa83cb337cd76d26ecd023d0f9fd9d"
+    },
+    {
+      "path": "benchmark/annotations/label-026.json",
+      "sha256": "ecc0cfe28d91f2fd3d02bd1fd8947e44c9f1c5b93754a7d5d5776406d65e1103"
+    },
+    {
+      "path": "benchmark/annotations/label-027.json",
+      "sha256": "6f8fd20dd1b39c82cbf90d62e07c26958d0a65d20ceb16538a1476b1557291f4"
+    },
+    {
+      "path": "benchmark/annotations/label-028.json",
+      "sha256": "3524654b6bdf6c32fd0e9eae840b7717f4b0ae7316ee9afde94fa5c984e2e661"
+    },
+    {
+      "path": "benchmark/annotations/label-029.json",
+      "sha256": "e6668e611c3e80355855afccf1dba3d056d7a02290b9739dcabf17bf6bfcd0a9"
+    },
+    {
+      "path": "benchmark/annotations/label-030.json",
+      "sha256": "1631fa23961ff7ce8cb99e88b8e0724273f44c3109dbcc66d05dde5002ffb9d9"
+    },
+    {
+      "path": "src/services/nutrition/parseNutrition.ts",
+      "sha256": "99942b104233e6b250a0c1da5a46f0ca87f55b5b9c7ece174f9c5c9a23039195"
+    },
+    {
+      "path": "evaluation/phone/compare.ts",
+      "sha256": "eb30c0de39561c67a3a8e46e9282b66557f60d9818c68ed75b0e2d20173c17c5"
+    },
+    {
+      "path": "evaluation/phase5/report.ts",
+      "sha256": "922f341b18285842201ac664e74dfab2ed8984883bc1447ccf69d1404e932ba5"
+    },
+    {
+      "path": "evaluation/pilot/report.ts",
+      "sha256": "cb98bb00014d4b5409e5f9b246aca41dd562e865f4fc833aa3283cd9a4b423a6"
+    }
+  ],
+  "groups": [
+    {
+      "name": "iphone-owner",
+      "before": {
+        "cases": 15,
+        "all": {
+          "readable": 221,
+          "correct": 180,
+          "wrong": 1,
+          "missing": 40,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 8
+        },
+        "nutrients": {
+          "readable": 191,
+          "correct": 153,
+          "wrong": 1,
+          "missing": 37,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 8
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 27,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "after": {
+        "cases": 15,
+        "all": {
+          "readable": 221,
+          "correct": 191,
+          "wrong": 1,
+          "missing": 29,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 9
+        },
+        "nutrients": {
+          "readable": 191,
+          "correct": 164,
+          "wrong": 1,
+          "missing": 26,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 9
+        },
+        "serving": {
+          "readable": 30,
+          "correct": 27,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "gate": {
+        "passed": true,
+        "newlyWrong": [],
+        "lostCorrectFields": [],
+        "cohortsWithRecoveryLoss": [],
+        "changedExistingPredictions": []
+      },
+      "cohorts": {
+        "iphone-owner": {
+          "before": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 180,
+              "wrong": 1,
+              "missing": 40,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 8
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 153,
+              "wrong": 1,
+              "missing": 37,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 8
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 27,
+              "wrong": 0,
+              "missing": 3,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          },
+          "after": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 191,
+              "wrong": 1,
+              "missing": 29,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 9
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 164,
+              "wrong": 1,
+              "missing": 26,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 9
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 27,
+              "wrong": 0,
+              "missing": 3,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "iphone-supplemental",
+      "before": {
+        "cases": 15,
+        "all": {
+          "readable": 9,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 1,
+          "falsePositive": 0,
+          "correctAbstention": 7,
+          "unscoredPredictions": 181
+        },
+        "nutrients": {
+          "readable": 9,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 1,
+          "falsePositive": 0,
+          "correctAbstention": 7,
+          "unscoredPredictions": 154
+        },
+        "serving": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 27
+        }
+      },
+      "after": {
+        "cases": 15,
+        "all": {
+          "readable": 9,
+          "correct": 9,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 7,
+          "unscoredPredictions": 192
+        },
+        "nutrients": {
+          "readable": 9,
+          "correct": 9,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 7,
+          "unscoredPredictions": 165
+        },
+        "serving": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 27
+        }
+      },
+      "gate": {
+        "passed": true,
+        "newlyWrong": [],
+        "lostCorrectFields": [],
+        "cohortsWithRecoveryLoss": [],
+        "changedExistingPredictions": []
+      },
+      "cohorts": {
+        "iphone-supplemental": {
+          "before": {
+            "cases": 15,
+            "all": {
+              "readable": 9,
+              "correct": 8,
+              "wrong": 0,
+              "missing": 1,
+              "falsePositive": 0,
+              "correctAbstention": 7,
+              "unscoredPredictions": 181
+            },
+            "nutrients": {
+              "readable": 9,
+              "correct": 8,
+              "wrong": 0,
+              "missing": 1,
+              "falsePositive": 0,
+              "correctAbstention": 7,
+              "unscoredPredictions": 154
+            },
+            "serving": {
+              "readable": 0,
+              "correct": 0,
+              "wrong": 0,
+              "missing": 0,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 27
+            }
+          },
+          "after": {
+            "cases": 15,
+            "all": {
+              "readable": 9,
+              "correct": 9,
+              "wrong": 0,
+              "missing": 0,
+              "falsePositive": 0,
+              "correctAbstention": 7,
+              "unscoredPredictions": 192
+            },
+            "nutrients": {
+              "readable": 9,
+              "correct": 9,
+              "wrong": 0,
+              "missing": 0,
+              "falsePositive": 0,
+              "correctAbstention": 7,
+              "unscoredPredictions": 165
+            },
+            "serving": {
+              "readable": 0,
+              "correct": 0,
+              "wrong": 0,
+              "missing": 0,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 27
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "pilot",
+      "before": {
+        "cases": 45,
+        "all": {
+          "readable": 663,
+          "correct": 437,
+          "wrong": 0,
+          "missing": 226,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "nutrients": {
+          "readable": 573,
+          "correct": 367,
+          "wrong": 0,
+          "missing": 206,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 90,
+          "correct": 70,
+          "wrong": 0,
+          "missing": 20,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "after": {
+        "cases": 45,
+        "all": {
+          "readable": 663,
+          "correct": 446,
+          "wrong": 0,
+          "missing": 217,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "nutrients": {
+          "readable": 573,
+          "correct": 376,
+          "wrong": 0,
+          "missing": 197,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        },
+        "serving": {
+          "readable": 90,
+          "correct": 70,
+          "wrong": 0,
+          "missing": 20,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "gate": {
+        "passed": true,
+        "newlyWrong": [],
+        "lostCorrectFields": [],
+        "cohortsWithRecoveryLoss": [],
+        "changedExistingPredictions": []
+      },
+      "cohorts": {
+        "phase-2-original": {
+          "before": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 123,
+              "wrong": 0,
+              "missing": 98,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 102,
+              "wrong": 0,
+              "missing": 89,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 21,
+              "wrong": 0,
+              "missing": 9,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          },
+          "after": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 127,
+              "wrong": 0,
+              "missing": 94,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 106,
+              "wrong": 0,
+              "missing": 85,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 21,
+              "wrong": 0,
+              "missing": 9,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          }
+        },
+        "phase-2-perspective": {
+          "before": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 144,
+              "wrong": 0,
+              "missing": 77,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 121,
+              "wrong": 0,
+              "missing": 70,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 23,
+              "wrong": 0,
+              "missing": 7,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          },
+          "after": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 146,
+              "wrong": 0,
+              "missing": 75,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 123,
+              "wrong": 0,
+              "missing": 68,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 23,
+              "wrong": 0,
+              "missing": 7,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          }
+        },
+        "phase-2-rectangle": {
+          "before": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 170,
+              "wrong": 0,
+              "missing": 51,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 144,
+              "wrong": 0,
+              "missing": 47,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 26,
+              "wrong": 0,
+              "missing": 4,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          },
+          "after": {
+            "cases": 15,
+            "all": {
+              "readable": 221,
+              "correct": 173,
+              "wrong": 0,
+              "missing": 48,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 191,
+              "correct": 147,
+              "wrong": 0,
+              "missing": 44,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 30,
+              "correct": 26,
+              "wrong": 0,
+              "missing": 4,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "historical",
+      "before": {
+        "cases": 38,
+        "all": {
+          "readable": 564,
+          "correct": 330,
+          "wrong": 4,
+          "missing": 230,
+          "falsePositive": 1,
+          "correctAbstention": 1,
+          "unscoredPredictions": 10
+        },
+        "nutrients": {
+          "readable": 495,
+          "correct": 301,
+          "wrong": 0,
+          "missing": 194,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscoredPredictions": 10
+        },
+        "serving": {
+          "readable": 69,
+          "correct": 29,
+          "wrong": 4,
+          "missing": 36,
+          "falsePositive": 1,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "after": {
+        "cases": 38,
+        "all": {
+          "readable": 564,
+          "correct": 331,
+          "wrong": 4,
+          "missing": 229,
+          "falsePositive": 1,
+          "correctAbstention": 1,
+          "unscoredPredictions": 10
+        },
+        "nutrients": {
+          "readable": 495,
+          "correct": 302,
+          "wrong": 0,
+          "missing": 193,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscoredPredictions": 10
+        },
+        "serving": {
+          "readable": 69,
+          "correct": 29,
+          "wrong": 4,
+          "missing": 36,
+          "falsePositive": 1,
+          "correctAbstention": 0,
+          "unscoredPredictions": 0
+        }
+      },
+      "gate": {
+        "passed": true,
+        "newlyWrong": [],
+        "lostCorrectFields": [],
+        "cohortsWithRecoveryLoss": [],
+        "changedExistingPredictions": []
+      },
+      "cohorts": {
+        "legacy-desktop-replay": {
+          "before": {
+            "cases": 30,
+            "all": {
+              "readable": 430,
+              "correct": 201,
+              "wrong": 4,
+              "missing": 225,
+              "falsePositive": 1,
+              "correctAbstention": 0,
+              "unscoredPredictions": 10
+            },
+            "nutrients": {
+              "readable": 371,
+              "correct": 180,
+              "wrong": 0,
+              "missing": 191,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 10
+            },
+            "serving": {
+              "readable": 59,
+              "correct": 21,
+              "wrong": 4,
+              "missing": 34,
+              "falsePositive": 1,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          },
+          "after": {
+            "cases": 30,
+            "all": {
+              "readable": 430,
+              "correct": 202,
+              "wrong": 4,
+              "missing": 224,
+              "falsePositive": 1,
+              "correctAbstention": 0,
+              "unscoredPredictions": 10
+            },
+            "nutrients": {
+              "readable": 371,
+              "correct": 181,
+              "wrong": 0,
+              "missing": 190,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 10
+            },
+            "serving": {
+              "readable": 59,
+              "correct": 21,
+              "wrong": 4,
+              "missing": 34,
+              "falsePositive": 1,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          }
+        },
+        "mobile-replay": {
+          "before": {
+            "cases": 8,
+            "all": {
+              "readable": 134,
+              "correct": 129,
+              "wrong": 0,
+              "missing": 5,
+              "falsePositive": 0,
+              "correctAbstention": 1,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 124,
+              "correct": 121,
+              "wrong": 0,
+              "missing": 3,
+              "falsePositive": 0,
+              "correctAbstention": 1,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 10,
+              "correct": 8,
+              "wrong": 0,
+              "missing": 2,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          },
+          "after": {
+            "cases": 8,
+            "all": {
+              "readable": 134,
+              "correct": 129,
+              "wrong": 0,
+              "missing": 5,
+              "falsePositive": 0,
+              "correctAbstention": 1,
+              "unscoredPredictions": 0
+            },
+            "nutrients": {
+              "readable": 124,
+              "correct": 121,
+              "wrong": 0,
+              "missing": 3,
+              "falsePositive": 0,
+              "correctAbstention": 1,
+              "unscoredPredictions": 0
+            },
+            "serving": {
+              "readable": 10,
+              "correct": 8,
+              "wrong": 0,
+              "missing": 2,
+              "falsePositive": 0,
+              "correctAbstention": 0,
+              "unscoredPredictions": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Frozen identical OCR replay, not a new OCR or blind validation run.",
+    "All products were already exposed, including the former holdout.",
+    "Owner truth unchanged. Pilot headline excludes supplements; gates include them.",
+    "Supplemental phone fields are separate Codex visual transcriptions awaiting independent owner review.",
+    "Every existing non-null prediction is unchanged, including unscored fields.",
+    "Pre-existing phone wrong energy (160 -> 60), historical wrong serving outputs and historical false positive remain.",
+    "No OCR model, preprocessing, capture thresholds, basis selection, schema or deployment changes."
+  ]
+}

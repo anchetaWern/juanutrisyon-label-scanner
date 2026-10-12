@@ -16,12 +16,19 @@ import { csv } from '../report'
 import type { EvaluationCase } from '../types'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
-const baselineRevision = '0927174'
+const savedExportRevision = '0927174'
 const json = (value: unknown) => JSON.stringify(value, null, 2) + '\n'
 async function main() {
   const args = process.argv.slice(2)
-  if (args.length && (args.length !== 2 || args[0] !== '--out')) throw new Error('Usage: node --import tsx evaluation/phone/compare.ts [--out evaluation/results/<new-directory>]')
-  const out = args[1] ? resolve(root, args[1]) : null
+  const options = new Map<string, string>()
+  for (let i = 0; i < args.length; i += 2) {
+    const key = args[i]!, value = args[i + 1]
+    if (!['--out', '--baseline'].includes(key) || !value || options.has(key)) throw new Error('Usage: node --import tsx evaluation/phone/compare.ts [--baseline <git-commit>] [--out evaluation/results/<new-directory>]')
+    options.set(key, value)
+  }
+  const baselineRevision = options.get('--baseline') ?? savedExportRevision
+  if (!/^[a-f0-9]{7,40}$/.test(baselineRevision)) throw new Error('Baseline must be a git commit hash.')
+  const out = options.has('--out') ? resolve(root, options.get('--out')!) : null
   if (out) {
     const rel = relative(join(root, 'evaluation/results'), out)
     if (!rel || rel.startsWith('..') || isAbsolute(rel)) throw new Error('Output must be a new subdirectory of evaluation/results/.')
@@ -32,9 +39,15 @@ async function main() {
     sources.push({ path, sha256: sha256(bytes) })
     return JSON.parse(bytes.toString()) as T
   }
-  const baselineSource = execFileSync('git', ['show', `${baselineRevision}:src/services/nutrition/parseNutrition.ts`], { cwd: root, encoding: 'utf8' })
-  const compiled = ts.transpileModule(baselineSource, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText
-  const baseline = (await import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)).parseNutrition as typeof parseNutrition
+  const frozenParser = async (revision: string) => {
+    const source = execFileSync('git', ['show', `${revision}:src/services/nutrition/parseNutrition.ts`], { cwd: root, encoding: 'utf8' })
+    const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText
+    const parse = (await import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)).parseNutrition as typeof parseNutrition
+    return { source, parse }
+  }
+  const { source: baselineSource, parse: baseline } = await frozenParser(baselineRevision)
+  // Saved diagnostics were exported with v3, independently of the comparison baseline.
+  const savedExportParser = baselineRevision === savedExportRevision ? baseline : (await frozenParser(savedExportRevision)).parse
   // Use the saved dataset snapshot, not the old strict folder-inventory loader.
   const directory = 'evaluation/results/phase-2-pilot-2026-10-11'
   const dataset = await read<PilotDataset>(`${directory}/dataset.json`)
@@ -48,7 +61,7 @@ async function main() {
     const saved = await read<{ ocr: NonNullable<EvaluationCase['ocr']>; nutrition: ReturnType<typeof parseNutrition> }>(`${prefix}-diagnostics.json`)
     const ocr = await read<NonNullable<EvaluationCase['ocr']>>(`${prefix}-ocr.json`)
     assert.deepEqual(ocr, saved.ocr)
-    assert.deepEqual(baseline(ocr), saved.nutrition)
+    assert.deepEqual(savedExportParser(ocr), saved.nutrition)
     phone.push({ annotation: { ...entry.annotation, cohort: 'iphone-owner', fields }, ocr })
   }
   validateCases(phone)
@@ -76,15 +89,20 @@ async function main() {
     })
     const selectedBefore = owner ? ownerOnlyCases(dataset, before) : before
     const selectedAfter = owner ? ownerOnlyCases(dataset, after) : after
-    return { name, before: aggregate(selectedBefore), after: aggregate(selectedAfter), gate: comparisonGate(before, after),
-      changes: fieldChanges(before, after), byCohortBefore: buildReport(selectedBefore).byCohort, byCohortAfter: buildReport(selectedAfter).byCohort,
+    const changes = fieldChanges(before, after)
+    const gate = comparisonGate(before, after)
+    // Also protect existing unannotated predictions, not just scored correct fields.
+    const changedExistingPredictions = changes.filter((c) => c.before.predicted !== null && c.before.predicted !== c.after.predicted)
+    return { name, before: aggregate(selectedBefore), after: aggregate(selectedAfter),
+      gate: { ...gate, passed: gate.passed && !changedExistingPredictions.length, changedExistingPredictions },
+      changes, byCohortBefore: buildReport(selectedBefore).byCohort, byCohortAfter: buildReport(selectedAfter).byCohort,
       report: { ...buildReport(after), sources, notes: ['Frozen OCR replay; exposed regression products, not fresh blind validation.', 'No OCR, unit conversions, digit repair, or basis selection changes. Pilot gate includes supplements/negative fields; headline pilot counts are owner-only.'] } }
   })
   for (const path of ['src/services/nutrition/parseNutrition.ts', 'evaluation/phone/compare.ts', 'evaluation/phase5/report.ts', 'evaluation/pilot/report.ts']) {
     sources.push({ path, sha256: sha256(await readFile(join(root, path))) })
   }
   const passed = reports.every((r) => r.gate.passed)
-  const summary = { baselineRevision, baselineParserSha256: sha256(baselineSource), sources, passed,
+  const summary = { baselineRevision, baselineParserSha256: sha256(baselineSource), savedExportRevision, sources, passed,
     groups: reports.map((r) => ({ name: r.name, before: r.before, after: r.after, gate: r.gate,
       changes: r.changes, byCohortBefore: r.byCohortBefore, byCohortAfter: r.byCohortAfter })) }
   if (out) {

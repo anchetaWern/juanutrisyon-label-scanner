@@ -28,18 +28,20 @@ const copyError = ref<string | null>(null)
 const manualCopyText = ref('')
 const manualCopyField = ref<HTMLTextAreaElement | null>(null)
 const cropFilename = computed(() => cropDownloadFilename(props.originalFile.name, props.croppedBlob.type))
+const exportStem = computed(() => cropFilename.value.replace(/-ocr-crop\.[^.]+$/, ''))
 const canShareCrop = computed(() => canShareBlob(props.croppedBlob, cropFilename.value))
 const nutrition = computed(() => parseNutrition(props.result))
 
 async function copy(value: string, successMessage: string): Promise<void> {
   copyError.value = null
   manualCopyText.value = ''
+  snackbarVisible.value = false
   try {
     await copyText(value)
     snackbarMessage.value = successMessage
     snackbarVisible.value = true
   } catch {
-    copyError.value = 'Clipboard access was blocked by the browser. The requested content is ready below for manual copying.'
+    copyError.value = 'Copy did not complete. Select the content below and use Copy, or save the OCR JSON or diagnostics as a file.'
     manualCopyText.value = value
     await nextTick()
     selectManualCopyText()
@@ -49,6 +51,7 @@ async function copy(value: string, successMessage: string): Promise<void> {
 function selectManualCopyText(): void {
   manualCopyField.value?.focus()
   manualCopyField.value?.select()
+  manualCopyField.value?.setSelectionRange(0, manualCopyText.value.length)
 }
 
 function copyRawText(): Promise<void> {
@@ -59,16 +62,38 @@ function copyCompleteResult(): Promise<void> {
   return copy(JSON.stringify(props.result, null, 2), 'Complete OCR result copied')
 }
 
-function copyDiagnostics(): Promise<void> {
-  const report = buildScannerDiagnosticReport({
+function diagnosticJson(): string {
+  return JSON.stringify(buildScannerDiagnosticReport({
     originalFile: props.originalFile,
     croppedBlob: props.croppedBlob,
     cropCoordinates: props.cropCoordinates,
     qualityMetrics: props.qualityMetrics,
     qualityWarnings: props.qualityWarnings,
     result: props.result,
-  })
-  return copy(JSON.stringify(report, null, 2), 'Scanner diagnostics copied')
+  }), null, 2)
+}
+
+function copyDiagnostics(): Promise<void> {
+  return copy(diagnosticJson(), 'Scanner diagnostics copied')
+}
+
+async function exportJson(kind: 'ocr' | 'diagnostics'): Promise<void> {
+  copyError.value = null
+  manualCopyText.value = ''
+  snackbarVisible.value = false
+  const value = kind === 'ocr' ? JSON.stringify(props.result, null, 2) : diagnosticJson()
+  try {
+    const outcome = await saveBlob(new Blob([value], { type: 'application/json' }), `${exportStem.value}-${kind}.json`,
+      kind === 'ocr' ? 'Nutrition label OCR JSON' : 'Nutrition label diagnostics')
+    if (outcome === 'cancelled') return
+    snackbarMessage.value = outcome === 'shared' ? 'JSON file shared' : 'JSON download or preview opened'
+    snackbarVisible.value = true
+  } catch {
+    copyError.value = 'The browser could not save the JSON file. Select the content below and use Copy.'
+    manualCopyText.value = value
+    await nextTick()
+    selectManualCopyText()
+  }
 }
 
 async function downloadCrop(): Promise<void> {
@@ -129,6 +154,12 @@ function confidenceLabel(confidence?: number): string {
       </v-btn>
       <v-btn color="primary" variant="flat" prepend-icon="mdi-clipboard-text-outline" @click="copyDiagnostics">
         Copy diagnostics
+      </v-btn>
+      <v-btn variant="outlined" prepend-icon="mdi-file-download-outline" @click="exportJson('ocr')">
+        Save OCR JSON
+      </v-btn>
+      <v-btn variant="outlined" prepend-icon="mdi-file-download-outline" @click="exportJson('diagnostics')">
+        Save diagnostics
       </v-btn>
     </div>
 

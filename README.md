@@ -32,6 +32,8 @@ The [Phase 4 study](evaluation/phase4/README.md) compares frozen preprocessing c
 
 The [Phase 5 parser study](evaluation/phase5/README.md) compares parser changes on identical saved OCR, freezes a passing development candidate, then checks reserved products. The [findings](docs/phase-5-parser-2026-10-11.md) adopt `spatial-review-v3`: rectangle nutrient recovery rose from 97 to 125 of 191 across the pilot, with only one of those extra fields on the five reserved products. No previously correct scored fields were lost; broader unseen-label validation is still needed.
 
+The [single-basis layout update](docs/single-basis-layout-2026-10-12.md) adopts `spatial-review-v4`. Replaying the 15 exported iPhone scans improves correct owner nutrient fields from 124 to 153/191 and serving fields from 18 to 27/30, without new scored errors or losses of correct fields across phone and historical regressions. These products are already exposed, not fresh validation. The [pre-implementation phone audit](OCR_IPHONE_AUDIT.md) and [condensed OCR summary](OCR_ACCURACY_SUMMARY.md) explain the remaining gaps.
+
 ## Scanner pipeline
 
 ```text
@@ -64,7 +66,7 @@ After OCR, `parseNutrition` matches nutrient names and amounts using inline text
 
 Diagnostics schema version 3 retains `nutrition` with the data, parser version, warnings, and source line indexes, and adds crop geometry, explicit coordinate spaces, and advisory capture metrics. **Share OCR JSON** exports the original OCR object. Numeric-slot corrections such as `Og` → `0g` and `mmg` → `mg` are flagged for review. Missing digits/units and ambiguous associations are not filled from a reference label. Multiple nutrition bases are conservatively rejected, except for a separately headed micronutrient table with an unambiguous per-serving column below inline per-serving macros.
 
-Eight mobile diagnostic exports and seven Phase 5 development OCR cases are stored as sanitized OCR-only fixtures under `src/services/nutrition/fixtures/`; they contain no device/browser details or image bytes. See [the initial extraction validation report](docs/nutrition-extraction-2026-09-11.md), [the September 18 format report](docs/nutrition-extraction-2026-09-18.md), and [Phase 5 findings](docs/phase-5-parser-2026-10-11.md) for exact outputs and limitations. The current parser is `spatial-review-v3`; its narrowly supported OCR name corrections also produce review warnings.
+Eight older mobile diagnostic exports, seven Phase 5 development OCR cases, and six exposed iPhone layout cases are stored as sanitized OCR-only fixtures under `src/services/nutrition/fixtures/`; they contain no device/browser details or image bytes. See [the initial extraction validation report](docs/nutrition-extraction-2026-09-11.md), [the September 18 format report](docs/nutrition-extraction-2026-09-18.md), [Phase 5 findings](docs/phase-5-parser-2026-10-11.md), and [layout findings](docs/single-basis-layout-2026-10-12.md) for exact outputs and limitations. The current parser is `spatial-review-v4`; its narrowly supported OCR name corrections also produce review warnings. It additionally handles explicit merged inline nutrients, serving blocks beside the table, and complete separate-unit columns with an identifiable daily-value boundary. It does not infer missing digits or relax multiple-basis abstention.
 
 ## Deployment
 

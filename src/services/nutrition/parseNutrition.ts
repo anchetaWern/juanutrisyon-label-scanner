@@ -13,7 +13,7 @@ export interface NutritionExtraction {
 }
 
 type Box = OcrLine & { index: number }
-type Anchor = { box: Box; key: string; tail: string; unit?: string; corrected: boolean; sources?: Box[] }
+type Anchor = { box: Box; key: string; tail: string; unit?: string; corrected: boolean; sources?: Box[]; inlineOnly?: boolean }
 type Amount = { text: string; boxes: Box[]; x: number; y: number; right: number; height: number }
 
 const core = ['energy', 'total_fat', 'saturated_fat', 'trans_fat', 'cholesterol', 'sodium', 'carbohydrate', 'fiber', 'sugars', 'protein']
@@ -21,10 +21,13 @@ const core = ['energy', 'total_fat', 'saturated_fat', 'trans_fat', 'cholesterol'
 const names: Array<[string, RegExp]> = [
   ['energy_from_fat', /^calor(?:ies|les)\s*from(?:\s*fat)?\b/i],
   ['added_sugars', /^(?:includes\s+)?(?:[\d.Oo]+\s*g\s+)?added\s+sugars?\b/i],
-  ['energy', /^(?:calories|calorles|alories|energy)\b/i],
-  ['total_fat', /^(?:total\s*fat|fat,\s*total)\b/i],
+  ['energy', /^(?:total\s+calories|calories|calorles|alories|energy)\b/i],
+  ['total_fat', /^(?:total\s*fats?(?:\s*\/\s*lipids)?|fat,\s*total)\b/i],
   ['saturated_fat', /^(?:saturated|sat\.?)\s+fat\b/i],
+  ['unsaturated_fat', /^unsaturated\s+fat\b/i],
   ['trans_fat', /^trans\s*fat\b/i],
+  ['omega_3', /^omega\s*[- ]?\s*3\b/i], ['omega_6', /^omega\s*[- ]?\s*6\b/i], ['omega_9', /^omega\s*[- ]?\s*9\b/i],
+  ['dha', /^dha\b/i],
   ['cholesterol', /^cholest(?:erol|rol)\b/i],
   ['sodium', /^sodium\b/i],
   ['carbohydrate', /^(?:total\s*)?carb(?:ohydrate)?s?\b/i],
@@ -58,7 +61,10 @@ function anchor(box: Box): Anchor | undefined {
   const text = box.text.trim().normalize('NFKC').replace(/^Dletary\s+Fiber\b/i, 'Dietary Fiber')
     .replace(/^Sodiun\b/i, 'Sodium').replace(/^Irón\b/i, 'Iron')
     .replace(/^Toial\s+Protein\b/i, 'Total Protein')
-    .replace(/^[•·-]\s*(?=(?:dietary\s+fiber|sugars?)\b)/i, '')
+    .replace(/^Total\s+Proten\b/i, 'Total Protein')
+    .replace(/^Calclum\b/i, 'Calcium').replace(/^Potasslum\b/i, 'Potassium')
+    .replace(/^[•·-]\s*/, '')
+    .replace(/^(cholesterol|zinc|dha|trans\s*fat)(?=\d)/i, '$1 ')
   for (const [name, pattern] of names) {
     const match = text.match(pattern)
     if (!match) continue
@@ -75,10 +81,29 @@ function anchor(box: Box): Anchor | undefined {
   }
 }
 
+function anchorsInBox(box: Box): Anchor[] {
+  // Split only explicit nutrient starts following a complete printed amount/DV.
+  // Geometry is NOT invented: each fragment retains the original OCR line/index,
+  // and fragments are accepted only inline, never as detached spatial labels.
+  const boundaries = [...box.text.matchAll(/(?:\d|%)(?:\s*[•·]\s*|\s+)(?=(?:calories\s+from\s+fat|vitamin\s+(?:b12|b1|b2|b3|b5|b6|b7|b9|a|c|d3|d2|d|e|k)\b|calcium\b|iron\b|potassium\b))/gi)]
+  if (!boundaries.length) {
+    const a = anchor(box)
+    return a ? [a] : []
+  }
+  const starts = [0, ...boundaries.map((m) => m.index! + m[0].length)]
+  const fragments = starts.map((start, i) => anchor({ ...box, text: box.text.slice(start, starts[i + 1]).replace(/[•·]\s*$/, '').trim() }))
+  if (fragments.some((a) => !a || !readAmount(a.tail, a.unit ?? (a.key.startsWith('energy') ? 'kcal' : undefined)))) {
+    const a = anchor(box)
+    return a ? [a] : []
+  }
+  return fragments.map((a) => ({ ...a!, box, inlineOnly: true }))
+}
+
 function readAmount(text: string, unit?: string): { value: string; corrected: boolean } | undefined {
   const source = text.trim()
   // These character fixes are restricted to the numeric/unit slot, never the raw OCR.
   const normalized = source.replace(/\b[Oo](?=\s*(?:g|mg|mcg|[μµ]g)\b)/g, '0').replace(/mmg\b/gi, 'mg')
+    .replace(/(kcal|kj|mcg|mg|g|IU)\.$/i, '$1')
   const match = normalized.match(/^(less than\s+|<\s*|>\s*)?(\d+(?:\.\d+)?)\s*(kcal|kj|mcg(?:\s+RE)?|mg|[μµ]g(?:\s+RE)?|g|IU|%)?(\s+\d+(?:\.\d+)?\s*%)?\s*$/i)
   if (!match) return
   const suffix = match[3] ?? unit
@@ -120,15 +145,16 @@ function orderedAlignment(names: Anchor[], values: Amount[]): boolean {
 /** Pure, conservative post-processing. Never modifies recognition results or infers missing digits. */
 export function parseNutrition(result: OcrResult): NutritionExtraction {
   const output: NutritionExtraction = {
-    parserVersion: 'spatial-review-v3',
+    parserVersion: 'spatial-review-v4',
     data: { serving: { serving_size: null, servings_per_container: null }, nutrients: Object.fromEntries(core.map((key) => [key, null])) },
     issues: [], evidence: {},
   }
   const issue = (field: string, message: string) => output.issues.push({ field, message })
   const boxes = result.lines.map((line, index) => ({ ...line, index })).filter((line) =>
     Object.values(line.bbox).every(Number.isFinite) && line.bbox.width > 0 && line.bbox.height > 0)
+    .sort((a, b) => cy(a) - cy(b) || a.bbox.x - b.bbox.x || a.text.localeCompare(b.text))
   const width = result.sourceSize?.width ?? Math.max(1, ...boxes.map(right))
-  const found = boxes.map(anchor).filter((a): a is Anchor => Boolean(a)).sort((a, b) => cy(a.box) - cy(b.box))
+  const found = boxes.flatMap(anchorsInBox).sort((a, b) => cy(a.box) - cy(b.box))
   // Stop before the generic 2,000/2,500-calorie reference table, not at its repeated nutrient rows.
   const referenceHeading = boxes.find((b) => /^calories\s*:\s*$/i.test(b.text) &&
     boxes.some((n) => /2[,.]?000|2[,.]?500/.test(n.text) && Math.abs(cy(n) - cy(b)) < b.bbox.height * 2))
@@ -233,6 +259,58 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
     }
   }
 
+  // A single panel may put its serving block BESIDE the nutrient sections.
+  // Fill unresolved fields only; do not widen the scope across panels or bases.
+  const singleServingPanel = boxes.filter((b) => /^nutrition\s+(?:facts|information)\b/i.test(b.text)).length <= 1 &&
+    !boxes.some((b) => /(?:per\s*100\s*(?:g|ml)|as prepared|as sold)/i.test(b.text))
+  if (singleServingPanel) {
+    const region = boxes.filter((b) => cy(b) < cutoff)
+    const servingText = (text: string) => text.trim().replace(/^Sevings?\b/i, (s) => s.toLowerCase() === 'seving' ? 'Serving' : 'Servings')
+      .replace(/\bconíainer\b/i, 'container')
+    const sizePattern = /^(?:approx\.?\s*)?\d+(?:\/\d+|\.\d+)?\s*(?:g|ml|oz|tbsp|tsp|cups?|pieces?|pcs|sandwich(?:es)?|slices?|bags?|packs?)(?:\s*\(\d+(?:\.\d+)?\s*(?:g|ml)\))?$/i
+    for (const [field, pattern] of [
+      ['serving_size', /^serving\s+size\s*:?\s*(.*)$/i],
+      ['servings_per_container', /^(?:no\.?\s*of\s+)?servings?\s+per\s+(?:container|pack)\s*:?\s*(.*)$/i],
+    ] as const) {
+      if (output.data.serving[field] !== null) continue
+      const labels = region.filter((b) => pattern.test(servingText(b.text)))
+      if (labels.length !== 1) continue
+      const label = labels[0]!
+      if (field === 'serving_size' && region.some((b) => /^makes\b/i.test(b.text.trim()) &&
+        Math.abs(b.bbox.x - label.bbox.x) < label.bbox.width * .35 && cy(b) > cy(label) && cy(b) - cy(label) < label.bbox.height * 2)) continue
+      let value = servingValue(servingText(label.text).match(pattern)![1]!)
+      let sources = [label]
+      if (field === 'serving_size' && !value) {
+        const options = region.filter((b) => b.index !== label.index && sizePattern.test(servingValue(b.text)) && (
+          (b.bbox.x >= right(label) && Math.abs(cy(b) - cy(label)) < Math.min(b.bbox.height, label.bbox.height) * .45) ||
+          (Math.abs(b.bbox.x - label.bbox.x) < label.bbox.width * .35 && b.bbox.y >= label.bbox.y + label.bbox.height * .4 &&
+            cy(b) - cy(label) < label.bbox.height * 1.5)) &&
+          !anchors.some((a) => a.box.bbox.x >= right(label) && a.box.bbox.x < b.bbox.x &&
+            Math.abs(cy(a.box) - cy(b)) < Math.max(a.box.bbox.height, b.bbox.height)))
+        if (options.length !== 1) continue
+        value = servingValue(options[0]!.text)
+        sources = [label, options[0]!]
+      }
+      const valid = field === 'serving_size' ? sizePattern.test(value) : /^(?:about\s+)?\d+(?:\.\d+)?$/i.test(value)
+      if (!valid) continue
+      remember(`serving.${field}`, value, sources, 'single-panel-serving-block')
+      if (sources.some((b) => servingText(b.text) !== b.text.trim()) || sources.length > 1) {
+        issue(`serving.${field}`, 'Normalized a serving-label spelling or joined explicit fragments; verify against the image.')
+      }
+    }
+    if (output.data.serving.servings_per_container === null) {
+      const prefixes = region.filter((b) => /^(?:about\s+)?\d+(?:\.\d+)?\s+servings?$/i.test(b.text.trim()))
+      const suffixes = region.filter((b) => /^per\s+container$/i.test(b.text.trim()))
+      if (prefixes.length === 1 && suffixes.length === 1) {
+        const prefix = prefixes[0]!, suffix = suffixes[0]!
+        if (Math.abs(prefix.bbox.x - suffix.bbox.x) < prefix.bbox.width * .25 && cy(suffix) > cy(prefix) &&
+          cy(suffix) - cy(prefix) < Math.max(prefix.bbox.height, suffix.bbox.height) * 1.2) {
+          remember('serving.servings_per_container', prefix.text.replace(/\s+servings?\s*$/i, '').trim(), [prefix, suffix], 'single-panel-serving-block')
+        }
+      }
+    }
+  }
+
   // Multiple per-serving/per-100g amount columns require explicit selection, not an arbitrary first column.
   const basisHeadings = boxes.filter((b) => /(?:per\s*100\s*(?:g|ml)|as prepared|as sold)/i.test(b.text))
   const per100 = basisHeadings.length === 1 && /^per\s*100\s*(?:g|ml)$/i.test(basisHeadings[0]!.text.trim())
@@ -279,7 +357,7 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
 
   // Group unresolved names by their horizontal label column (micronutrient tables may have two).
   const columns: Anchor[][] = []
-  for (const a of anchors.filter((a) => !multiBasis && !multiplePanels && !scopedRows.has(a) && !duplicates.has(a.key) && !output.data.nutrients[a.key])) {
+  for (const a of anchors.filter((a) => !multiBasis && !multiplePanels && !scopedRows.has(a) && !a.inlineOnly && !duplicates.has(a.key) && !output.data.nutrients[a.key])) {
     const column = columns.find((c) => Math.abs(c[0]!.box.bbox.x - a.box.bbox.x) < width * 0.18)
     if (column) column.push(a)
     else columns.push([a])
@@ -295,7 +373,8 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
       !anchors.some((other) => !column.includes(other) && other.box.bbox.x > minX && right(other.box) < b.bbox.x &&
         Math.abs(cy(other.box) - cy(b)) < Math.max(other.box.bbox.height, b.bbox.height) * .85 &&
         Math.abs(cy(other.box) - cy(b)) + typicalHeight * .05 < Math.min(...column.map((a) => Math.abs(cy(a.box) - cy(b))))) &&
-      cy(b) > minY - typicalHeight && cy(b) < Math.min(cutoff, maxY + typicalHeight) &&
+      cy(b) > Math.min(minY - typicalHeight, ...column.map((a) => cy(a.box) - a.box.bbox.height)) &&
+      cy(b) < Math.min(cutoff, Math.max(maxY + typicalHeight, ...column.map((a) => cy(a.box) + a.box.bbox.height))) &&
       /^[\dOo<>.%μµ\s\-]+$|^(?:less than\s+)?[\dOo<>.]+\s*(?:kcal|kj|g|mg|mmg|mcg(?:\s+RE)?|[μµ]g(?:\s+RE)?|IU|%)$|^(?:g|mg|mcg(?:\s+RE)?|[μµ]g(?:\s+RE)?|IU)$/i.test(b.text.trim()) &&
       b.bbox.height > typicalHeight * 0.2)
     const massBoxes = candidates.filter((b) => !b.text.includes('%') && (!percentHeading ||
@@ -361,6 +440,85 @@ export function parseNutrition(result: OcrResult): NutritionExtraction {
           if (!output.data.nutrients[a.key]) store(a, percents[i]!.text, percents[i]!.boxes, 'ordered-percent-column')
         })
       }
+    }
+  }
+  if (!multiBasis && !multiplePanels) {
+    // Separate name | unit | amount columns. Align the COMPLETE unit-cell
+    // column, including damaged cells as blockers, before reading any amounts.
+    // A missing cell must never slide a later unit/value into an earlier row.
+    const unitPattern = /^(kcal|kj|mcg(?:\s+RE)?|mg|[μµ]g(?:\s+RE)?|g|IU)$/i
+    const eligible = anchors.filter((a) => !scopedRows.has(a) && !a.inlineOnly && !duplicates.has(a.key))
+    const labelColumns: Anchor[][] = []
+    for (const a of eligible.filter((a) => !a.tail)) {
+      const column = labelColumns.find((c) => Math.abs(c[0]!.box.bbox.x - a.box.bbox.x) < width * .18)
+      if (column) column.push(a)
+      else labelColumns.push([a])
+    }
+    const unitStarts = boxes.filter((b) => !labelIndexes.has(b.index) &&
+      /^(?:kcal|kj|mcg(?:\s+RE)?|mg|[μµ]g(?:\s+RE)?|g|IU)(?:\s+(?:[<>]\s*)?\d+(?:\.\d+)?)?$/i.test(b.text.trim()))
+    const unitColumns: Box[][] = []
+    for (const b of unitStarts) {
+      const column = unitColumns.find((c) => Math.abs(median(c.map((v) => v.bbox.x)) - b.bbox.x) < width * .06)
+      if (column) column.push(b)
+      else unitColumns.push([b])
+    }
+    for (const names of labelColumns.filter((c) => c.length >= 4)) {
+      const typicalHeight = median(names.map((a) => a.box.bbox.height))
+      for (const units of unitColumns.filter((c) => c.length >= 4)) {
+        const x = median(units.map((b) => b.bbox.x))
+        if (names.some((a) => right(a.box) >= x)) continue
+        const cells = boxes.filter((b) => !labelIndexes.has(b.index) && Math.abs(b.bbox.x - x) < width * .06 &&
+          cy(b) >= cy(names[0]!.box) - typicalHeight && cy(b) <= cy(names[names.length - 1]!.box) + typicalHeight)
+          .sort((a, b) => cy(a) - cy(b))
+          .map((b): Amount => ({ text: b.text.trim(), boxes: [b], x: b.bbox.x, y: cy(b), right: right(b), height: b.bbox.height }))
+        if (cells.length !== names.length || !orderedAlignment(names, cells)) continue
+        const edge = Math.min(Infinity, ...boxes.filter((b) => /^%\s*(?:daily|re|dv)/i.test(b.text) && b.bbox.x > x).map((b) => b.bbox.x))
+        // Bare daily values can look exactly like amounts. This initial pass
+        // requires an explicit right-hand percent heading as the column bound.
+        if (!Number.isFinite(edge)) continue
+        const shifts: number[] = []
+        names.forEach((a, i) => {
+          const cell = cells[i]!
+          const prefixAmount = cell.text.replace(/^(kcal|kj|mcg(?:\s+RE)?|mg|[μµ]g(?:\s+RE)?|g|IU)\s+((?:[<>]\s*)?\d+(?:\.\d+)?)$/i, '$2$1')
+          if (readAmount(prefixAmount)?.value && !unitPattern.test(cell.text)) {
+            if (!output.data.nutrients[a.key] && store(a, prefixAmount, cell.boxes, 'separate-unit-column')) shifts.push(cell.y - cy(a.box))
+            return
+          }
+          if (!unitPattern.test(cell.text)) return // damaged unit stays unresolved
+          const options = boxes.filter((b) => !labelIndexes.has(b.index) && !used.has(b.index) && b.bbox.x >= cell.right && right(b) <= edge &&
+            /^(?:[<>]\s*)?\d+(?:\.\d+)?$/.test(b.text.trim()) &&
+            Math.abs(cy(b) - cell.y) < Math.min(b.bbox.height, cell.height) * .45)
+          if (!output.data.nutrients[a.key] && options.length === 1 &&
+            store(a, `${options[0]!.text.trim()}${cell.text}`, [...cell.boxes, options[0]!], 'separate-unit-column')) {
+            shifts.push(cy(options[0]!) - cy(a.box))
+          }
+        })
+        // A unit printed inside its label can interrupt the unit-cell column.
+        // Only use a shift supported by multiple successful explicit-unit rows.
+        if (shifts.length >= 3) for (const a of eligible.filter((a) => unitPattern.test(a.tail) && !output.data.nutrients[a.key] &&
+          Math.abs(a.box.bbox.x - names[0]!.box.bbox.x) < width * .18)) {
+          const options = boxes.filter((b) => !labelIndexes.has(b.index) && !used.has(b.index) && b.bbox.x >= right(a.box) && right(b) <= edge &&
+            /^(?:[<>]\s*)?\d+(?:\.\d+)?$/.test(b.text.trim()) &&
+            Math.abs(cy(b) - cy(a.box) - median(shifts)) < Math.min(b.bbox.height, a.box.bbox.height) * .4)
+          if (options.length === 1) store({ ...a, unit: a.tail }, options[0]!.text, [options[0]!], 'separate-unit-column')
+        }
+      }
+    }
+
+    // Tight local rows avoid merging amounts from parallel table sections.
+    // Require an explicit readable amount/unit token, unique local
+    // ownership, and no intervening nutrient label. Never fall back past a
+    // damaged inline amount, or use a distant %DV as a replacement.
+    for (const a of eligible.filter((a) => !a.tail && !output.data.nutrients[a.key])) {
+      const options = boxes.filter((b) => !labelIndexes.has(b.index) && !used.has(b.index) &&
+        b.bbox.x >= right(a.box) - Math.min(b.bbox.height, a.box.bbox.height) * .1 &&
+        Math.abs(cy(b) - cy(a.box)) < Math.min(b.bbox.height, a.box.bbox.height) * .45 &&
+        !b.text.includes('%') && Boolean(readAmount(b.text)) &&
+        !anchors.some((other) => other !== a && other.box.bbox.x >= right(a.box) && other.box.bbox.x < b.bbox.x &&
+          cy(other.box) >= a.box.bbox.y - other.box.bbox.height && cy(other.box) <= a.box.bbox.y + a.box.bbox.height * 2) &&
+        !anchors.some((other) => other !== a && Math.abs(other.box.bbox.x - a.box.bbox.x) < width * .18 && right(other.box) <= b.bbox.x &&
+          Math.abs(cy(other.box) - cy(b)) <= Math.abs(cy(a.box) - cy(b))))
+      if (options.length === 1) store(a, options[0]!.text, [options[0]!], 'local-explicit-unit-row')
     }
   }
   for (const key of duplicates) issue(key, 'Repeated nutrient rows or multiple panels detected; select one panel.')

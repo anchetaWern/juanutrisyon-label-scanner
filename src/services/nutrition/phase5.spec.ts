@@ -17,7 +17,7 @@ describe('Phase 5 development regressions', () => {
       const input = fixtures[id]
       const original = JSON.stringify(input)
       const parsed = parseNutrition(input)
-      expect(parsed.parserVersion).toBe('spatial-review-v3')
+      expect(parsed.parserVersion).toBe('spatial-review-v4')
       expect(JSON.stringify(input)).toBe(original)
       const scaled = { ...input, sourceSize: { width: input.sourceSize.width * .5, height: input.sourceSize.height * .5 },
         lines: [...input.lines].reverse().map((l) => ({ ...l, bbox: { x: l.bbox.x * .5, y: l.bbox.y * .5, width: l.bbox.width * .5, height: l.bbox.height * .5 } })) }

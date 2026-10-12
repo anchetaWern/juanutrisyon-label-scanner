@@ -1,0 +1,2122 @@
+{
+  "03_tang_orange": {
+    "text": "aiaiime.\nNUTRITION INFORMATION\nServing Size: Approx. 5 g\nServings Per Pack: 4\nPer Serve %REI/RN*\nPer Serve %RE/RNI\nEnergy\n20 kcal\n<2%\n-Trans\n0g\nCarbohydrate\n4B\nCholesterol\n0mg\n-Sugars\n3g\nSodium\n45mg\n-Dietary Fiber\n<1g\nVitaminc\n45mg\n100%\nProtein\n0B\nVitaminD\n1.5吧\n30%\nFat, total\n08\nZinc\n1.62mg\n30%\n-Saturated\n0g\nTPerenr ENi vae reae phinie itay eferene aes po 201 r- ale e ron",
+    "lines": [
+      {
+        "text": "aiaiime.",
+        "confidence": 39.49619848281145,
+        "bbox": {
+          "x": 978,
+          "y": 0,
+          "width": 244,
+          "height": 29
+        }
+      },
+      {
+        "text": "NUTRITION INFORMATION",
+        "confidence": 99.90813192867097,
+        "bbox": {
+          "x": 240,
+          "y": 28,
+          "width": 1398,
+          "height": 168
+        }
+      },
+      {
+        "text": "Serving Size: Approx. 5 g",
+        "confidence": 93.32068085670471,
+        "bbox": {
+          "x": 96,
+          "y": 131,
+          "width": 789,
+          "height": 114
+        }
+      },
+      {
+        "text": "Servings Per Pack: 4",
+        "confidence": 98.24859112501144,
+        "bbox": {
+          "x": 1137,
+          "y": 159,
+          "width": 655,
+          "height": 104
+        }
+      },
+      {
+        "text": "Per Serve %REI/RN*",
+        "confidence": 89.46911030345493,
+        "bbox": {
+          "x": 452,
+          "y": 229,
+          "width": 453,
+          "height": 93
+        }
+      },
+      {
+        "text": "Per Serve %RE/RNI",
+        "confidence": 91.30718900876886,
+        "bbox": {
+          "x": 1312,
+          "y": 253,
+          "width": 468,
+          "height": 102
+        }
+      },
+      {
+        "text": "Energy",
+        "confidence": 99.34752782185873,
+        "bbox": {
+          "x": 67,
+          "y": 315,
+          "width": 180,
+          "height": 106
+        }
+      },
+      {
+        "text": "20 kcal",
+        "confidence": 88.26939037867955,
+        "bbox": {
+          "x": 459,
+          "y": 329,
+          "width": 184,
+          "height": 91
+        }
+      },
+      {
+        "text": "<2%",
+        "confidence": 97.82073696454367,
+        "bbox": {
+          "x": 741,
+          "y": 337,
+          "width": 119,
+          "height": 80
+        }
+      },
+      {
+        "text": "-Trans",
+        "confidence": 93.20903023084006,
+        "bbox": {
+          "x": 970,
+          "y": 343,
+          "width": 167,
+          "height": 86
+        }
+      },
+      {
+        "text": "0g",
+        "confidence": 96.46973311901093,
+        "bbox": {
+          "x": 1384,
+          "y": 363,
+          "width": 93,
+          "height": 84
+        }
+      },
+      {
+        "text": "Carbohydrate",
+        "confidence": 99.95339711507162,
+        "bbox": {
+          "x": 62,
+          "y": 421,
+          "width": 314,
+          "height": 109
+        }
+      },
+      {
+        "text": "4B",
+        "confidence": 89.64462280273438,
+        "bbox": {
+          "x": 493,
+          "y": 430,
+          "width": 102,
+          "height": 98
+        }
+      },
+      {
+        "text": "Cholesterol",
+        "confidence": 99.94037097150628,
+        "bbox": {
+          "x": 940,
+          "y": 440,
+          "width": 261,
+          "height": 93
+        }
+      },
+      {
+        "text": "0mg",
+        "confidence": 97.85761833190918,
+        "bbox": {
+          "x": 1357,
+          "y": 463,
+          "width": 137,
+          "height": 92
+        }
+      },
+      {
+        "text": "-Sugars",
+        "confidence": 96.26762185777936,
+        "bbox": {
+          "x": 94,
+          "y": 540,
+          "width": 170,
+          "height": 85
+        }
+      },
+      {
+        "text": "3g",
+        "confidence": 76.64371132850647,
+        "bbox": {
+          "x": 497,
+          "y": 538,
+          "width": 93,
+          "height": 84
+        }
+      },
+      {
+        "text": "Sodium",
+        "confidence": 98.48361313343048,
+        "bbox": {
+          "x": 933,
+          "y": 542,
+          "width": 186,
+          "height": 93
+        }
+      },
+      {
+        "text": "45mg",
+        "confidence": 99.63508546352386,
+        "bbox": {
+          "x": 1336,
+          "y": 555,
+          "width": 172,
+          "height": 108
+        }
+      },
+      {
+        "text": "-Dietary Fiber",
+        "confidence": 96.17639567170825,
+        "bbox": {
+          "x": 90,
+          "y": 625,
+          "width": 319,
+          "height": 93
+        }
+      },
+      {
+        "text": "<1g",
+        "confidence": 89.4343912601471,
+        "bbox": {
+          "x": 481,
+          "y": 635,
+          "width": 118,
+          "height": 90
+        }
+      },
+      {
+        "text": "Vitaminc",
+        "confidence": 92.39221215248108,
+        "bbox": {
+          "x": 934,
+          "y": 642,
+          "width": 225,
+          "height": 92
+        }
+      },
+      {
+        "text": "45mg",
+        "confidence": 99.61778819561005,
+        "bbox": {
+          "x": 1341,
+          "y": 661,
+          "width": 166,
+          "height": 101
+        }
+      },
+      {
+        "text": "100%",
+        "confidence": 97.64968752861023,
+        "bbox": {
+          "x": 1602,
+          "y": 670,
+          "width": 148,
+          "height": 84
+        }
+      },
+      {
+        "text": "Protein",
+        "confidence": 99.61409568786621,
+        "bbox": {
+          "x": 41,
+          "y": 725,
+          "width": 186,
+          "height": 94
+        }
+      },
+      {
+        "text": "0B",
+        "confidence": 47.9805126786232,
+        "bbox": {
+          "x": 482,
+          "y": 732,
+          "width": 101,
+          "height": 96
+        }
+      },
+      {
+        "text": "VitaminD",
+        "confidence": 95.91491967439651,
+        "bbox": {
+          "x": 933,
+          "y": 747,
+          "width": 226,
+          "height": 89
+        }
+      },
+      {
+        "text": "1.5吧",
+        "confidence": 90.54175168275833,
+        "bbox": {
+          "x": 1340,
+          "y": 755,
+          "width": 167,
+          "height": 101
+        }
+      },
+      {
+        "text": "30%",
+        "confidence": 85.78388889630637,
+        "bbox": {
+          "x": 1607,
+          "y": 771,
+          "width": 127,
+          "height": 89
+        }
+      },
+      {
+        "text": "Fat, total",
+        "confidence": 97.47873187065125,
+        "bbox": {
+          "x": 41,
+          "y": 821,
+          "width": 216,
+          "height": 102
+        }
+      },
+      {
+        "text": "08",
+        "confidence": 78.24858129024506,
+        "bbox": {
+          "x": 479,
+          "y": 833,
+          "width": 101,
+          "height": 93
+        }
+      },
+      {
+        "text": "Zinc",
+        "confidence": 98.45078736543655,
+        "bbox": {
+          "x": 927,
+          "y": 839,
+          "width": 121,
+          "height": 93
+        }
+      },
+      {
+        "text": "1.62mg",
+        "confidence": 99.61965481440225,
+        "bbox": {
+          "x": 1323,
+          "y": 861,
+          "width": 197,
+          "height": 97
+        }
+      },
+      {
+        "text": "30%",
+        "confidence": 99.53836798667908,
+        "bbox": {
+          "x": 1608,
+          "y": 876,
+          "width": 123,
+          "height": 84
+        }
+      },
+      {
+        "text": "-Saturated",
+        "confidence": 94.40830051898956,
+        "bbox": {
+          "x": 80,
+          "y": 922,
+          "width": 242,
+          "height": 87
+        }
+      },
+      {
+        "text": "0g",
+        "confidence": 94.50048208236694,
+        "bbox": {
+          "x": 478,
+          "y": 936,
+          "width": 99,
+          "height": 80
+        }
+      },
+      {
+        "text": "TPerenr ENi vae reae phinie itay eferene aes po 201 r- ale e ron",
+        "confidence": 41.544553358107805,
+        "bbox": {
+          "x": 16,
+          "y": 976,
+          "width": 1784,
+          "height": 141
+        }
+      }
+    ],
+    "engine": "paddleocr.js",
+    "sourceSize": {
+      "width": 1800,
+      "height": 1117
+    }
+  },
+  "04_blue_tub": {
+    "text": "Nutrition Facts\nAbout 6 servings per container\n1/2 cup (28g)\nServing size\nAmount per serving\n130\nCalories\n% Daily Value*\nTotal Fat 4g\n5%\nSaturated Fat 1g\n5%\nTrans Fat Og\nCholesterol 10mg\n3%\nSodium 70mg\n3%\nTotal Carbohydrate 20g\n7%\nDietary Fiber < 1g\n2%\nTotal Sugars 6g\nIncludes 5g Added Sugars\n10%\nProtein 3g\nVitamin D O0mcg 0%\n• Calcium 0mg 0%\nIron 0.4mg 2%\n• Potassium 60mg 0%\nThe",
+    "lines": [
+      {
+        "text": "Nutrition Facts",
+        "confidence": 99.33436751365662,
+        "bbox": {
+          "x": 30,
+          "y": 107,
+          "width": 1363,
+          "height": 306
+        }
+      },
+      {
+        "text": "About 6 servings per container",
+        "confidence": 99.09577528635661,
+        "bbox": {
+          "x": 44,
+          "y": 352,
+          "width": 1191,
+          "height": 158
+        }
+      },
+      {
+        "text": "1/2 cup (28g)",
+        "confidence": 96.83116307625403,
+        "bbox": {
+          "x": 814,
+          "y": 462,
+          "width": 541,
+          "height": 165
+        }
+      },
+      {
+        "text": "Serving size",
+        "confidence": 97.23927229642868,
+        "bbox": {
+          "x": 53,
+          "y": 477,
+          "width": 505,
+          "height": 133
+        }
+      },
+      {
+        "text": "Amount per serving",
+        "confidence": 97.92606433232626,
+        "bbox": {
+          "x": 60,
+          "y": 719,
+          "width": 538,
+          "height": 94
+        }
+      },
+      {
+        "text": "130",
+        "confidence": 99.99885956446329,
+        "bbox": {
+          "x": 1050,
+          "y": 762,
+          "width": 316,
+          "height": 204
+        }
+      },
+      {
+        "text": "Calories",
+        "confidence": 99.99206885695457,
+        "bbox": {
+          "x": 68,
+          "y": 808,
+          "width": 513,
+          "height": 152
+        }
+      },
+      {
+        "text": "% Daily Value*",
+        "confidence": 94.94982021195548,
+        "bbox": {
+          "x": 1019,
+          "y": 1033,
+          "width": 322,
+          "height": 76
+        }
+      },
+      {
+        "text": "Total Fat 4g",
+        "confidence": 95.94484269618988,
+        "bbox": {
+          "x": 65,
+          "y": 1108,
+          "width": 359,
+          "height": 85
+        }
+      },
+      {
+        "text": "5%",
+        "confidence": 99.91980493068695,
+        "bbox": {
+          "x": 1240,
+          "y": 1120,
+          "width": 106,
+          "height": 78
+        }
+      },
+      {
+        "text": "Saturated Fat 1g",
+        "confidence": 99.48583953082561,
+        "bbox": {
+          "x": 141,
+          "y": 1195,
+          "width": 521,
+          "height": 89
+        }
+      },
+      {
+        "text": "5%",
+        "confidence": 99.94707405567169,
+        "bbox": {
+          "x": 1235,
+          "y": 1203,
+          "width": 111,
+          "height": 81
+        }
+      },
+      {
+        "text": "Trans Fat Og",
+        "confidence": 89.95968798796335,
+        "bbox": {
+          "x": 148,
+          "y": 1290,
+          "width": 379,
+          "height": 89
+        }
+      },
+      {
+        "text": "Cholesterol 10mg",
+        "confidence": 99.54653196036816,
+        "bbox": {
+          "x": 67,
+          "y": 1375,
+          "width": 557,
+          "height": 97
+        }
+      },
+      {
+        "text": "3%",
+        "confidence": 99.67225790023804,
+        "bbox": {
+          "x": 1235,
+          "y": 1385,
+          "width": 107,
+          "height": 79
+        }
+      },
+      {
+        "text": "Sodium 70mg",
+        "confidence": 99.6687569401481,
+        "bbox": {
+          "x": 64,
+          "y": 1459,
+          "width": 432,
+          "height": 99
+        }
+      },
+      {
+        "text": "3%",
+        "confidence": 99.96374845504761,
+        "bbox": {
+          "x": 1233,
+          "y": 1470,
+          "width": 106,
+          "height": 78
+        }
+      },
+      {
+        "text": "Total Carbohydrate 20g",
+        "confidence": 98.28988665884192,
+        "bbox": {
+          "x": 69,
+          "y": 1552,
+          "width": 760,
+          "height": 107
+        }
+      },
+      {
+        "text": "7%",
+        "confidence": 99.8031735420227,
+        "bbox": {
+          "x": 1233,
+          "y": 1561,
+          "width": 106,
+          "height": 84
+        }
+      },
+      {
+        "text": "Dietary Fiber < 1g",
+        "confidence": 96.65925403436026,
+        "bbox": {
+          "x": 142,
+          "y": 1643,
+          "width": 558,
+          "height": 108
+        }
+      },
+      {
+        "text": "2%",
+        "confidence": 99.94649887084961,
+        "bbox": {
+          "x": 1231,
+          "y": 1651,
+          "width": 105,
+          "height": 79
+        }
+      },
+      {
+        "text": "Total Sugars 6g",
+        "confidence": 99.70680713653564,
+        "bbox": {
+          "x": 147,
+          "y": 1730,
+          "width": 485,
+          "height": 108
+        }
+      },
+      {
+        "text": "Includes 5g Added Sugars",
+        "confidence": 99.61079806089401,
+        "bbox": {
+          "x": 216,
+          "y": 1821,
+          "width": 857,
+          "height": 123
+        }
+      },
+      {
+        "text": "10%",
+        "confidence": 99.97090498606363,
+        "bbox": {
+          "x": 1195,
+          "y": 1827,
+          "width": 139,
+          "height": 87
+        }
+      },
+      {
+        "text": "Protein 3g",
+        "confidence": 99.6668952703476,
+        "bbox": {
+          "x": 63,
+          "y": 1901,
+          "width": 322,
+          "height": 121
+        }
+      },
+      {
+        "text": "Vitamin D O0mcg 0%",
+        "confidence": 96.23841643333435,
+        "bbox": {
+          "x": 66,
+          "y": 2090,
+          "width": 563,
+          "height": 139
+        }
+      },
+      {
+        "text": "• Calcium 0mg 0%",
+        "confidence": 92.86649376153946,
+        "bbox": {
+          "x": 799,
+          "y": 2110,
+          "width": 532,
+          "height": 122
+        }
+      },
+      {
+        "text": "Iron 0.4mg 2%",
+        "confidence": 96.48775045688336,
+        "bbox": {
+          "x": 66,
+          "y": 2200,
+          "width": 413,
+          "height": 127
+        }
+      },
+      {
+        "text": "• Potassium 60mg 0%",
+        "confidence": 97.4079712441093,
+        "bbox": {
+          "x": 688,
+          "y": 2215,
+          "width": 644,
+          "height": 144
+        }
+      },
+      {
+        "text": "The",
+        "confidence": 99.99710718790689,
+        "bbox": {
+          "x": 85,
+          "y": 2346,
+          "width": 106,
+          "height": 54
+        }
+      }
+    ],
+    "engine": "paddleocr.js",
+    "sourceSize": {
+      "width": 1402,
+      "height": 2400
+    }
+  },
+  "09_golden_fiesta_palm_oil": {
+    "text": "Nutrition Fa\nServing Size: 1 Tbsp (15g)\nNo. of servings per container: 15\nAmount Per Serving\nCalories 140 Calories from Fat 140\n%RENI\n★\n8%\n%DV*\nTotal Fats/Lipids 15g\n23%\nSaturated Fat 6g\n30%\nUnsaturated Fat 8g\nTrans Fat 0g\nOmega 9 6g\ne)\n血食加\nOmega 6 2g\nCholesterol Omg\n0%\nSodium 0mg\n0%\nTolal Carbohydrates 0g\n0%\nDietary Fiber 0g\n0%\nSugar 0g\nIncludes Og Added Sugars\n0%\nProtein 0g\nAL\n0%\nVitamin A 190 μg RE\n38%\nNot a signfcant source of Vtamin ,Calcium, nd lron.\n'Percent Daily Values are based on a 2,00 calorie diet Your Dailty\nSOYA\nValues may be higher or lower depending on your calorie needs.\n\"Percent RENl values are based on FNRl requirement of Female\n19-29 years old.\n40% of total fat\nTemperature changes may rosult in white crystal formation\nwhich naturally occurs in palm oill.",
+    "lines": [
+      {
+        "text": "Nutrition Fa",
+        "confidence": 97.59865601857504,
+        "bbox": {
+          "x": 295,
+          "y": 134,
+          "width": 687,
+          "height": 221
+        }
+      },
+      {
+        "text": "Serving Size: 1 Tbsp (15g)",
+        "confidence": 98.99306641175197,
+        "bbox": {
+          "x": 266,
+          "y": 257,
+          "width": 560,
+          "height": 154
+        }
+      },
+      {
+        "text": "No. of servings per container: 15",
+        "confidence": 96.82482851274085,
+        "bbox": {
+          "x": 250,
+          "y": 332,
+          "width": 702,
+          "height": 159
+        }
+      },
+      {
+        "text": "Amount Per Serving",
+        "confidence": 99.60976607269711,
+        "bbox": {
+          "x": 229,
+          "y": 460,
+          "width": 413,
+          "height": 131
+        }
+      },
+      {
+        "text": "Calories 140 Calories from Fat 140",
+        "confidence": 97.60959604207207,
+        "bbox": {
+          "x": 225,
+          "y": 544,
+          "width": 678,
+          "height": 147
+        }
+      },
+      {
+        "text": "%RENI",
+        "confidence": 93.05060982704163,
+        "bbox": {
+          "x": 938,
+          "y": 543,
+          "width": 164,
+          "height": 92
+        }
+      },
+      {
+        "text": "★",
+        "confidence": 58.38590860366821,
+        "bbox": {
+          "x": 1089,
+          "y": 573,
+          "width": 47,
+          "height": 27
+        }
+      },
+      {
+        "text": "8%",
+        "confidence": 99.90781247615814,
+        "bbox": {
+          "x": 979,
+          "y": 620,
+          "width": 102,
+          "height": 83
+        }
+      },
+      {
+        "text": "%DV*",
+        "confidence": 97.820545732975,
+        "bbox": {
+          "x": 779,
+          "y": 699,
+          "width": 143,
+          "height": 91
+        }
+      },
+      {
+        "text": "Total Fats/Lipids 15g",
+        "confidence": 96.43984209923518,
+        "bbox": {
+          "x": 209,
+          "y": 717,
+          "width": 433,
+          "height": 128
+        }
+      },
+      {
+        "text": "23%",
+        "confidence": 99.96171991030374,
+        "bbox": {
+          "x": 800,
+          "y": 779,
+          "width": 114,
+          "height": 88
+        }
+      },
+      {
+        "text": "Saturated Fat 6g",
+        "confidence": 96.3591817766428,
+        "bbox": {
+          "x": 232,
+          "y": 803,
+          "width": 334,
+          "height": 107
+        }
+      },
+      {
+        "text": "30%",
+        "confidence": 99.96701876322427,
+        "bbox": {
+          "x": 790,
+          "y": 862,
+          "width": 113,
+          "height": 87
+        }
+      },
+      {
+        "text": "Unsaturated Fat 8g",
+        "confidence": 97.31201860639784,
+        "bbox": {
+          "x": 223,
+          "y": 877,
+          "width": 383,
+          "height": 117
+        }
+      },
+      {
+        "text": "Trans Fat 0g",
+        "confidence": 96.68281326691309,
+        "bbox": {
+          "x": 219,
+          "y": 958,
+          "width": 256,
+          "height": 102
+        }
+      },
+      {
+        "text": "Omega 9 6g",
+        "confidence": 85.62019526958466,
+        "bbox": {
+          "x": 249,
+          "y": 1042,
+          "width": 238,
+          "height": 93
+        }
+      },
+      {
+        "text": "e)",
+        "confidence": 99.42096173763275,
+        "bbox": {
+          "x": 0,
+          "y": 1068,
+          "width": 50,
+          "height": 65
+        }
+      },
+      {
+        "text": "血食加",
+        "confidence": 43.81164064009984,
+        "bbox": {
+          "x": 485,
+          "y": 1067,
+          "width": 68,
+          "height": 37
+        }
+      },
+      {
+        "text": "Omega 6 2g",
+        "confidence": 89.65869009494781,
+        "bbox": {
+          "x": 240,
+          "y": 1118,
+          "width": 250,
+          "height": 95
+        }
+      },
+      {
+        "text": "Cholesterol Omg",
+        "confidence": 97.33406027158101,
+        "bbox": {
+          "x": 155,
+          "y": 1191,
+          "width": 343,
+          "height": 111
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 99.82629418373108,
+        "bbox": {
+          "x": 771,
+          "y": 1256,
+          "width": 83,
+          "height": 80
+        }
+      },
+      {
+        "text": "Sodium 0mg",
+        "confidence": 96.14547848701477,
+        "bbox": {
+          "x": 145,
+          "y": 1275,
+          "width": 270,
+          "height": 100
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 99.92329478263855,
+        "bbox": {
+          "x": 762,
+          "y": 1334,
+          "width": 83,
+          "height": 85
+        }
+      },
+      {
+        "text": "Tolal Carbohydrates 0g",
+        "confidence": 97.87946966561404,
+        "bbox": {
+          "x": 136,
+          "y": 1351,
+          "width": 473,
+          "height": 119
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 99.90009367465973,
+        "bbox": {
+          "x": 753,
+          "y": 1417,
+          "width": 80,
+          "height": 77
+        }
+      },
+      {
+        "text": "Dietary Fiber 0g",
+        "confidence": 97.39055410027504,
+        "bbox": {
+          "x": 160,
+          "y": 1433,
+          "width": 324,
+          "height": 106
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 99.8978853225708,
+        "bbox": {
+          "x": 749,
+          "y": 1492,
+          "width": 75,
+          "height": 73
+        }
+      },
+      {
+        "text": "Sugar 0g",
+        "confidence": 94.4339968264103,
+        "bbox": {
+          "x": 154,
+          "y": 1509,
+          "width": 199,
+          "height": 93
+        }
+      },
+      {
+        "text": "Includes Og Added Sugars",
+        "confidence": 95.40506874521574,
+        "bbox": {
+          "x": 143,
+          "y": 1582,
+          "width": 515,
+          "height": 125
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 89.11890387535095,
+        "bbox": {
+          "x": 729,
+          "y": 1646,
+          "width": 76,
+          "height": 72
+        }
+      },
+      {
+        "text": "Protein 0g",
+        "confidence": 96.36518180370331,
+        "bbox": {
+          "x": 105,
+          "y": 1662,
+          "width": 223,
+          "height": 93
+        }
+      },
+      {
+        "text": "AL",
+        "confidence": 72.59563356637955,
+        "bbox": {
+          "x": 1158,
+          "y": 1692,
+          "width": 54,
+          "height": 58
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 99.97584223747253,
+        "bbox": {
+          "x": 854,
+          "y": 1739,
+          "width": 78,
+          "height": 74
+        }
+      },
+      {
+        "text": "Vitamin A 190 μg RE",
+        "confidence": 91.84399953013973,
+        "bbox": {
+          "x": 93,
+          "y": 1768,
+          "width": 397,
+          "height": 106
+        }
+      },
+      {
+        "text": "38%",
+        "confidence": 87.32911149660745,
+        "bbox": {
+          "x": 826,
+          "y": 1838,
+          "width": 107,
+          "height": 79
+        }
+      },
+      {
+        "text": "Not a signfcant source of Vtamin ,Calcium, nd lron.",
+        "confidence": 86.88157276779998,
+        "bbox": {
+          "x": 82,
+          "y": 1880,
+          "width": 743,
+          "height": 132
+        }
+      },
+      {
+        "text": "'Percent Daily Values are based on a 2,00 calorie diet Your Dailty",
+        "confidence": 91.51756704756708,
+        "bbox": {
+          "x": 80,
+          "y": 1945,
+          "width": 872,
+          "height": 131
+        }
+      },
+      {
+        "text": "SOYA",
+        "confidence": 96.93906903266907,
+        "bbox": {
+          "x": 1092,
+          "y": 1982,
+          "width": 115,
+          "height": 57
+        }
+      },
+      {
+        "text": "Values may be higher or lower depending on your calorie needs.",
+        "confidence": 93.34751208943706,
+        "bbox": {
+          "x": 94,
+          "y": 1998,
+          "width": 845,
+          "height": 127
+        }
+      },
+      {
+        "text": "\"Percent RENl values are based on FNRl requirement of Female",
+        "confidence": 92.86302069822948,
+        "bbox": {
+          "x": 68,
+          "y": 2054,
+          "width": 852,
+          "height": 124
+        }
+      },
+      {
+        "text": "19-29 years old.",
+        "confidence": 97.43972159922123,
+        "bbox": {
+          "x": 88,
+          "y": 2113,
+          "width": 207,
+          "height": 66
+        }
+      },
+      {
+        "text": "40% of total fat",
+        "confidence": 86.05352155864239,
+        "bbox": {
+          "x": 58,
+          "y": 2167,
+          "width": 255,
+          "height": 71
+        }
+      },
+      {
+        "text": "Temperature changes may rosult in white crystal formation",
+        "confidence": 94.9826575162118,
+        "bbox": {
+          "x": 0,
+          "y": 2242,
+          "width": 941,
+          "height": 97
+        }
+      },
+      {
+        "text": "which naturally occurs in palm oill.",
+        "confidence": 94.32809261812103,
+        "bbox": {
+          "x": 0,
+          "y": 2283,
+          "width": 552,
+          "height": 77
+        }
+      }
+    ],
+    "engine": "paddleocr.js",
+    "sourceSize": {
+      "width": 1212,
+      "height": 2400
+    }
+  },
+  "10_sandwich_crackers": {
+    "text": "Nutrition\nAmount/serving\n% Daily Value\nFacts\nAmount/serving\nTotal Fat 2.5g\n% Daily Value\n4%\nTotal Carbohydrate\nSaturated Fat 1.5g\n9g\n3%\n7%\n14 servings\nDietary Fiber Og\nTrans Fat Og\n0%\nper container\nTotal Sugars 4g\nServing size\nCholesterol Omg\n0%\n1 Sandwich (13.5g)\nIncludes 4g Added Sugars\nSodium 45mg\n7%\n2%\nProtein <1g\nCalories\n70\nVitamin D 0mcg 0% · Calcium 6mg 0%· Iron Omg 0% · Potassium 17mg 0%\na\nper serving\nn\n3",
+    "lines": [
+      {
+        "text": "Nutrition",
+        "confidence": 99.99277459250557,
+        "bbox": {
+          "x": 176,
+          "y": 23,
+          "width": 416,
+          "height": 145
+        }
+      },
+      {
+        "text": "Amount/serving",
+        "confidence": 99.96062900338855,
+        "bbox": {
+          "x": 634,
+          "y": 72,
+          "width": 306,
+          "height": 75
+        }
+      },
+      {
+        "text": "% Daily Value",
+        "confidence": 99.35169907716605,
+        "bbox": {
+          "x": 967,
+          "y": 105,
+          "width": 209,
+          "height": 57
+        }
+      },
+      {
+        "text": "Facts",
+        "confidence": 99.99333381652832,
+        "bbox": {
+          "x": 176,
+          "y": 119,
+          "width": 281,
+          "height": 125
+        }
+      },
+      {
+        "text": "Amount/serving",
+        "confidence": 99.11881940705436,
+        "bbox": {
+          "x": 1238,
+          "y": 120,
+          "width": 294,
+          "height": 74
+        }
+      },
+      {
+        "text": "Total Fat 2.5g",
+        "confidence": 98.68369230202266,
+        "bbox": {
+          "x": 630,
+          "y": 136,
+          "width": 261,
+          "height": 75
+        }
+      },
+      {
+        "text": "% Daily Value",
+        "confidence": 93.6024262354924,
+        "bbox": {
+          "x": 1557,
+          "y": 154,
+          "width": 197,
+          "height": 54
+        }
+      },
+      {
+        "text": "4%",
+        "confidence": 99.865061044693,
+        "bbox": {
+          "x": 1112,
+          "y": 178,
+          "width": 73,
+          "height": 52
+        }
+      },
+      {
+        "text": "Total Carbohydrate",
+        "confidence": 97.9787396060096,
+        "bbox": {
+          "x": 1243,
+          "y": 187,
+          "width": 359,
+          "height": 74
+        }
+      },
+      {
+        "text": "Saturated Fat 1.5g",
+        "confidence": 99.9202917019526,
+        "bbox": {
+          "x": 666,
+          "y": 205,
+          "width": 298,
+          "height": 71
+        }
+      },
+      {
+        "text": "9g",
+        "confidence": 99.58644807338715,
+        "bbox": {
+          "x": 1598,
+          "y": 220,
+          "width": 53,
+          "height": 45
+        }
+      },
+      {
+        "text": "3%",
+        "confidence": 99.98965263366699,
+        "bbox": {
+          "x": 1692,
+          "y": 224,
+          "width": 66,
+          "height": 47
+        }
+      },
+      {
+        "text": "7%",
+        "confidence": 99.79330897331238,
+        "bbox": {
+          "x": 1110,
+          "y": 238,
+          "width": 71,
+          "height": 53
+        }
+      },
+      {
+        "text": "14 servings",
+        "confidence": 99.35734217817132,
+        "bbox": {
+          "x": 192,
+          "y": 253,
+          "width": 201,
+          "height": 62
+        }
+      },
+      {
+        "text": "Dietary Fiber Og",
+        "confidence": 96.56469635665417,
+        "bbox": {
+          "x": 1276,
+          "y": 250,
+          "width": 244,
+          "height": 67
+        }
+      },
+      {
+        "text": "Trans Fat Og",
+        "confidence": 94.99099651972452,
+        "bbox": {
+          "x": 666,
+          "y": 273,
+          "width": 207,
+          "height": 65
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 99.9299943447113,
+        "bbox": {
+          "x": 1689,
+          "y": 281,
+          "width": 66,
+          "height": 48
+        }
+      },
+      {
+        "text": "per container",
+        "confidence": 97.88799927784846,
+        "bbox": {
+          "x": 192,
+          "y": 304,
+          "width": 225,
+          "height": 54
+        }
+      },
+      {
+        "text": "Total Sugars 4g",
+        "confidence": 99.84280467033386,
+        "bbox": {
+          "x": 1274,
+          "y": 317,
+          "width": 236,
+          "height": 63
+        }
+      },
+      {
+        "text": "Serving size",
+        "confidence": 99.89122847716013,
+        "bbox": {
+          "x": 189,
+          "y": 344,
+          "width": 256,
+          "height": 64
+        }
+      },
+      {
+        "text": "Cholesterol Omg",
+        "confidence": 98.48888516426086,
+        "bbox": {
+          "x": 625,
+          "y": 336,
+          "width": 307,
+          "height": 71
+        }
+      },
+      {
+        "text": "0%",
+        "confidence": 94.52892541885376,
+        "bbox": {
+          "x": 1106,
+          "y": 369,
+          "width": 69,
+          "height": 49
+        }
+      },
+      {
+        "text": "1 Sandwich (13.5g)",
+        "confidence": 99.72957538233864,
+        "bbox": {
+          "x": 187,
+          "y": 386,
+          "width": 389,
+          "height": 76
+        }
+      },
+      {
+        "text": "Includes 4g Added Sugars",
+        "confidence": 97.29595159490904,
+        "bbox": {
+          "x": 1268,
+          "y": 380,
+          "width": 361,
+          "height": 70
+        }
+      },
+      {
+        "text": "Sodium 45mg",
+        "confidence": 99.88577636805448,
+        "bbox": {
+          "x": 621,
+          "y": 403,
+          "width": 253,
+          "height": 66
+        }
+      },
+      {
+        "text": "7%",
+        "confidence": 99.97496008872986,
+        "bbox": {
+          "x": 1680,
+          "y": 406,
+          "width": 72,
+          "height": 50
+        }
+      },
+      {
+        "text": "2%",
+        "confidence": 87.30833828449249,
+        "bbox": {
+          "x": 1103,
+          "y": 434,
+          "width": 70,
+          "height": 49
+        }
+      },
+      {
+        "text": "Protein <1g",
+        "confidence": 96.07846249233593,
+        "bbox": {
+          "x": 1228,
+          "y": 440,
+          "width": 211,
+          "height": 62
+        }
+      },
+      {
+        "text": "Calories",
+        "confidence": 99.96273294091225,
+        "bbox": {
+          "x": 187,
+          "y": 455,
+          "width": 177,
+          "height": 60
+        }
+      },
+      {
+        "text": "70",
+        "confidence": 99.99549388885498,
+        "bbox": {
+          "x": 367,
+          "y": 474,
+          "width": 99,
+          "height": 75
+        }
+      },
+      {
+        "text": "Vitamin D 0mcg 0% · Calcium 6mg 0%· Iron Omg 0% · Potassium 17mg 0%",
+        "confidence": 91.76977063292888,
+        "bbox": {
+          "x": 621,
+          "y": 484,
+          "width": 1142,
+          "height": 113
+        }
+      },
+      {
+        "text": "a",
+        "confidence": 55.991095304489136,
+        "bbox": {
+          "x": 1784,
+          "y": 475,
+          "width": 16,
+          "height": 29
+        }
+      },
+      {
+        "text": "per serving",
+        "confidence": 99.41268021410163,
+        "bbox": {
+          "x": 186,
+          "y": 497,
+          "width": 173,
+          "height": 50
+        }
+      },
+      {
+        "text": "n",
+        "confidence": 34.79430079460144,
+        "bbox": {
+          "x": 1781,
+          "y": 525,
+          "width": 19,
+          "height": 30
+        }
+      },
+      {
+        "text": "3",
+        "confidence": 20.973636209964752,
+        "bbox": {
+          "x": 1294,
+          "y": 647,
+          "width": 26,
+          "height": 22
+        }
+      }
+    ],
+    "engine": "paddleocr.js",
+    "sourceSize": {
+      "width": 1800,
+      "height": 680
+    }
+  },
+  "12_green_potato_snack": {
+    "text": "Nutrition Facts\nSeving Size 1.06 oz. (30g)\nSevings Per Container about 2\nAmount Per Serving\nEnergy 150kcal\n% RE/RNI*\nCalories from Fat 60\n6%\nTotal Fat 7g\nSaturated Fat 4g\nTrans Fat Og\nCholesterol Omg\nSodium 220mg\nTotal Carbohydrate 20g\nDietary Fiber Og\nSugars 3g\nTotal Protein 1g\n35%\nVitamin A",
+    "lines": [
+      {
+        "text": "Nutrition Facts",
+        "confidence": 99.02028997739156,
+        "bbox": {
+          "x": 314,
+          "y": 39,
+          "width": 1270,
+          "height": 279
+        }
+      },
+      {
+        "text": "Seving Size 1.06 oz. (30g)",
+        "confidence": 98.30653277727274,
+        "bbox": {
+          "x": 312,
+          "y": 131,
+          "width": 1003,
+          "height": 215
+        }
+      },
+      {
+        "text": "Sevings Per Container about 2",
+        "confidence": 95.2969569584419,
+        "bbox": {
+          "x": 315,
+          "y": 192,
+          "width": 1149,
+          "height": 232
+        }
+      },
+      {
+        "text": "Amount Per Serving",
+        "confidence": 95.54213682810465,
+        "bbox": {
+          "x": 301,
+          "y": 266,
+          "width": 968,
+          "height": 249
+        }
+      },
+      {
+        "text": "Energy 150kcal",
+        "confidence": 99.8646195445742,
+        "bbox": {
+          "x": 273,
+          "y": 478,
+          "width": 734,
+          "height": 207
+        }
+      },
+      {
+        "text": "% RE/RNI*",
+        "confidence": 98.09244341320462,
+        "bbox": {
+          "x": 1112,
+          "y": 500,
+          "width": 503,
+          "height": 159
+        }
+      },
+      {
+        "text": "Calories from Fat 60",
+        "confidence": 97.01779901981354,
+        "bbox": {
+          "x": 390,
+          "y": 607,
+          "width": 912,
+          "height": 225
+        }
+      },
+      {
+        "text": "6%",
+        "confidence": 99.05585050582886,
+        "bbox": {
+          "x": 1464,
+          "y": 655,
+          "width": 158,
+          "height": 108
+        }
+      },
+      {
+        "text": "Total Fat 7g",
+        "confidence": 99.60357447465262,
+        "bbox": {
+          "x": 254,
+          "y": 707,
+          "width": 578,
+          "height": 187
+        }
+      },
+      {
+        "text": "Saturated Fat 4g",
+        "confidence": 98.70534166693687,
+        "bbox": {
+          "x": 362,
+          "y": 844,
+          "width": 778,
+          "height": 209
+        }
+      },
+      {
+        "text": "Trans Fat Og",
+        "confidence": 94.98531222343445,
+        "bbox": {
+          "x": 360,
+          "y": 981,
+          "width": 584,
+          "height": 184
+        }
+      },
+      {
+        "text": "Cholesterol Omg",
+        "confidence": 99.77504054705302,
+        "bbox": {
+          "x": 211,
+          "y": 1100,
+          "width": 792,
+          "height": 208
+        }
+      },
+      {
+        "text": "Sodium 220mg",
+        "confidence": 99.4513968626658,
+        "bbox": {
+          "x": 189,
+          "y": 1229,
+          "width": 755,
+          "height": 207
+        }
+      },
+      {
+        "text": "Total Carbohydrate 20g",
+        "confidence": 96.881480244073,
+        "bbox": {
+          "x": 175,
+          "y": 1377,
+          "width": 1092,
+          "height": 235
+        }
+      },
+      {
+        "text": "Dietary Fiber Og",
+        "confidence": 99.32951405644417,
+        "bbox": {
+          "x": 290,
+          "y": 1528,
+          "width": 751,
+          "height": 196
+        }
+      },
+      {
+        "text": "Sugars 3g",
+        "confidence": 96.83468672964308,
+        "bbox": {
+          "x": 272,
+          "y": 1667,
+          "width": 507,
+          "height": 180
+        }
+      },
+      {
+        "text": "Total Protein 1g",
+        "confidence": 98.00019264221191,
+        "bbox": {
+          "x": 141,
+          "y": 1806,
+          "width": 775,
+          "height": 190
+        }
+      },
+      {
+        "text": "35%",
+        "confidence": 99.89888270696005,
+        "bbox": {
+          "x": 1151,
+          "y": 1956,
+          "width": 147,
+          "height": 106
+        }
+      },
+      {
+        "text": "Vitamin A",
+        "confidence": 99.8957806163364,
+        "bbox": {
+          "x": 137,
+          "y": 1972,
+          "width": 451,
+          "height": 151
+        }
+      }
+    ],
+    "engine": "paddleocr.js",
+    "sourceSize": {
+      "width": 1622,
+      "height": 2400
+    }
+  },
+  "14_yellow_milk_can": {
+    "text": "NUTRITION INFORMATION\nServing Size: 125 mL\nServings per coníainer: About 3\nAmount per Serving\nCalories\n%RE/RNI*\nkcal 121\nCalories from Fat\n5\nkcal\n81\nTotal Fat\ng\nSaturated Fat\n9\ng\nTrans Fat\na\nCholesterol\n0\nmg\n2\nSodium\nmg\n93\nTotal Carbohydrates g\nDietary Fiber\n8\ng\n0\nSugars\n<2\n9\n6\nProtein\n23\nO\n*Percent REl/RNI values are based on FNRl reference adult\nrequirement of 19-29 years old (PDRI 2015).\nNutritional values may vary depending on seasonal variations\nand sources of milk.",
+    "lines": [
+      {
+        "text": "NUTRITION INFORMATION",
+        "confidence": 97.55316546985081,
+        "bbox": {
+          "x": 389,
+          "y": 34,
+          "width": 1352,
+          "height": 369
+        }
+      },
+      {
+        "text": "Serving Size: 125 mL",
+        "confidence": 98.18956047296524,
+        "bbox": {
+          "x": 176,
+          "y": 311,
+          "width": 702,
+          "height": 133
+        }
+      },
+      {
+        "text": "Servings per coníainer: About 3",
+        "confidence": 93.68864682412917,
+        "bbox": {
+          "x": 167,
+          "y": 398,
+          "width": 1038,
+          "height": 159
+        }
+      },
+      {
+        "text": "Amount per Serving",
+        "confidence": 97.45837152004242,
+        "bbox": {
+          "x": 152,
+          "y": 511,
+          "width": 821,
+          "height": 170
+        }
+      },
+      {
+        "text": "Calories",
+        "confidence": 99.75585862994194,
+        "bbox": {
+          "x": 159,
+          "y": 696,
+          "width": 318,
+          "height": 105
+        }
+      },
+      {
+        "text": "%RE/RNI*",
+        "confidence": 97.95569106936455,
+        "bbox": {
+          "x": 1353,
+          "y": 691,
+          "width": 327,
+          "height": 126
+        }
+      },
+      {
+        "text": "kcal 121",
+        "confidence": 96.36873677372932,
+        "bbox": {
+          "x": 981,
+          "y": 754,
+          "width": 382,
+          "height": 131
+        }
+      },
+      {
+        "text": "Calories from Fat",
+        "confidence": 99.63934035862194,
+        "bbox": {
+          "x": 201,
+          "y": 801,
+          "width": 641,
+          "height": 136
+        }
+      },
+      {
+        "text": "5",
+        "confidence": 99.98924732208252,
+        "bbox": {
+          "x": 1464,
+          "y": 810,
+          "width": 98,
+          "height": 96
+        }
+      },
+      {
+        "text": "kcal",
+        "confidence": 93.81802976131439,
+        "bbox": {
+          "x": 974,
+          "y": 863,
+          "width": 177,
+          "height": 104
+        }
+      },
+      {
+        "text": "81",
+        "confidence": 99.99226927757263,
+        "bbox": {
+          "x": 1228,
+          "y": 888,
+          "width": 120,
+          "height": 94
+        }
+      },
+      {
+        "text": "Total Fat",
+        "confidence": 99.32154880629646,
+        "bbox": {
+          "x": 129,
+          "y": 902,
+          "width": 354,
+          "height": 116
+        }
+      },
+      {
+        "text": "g",
+        "confidence": 82.83362984657288,
+        "bbox": {
+          "x": 972,
+          "y": 991,
+          "width": 56,
+          "height": 72
+        }
+      },
+      {
+        "text": "Saturated Fat",
+        "confidence": 99.13811225157517,
+        "bbox": {
+          "x": 191,
+          "y": 1017,
+          "width": 501,
+          "height": 119
+        }
+      },
+      {
+        "text": "9",
+        "confidence": 82.3845624923706,
+        "bbox": {
+          "x": 1293,
+          "y": 1019,
+          "width": 32,
+          "height": 46
+        }
+      },
+      {
+        "text": "g",
+        "confidence": 83.92424583435059,
+        "bbox": {
+          "x": 960,
+          "y": 1096,
+          "width": 59,
+          "height": 70
+        }
+      },
+      {
+        "text": "Trans Fat",
+        "confidence": 99.51251612769234,
+        "bbox": {
+          "x": 171,
+          "y": 1120,
+          "width": 369,
+          "height": 113
+        }
+      },
+      {
+        "text": "a",
+        "confidence": 63.695138692855835,
+        "bbox": {
+          "x": 962,
+          "y": 1206,
+          "width": 46,
+          "height": 56
+        }
+      },
+      {
+        "text": "Cholesterol",
+        "confidence": 99.99188726598565,
+        "bbox": {
+          "x": 107,
+          "y": 1220,
+          "width": 454,
+          "height": 124
+        }
+      },
+      {
+        "text": "0",
+        "confidence": 98.4353244304657,
+        "bbox": {
+          "x": 1268,
+          "y": 1222,
+          "width": 50,
+          "height": 65
+        }
+      },
+      {
+        "text": "mg",
+        "confidence": 98.04437458515167,
+        "bbox": {
+          "x": 941,
+          "y": 1298,
+          "width": 132,
+          "height": 91
+        }
+      },
+      {
+        "text": "2",
+        "confidence": 99.96705055236816,
+        "bbox": {
+          "x": 1247,
+          "y": 1312,
+          "width": 71,
+          "height": 83
+        }
+      },
+      {
+        "text": "Sodium",
+        "confidence": 99.88209009170532,
+        "bbox": {
+          "x": 96,
+          "y": 1326,
+          "width": 311,
+          "height": 109
+        }
+      },
+      {
+        "text": "mg",
+        "confidence": 99.95395541191101,
+        "bbox": {
+          "x": 936,
+          "y": 1402,
+          "width": 130,
+          "height": 93
+        }
+      },
+      {
+        "text": "93",
+        "confidence": 99.9508410692215,
+        "bbox": {
+          "x": 1194,
+          "y": 1412,
+          "width": 115,
+          "height": 92
+        }
+      },
+      {
+        "text": "Total Carbohydrates g",
+        "confidence": 97.85159542447045,
+        "bbox": {
+          "x": 91,
+          "y": 1424,
+          "width": 907,
+          "height": 175
+        }
+      },
+      {
+        "text": "Dietary Fiber",
+        "confidence": 99.62159120119534,
+        "bbox": {
+          "x": 145,
+          "y": 1541,
+          "width": 478,
+          "height": 129
+        }
+      },
+      {
+        "text": "8",
+        "confidence": 99.92341995239258,
+        "bbox": {
+          "x": 1241,
+          "y": 1533,
+          "width": 49,
+          "height": 68
+        }
+      },
+      {
+        "text": "g",
+        "confidence": 90.89049100875854,
+        "bbox": {
+          "x": 924,
+          "y": 1625,
+          "width": 53,
+          "height": 68
+        }
+      },
+      {
+        "text": "0",
+        "confidence": 92.8394615650177,
+        "bbox": {
+          "x": 1237,
+          "y": 1637,
+          "width": 52,
+          "height": 66
+        }
+      },
+      {
+        "text": "Sugars",
+        "confidence": 95.14020681381226,
+        "bbox": {
+          "x": 141,
+          "y": 1648,
+          "width": 269,
+          "height": 110
+        }
+      },
+      {
+        "text": "<2",
+        "confidence": 99.40753877162933,
+        "bbox": {
+          "x": 1398,
+          "y": 1645,
+          "width": 98,
+          "height": 76
+        }
+      },
+      {
+        "text": "9",
+        "confidence": 54.74546551704407,
+        "bbox": {
+          "x": 913,
+          "y": 1731,
+          "width": 55,
+          "height": 68
+        }
+      },
+      {
+        "text": "6",
+        "confidence": 99.97450709342957,
+        "bbox": {
+          "x": 1223,
+          "y": 1736,
+          "width": 51,
+          "height": 70
+        }
+      },
+      {
+        "text": "Protein",
+        "confidence": 99.9846807547978,
+        "bbox": {
+          "x": 68,
+          "y": 1748,
+          "width": 283,
+          "height": 105
+        }
+      },
+      {
+        "text": "23",
+        "confidence": 86.91205084323883,
+        "bbox": {
+          "x": 1199,
+          "y": 1823,
+          "width": 276,
+          "height": 113
+        }
+      },
+      {
+        "text": "O",
+        "confidence": 49.3848592042923,
+        "bbox": {
+          "x": 918,
+          "y": 1845,
+          "width": 33,
+          "height": 48
+        }
+      },
+      {
+        "text": "*Percent REl/RNI values are based on FNRl reference adult",
+        "confidence": 96.89778434602839,
+        "bbox": {
+          "x": 63,
+          "y": 1865,
+          "width": 1465,
+          "height": 188
+        }
+      },
+      {
+        "text": "requirement of 19-29 years old (PDRI 2015).",
+        "confidence": 97.67778155415557,
+        "bbox": {
+          "x": 49,
+          "y": 1940,
+          "width": 1140,
+          "height": 163
+        }
+      },
+      {
+        "text": "Nutritional values may vary depending on seasonal variations",
+        "confidence": 90.36074896653493,
+        "bbox": {
+          "x": 36,
+          "y": 1997,
+          "width": 1510,
+          "height": 212
+        }
+      },
+      {
+        "text": "and sources of milk.",
+        "confidence": 97.987140417099,
+        "bbox": {
+          "x": 43,
+          "y": 2081,
+          "width": 518,
+          "height": 113
+        }
+      }
+    ],
+    "engine": "paddleocr.js",
+    "sourceSize": {
+      "width": 1800,
+      "height": 2285
+    }
+  }
+}

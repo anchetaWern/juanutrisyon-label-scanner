@@ -1,0 +1,268 @@
+{
+  "date": "2026-10-12",
+  "parserVersion": "spatial-review-v5",
+  "productionChanged": false,
+  "decision": "negative-development-do-not-adopt",
+  "artifacts": "evaluation/results/experiment-a-final-2026-10-12",
+  "sources": [
+    {
+      "path": "evaluation/results/experiment-a-final-2026-10-12/plan.json",
+      "sha256": "a3387b3c21fefbb7ccbb0a77bff077f699d0a8f51df599a4258fdce374f91685"
+    },
+    {
+      "path": "evaluation/results/experiment-a-final-2026-10-12/development-run.json",
+      "sha256": "5944ee95c0d18c27f421dcc40325fb834997dbef52aa1892ae3ee5d96ba86459"
+    },
+    {
+      "path": "evaluation/results/experiment-a-final-2026-10-12/frozen.json",
+      "sha256": "7a70677cb6fd7f7fc9a1516d7c6981f7755557e29ace3fdce731833d2b3b85a2"
+    }
+  ],
+  "dataset": {
+    "loadedLabels": 15,
+    "reviewedLabels": 6,
+    "verifiedRegions": 79,
+    "pendingRegions": 192,
+    "freshReservedLabels": 0,
+    "reviewProvenance": "Provisional Codex visual review; not independent human adjudication."
+  },
+  "baseline": {
+    "recognition": {
+      "candidates": 79,
+      "numeric": {
+        "correct": 70,
+        "total": 79
+      },
+      "unit": {
+        "correct": 32,
+        "total": 40
+      },
+      "combined": {
+        "correct": 30,
+        "total": 40
+      },
+      "recovered": 0,
+      "regressed": 0,
+      "numericRegressed": 0,
+      "failureCandidates": 10,
+      "failureRecovered": 0,
+      "failures": 0,
+      "cropFailures": 0,
+      "ambiguous": 0
+    },
+    "pipeline": {
+      "correct": 147,
+      "missing": 44,
+      "wrong": 0,
+      "servingCorrect": 26,
+      "servingWrong": 0,
+      "expanded": {
+        "correct": 156,
+        "missing": 44,
+        "wrong": 0,
+        "servingCorrect": 26,
+        "servingWrong": 0
+      },
+      "regressions": 0,
+      "newWrong": 0,
+      "applied": 0,
+      "skipped": 0
+    }
+  },
+  "variants": [
+    {
+      "scale": 1,
+      "recognition": {
+        "candidates": 79,
+        "numeric": {
+          "correct": 66,
+          "total": 79
+        },
+        "unit": {
+          "correct": 28,
+          "total": 40
+        },
+        "combined": {
+          "correct": 27,
+          "total": 40
+        },
+        "recovered": 1,
+        "regressed": 4,
+        "numericRegressed": 6,
+        "failureCandidates": 10,
+        "failureRecovered": 1,
+        "failures": 0,
+        "cropFailures": 0,
+        "ambiguous": 4
+      },
+      "pipeline": {
+        "correct": 146,
+        "missing": 44,
+        "wrong": 1,
+        "servingCorrect": 26,
+        "servingWrong": 0,
+        "expanded": {
+          "correct": 155,
+          "missing": 44,
+          "wrong": 1,
+          "servingCorrect": 26,
+          "servingWrong": 0
+        },
+        "regressions": 1,
+        "newWrong": 1,
+        "applied": 79,
+        "skipped": 0
+      },
+      "timing": {
+        "candidates": {
+          "count": 79,
+          "median": 20.300000000745058,
+          "p95": 54.600000001490116
+        },
+        "labels": {
+          "count": 6,
+          "median": 253.99999999254942,
+          "p95": 750.2999999970198
+        },
+        "prediction": {
+          "count": 79,
+          "median": 18.399999998509884,
+          "p95": 52
+        },
+        "extraction": {
+          "count": 79,
+          "median": 0.09999999776482582,
+          "p95": 0.10000000149011612
+        },
+        "resizeAndEncode": {
+          "count": 79,
+          "median": 1.699999999254942,
+          "p95": 13.5
+        }
+      },
+      "failureRecoveryFraction": 0.1,
+      "relativeCombinedImprovement": -0.09999999999999994
+    },
+    {
+      "scale": 2,
+      "recognition": {
+        "candidates": 79,
+        "numeric": {
+          "correct": 68,
+          "total": 79
+        },
+        "unit": {
+          "correct": 31,
+          "total": 40
+        },
+        "combined": {
+          "correct": 29,
+          "total": 40
+        },
+        "recovered": 1,
+        "regressed": 2,
+        "numericRegressed": 4,
+        "failureCandidates": 10,
+        "failureRecovered": 1,
+        "failures": 0,
+        "cropFailures": 0,
+        "ambiguous": 3
+      },
+      "pipeline": {
+        "correct": 146,
+        "missing": 44,
+        "wrong": 1,
+        "servingCorrect": 26,
+        "servingWrong": 0,
+        "expanded": {
+          "correct": 155,
+          "missing": 44,
+          "wrong": 1,
+          "servingCorrect": 26,
+          "servingWrong": 0
+        },
+        "regressions": 1,
+        "newWrong": 1,
+        "applied": 79,
+        "skipped": 0
+      },
+      "timing": {
+        "candidates": {
+          "count": 79,
+          "median": 23.099999997764826,
+          "p95": 66.60000000149012
+        },
+        "labels": {
+          "count": 6,
+          "median": 263.80000000447035,
+          "p95": 1000.5999999940395
+        },
+        "prediction": {
+          "count": 79,
+          "median": 20.899999998509884,
+          "p95": 63.100000001490116
+        },
+        "extraction": {
+          "count": 79,
+          "median": 0.09999999776482582,
+          "p95": 0.19999999925494194
+        },
+        "resizeAndEncode": {
+          "count": 79,
+          "median": 2.100000001490116,
+          "p95": 4.600000001490116
+        }
+      },
+      "failureRecoveryFraction": 0.1,
+      "relativeCombinedImprovement": -0.03333333333333336
+    }
+  ],
+  "gates": [
+    {
+      "scale": 1,
+      "passed": false,
+      "reasons": [
+        "Fresh reserved evaluation is unavailable/incomplete.",
+        "Recognition-failure recovery is below 10% or unevaluable.",
+        "No net combined accuracy improvement.",
+        "Gains do not span multiple products/patterns.",
+        "Reference phone latency gate is unevaluated.",
+        "Secondary replay coverage is incomplete."
+      ]
+    },
+    {
+      "scale": 2,
+      "passed": false,
+      "reasons": [
+        "Fresh reserved evaluation is unavailable/incomplete.",
+        "Recognition-failure recovery is below 10% or unevaluable.",
+        "No net combined accuracy improvement.",
+        "Gains do not span multiple products/patterns.",
+        "Reference phone latency gate is unevaluated.",
+        "Secondary replay coverage is incomplete."
+      ]
+    }
+  ],
+  "recommendation": "Negative on the reviewed development sample: local rerecognition does not preserve baseline accuracy. Keep production unchanged; compare an alternative recognizer on the same crops before adding broad preprocessing.",
+  "checks": {
+    "testsPassed": 247,
+    "newExperimentTests": 23,
+    "productionBuild": true,
+    "evaluationTypeCheck": true,
+    "lint": true,
+    "mobileReplay": {
+      "correctNutrients": 121,
+      "readableNutrients": 124,
+      "correctServing": 8,
+      "readableServing": 10,
+      "wrong": 0,
+      "falsePositive": 0
+    }
+  },
+  "limitations": [
+    "No fresh reserved data or reference-phone timing.",
+    "Partial reviewed sample: no glare/blur/unreadable or <=20px text coverage.",
+    "Local SDK calls include detection and recognition.",
+    "Original photos already fit below the production downscale cap."
+  ]
+}

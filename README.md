@@ -34,6 +34,8 @@ The [Phase 5 parser study](evaluation/phase5/README.md) compares parser changes 
 
 The [single-basis layout update](docs/single-basis-layout-2026-10-12.md) improved correct owner nutrient fields from 124 to 153/191 and serving fields from 18 to 27/30 on 15 exported iPhone scans. The [annotation-driven iteration](docs/annotation-iteration-2026-10-12.md) adopts `spatial-review-v5` and further recovers 11 nutrients (164/191, 85.9%), with serving fields unchanged. No new scored errors, lost correct fields or changed existing non-null readings occur against v4 across the saved regressions. These products are already exposed, not fresh validation. The OCR model is unchanged. The [pre-implementation phone audit](OCR_IPHONE_AUDIT.md) and [condensed OCR summary](OCR_ACCURACY_SUMMARY.md) explain the remaining gaps.
 
+[Experiment A](evaluation/experiment-a/README.md) re-reads reviewed value/unit crops from original photos at 1×/2× using an isolated evaluation harness. The [development findings](docs/experiment-a-results-2026-10-12.md) retain production behavior: both measured variants lose correct readings and introduce a wrong populated field in hypothetical parser replay. Run `npm run experiment:a -- --help` for reproduction and reserved-data safeguards.
+
 ## Scanner pipeline
 
 ```text

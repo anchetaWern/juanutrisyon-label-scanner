@@ -19,6 +19,7 @@
     "phase2:report": "node --import tsx evaluation/pilot/cli.ts report",
     "phase4": "node --import tsx evaluation/phase4/cli.ts",
     "phase5": "node --import tsx evaluation/phase5/cli.ts",
+    "experiment:a": "node --import tsx evaluation/experiment-a/cli.ts",
     "type-check:evaluation": "tsc -p tsconfig.evaluation.json",
     "type-check": "vue-tsc --build --force",
     "test": "vitest run",

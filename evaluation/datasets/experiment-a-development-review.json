@@ -1,0 +1,2316 @@
+{
+  "version": 1,
+  "baselineRunSha256": "94d89ee83399c535e02129cfcaf72c41b64f6fb97a4786a841cfde5f82c5d57b",
+  "exposedProductIds": [
+    "555-fried-sardines-tausi",
+    "blue-tub",
+    "brown-cream-milk",
+    "cdo-sardines",
+    "golden-fiesta-palm-oil",
+    "green-biscuit",
+    "green-potato-snack",
+    "mega-sardines",
+    "sandwich-crackers",
+    "shrimp-snack",
+    "spam",
+    "tang-orange",
+    "wafer-coconut-creme",
+    "yellow-milk-can",
+    "yellow-snack"
+  ],
+  "reservedImageIds": [],
+  "reservedProvenance": "",
+  "candidates": [
+    {
+      "id": "03_tang_orange--14",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "cholesterol",
+      "basis": "per serve",
+      "lineIndexes": [
+        14
+      ],
+      "ocrBox": {
+        "x": 490,
+        "y": 161,
+        "width": 57,
+        "height": 40
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 14,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "03_tang_orange--18",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sodium",
+      "basis": "per serve",
+      "lineIndexes": [
+        18
+      ],
+      "ocrBox": {
+        "x": 485,
+        "y": 196,
+        "width": 68,
+        "height": 42
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "45",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 18,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "03_tang_orange--22",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_c",
+      "basis": "per serve",
+      "lineIndexes": [
+        22
+      ],
+      "ocrBox": {
+        "x": 485,
+        "y": 233,
+        "width": 68,
+        "height": 42
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "45",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 22,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "03_tang_orange--32",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "zinc",
+      "basis": "per serve",
+      "lineIndexes": [
+        32
+      ],
+      "ocrBox": {
+        "x": 479,
+        "y": 306,
+        "width": 78,
+        "height": 42
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "1.62",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 32,
+        "start": 0,
+        "end": 6
+      }
+    },
+    {
+      "id": "03_tang_orange--10",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "trans_fat",
+      "basis": "per serve",
+      "lineIndexes": [
+        10
+      ],
+      "ocrBox": {
+        "x": 500,
+        "y": 124,
+        "width": 43,
+        "height": 40
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 10,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "03_tang_orange--7",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per serve",
+      "lineIndexes": [
+        7
+      ],
+      "ocrBox": {
+        "x": 165,
+        "y": 114,
+        "width": 71,
+        "height": 37
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "20",
+        "unit": "kcal",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 7,
+        "start": 0,
+        "end": 7
+      }
+    },
+    {
+      "id": "03_tang_orange--8",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "% REI/RNI",
+      "lineIndexes": [
+        8
+      ],
+      "ocrBox": {
+        "x": 267,
+        "y": 114,
+        "width": 54,
+        "height": 39
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "<2",
+        "unit": "%",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 8,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "03_tang_orange--12",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "carbohydrate",
+      "basis": "per serve",
+      "lineIndexes": [
+        12
+      ],
+      "ocrBox": {
+        "x": 179,
+        "y": 150,
+        "width": 43,
+        "height": 41
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "4",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 12,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "03_tang_orange--16",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sugars",
+      "basis": "per serve",
+      "lineIndexes": [
+        16
+      ],
+      "ocrBox": {
+        "x": 173,
+        "y": 185,
+        "width": 50,
+        "height": 44
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "3",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 16,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "03_tang_orange--20",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "fiber",
+      "basis": "per serve",
+      "lineIndexes": [
+        20
+      ],
+      "ocrBox": {
+        "x": 171,
+        "y": 222,
+        "width": 53,
+        "height": 44
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "<1",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 20,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "03_tang_orange--23",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_c",
+      "basis": "% REI/RNI",
+      "lineIndexes": [
+        23
+      ],
+      "ocrBox": {
+        "x": 582,
+        "y": 237,
+        "width": 58,
+        "height": 36
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "100",
+        "unit": "%",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 23,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "03_tang_orange--25",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "protein",
+      "basis": "per serve",
+      "lineIndexes": [
+        25
+      ],
+      "ocrBox": {
+        "x": 175,
+        "y": 261,
+        "width": 44,
+        "height": 40
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 25,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "03_tang_orange--27",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_d",
+      "basis": "per serve",
+      "lineIndexes": [
+        27
+      ],
+      "ocrBox": {
+        "x": 483,
+        "y": 268,
+        "width": 69,
+        "height": 43
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "1.5",
+        "unit": "µg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 27,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "03_tang_orange--28",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_d",
+      "basis": "% REI/RNI",
+      "lineIndexes": [
+        28
+      ],
+      "ocrBox": {
+        "x": 581,
+        "y": 273,
+        "width": 55,
+        "height": 40
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "30",
+        "unit": "%",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 28,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "03_tang_orange--30",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "total_fat",
+      "basis": "per serve",
+      "lineIndexes": [
+        30
+      ],
+      "ocrBox": {
+        "x": 173,
+        "y": 297,
+        "width": 43,
+        "height": 40
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 30,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "03_tang_orange--33",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "zinc",
+      "basis": "% REI/RNI",
+      "lineIndexes": [
+        33
+      ],
+      "ocrBox": {
+        "x": 579,
+        "y": 308,
+        "width": 57,
+        "height": 44
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "30",
+        "unit": "%",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 33,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "03_tang_orange--35",
+      "imageId": "03_tang_orange",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "saturated_fat",
+      "basis": "per serve",
+      "lineIndexes": [
+        35
+      ],
+      "ocrBox": {
+        "x": 174,
+        "y": 333,
+        "width": 41,
+        "height": 36
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 35,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "05_spam--6",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        6
+      ],
+      "ocrBox": {
+        "x": 849,
+        "y": 87,
+        "width": 125,
+        "height": 49
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "712",
+        "unit": "kJ",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 6,
+        "start": 0,
+        "end": 6
+      }
+    },
+    {
+      "id": "05_spam--7",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        7
+      ],
+      "ocrBox": {
+        "x": 1117,
+        "y": 92,
+        "width": 144,
+        "height": 49
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "1273",
+        "unit": "kJ",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 7,
+        "start": 0,
+        "end": 7
+      }
+    },
+    {
+      "id": "05_spam--8",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        8
+      ],
+      "ocrBox": {
+        "x": 850,
+        "y": 129,
+        "width": 162,
+        "height": 55
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "171",
+        "unit": "kcal",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 8,
+        "start": 0,
+        "end": 8
+      }
+    },
+    {
+      "id": "05_spam--9",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        9
+      ],
+      "ocrBox": {
+        "x": 1115,
+        "y": 136,
+        "width": 160,
+        "height": 50
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "306",
+        "unit": "kcal",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 9,
+        "start": 0,
+        "end": 8
+      }
+    },
+    {
+      "id": "05_spam--15",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "total_fat",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        15
+      ],
+      "ocrBox": {
+        "x": 846,
+        "y": 218,
+        "width": 126,
+        "height": 58
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "12.9",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 15,
+        "start": 0,
+        "end": 6
+      }
+    },
+    {
+      "id": "05_spam--16",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "total_fat",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        16
+      ],
+      "ocrBox": {
+        "x": 1111,
+        "y": 222,
+        "width": 127,
+        "height": 58
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "23.1",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 16,
+        "start": 0,
+        "end": 5
+      }
+    },
+    {
+      "id": "05_spam--19",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "saturated_fat",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        19
+      ],
+      "ocrBox": {
+        "x": 842,
+        "y": 263,
+        "width": 107,
+        "height": 57
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "4.4",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 19,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "05_spam--20",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "saturated_fat",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        20
+      ],
+      "ocrBox": {
+        "x": 1110,
+        "y": 267,
+        "width": 105,
+        "height": 55
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "7.9",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 20,
+        "start": 0,
+        "end": 5
+      }
+    },
+    {
+      "id": "05_spam--22",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "trans_fat",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        22
+      ],
+      "ocrBox": {
+        "x": 839,
+        "y": 304,
+        "width": 109,
+        "height": 58
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0.1",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 22,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "05_spam--23",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "trans_fat",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        23
+      ],
+      "ocrBox": {
+        "x": 1106,
+        "y": 307,
+        "width": 127,
+        "height": 59
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0.17",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 23,
+        "start": 0,
+        "end": 5
+      }
+    },
+    {
+      "id": "05_spam--26",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "cholesterol",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        26
+      ],
+      "ocrBox": {
+        "x": 840,
+        "y": 349,
+        "width": 152,
+        "height": 56
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "36.5",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 26,
+        "start": 0,
+        "end": 7
+      }
+    },
+    {
+      "id": "05_spam--27",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "cholesterol",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        27
+      ],
+      "ocrBox": {
+        "x": 1105,
+        "y": 353,
+        "width": 151,
+        "height": 55
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "65.2",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 27,
+        "start": 0,
+        "end": 7
+      }
+    },
+    {
+      "id": "05_spam--30",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "carbohydrate",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        30
+      ],
+      "ocrBox": {
+        "x": 832,
+        "y": 433,
+        "width": 109,
+        "height": 60
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "6.8",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 30,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "05_spam--33",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "fiber",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        33
+      ],
+      "ocrBox": {
+        "x": 830,
+        "y": 480,
+        "width": 75,
+        "height": 57
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 33,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "05_spam--34",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "fiber",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        34
+      ],
+      "ocrBox": {
+        "x": 1095,
+        "y": 483,
+        "width": 73,
+        "height": 52
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 34,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "05_spam--36",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sugars",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        36
+      ],
+      "ocrBox": {
+        "x": 830,
+        "y": 522,
+        "width": 105,
+        "height": 53
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "6.1",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 36,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "05_spam--37",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sugars",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        37
+      ],
+      "ocrBox": {
+        "x": 1095,
+        "y": 524,
+        "width": 124,
+        "height": 53
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "10.9",
+        "unit": "g",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 37,
+        "start": 0,
+        "end": 6
+      }
+    },
+    {
+      "id": "05_spam--39",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sodium",
+      "basis": "per 56 g",
+      "lineIndexes": [
+        39
+      ],
+      "ocrBox": {
+        "x": 830,
+        "y": 565,
+        "width": 135,
+        "height": 52
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "400",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 39,
+        "start": 0,
+        "end": 6
+      }
+    },
+    {
+      "id": "05_spam--40",
+      "imageId": "05_spam",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sodium",
+      "basis": "per 100 g",
+      "lineIndexes": [
+        40
+      ],
+      "ocrBox": {
+        "x": 1093,
+        "y": 567,
+        "width": 133,
+        "height": 53
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "714",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 40,
+        "start": 0,
+        "end": 6
+      }
+    },
+    {
+      "id": "02_yellow_snack--5",
+      "imageId": "02_yellow_snack",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per serving",
+      "lineIndexes": [
+        5
+      ],
+      "ocrBox": {
+        "x": 469,
+        "y": 260,
+        "width": 255,
+        "height": 128
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "160",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 5,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "02_yellow_snack--30",
+      "imageId": "02_yellow_snack",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_d",
+      "basis": "per serving",
+      "lineIndexes": [
+        30
+      ],
+      "ocrBox": {
+        "x": 203,
+        "y": 1015,
+        "width": 74,
+        "height": 30
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "mcg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "recognition",
+      "replacement": {
+        "lineIndex": 30,
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "id": "02_yellow_snack--33",
+      "imageId": "02_yellow_snack",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "calcium",
+      "basis": "per serving",
+      "lineIndexes": [
+        33
+      ],
+      "ocrBox": {
+        "x": 192,
+        "y": 1055,
+        "width": 62,
+        "height": 37
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": "mg",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 33,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "07_cdo_sardines--5",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy_from_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        5
+      ],
+      "ocrBox": {
+        "x": 495,
+        "y": 145,
+        "width": 32,
+        "height": 27
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "20",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "association",
+      "replacement": {
+        "lineIndex": 5,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "07_cdo_sardines--9",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "total_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        9
+      ],
+      "ocrBox": {
+        "x": 507,
+        "y": 176,
+        "width": 22,
+        "height": 26
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "2",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 9,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--11",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "saturated_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        11
+      ],
+      "ocrBox": {
+        "x": 511,
+        "y": 206,
+        "width": 17,
+        "height": 25
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "1",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 11,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--13",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "trans_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        13
+      ],
+      "ocrBox": {
+        "x": 509,
+        "y": 237,
+        "width": 24,
+        "height": 24
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 13,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--15",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "cholesterol",
+      "basis": "per serving",
+      "lineIndexes": [
+        15
+      ],
+      "ocrBox": {
+        "x": 510,
+        "y": 266,
+        "width": 24,
+        "height": 25
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "6",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 15,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--17",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sodium",
+      "basis": "per serving",
+      "lineIndexes": [
+        17
+      ],
+      "ocrBox": {
+        "x": 488,
+        "y": 293,
+        "width": 47,
+        "height": 26
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "393",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 17,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "07_cdo_sardines--19",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "carbohydrate",
+      "basis": "per serving",
+      "lineIndexes": [
+        19
+      ],
+      "ocrBox": {
+        "x": 515,
+        "y": 323,
+        "width": 19,
+        "height": 24
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "4",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 19,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--21",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "fiber",
+      "basis": "per serving",
+      "lineIndexes": [
+        21
+      ],
+      "ocrBox": {
+        "x": 513,
+        "y": 350,
+        "width": 22,
+        "height": 24
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "2",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 21,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--23",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sugars",
+      "basis": "per serving",
+      "lineIndexes": [
+        23
+      ],
+      "ocrBox": {
+        "x": 514,
+        "y": 374,
+        "width": 21,
+        "height": 25
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "2",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 23,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--25",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "protein",
+      "basis": "per serving",
+      "lineIndexes": [
+        25
+      ],
+      "ocrBox": {
+        "x": 516,
+        "y": 400,
+        "width": 18,
+        "height": 22
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "6",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 25,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "07_cdo_sardines--6",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "% REI/RNI",
+      "lineIndexes": [
+        6
+      ],
+      "ocrBox": {
+        "x": 677,
+        "y": 138,
+        "width": 44,
+        "height": 28
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "2",
+        "unit": "%",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 6,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "07_cdo_sardines--26",
+      "imageId": "07_cdo_sardines",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "protein",
+      "basis": "% REI/RNI",
+      "lineIndexes": [
+        26
+      ],
+      "ocrBox": {
+        "x": 682,
+        "y": 395,
+        "width": 41,
+        "height": 24
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "7",
+        "unit": "%",
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 26,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "13_green_biscuit--9",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per serving",
+      "lineIndexes": [
+        9
+      ],
+      "ocrBox": {
+        "x": 531,
+        "y": 218,
+        "width": 35,
+        "height": 31
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "19",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 9,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "13_green_biscuit--12",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy_from_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        12
+      ],
+      "ocrBox": {
+        "x": 541,
+        "y": 268,
+        "width": 24,
+        "height": 33
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "6",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 12,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--14",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "total_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        14
+      ],
+      "ocrBox": {
+        "x": 549,
+        "y": 316,
+        "width": 19,
+        "height": 30
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "1",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 14,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--17",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "saturated_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        17
+      ],
+      "ocrBox": {
+        "x": 551,
+        "y": 365,
+        "width": 22,
+        "height": 33
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 17,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--19",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "trans_fat",
+      "basis": "per serving",
+      "lineIndexes": [
+        19
+      ],
+      "ocrBox": {
+        "x": 555,
+        "y": 411,
+        "width": 20,
+        "height": 32
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 19,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--22",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "cholesterol",
+      "basis": "per serving",
+      "lineIndexes": [
+        22
+      ],
+      "ocrBox": {
+        "x": 555,
+        "y": 463,
+        "width": 26,
+        "height": 34
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 22,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--26",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sodium",
+      "basis": "per serving",
+      "lineIndexes": [
+        26
+      ],
+      "ocrBox": {
+        "x": 557,
+        "y": 518,
+        "width": 27,
+        "height": 37
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "5",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 26,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--29",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "carbohydrate",
+      "basis": "per serving",
+      "lineIndexes": [
+        29
+      ],
+      "ocrBox": {
+        "x": 558,
+        "y": 570,
+        "width": 24,
+        "height": 35
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "3",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 29,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--32",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "fiber",
+      "basis": "per serving",
+      "lineIndexes": [
+        32
+      ],
+      "ocrBox": {
+        "x": 559,
+        "y": 627,
+        "width": 22,
+        "height": 32
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 32,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--35",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sugars",
+      "basis": "per serving",
+      "lineIndexes": [
+        35
+      ],
+      "ocrBox": {
+        "x": 556,
+        "y": 681,
+        "width": 23,
+        "height": 35
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 35,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--40",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "protein",
+      "basis": "per serving",
+      "lineIndexes": [
+        40
+      ],
+      "ocrBox": {
+        "x": 553,
+        "y": 793,
+        "width": 23,
+        "height": 35
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 40,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--44",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "calcium",
+      "basis": "per serving",
+      "lineIndexes": [
+        44
+      ],
+      "ocrBox": {
+        "x": 547,
+        "y": 848,
+        "width": 30,
+        "height": 36
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "10",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 44,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "13_green_biscuit--48",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "iron",
+      "basis": "per serving",
+      "lineIndexes": [
+        48
+      ],
+      "ocrBox": {
+        "x": 548,
+        "y": 906,
+        "width": 24,
+        "height": 34
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 48,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--52",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_d3",
+      "basis": "per serving",
+      "lineIndexes": [
+        52
+      ],
+      "ocrBox": {
+        "x": 545,
+        "y": 963,
+        "width": 24,
+        "height": 34
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 52,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "13_green_biscuit--56",
+      "imageId": "13_green_biscuit",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "potassium",
+      "basis": "per serving",
+      "lineIndexes": [
+        56
+      ],
+      "ocrBox": {
+        "x": 546,
+        "y": 1018,
+        "width": 19,
+        "height": 32
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "9",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 56,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--8",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        8
+      ],
+      "ocrBox": {
+        "x": 293,
+        "y": 163,
+        "width": 50,
+        "height": 31
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "142",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 8,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--11",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "energy_from_fat",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        11
+      ],
+      "ocrBox": {
+        "x": 297,
+        "y": 194,
+        "width": 38,
+        "height": 29
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "73",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 11,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--15",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "saturated_fat",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        15
+      ],
+      "ocrBox": {
+        "x": 303,
+        "y": 264,
+        "width": 17,
+        "height": 21
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "5",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 15,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--19",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "cholesterol",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        19
+      ],
+      "ocrBox": {
+        "x": 293,
+        "y": 322,
+        "width": 37,
+        "height": 30
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "30",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 19,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--21",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sodium",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        21
+      ],
+      "ocrBox": {
+        "x": 288,
+        "y": 355,
+        "width": 44,
+        "height": 29
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "117",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 21,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--24",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "carbohydrate",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        24
+      ],
+      "ocrBox": {
+        "x": 294,
+        "y": 388,
+        "width": 28,
+        "height": 27
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "11",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 24,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--26",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "fiber",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        26
+      ],
+      "ocrBox": {
+        "x": 298,
+        "y": 421,
+        "width": 20,
+        "height": 26
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "5",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 26,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--31",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "protein",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        31
+      ],
+      "ocrBox": {
+        "x": 298,
+        "y": 483,
+        "width": 18,
+        "height": 22
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "6",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 31,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--34",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_a",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        34
+      ],
+      "ocrBox": {
+        "x": 281,
+        "y": 511,
+        "width": 49,
+        "height": 28
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "307",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 34,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--37",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "vitamin_d",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        37
+      ],
+      "ocrBox": {
+        "x": 282,
+        "y": 545,
+        "width": 50,
+        "height": 32
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "102",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 37,
+        "start": 0,
+        "end": 3
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--17",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "trans_fat",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        17
+      ],
+      "ocrBox": {
+        "x": 303,
+        "y": 295,
+        "width": 17,
+        "height": 22
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "0",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 17,
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--29",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "sugars",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        29
+      ],
+      "ocrBox": {
+        "x": 291,
+        "y": 449,
+        "width": 30,
+        "height": 28
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "10",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 29,
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "id": "15_brown_cream_milk--13",
+      "imageId": "15_brown_cream_milk",
+      "review": "verified",
+      "reviewNote": "Codex inspected original label crop and source-region contact sheet; provisional visual review, not independent human adjudication.",
+      "field": "total_fat",
+      "basis": "per 100 mL",
+      "lineIndexes": [
+        13
+      ],
+      "ocrBox": {
+        "x": 305,
+        "y": 230,
+        "width": 17,
+        "height": 22
+      },
+      "truth": {
+        "status": "readable",
+        "numeric": "8",
+        "unit": null,
+        "provenance": "Codex visual source transcription, 2026-10-12; owner nutrient JSON consulted for row identity; printed region unit only."
+      },
+      "failureBefore": "none",
+      "replacement": {
+        "lineIndex": 13,
+        "start": 0,
+        "end": 1
+      }
+    }
+  ]
+}

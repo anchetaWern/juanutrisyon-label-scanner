@@ -46,13 +46,13 @@ beforeEach(() => {
 afterEach(() => { wrapper?.unmount(); vi.unstubAllGlobals() })
 
 describe('OCR and diagnostics export', () => {
-  for (const [label, kind] of [['Copy OCR JSON', 'ocr'], ['Copy diagnostics', 'diagnostics']] as const) {
-    it(`${label} supplies the complete requested JSON`, async () => {
+  for (const label of ['Copy text', 'Copy nutrition JSON']) {
+    it(`${label} still copies the requested content`, async () => {
       debug()
       await button(label).trigger('click'); await flushPromises()
-      const payload = JSON.parse(vi.mocked(copyText).mock.calls[0]![0])
-      expect(kind === 'ocr' ? payload : payload.ocr).toEqual(result)
-      if (kind === 'diagnostics') expect(payload.nutrition.parserVersion).toBe('spatial-review-v3')
+      const payload = vi.mocked(copyText).mock.calls[0]![0]
+      if (label === 'Copy text') expect(payload).toBe(result.text)
+      else expect(JSON.parse(payload).nutrients.protein).toBe('6g')
       expect(wrapper.find('[role="status"]').text()).toContain('copied')
     })
 
@@ -68,8 +68,9 @@ describe('OCR and diagnostics export', () => {
     })
   }
 
-  for (const [label, kind] of [['Save OCR JSON', 'ocr'], ['Save diagnostics', 'diagnostics']] as const) {
-    it(`${label} exports a named JSON file without needing clipboard permission`, async () => {
+  for (const [label, kind] of [['Share OCR JSON', 'ocr'], ['Share diagnostics', 'diagnostics']] as const) {
+    it(`${label} shares a named JSON file without needing clipboard permission`, async () => {
+      vi.mocked(saveBlob).mockResolvedValue('shared')
       vi.mocked(copyText).mockRejectedValue(new Error('blocked'))
       debug()
       await button(label).trigger('click'); await flushPromises()
@@ -80,13 +81,16 @@ describe('OCR and diagnostics export', () => {
       expect(kind === 'ocr' ? payload : payload.ocr).toEqual(result)
       if (kind === 'diagnostics') expect(payload.nutrition.data.nutrients.protein).toBe('6g')
       expect(copyText).not.toHaveBeenCalled()
+      expect(wrapper.find('[role="status"]').text()).toBe('JSON file shared')
+      expect(wrapper.text()).not.toContain('Copy OCR JSON')
+      expect(wrapper.text()).not.toContain('Copy diagnostics')
     })
   }
 
   it('retains selectable JSON if file export fails too', async () => {
     vi.mocked(saveBlob).mockRejectedValue(new Error('blocked'))
     debug()
-    await button('Save diagnostics').trigger('click'); await flushPromises()
+    await button('Share diagnostics').trigger('click'); await flushPromises()
     expect(JSON.parse(wrapper.find('textarea').element.value).ocr).toEqual(result)
     expect(wrapper.text()).toContain('could not save the JSON file')
     expect(wrapper.find('[role="status"]').exists()).toBe(false)
@@ -95,8 +99,14 @@ describe('OCR and diagnostics export', () => {
   it('does not claim a file was saved when the share sheet is cancelled', async () => {
     vi.mocked(saveBlob).mockResolvedValue('cancelled')
     debug()
-    await button('Save diagnostics').trigger('click'); await flushPromises()
+    await button('Share diagnostics').trigger('click'); await flushPromises()
     expect(wrapper.find('[role="status"]').exists()).toBe(false)
     expect(wrapper.find('textarea').exists()).toBe(false)
+  })
+
+  it('reports the download fallback when native file sharing is unavailable', async () => {
+    debug()
+    await button('Share diagnostics').trigger('click'); await flushPromises()
+    expect(wrapper.find('[role="status"]').text()).toBe('JSON download or preview opened')
   })
 })

@@ -41,7 +41,7 @@ async function copy(value: string, successMessage: string): Promise<void> {
     snackbarMessage.value = successMessage
     snackbarVisible.value = true
   } catch {
-    copyError.value = 'Copy did not complete. Select the content below and use Copy, or save the OCR JSON or diagnostics as a file.'
+    copyError.value = 'Copy did not complete. Select the content below and use Copy, or use Share OCR JSON or Share diagnostics.'
     manualCopyText.value = value
     await nextTick()
     selectManualCopyText()
@@ -58,10 +58,6 @@ function copyRawText(): Promise<void> {
   return copy(props.result.text, 'Raw OCR text copied')
 }
 
-function copyCompleteResult(): Promise<void> {
-  return copy(JSON.stringify(props.result, null, 2), 'Complete OCR result copied')
-}
-
 function diagnosticJson(): string {
   return JSON.stringify(buildScannerDiagnosticReport({
     originalFile: props.originalFile,
@@ -71,10 +67,6 @@ function diagnosticJson(): string {
     qualityWarnings: props.qualityWarnings,
     result: props.result,
   }), null, 2)
-}
-
-function copyDiagnostics(): Promise<void> {
-  return copy(diagnosticJson(), 'Scanner diagnostics copied')
 }
 
 async function exportJson(kind: 'ocr' | 'diagnostics'): Promise<void> {
@@ -149,17 +141,11 @@ function confidenceLabel(confidence?: number): string {
       <v-btn variant="outlined" prepend-icon="mdi-download" @click="downloadCrop">
         {{ canShareCrop ? 'Save / share crop' : 'Download crop' }}
       </v-btn>
-      <v-btn variant="outlined" prepend-icon="mdi-code-json" @click="copyCompleteResult">
-        Copy OCR JSON
+      <v-btn variant="outlined" prepend-icon="mdi-share-variant" @click="exportJson('ocr')">
+        Share OCR JSON
       </v-btn>
-      <v-btn color="primary" variant="flat" prepend-icon="mdi-clipboard-text-outline" @click="copyDiagnostics">
-        Copy diagnostics
-      </v-btn>
-      <v-btn variant="outlined" prepend-icon="mdi-file-download-outline" @click="exportJson('ocr')">
-        Save OCR JSON
-      </v-btn>
-      <v-btn variant="outlined" prepend-icon="mdi-file-download-outline" @click="exportJson('diagnostics')">
-        Save diagnostics
+      <v-btn color="primary" variant="flat" prepend-icon="mdi-share-variant" @click="exportJson('diagnostics')">
+        Share diagnostics
       </v-btn>
     </div>
 
@@ -172,8 +158,8 @@ function confidenceLabel(confidence?: number): string {
       <textarea ref="manualCopyField" :value="manualCopyText" readonly rows="8" aria-label="Content ready for manual copying" />
     </div>
     <v-alert type="info" variant="tonal" density="compact" class="mb-4">
-      Diagnostics include browser/device details, crop metadata, quality checks, OCR timings, the complete OCR result, and nutrition extraction with evidence. Image
-      pixels are not copied.
+      Share diagnostics sends a JSON file containing the OCR result, nutrition extraction, and scan details. Choose AirDrop in your phone’s share sheet.
+      Share the crop separately. If file sharing is unavailable, a download or preview opens instead.
     </v-alert>
 
     <ScannerNutritionResult :extraction="nutrition" @copy="copy" />

@@ -39,6 +39,27 @@ describe('saveBlob', () => {
     expect(document.querySelector('a')).toBeNull()
   })
 
+  it('passes a named JSON file to the native share sheet for AirDrop and other destinations', async () => {
+    const share = vi.fn().mockResolvedValue(undefined)
+    const canShare = vi.fn().mockReturnValue(true)
+    Object.defineProperties(navigator, {
+      canShare: { configurable: true, value: canShare },
+      share: { configurable: true, value: share },
+    })
+    const json = JSON.stringify({ ocr: { text: 'Protein 6g' }, nutrition: { protein: '6g' } })
+    await expect(saveBlob(new Blob([json], { type: 'application/json' }), 'label-diagnostics.json', 'Nutrition label diagnostics')).resolves.toBe('shared')
+    const file = share.mock.calls[0]![0].files[0] as File
+    expect(file.name).toBe('label-diagnostics.json')
+    expect(file.type).toBe('application/json')
+    const content = await new Promise<string>((resolve) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result as string)
+      reader.readAsText(file)
+    })
+    expect(content).toBe(json)
+    expect(canShare).toHaveBeenCalledWith({ files: [expect.any(File)] })
+  })
+
   it('does not start a download when the native share sheet is cancelled', async () => {
     Object.defineProperties(navigator, {
       canShare: { configurable: true, value: vi.fn().mockReturnValue(true) },

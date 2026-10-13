@@ -1,0 +1,1461 @@
+{
+  "runDirectory": "evaluation/results/experiment-b-final-2026-10-12",
+  "baselineRevision": "335d5849558f6ff474ae732db5e78233de3f8e29",
+  "baselineSha256": "99942b104233e6b250a0c1da5a46f0ca87f55b5b9c7ece174f9c5c9a23039195",
+  "sourceIdentity": {
+    "config": {
+      "columnHeightTolerance": 1.4,
+      "rowHeightTolerance": 0.45,
+      "minimumRows": 3,
+      "labelColumnWidthFraction": 0.18,
+      "rowCandidateHeight": 1.1,
+      "rowOwnerSlackHeight": 0.3,
+      "headerBandHeight": 1.5,
+      "headerSearchHeight": 12,
+      "headerPaddingHeight": 0.5,
+      "headerConflictHeight": 0.6,
+      "panelSeparationHeight": 2,
+      "fragmentGapHeight": 1,
+      "fragmentRowHeight": 0.6,
+      "fragmentVerticalStartHeight": 0.6,
+      "fragmentColumnWidth": 1,
+      "damagedCellHeight": 0.6,
+      "energyAlternatesHeight": 1.4,
+      "matchOverlap": 0.6,
+      "minimumGain": 3,
+      "minimumImprovedProducts": 2
+    },
+    "baselineRevision": "335d5849558f6ff474ae732db5e78233de3f8e29",
+    "files": [
+      {
+        "path": "evaluation/experiment-b/association.ts",
+        "sha256": "53a5ee7612a693c958a8fbe6121f8c45f95491a011177361f2b7eb33d303af08"
+      },
+      {
+        "path": "evaluation/experiment-b/cli.ts",
+        "sha256": "2869f3527e30ab041b4f48ee7999dab3795a53e2dc1e1515da8511f1244b55de"
+      },
+      {
+        "path": "evaluation/experiment-b/columns.ts",
+        "sha256": "4c7172c1c2fb354e5ccfe66d72cadb8f85d1676af42880e81edfe3d4470ccdfe"
+      },
+      {
+        "path": "evaluation/experiment-b/dataset.ts",
+        "sha256": "e3da47840b295c43ee69cab1577026fb3e2e7f043433cfa34caa4d82fff99110"
+      },
+      {
+        "path": "evaluation/experiment-b/gallery.ts",
+        "sha256": "3f8a74f2af487bbbe14c71f5d7b0f9db90218674164b116cfd57d5dda6d648d7"
+      },
+      {
+        "path": "evaluation/experiment-b/headers.ts",
+        "sha256": "15371927c3b6b6a3422ce9076cbf9ac671cad8e25cee031411f0e97bd51962e6"
+      },
+      {
+        "path": "evaluation/experiment-b/replay.ts",
+        "sha256": "02d8b6af4629e242caca78ea8bd72df14a46eb731248dd7499ccbdb3a294ec5a"
+      },
+      {
+        "path": "evaluation/experiment-b/report.ts",
+        "sha256": "18d67dacb6ac67394c8e3a0a35b9edeb530325ece1e3aa796f3b517d96d7eee6"
+      },
+      {
+        "path": "evaluation/experiment-b/types.ts",
+        "sha256": "3cce83fd030d8921db9ad000e7476f551d39b3f2e7fde3cc8ea626fdd1fc6a58"
+      },
+      {
+        "path": "evaluation/datasets/experiment-b-development.json",
+        "sha256": "a3ac7c2a26336e6f52b2338807a64188a6cd187dfd0367aac1084e5608afb3bd"
+      },
+      {
+        "path": "src/services/nutrition/parseNutrition.ts",
+        "sha256": "fe4ba85cbe124b8f36f61352984febe391e4545e31c8b4d5c6f83a59abf811d5"
+      },
+      {
+        "path": "src/services/ocr/types.ts",
+        "sha256": "bd27da138118e7fb8520993e92c1ce06937318521539dfe1788d5dfa7a86b87e"
+      },
+      {
+        "path": "evaluation/types.ts",
+        "sha256": "de3f182d6637203fca43048f54fe4a81af35d18f319c6387c3bb4f5a5123e34a"
+      },
+      {
+        "path": "evaluation/load.ts",
+        "sha256": "3817bad655c31f6d5a26696e404a139ed2a241f78a244296d47428dd7fa27dd9"
+      },
+      {
+        "path": "evaluation/metrics.ts",
+        "sha256": "316cea4019d4d1ea560106db43926f3ba67a2c79e4865cd7ab3c360703e6eb74"
+      },
+      {
+        "path": "evaluation/phase5/report.ts",
+        "sha256": "922f341b18285842201ac664e74dfab2ed8984883bc1447ccf69d1404e932ba5"
+      },
+      {
+        "path": "package.json",
+        "sha256": "0c5250e6b6b875142b36d824ace1c9ee4deda0003471ce5fda804d76890ad703"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "e605b58f91756ac28c9f787526244491178a5b7701573564176dcfbeef9bd4f6"
+      }
+    ]
+  },
+  "inputDigests": [
+    {
+      "path": "src/services/nutrition/fixtures/annotation-phone.json",
+      "sha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/annotation-phone.json",
+      "sha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/annotation-phone.json",
+      "sha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/annotation-phone.json",
+      "sha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/annotation-phone.json",
+      "sha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "sha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "sha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "sha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "sha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/phase5-development.json",
+      "sha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/phase5-development.json",
+      "sha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/phase5-development.json",
+      "sha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/phase5-development.json",
+      "sha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/phase5-development.json",
+      "sha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/phase5-development.json",
+      "sha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/phase5-development.json",
+      "sha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "sha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "sha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "sha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "sha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "sha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b"
+    },
+    {
+      "path": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "sha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/dataset.json",
+      "sha256": "b968b95a4d8c3f8874f3fabd62836433605c81116238a886896f37fc04861d22"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/run.json",
+      "sha256": "94d89ee83399c535e02129cfcaf72c41b64f6fb97a4786a841cfde5f82c5d57b"
+    },
+    {
+      "path": "labels/nutrition_labels_json/02_yellow_snack-ocr-crop.png",
+      "sha256": "066921f8a348619afa7909631abfd6bf2764fe5f4b3c6cb1a750588cdc93c6f3"
+    },
+    {
+      "path": "labels/nutrition_labels_json/05_spam-ocr-crop.png",
+      "sha256": "00f75a1bffcf7120e5df8ad4399113fc8c019703d66407c19090d92612b515ab"
+    },
+    {
+      "path": "labels/nutrition_labels_json/06_555_fried_sardines_tausi-ocr-crop.png",
+      "sha256": "93cdf9fd5712364bac249c5e48c6979bffeaf9d62bac2cc58412204a65107c16"
+    },
+    {
+      "path": "labels/nutrition_labels_json/07_cdo_sardines-ocr-crop.png",
+      "sha256": "3605edf986ec7a9442a71dd0e744db9b6aab5208b92f24a2defe33d82008166f"
+    },
+    {
+      "path": "labels/nutrition_labels_json/15_brown_cream_milk-ocr-crop.png",
+      "sha256": "322e5b5b00b12a31c6099871293627829be39fdf7b88bb3c8ae67faf490c7890"
+    },
+    {
+      "path": "labels/new/new-1.JPG",
+      "sha256": "629ad07ea0ff7f16c4a38f426a72fd53595e22ea55abc38208747043b1f3c0a9"
+    },
+    {
+      "path": "labels/new/new-2.JPG",
+      "sha256": "f84e8580411d6396f07e0984e7d9c630866055d83f5b2c3796d29f9256c67aea"
+    },
+    {
+      "path": "labels/new/new-3.JPG",
+      "sha256": "13484ed58cb8a4bdfd175073bc7fe3341b7644ede3e8b1ca64ab0a82bda18458"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/03_tang_orange-rectangle.png",
+      "sha256": "2d88d0ee711935bf1778fded641c400a59914ff4eac8e90c3a2eec817ded0b5a"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/03_tang_orange-perspective.png",
+      "sha256": "11b3ff7c3e42c386f45505994c0f9c929739bb3728b58b4d597ee7b38498c4f8"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/07_cdo_sardines-rectangle.png",
+      "sha256": "5bcf5112b5c3a1a77df8f7bca1c035f07765c1423e2cfd073afcac24ae52d6d1"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/07_cdo_sardines-perspective.png",
+      "sha256": "6a4c9fa531345af588826b7d1743b8132cd5fab6e771b0cecf4fde1f645b7c66"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/13_green_biscuit-rectangle.png",
+      "sha256": "330eab05af8d364c865bb6dffd43fa1faa10c73fe5408c7f74137810329f3b7f"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/15_brown_cream_milk-rectangle.png",
+      "sha256": "6a2498973a82eee4d6baff35d1cda6789c6cb32386bc035b8fae33befec13a1e"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/15_brown_cream_milk-perspective.png",
+      "sha256": "05965ee8559dfcc797367d7c5d818d496e791d8a36c9629538adb139cf8fbf12"
+    },
+    {
+      "path": "labels/nutrition_labels_json/03_tang_orange-ocr-crop.png",
+      "sha256": "c448e9d9d88ad25c70adf2f15b35f1f8969d1ceddc91e52b83df3ba99b2d6e60"
+    },
+    {
+      "path": "labels/nutrition_labels_json/04_blue_tub-ocr-crop.png",
+      "sha256": "74275d4b2b03b78163e7a4a833fc9de5d68ff2a071ed8ef502c358806972e39f"
+    },
+    {
+      "path": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil-ocr-crop.png",
+      "sha256": "fb88df7db98913c524cf7aca379bbe3debc29e744b8903d886693a4f309d3eaa"
+    },
+    {
+      "path": "labels/nutrition_labels_json/10_sandwich_crackers-ocr-crop.png",
+      "sha256": "1e81c4e9a0b6a133e121ad25612af9f02267c87233893300967147acaa9a29e7"
+    },
+    {
+      "path": "labels/nutrition_labels_json/12_green_potato_snack-ocr-crop.png",
+      "sha256": "7c7d87bd1320edd8d92d66e81fd93c92088a772a87b1abe4f3ea1c1a1048dcae"
+    },
+    {
+      "path": "labels/nutrition_labels_json/14_yellow_milk_can-ocr-crop.png",
+      "sha256": "dfd3a654babd0f4455efe53d07dd62b77ed2fda0775b866702102a586e4109f0"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/01_shrimp_snack-rectangle.png",
+      "sha256": "7069a79052700a97a9cb73a78a0d83dc77acdc42aa3b1f7b17980a7855e8c156"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/02_yellow_snack-rectangle.png",
+      "sha256": "c77d945c74b3fef6faed00e3a93e3e22abfff848c91cddfe63d5583374f96afd"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/03_tang_orange-rectangle.png",
+      "sha256": "2d88d0ee711935bf1778fded641c400a59914ff4eac8e90c3a2eec817ded0b5a"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/04_blue_tub-rectangle.png",
+      "sha256": "f9ae26601f1a8296c3c5b07b6d4d27eff55f98b2c3f684cca6d04d0dbc13590e"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/05_spam-rectangle.png",
+      "sha256": "44caa3c4119e0d9ff443c62231eb3ab25b7a6a82ad9931d9ba950175c3309992"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/06_555_fried_sardines_tausi-rectangle.png",
+      "sha256": "8f5cf4b722068b9c69105d5d46f95bfc51e226191d6e3db188280d346608760d"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/07_cdo_sardines-rectangle.png",
+      "sha256": "5bcf5112b5c3a1a77df8f7bca1c035f07765c1423e2cfd073afcac24ae52d6d1"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/08_mega_sardines-rectangle.png",
+      "sha256": "045dfddb7433409a5c03d956c27caed8888c4eea808eba33a6892ebe1fd9c87d"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/09_golden_fiesta_palm_oil-rectangle.png",
+      "sha256": "a824a9d2d3b78a85bd1b387b314acbd3c255bcbb2df8e2d406a31489ce66d43a"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/10_sandwich_crackers-rectangle.png",
+      "sha256": "6206218002cba8dec4e1949048fb32147fae7786ca43c5e69df22d27e94a2a50"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/11_wafer_coconut_creme-rectangle.png",
+      "sha256": "4d55c2f836ce45fe2cce73f47e99a2608f15cf52a87a715c6233f5d2b3eecbba"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/12_green_potato_snack-rectangle.png",
+      "sha256": "e2c08d95a8f331c96ac9486515fbb2c8cca1694206ea2db04565739a132cc517"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/13_green_biscuit-rectangle.png",
+      "sha256": "330eab05af8d364c865bb6dffd43fa1faa10c73fe5408c7f74137810329f3b7f"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/14_yellow_milk_can-rectangle.png",
+      "sha256": "83cd03d69ac18be25515f2602a88aad7010d0d092ca7e61b395ed8b63ade343a"
+    },
+    {
+      "path": "evaluation/results/phase-2-pilot-2026-10-11/crops/15_brown_cream_milk-rectangle.png",
+      "sha256": "6a2498973a82eee4d6baff35d1cda6789c6cb32386bc035b8fae33befec13a1e"
+    }
+  ],
+  "development": {
+    "planSha256": "4b5f0345c1770f20717a476d598cb63d6d47b9fec96a18f5a17c32be23923820",
+    "recordsSha256": "3a6653b991a692aaea0d80723a82c1261899c24f91238f7cf86981e8c8118595",
+    "reportSha256": "bc6235c31bedceef8be715be72d84612c6e7c1cfc0c33b1b584eeec83694fd9c",
+    "passed": false
+  },
+  "report": {
+    "cases": 41,
+    "products": 23,
+    "reviewedSpatialCases": 4,
+    "multiBasisCases": 3,
+    "multiBasisProducts": 2,
+    "reviewedControlCases": 1,
+    "coverageGaps": [
+      "per-pack + per-serving real label",
+      "three quantity columns real label",
+      "fragmented basis headers real label",
+      "separated headers real label",
+      "fresh product-disjoint reserved data",
+      "reference-phone UX/timings"
+    ],
+    "all": {
+      "A": {
+        "labels": 41,
+        "nutrients": {
+          "readable": 550,
+          "correct": 455,
+          "wrong": 1,
+          "missing": 94,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 22,
+          "unscoredPredictions": 20,
+          "exactRecall": 0.8272727272727273,
+          "precision": 0.9978070175438597,
+          "coverage": 0.8290909090909091,
+          "abstentionRate": 0.1709090909090909,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 466,
+            "total": 550
+          },
+          "valuePresence": {
+            "matched": 336,
+            "total": 550
+          }
+        },
+        "serving": {
+          "readable": 76,
+          "correct": 68,
+          "wrong": 0,
+          "missing": 8,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 6,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.8947368421052632,
+          "precision": 1,
+          "coverage": 0.8947368421052632,
+          "abstentionRate": 0.10526315789473684,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 60,
+            "total": 76
+          },
+          "valuePresence": {
+            "matched": 67,
+            "total": 76
+          }
+        },
+        "supplemental": {
+          "readable": 9,
+          "correct": 9,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 7,
+          "unscored": 182,
+          "unscoredPredictions": 147,
+          "exactRecall": 1,
+          "precision": 1,
+          "coverage": 1,
+          "abstentionRate": 0,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 7,
+            "total": 9
+          },
+          "valuePresence": {
+            "matched": 9,
+            "total": 9
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 4,
+        "unverifiedPopulatedSources": 439,
+        "contextLinkedPercentOutputs": 17,
+        "rejectedAssociations": 0,
+        "nullReasons": {},
+        "timing": {
+          "samples": 41,
+          "medianMs": 0.3420419999999922,
+          "p95Ms": 0.9442920000000186
+        }
+      },
+      "B": {
+        "labels": 4,
+        "nutrients": {
+          "readable": 56,
+          "correct": 47,
+          "wrong": 0,
+          "missing": 9,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 1,
+          "unscoredPredictions": 1,
+          "exactRecall": 0.8392857142857143,
+          "precision": 1,
+          "coverage": 0.8392857142857143,
+          "abstentionRate": 0.16071428571428573,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 50,
+            "total": 56
+          },
+          "valuePresence": {
+            "matched": 54,
+            "total": 56
+          }
+        },
+        "serving": {
+          "readable": 8,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.375,
+          "precision": 1,
+          "coverage": 0.375,
+          "abstentionRate": 0.625,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 6,
+            "total": 8
+          },
+          "valuePresence": {
+            "matched": 6,
+            "total": 8
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 10,
+          "unscoredPredictions": 5,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 4,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 8,
+        "rejectedAssociations": 0,
+        "nullReasons": {
+          "missing-or-ambiguous-selected-cell": 9
+        },
+        "timing": {
+          "samples": 4,
+          "medianMs": 0.6679159999999911,
+          "p95Ms": 1.2407910000000584
+        }
+      },
+      "C": {
+        "labels": 41,
+        "nutrients": {
+          "readable": 550,
+          "correct": 248,
+          "wrong": 0,
+          "missing": 302,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 22,
+          "unscoredPredictions": 16,
+          "exactRecall": 0.4509090909090909,
+          "precision": 1,
+          "coverage": 0.4509090909090909,
+          "abstentionRate": 0.5490909090909091,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 466,
+            "total": 550
+          },
+          "valuePresence": {
+            "matched": 336,
+            "total": 550
+          }
+        },
+        "serving": {
+          "readable": 76,
+          "correct": 68,
+          "wrong": 0,
+          "missing": 8,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 6,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.8947368421052632,
+          "precision": 1,
+          "coverage": 0.8947368421052632,
+          "abstentionRate": 0.10526315789473684,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 60,
+            "total": 76
+          },
+          "valuePresence": {
+            "matched": 67,
+            "total": 76
+          }
+        },
+        "supplemental": {
+          "readable": 9,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 1,
+          "falsePositive": 0,
+          "correctAbstention": 7,
+          "unscored": 182,
+          "unscoredPredictions": 105,
+          "exactRecall": 0.8888888888888888,
+          "precision": 1,
+          "coverage": 0.8888888888888888,
+          "abstentionRate": 0.1111111111111111,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 7,
+            "total": 9
+          },
+          "valuePresence": {
+            "matched": 9,
+            "total": 9
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 4,
+        "unverifiedPopulatedSources": 248,
+        "contextLinkedPercentOutputs": 2,
+        "rejectedAssociations": 9,
+        "nullReasons": {
+          "selection-required-or-unavailable": 243,
+          "missing-or-ambiguous-selected-cell": 54
+        },
+        "timing": {
+          "samples": 41,
+          "medianMs": 0.7673739999999043,
+          "p95Ms": 1.934582999999975
+        }
+      },
+      "D": {
+        "labels": 4,
+        "nutrients": {
+          "readable": 56,
+          "correct": 47,
+          "wrong": 0,
+          "missing": 9,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 1,
+          "unscoredPredictions": 1,
+          "exactRecall": 0.8392857142857143,
+          "precision": 1,
+          "coverage": 0.8392857142857143,
+          "abstentionRate": 0.16071428571428573,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 50,
+            "total": 56
+          },
+          "valuePresence": {
+            "matched": 54,
+            "total": 56
+          }
+        },
+        "serving": {
+          "readable": 8,
+          "correct": 3,
+          "wrong": 0,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.375,
+          "precision": 1,
+          "coverage": 0.375,
+          "abstentionRate": 0.625,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 6,
+            "total": 8
+          },
+          "valuePresence": {
+            "matched": 6,
+            "total": 8
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 10,
+          "unscoredPredictions": 5,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 4,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 8,
+        "rejectedAssociations": 0,
+        "nullReasons": {
+          "missing-or-ambiguous-selected-cell": 9
+        },
+        "timing": {
+          "samples": 4,
+          "medianMs": 0.9135420000000067,
+          "p95Ms": 2.52049999999997
+        }
+      }
+    },
+    "multiBasis": {
+      "A": {
+        "labels": 3,
+        "nutrients": {
+          "readable": 41,
+          "correct": 21,
+          "wrong": 0,
+          "missing": 20,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.5121951219512195,
+          "precision": 1,
+          "coverage": 0.5121951219512195,
+          "abstentionRate": 0.4878048780487805,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 35,
+            "total": 41
+          },
+          "valuePresence": {
+            "matched": 39,
+            "total": 41
+          }
+        },
+        "serving": {
+          "readable": 6,
+          "correct": 1,
+          "wrong": 0,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.16666666666666666,
+          "precision": 1,
+          "coverage": 0.16666666666666666,
+          "abstentionRate": 0.8333333333333334,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 4,
+            "total": 6
+          },
+          "valuePresence": {
+            "matched": 4,
+            "total": 6
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 10,
+          "unscoredPredictions": 0,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 3,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 8,
+        "rejectedAssociations": 0,
+        "nullReasons": {},
+        "timing": {
+          "samples": 3,
+          "medianMs": 0.3978749999999991,
+          "p95Ms": 0.6868749999999864
+        }
+      },
+      "B": {
+        "labels": 3,
+        "nutrients": {
+          "readable": 41,
+          "correct": 32,
+          "wrong": 0,
+          "missing": 9,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.7804878048780488,
+          "precision": 1,
+          "coverage": 0.7804878048780488,
+          "abstentionRate": 0.21951219512195122,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 35,
+            "total": 41
+          },
+          "valuePresence": {
+            "matched": 39,
+            "total": 41
+          }
+        },
+        "serving": {
+          "readable": 6,
+          "correct": 1,
+          "wrong": 0,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.16666666666666666,
+          "precision": 1,
+          "coverage": 0.16666666666666666,
+          "abstentionRate": 0.8333333333333334,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 4,
+            "total": 6
+          },
+          "valuePresence": {
+            "matched": 4,
+            "total": 6
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 10,
+          "unscoredPredictions": 5,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 3,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 8,
+        "rejectedAssociations": 0,
+        "nullReasons": {
+          "missing-or-ambiguous-selected-cell": 9
+        },
+        "timing": {
+          "samples": 3,
+          "medianMs": 0.6679159999999911,
+          "p95Ms": 1.2407910000000584
+        }
+      },
+      "C": {
+        "labels": 3,
+        "nutrients": {
+          "readable": 41,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 41,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0,
+          "precision": null,
+          "coverage": 0,
+          "abstentionRate": 1,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 35,
+            "total": 41
+          },
+          "valuePresence": {
+            "matched": 39,
+            "total": 41
+          }
+        },
+        "serving": {
+          "readable": 6,
+          "correct": 1,
+          "wrong": 0,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.16666666666666666,
+          "precision": 1,
+          "coverage": 0.16666666666666666,
+          "abstentionRate": 0.8333333333333334,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 4,
+            "total": 6
+          },
+          "valuePresence": {
+            "matched": 4,
+            "total": 6
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 10,
+          "unscoredPredictions": 0,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 3,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 0,
+        "rejectedAssociations": 0,
+        "nullReasons": {
+          "selection-required-or-unavailable": 41
+        },
+        "timing": {
+          "samples": 3,
+          "medianMs": 1.0868340000000671,
+          "p95Ms": 1.759166999999934
+        }
+      },
+      "D": {
+        "labels": 3,
+        "nutrients": {
+          "readable": 41,
+          "correct": 32,
+          "wrong": 0,
+          "missing": 9,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.7804878048780488,
+          "precision": 1,
+          "coverage": 0.7804878048780488,
+          "abstentionRate": 0.21951219512195122,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 35,
+            "total": 41
+          },
+          "valuePresence": {
+            "matched": 39,
+            "total": 41
+          }
+        },
+        "serving": {
+          "readable": 6,
+          "correct": 1,
+          "wrong": 0,
+          "missing": 5,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.16666666666666666,
+          "precision": 1,
+          "coverage": 0.16666666666666666,
+          "abstentionRate": 0.8333333333333334,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 4,
+            "total": 6
+          },
+          "valuePresence": {
+            "matched": 4,
+            "total": 6
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 10,
+          "unscoredPredictions": 5,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 3,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 8,
+        "rejectedAssociations": 0,
+        "nullReasons": {
+          "missing-or-ambiguous-selected-cell": 9
+        },
+        "timing": {
+          "samples": 3,
+          "medianMs": 0.9135420000000067,
+          "p95Ms": 2.52049999999997
+        }
+      }
+    },
+    "controls": {
+      "A": {
+        "labels": 38,
+        "nutrients": {
+          "readable": 509,
+          "correct": 434,
+          "wrong": 1,
+          "missing": 74,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 22,
+          "unscoredPredictions": 20,
+          "exactRecall": 0.8526522593320236,
+          "precision": 0.9977011494252873,
+          "coverage": 0.8546168958742633,
+          "abstentionRate": 0.14538310412573674,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 431,
+            "total": 509
+          },
+          "valuePresence": {
+            "matched": 297,
+            "total": 509
+          }
+        },
+        "serving": {
+          "readable": 70,
+          "correct": 67,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 6,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.9571428571428572,
+          "precision": 1,
+          "coverage": 0.9571428571428572,
+          "abstentionRate": 0.04285714285714286,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 56,
+            "total": 70
+          },
+          "valuePresence": {
+            "matched": 63,
+            "total": 70
+          }
+        },
+        "supplemental": {
+          "readable": 9,
+          "correct": 9,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 6,
+          "unscored": 172,
+          "unscoredPredictions": 147,
+          "exactRecall": 1,
+          "precision": 1,
+          "coverage": 1,
+          "abstentionRate": 0,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 7,
+            "total": 9
+          },
+          "valuePresence": {
+            "matched": 9,
+            "total": 9
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 1,
+        "unverifiedPopulatedSources": 439,
+        "contextLinkedPercentOutputs": 9,
+        "rejectedAssociations": 0,
+        "nullReasons": {},
+        "timing": {
+          "samples": 38,
+          "medianMs": 0.3420419999999922,
+          "p95Ms": 3.124416999999994
+        }
+      },
+      "B": {
+        "labels": 1,
+        "nutrients": {
+          "readable": 15,
+          "correct": 15,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 1,
+          "unscoredPredictions": 1,
+          "exactRecall": 1,
+          "precision": 1,
+          "coverage": 1,
+          "abstentionRate": 0,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 15,
+            "total": 15
+          },
+          "valuePresence": {
+            "matched": 15,
+            "total": 15
+          }
+        },
+        "serving": {
+          "readable": 2,
+          "correct": 2,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 1,
+          "precision": 1,
+          "coverage": 1,
+          "abstentionRate": 0,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 2,
+            "total": 2
+          },
+          "valuePresence": {
+            "matched": 2,
+            "total": 2
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 1,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 0,
+        "rejectedAssociations": 0,
+        "nullReasons": {},
+        "timing": {
+          "samples": 1,
+          "medianMs": 0.4343749999999318,
+          "p95Ms": 0.4343749999999318
+        }
+      },
+      "C": {
+        "labels": 38,
+        "nutrients": {
+          "readable": 509,
+          "correct": 248,
+          "wrong": 0,
+          "missing": 261,
+          "falsePositive": 0,
+          "correctAbstention": 1,
+          "unscored": 22,
+          "unscoredPredictions": 16,
+          "exactRecall": 0.48722986247544203,
+          "precision": 1,
+          "coverage": 0.48722986247544203,
+          "abstentionRate": 0.5127701375245579,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 431,
+            "total": 509
+          },
+          "valuePresence": {
+            "matched": 297,
+            "total": 509
+          }
+        },
+        "serving": {
+          "readable": 70,
+          "correct": 67,
+          "wrong": 0,
+          "missing": 3,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 6,
+          "unscoredPredictions": 0,
+          "exactRecall": 0.9571428571428572,
+          "precision": 1,
+          "coverage": 0.9571428571428572,
+          "abstentionRate": 0.04285714285714286,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 56,
+            "total": 70
+          },
+          "valuePresence": {
+            "matched": 63,
+            "total": 70
+          }
+        },
+        "supplemental": {
+          "readable": 9,
+          "correct": 8,
+          "wrong": 0,
+          "missing": 1,
+          "falsePositive": 0,
+          "correctAbstention": 6,
+          "unscored": 172,
+          "unscoredPredictions": 105,
+          "exactRecall": 0.8888888888888888,
+          "precision": 1,
+          "coverage": 0.8888888888888888,
+          "abstentionRate": 0.1111111111111111,
+          "falsePositiveRate": 0,
+          "namePresence": {
+            "matched": 7,
+            "total": 9
+          },
+          "valuePresence": {
+            "matched": 9,
+            "total": 9
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 1,
+        "unverifiedPopulatedSources": 248,
+        "contextLinkedPercentOutputs": 2,
+        "rejectedAssociations": 9,
+        "nullReasons": {
+          "selection-required-or-unavailable": 202,
+          "missing-or-ambiguous-selected-cell": 54
+        },
+        "timing": {
+          "samples": 38,
+          "medianMs": 0.7673739999999043,
+          "p95Ms": 2.0554160000000365
+        }
+      },
+      "D": {
+        "labels": 1,
+        "nutrients": {
+          "readable": 15,
+          "correct": 15,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 1,
+          "unscoredPredictions": 1,
+          "exactRecall": 1,
+          "precision": 1,
+          "coverage": 1,
+          "abstentionRate": 0,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 15,
+            "total": 15
+          },
+          "valuePresence": {
+            "matched": 15,
+            "total": 15
+          }
+        },
+        "serving": {
+          "readable": 2,
+          "correct": 2,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": 1,
+          "precision": 1,
+          "coverage": 1,
+          "abstentionRate": 0,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 2,
+            "total": 2
+          },
+          "valuePresence": {
+            "matched": 2,
+            "total": 2
+          }
+        },
+        "supplemental": {
+          "readable": 0,
+          "correct": 0,
+          "wrong": 0,
+          "missing": 0,
+          "falsePositive": 0,
+          "correctAbstention": 0,
+          "unscored": 0,
+          "unscoredPredictions": 0,
+          "exactRecall": null,
+          "precision": null,
+          "coverage": null,
+          "abstentionRate": null,
+          "falsePositiveRate": null,
+          "namePresence": {
+            "matched": 0,
+            "total": 0
+          },
+          "valuePresence": {
+            "matched": 0,
+            "total": 0
+          }
+        },
+        "crossColumn": 0,
+        "provenanceReviewedLabels": 1,
+        "unverifiedPopulatedSources": 0,
+        "contextLinkedPercentOutputs": 0,
+        "rejectedAssociations": 0,
+        "nullReasons": {},
+        "timing": {
+          "samples": 1,
+          "medianMs": 0.7192079999998668,
+          "p95Ms": 0.7192079999998668
+        }
+      }
+    },
+    "detection": {
+      "expected": 10,
+      "detected": 10,
+      "matched": 9,
+      "recall": 0.9,
+      "precision": 0.9,
+      "quantityExpected": 7,
+      "quantityMatched": 7,
+      "correctLabels": 9,
+      "labelingAccuracy": 1,
+      "unknown": 8
+    },
+    "automatic": {
+      "eligibleReviewed": 4,
+      "selected": 1,
+      "correct": 1,
+      "wrong": 0,
+      "precision": 1,
+      "abstained": 3,
+      "abstentionRate": 0.75,
+      "selectionRequiredAll": 17,
+      "falsePrompts": 0,
+      "reviewedControlDenominator": 1,
+      "falsePromptRate": 0
+    },
+    "explicit": {
+      "intendedAvailable": 3,
+      "reviewedMultiBasis": 3,
+      "simulatedInteractionCount": 3,
+      "realUserInteractionCount": null,
+      "phoneUsability": "not evaluated; simulation is ideal user choice"
+    },
+    "failureCategories": {
+      "missing-safe-value": 168,
+      "ocr-recognition-error": 3,
+      "selection-abstained": 243,
+      "unverified-attribution": 1
+    },
+    "gate": {
+      "materialOracleBenefit": false,
+      "oracleRecoveredFields": 11,
+      "improvedProducts": 1,
+      "noNewWrong": true,
+      "noLostControlFields": false,
+      "zeroCrossColumn": true,
+      "noWrongAutoSelections": true,
+      "intendedBasisSelectable": true,
+      "noFalsePrompts": true,
+      "explicitSafer": true,
+      "coverageComplete": false,
+      "passed": false
+    },
+    "conclusion": "Parser-positive / detection-weak; development gate not passed",
+    "recommendation": "Keep production v5. Inspect false columns/association misses and expand exposed development coverage before reserved validation."
+  },
+  "fieldChangeCounts": {
+    "B": 11,
+    "C": 212,
+    "D": 11
+  }
+}

@@ -1,0 +1,1792 @@
+{
+  "version": 1,
+  "provenance": "Existing exposed OCR only. Historical holdouts are development/regressions here. Owner annotations copied without value changes. Spatial annotations are Codex-reviewed, not independent human review.",
+  "cases": [
+    {
+      "id": "annotation-phone/02_yellow_snack",
+      "fixture": "src/services/nutrition/fixtures/annotation-phone.json",
+      "fixtureSha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a",
+      "fixtureKey": "02_yellow_snack",
+      "annotation": {
+        "id": "annotation-phone/02_yellow_snack",
+        "productId": "yellow-snack",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "folded",
+          "daily-value-columns"
+        ],
+        "provenance": "labels/nutrition_labels_json/02_yellow_snack.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "160kcal",
+          "total_fat": "10g",
+          "saturated_fat": "5g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "250mg",
+          "carbohydrate": "16g",
+          "fiber": "1g",
+          "sugars": "1g",
+          "added_sugars": "0g",
+          "protein": "2g",
+          "vitamin_d": "0mcg",
+          "calcium": "0mg",
+          "iron": "1.1mg",
+          "potassium": "400mg",
+          "serving.serving_size": "1 cup (30g)",
+          "serving.servings_per_container": "1"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/02_yellow_snack-ocr-crop.png",
+      "imageSha256": "066921f8a348619afa7909631abfd6bf2764fe5f4b3c6cb1a750588cdc93c6f3"
+    },
+    {
+      "id": "annotation-phone/05_spam",
+      "fixture": "src/services/nutrition/fixtures/annotation-phone.json",
+      "fixtureSha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a",
+      "fixtureKey": "05_spam",
+      "annotation": {
+        "id": "annotation-phone/05_spam",
+        "productId": "spam",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "multiple-bases",
+          "inverted-text"
+        ],
+        "provenance": "labels/nutrition_labels_json/05_spam.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "171kcal",
+          "protein": "7g",
+          "total_fat": "12.9g",
+          "saturated_fat": "4.4g",
+          "trans_fat": "0.1g",
+          "cholesterol": "36.5mg",
+          "carbohydrate": "6.8g",
+          "fiber": "0g",
+          "sugars": "6.1g",
+          "sodium": "400mg",
+          "serving.serving_size": "56g",
+          "serving.servings_per_container": "6"
+        }
+      },
+      "layout": "multi-basis",
+      "image": "labels/nutrition_labels_json/05_spam-ocr-crop.png",
+      "truth": {
+        "status": "reviewed",
+        "provenance": "Codex visual review 2026-10-12 of 05_spam-ocr-crop.png and frozen line boxes; owner truth explicitly per 56g. Not independently human-reviewed.",
+        "layout": "multi-basis",
+        "intended": "per56",
+        "bases": [
+          {
+            "id": "per56",
+            "category": "unknown",
+            "kind": "quantity",
+            "rawHeader": "per 56 g",
+            "headerIndexes": [
+              2
+            ],
+            "valueIndexes": [
+              6,
+              8,
+              12,
+              15,
+              19,
+              22,
+              26,
+              30,
+              33,
+              36,
+              39
+            ],
+            "context": "per 56 g",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 11,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          },
+          {
+            "id": "per100",
+            "category": "per_100g",
+            "kind": "quantity",
+            "rawHeader": "per 100 g",
+            "headerIndexes": [
+              3
+            ],
+            "valueIndexes": [
+              7,
+              9,
+              13,
+              16,
+              20,
+              23,
+              27,
+              31,
+              34,
+              37,
+              40
+            ],
+            "context": "per100g",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 11,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          }
+        ],
+        "fields": {
+          "energy": {
+            "basis": "per56",
+            "valueIndexes": [
+              8
+            ]
+          },
+          "protein": {
+            "basis": "per56",
+            "valueIndexes": [
+              12
+            ]
+          },
+          "total_fat": {
+            "basis": "per56",
+            "valueIndexes": [
+              15
+            ]
+          },
+          "saturated_fat": {
+            "basis": "per56",
+            "valueIndexes": [
+              19
+            ]
+          },
+          "trans_fat": {
+            "basis": "per56",
+            "valueIndexes": [
+              22
+            ]
+          },
+          "cholesterol": {
+            "basis": "per56",
+            "valueIndexes": [
+              26
+            ]
+          },
+          "carbohydrate": {
+            "basis": "per56",
+            "valueIndexes": [
+              30
+            ]
+          },
+          "fiber": {
+            "basis": "per56",
+            "valueIndexes": [
+              33
+            ]
+          },
+          "sugars": {
+            "basis": "per56",
+            "valueIndexes": [
+              36
+            ]
+          },
+          "sodium": {
+            "basis": "per56",
+            "valueIndexes": [
+              39
+            ]
+          }
+        }
+      },
+      "imageSha256": "00f75a1bffcf7120e5df8ad4399113fc8c019703d66407c19090d92612b515ab"
+    },
+    {
+      "id": "annotation-phone/06_555_fried_sardines_tausi",
+      "fixture": "src/services/nutrition/fixtures/annotation-phone.json",
+      "fixtureSha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a",
+      "fixtureKey": "06_555_fried_sardines_tausi",
+      "annotation": {
+        "id": "annotation-phone/06_555_fried_sardines_tausi",
+        "productId": "555-fried-sardines-tausi",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "small-panel",
+          "colored-background",
+          "iu-units"
+        ],
+        "provenance": "labels/nutrition_labels_json/06_555_fried_sardines_tausi.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "94kcal",
+          "total_fat": "3g",
+          "saturated_fat": "2g",
+          "trans_fat": "0g",
+          "omega_3": "1135mg",
+          "dha": "209mg",
+          "cholesterol": "23mg",
+          "sodium": "380mg",
+          "carbohydrate": "7g",
+          "fiber": "1g",
+          "sugars": "4g",
+          "protein": "10g",
+          "vitamin_d": "101IU",
+          "calcium": "156mg",
+          "phosphorus": "166mg",
+          "zinc": "1mg",
+          "iodine": "37µg",
+          "selenium": "36µg",
+          "serving.serving_size": "56g",
+          "serving.servings_per_container": "about 3"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/06_555_fried_sardines_tausi-ocr-crop.png",
+      "imageSha256": "93cdf9fd5712364bac249c5e48c6979bffeaf9d62bac2cc58412204a65107c16"
+    },
+    {
+      "id": "annotation-phone/07_cdo_sardines",
+      "fixture": "src/services/nutrition/fixtures/annotation-phone.json",
+      "fixtureSha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a",
+      "fixtureKey": "07_cdo_sardines",
+      "annotation": {
+        "id": "annotation-phone/07_cdo_sardines",
+        "productId": "cdo-sardines",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "small-panel",
+          "detached-values",
+          "footnote-nutrients"
+        ],
+        "provenance": "labels/nutrition_labels_json/07_cdo_sardines.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "58kcal",
+          "total_fat": "2g",
+          "saturated_fat": "1g",
+          "trans_fat": "0g",
+          "cholesterol": "6mg",
+          "sodium": "393mg",
+          "carbohydrate": "4g",
+          "fiber": "2g",
+          "sugars": "2g",
+          "protein": "6g",
+          "dha": "17mg",
+          "omega_3": "151mg",
+          "serving.serving_size": "56g",
+          "serving.servings_per_container": "about 3"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/07_cdo_sardines-ocr-crop.png",
+      "imageSha256": "3605edf986ec7a9442a71dd0e744db9b6aab5208b92f24a2defe33d82008166f"
+    },
+    {
+      "id": "annotation-phone/15_brown_cream_milk",
+      "fixture": "src/services/nutrition/fixtures/annotation-phone.json",
+      "fixtureSha256": "0bf2bf59f6151c22ab77545972effc317fccf8ef7617af569e293686fc15213a",
+      "fixtureKey": "15_brown_cream_milk",
+      "annotation": {
+        "id": "annotation-phone/15_brown_cream_milk",
+        "productId": "brown-cream-milk",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "small-panel",
+          "inverted-text",
+          "iu-units"
+        ],
+        "provenance": "labels/nutrition_labels_json/15_brown_cream_milk.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "142kcal",
+          "total_fat": "8g",
+          "saturated_fat": "5g",
+          "trans_fat": "0g",
+          "cholesterol": "30mg",
+          "sodium": "117mg",
+          "carbohydrate": "11g",
+          "fiber": "5g",
+          "sugars": "10g",
+          "protein": "6g",
+          "vitamin_a": "307IU",
+          "vitamin_d": "102IU",
+          "serving.serving_size": "100mL",
+          "serving.servings_per_container": "3.6"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/15_brown_cream_milk-ocr-crop.png",
+      "imageSha256": "322e5b5b00b12a31c6099871293627829be39fdf7b88bb3c8ae67faf490c7890"
+    },
+    {
+      "id": "mobile-ocr-2026-09-18/new-1",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "fixtureSha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29",
+      "fixtureKey": "new-1",
+      "annotation": {
+        "id": "mobile-ocr-2026-09-18/new-1",
+        "productId": "mobile-IMG_3655",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Visually rechecked labels/new/new-1.JPG on 2026-10-08. Image is readable, including 1/3 cup (40g); frozen OCR has a damaged fraction. Export is re-encoded, not exact OCR input bytes.",
+        "tags": [
+          "image-reviewed-2026-10-08",
+          "readable-image",
+          "damaged-serving-ocr",
+          "curved"
+        ],
+        "fields": {
+          "serving.serving_size": "1/3 cup (40g)",
+          "serving.servings_per_container": "About 13",
+          "energy": "150kcal",
+          "total_fat": "2.5g",
+          "saturated_fat": "0.5g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "0mg",
+          "carbohydrate": "26g",
+          "fiber": "7g",
+          "sugars": "1g",
+          "protein": "7g",
+          "added_sugars": "0g",
+          "vitamin_d": "0mcg",
+          "calcium": "20mg",
+          "iron": "2mg",
+          "potassium": "201mg"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/new/new-1.JPG",
+      "imageSha256": "629ad07ea0ff7f16c4a38f426a72fd53595e22ea55abc38208747043b1f3c0a9"
+    },
+    {
+      "id": "mobile-ocr-2026-09-18/new-2",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "fixtureSha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29",
+      "fixtureKey": "new-2",
+      "annotation": {
+        "id": "mobile-ocr-2026-09-18/new-2",
+        "productId": "mobile-IMG_3653",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Visually rechecked labels/new/new-2.JPG on 2026-10-08. Micronutrients use the printed Per Serving column. About 6 is readable in the image. Re-encoded export, not exact OCR input bytes.",
+        "tags": [
+          "image-reviewed-2026-10-08",
+          "readable-image",
+          "multiple-bases",
+          "damaged-serving-ocr"
+        ],
+        "fields": {
+          "serving.serving_size": "(2 slices) 62g",
+          "serving.servings_per_container": "About 6",
+          "energy": "178kcal",
+          "energy_from_fat": "18kcal",
+          "total_fat": "2g",
+          "saturated_fat": "1g",
+          "trans_fat": "0g",
+          "cholesterol": "1mg",
+          "sodium": "225mg",
+          "carbohydrate": "31g",
+          "fiber": "3g",
+          "soluble_fiber": "1g",
+          "insoluble_fiber": "2g",
+          "sugars": "4g",
+          "protein": "9g",
+          "vitamin_a": "15%",
+          "vitamin_c": "0%",
+          "calcium": "14%",
+          "iron": "23%",
+          "vitamin_b1": "6%",
+          "vitamin_b2": "0%",
+          "vitamin_b3": "12%",
+          "folate": "0%"
+        }
+      },
+      "layout": "multi-basis",
+      "image": "labels/new/new-2.JPG",
+      "truth": {
+        "status": "reviewed",
+        "provenance": "Codex visual review 2026-10-12 of labels/new/new-2.JPG and frozen line boxes. Upper quantities and lower Per Serving percentages share serving context; per-100g percentages are distinct. Re-encoded photo, not exact OCR input bytes; not independently human-reviewed.",
+        "layout": "multi-basis",
+        "intended": "serving",
+        "bases": [
+          {
+            "id": "serving",
+            "category": "per_serving",
+            "kind": "quantity",
+            "rawHeader": "Amount Per Serving / Per Serving",
+            "headerIndexes": [
+              5,
+              26
+            ],
+            "valueIndexes": [
+              6,
+              7,
+              9,
+              11,
+              13,
+              14,
+              16,
+              18,
+              20,
+              22,
+              23,
+              24,
+              25,
+              29,
+              32,
+              35,
+              38,
+              41,
+              44,
+              47,
+              50
+            ],
+            "context": "per_serving",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 21,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          },
+          {
+            "id": "per100",
+            "category": "per_100g",
+            "kind": "quantity",
+            "rawHeader": "Per 100g",
+            "headerIndexes": [
+              27
+            ],
+            "valueIndexes": [
+              30,
+              33,
+              36,
+              39,
+              42,
+              45,
+              48,
+              51
+            ],
+            "context": "per100g",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 8,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          },
+          {
+            "id": "reference",
+            "category": "percent_dv",
+            "kind": "percent_reference",
+            "rawHeader": "%RE/RNI*",
+            "headerIndexes": [
+              8
+            ],
+            "valueIndexes": [
+              10,
+              12,
+              15,
+              17,
+              19,
+              21
+            ],
+            "context": "serving",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 6,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          }
+        ],
+        "fields": {
+          "energy": {
+            "basis": "serving",
+            "valueIndexes": [
+              6
+            ]
+          },
+          "energy_from_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              7
+            ]
+          },
+          "total_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              9
+            ]
+          },
+          "saturated_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              11
+            ]
+          },
+          "trans_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              13
+            ]
+          },
+          "cholesterol": {
+            "basis": "serving",
+            "valueIndexes": [
+              14
+            ]
+          },
+          "sodium": {
+            "basis": "serving",
+            "valueIndexes": [
+              16
+            ]
+          },
+          "carbohydrate": {
+            "basis": "serving",
+            "valueIndexes": [
+              18
+            ]
+          },
+          "fiber": {
+            "basis": "serving",
+            "valueIndexes": [
+              20
+            ]
+          },
+          "soluble_fiber": {
+            "basis": "serving",
+            "valueIndexes": [
+              22
+            ]
+          },
+          "insoluble_fiber": {
+            "basis": "serving",
+            "valueIndexes": [
+              23
+            ]
+          },
+          "sugars": {
+            "basis": "serving",
+            "valueIndexes": [
+              24
+            ]
+          },
+          "protein": {
+            "basis": "serving",
+            "valueIndexes": [
+              25
+            ]
+          },
+          "vitamin_a": {
+            "basis": "serving",
+            "valueIndexes": [
+              29
+            ]
+          },
+          "vitamin_c": {
+            "basis": "serving",
+            "valueIndexes": [
+              32
+            ]
+          },
+          "calcium": {
+            "basis": "serving",
+            "valueIndexes": [
+              35
+            ]
+          },
+          "iron": {
+            "basis": "serving",
+            "valueIndexes": [
+              38
+            ]
+          },
+          "vitamin_b1": {
+            "basis": "serving",
+            "valueIndexes": [
+              41
+            ]
+          },
+          "vitamin_b2": {
+            "basis": "serving",
+            "valueIndexes": [
+              44
+            ]
+          },
+          "vitamin_b3": {
+            "basis": "serving",
+            "valueIndexes": [
+              47
+            ]
+          },
+          "folate": {
+            "basis": "serving",
+            "valueIndexes": [
+              50
+            ]
+          }
+        }
+      },
+      "imageSha256": "f84e8580411d6396f07e0984e7d9c630866055d83f5b2c3796d29f9256c67aea"
+    },
+    {
+      "id": "mobile-ocr-2026-09-18/new-3",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr-2026-09-18.json",
+      "fixtureSha256": "bfd2479d584c764c9b399f097f26c686bde9e1192a3b577ea9fa2baee77d6b29",
+      "fixtureKey": "new-3",
+      "annotation": {
+        "id": "mobile-ocr-2026-09-18/new-3",
+        "productId": "mobile-IMG_3638",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Visually rechecked labels/new/new-3.JPG on 2026-10-08. Total fat prints 3.3g although OCR says 3.39; vitamin D prints mg. Re-encoded export, not exact OCR input bytes.",
+        "tags": [
+          "image-reviewed-2026-10-08",
+          "readable-image",
+          "damaged-unit-ocr",
+          "colored-background"
+        ],
+        "fields": {
+          "serving.serving_size": "(34g)",
+          "serving.servings_per_container": "10",
+          "energy": "65kcal",
+          "total_fat": "3.3g",
+          "saturated_fat": "1.3g",
+          "trans_fat": "0g",
+          "cholesterol": "18mg",
+          "sodium": "250mg",
+          "carbohydrate": "3.8g",
+          "fiber": "0g",
+          "sugars": "1.1g",
+          "protein": "3g",
+          "vitamin_d": "0mg",
+          "calcium": "0mg",
+          "iron": "0mg",
+          "potassium": "50mg"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/new/new-3.JPG",
+      "imageSha256": "13484ed58cb8a4bdfd175073bc7fe3341b7644ede3e8b1ca64ab0a82bda18458"
+    },
+    {
+      "id": "mobile-ocr/IMG_3584",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "fixtureSha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd",
+      "fixtureKey": "IMG_3584",
+      "annotation": {
+        "id": "mobile-ocr/IMG_3584",
+        "productId": "label-030",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Nutrients from the image review documented in docs/nutrition-extraction-2026-09-11.md; original image unavailable in this checkout. Serving fields not independently transcribed here.",
+        "tags": [
+          "prior-image-review",
+          "incomplete-serving-annotation"
+        ],
+        "fields": {
+          "serving.serving_size": {
+            "status": "unreviewed",
+            "note": "Parser null is not ground truth; source serving text needs image review."
+          },
+          "serving.servings_per_container": {
+            "status": "unreviewed",
+            "note": "Needs image review."
+          },
+          "energy": "80kcal",
+          "total_fat": "1.5g",
+          "saturated_fat": "1g",
+          "trans_fat": "0g",
+          "cholesterol": "20mg",
+          "sodium": "440mg",
+          "carbohydrate": "10g",
+          "fiber": "1g",
+          "sugars": "4g",
+          "protein": "7g",
+          "added_sugars": "2g",
+          "vitamin_d": "0mcg",
+          "calcium": "120mg",
+          "iron": "0.3mg",
+          "potassium": "10mg"
+        }
+      },
+      "layout": "single-context",
+      "image": null
+    },
+    {
+      "id": "mobile-ocr/IMG_3585",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "fixtureSha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd",
+      "fixtureKey": "IMG_3585",
+      "annotation": {
+        "id": "mobile-ocr/IMG_3585",
+        "productId": "mobile-IMG_3585",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Image review in docs/nutrition-extraction-2026-09-11.md and image-derived values/comments in parseNutrition.spec.ts. Original image unavailable. Missing OCR values 2g and 16g are printed ground truth, not expected nulls.",
+        "tags": [
+          "prior-image-review",
+          "reference-table",
+          "damaged-ocr"
+        ],
+        "fields": {
+          "serving.serving_size": "1/5 bag (100 g)",
+          "serving.servings_per_container": "5",
+          "energy": "170kcal",
+          "energy_from_fat": {
+            "status": "unreviewed",
+            "note": "Printed value not recorded in the prior review; do not derive it from fat."
+          },
+          "total_fat": "8g",
+          "saturated_fat": "2g",
+          "trans_fat": {
+            "status": "absent",
+            "note": "Prior image review explicitly records that trans fat is absent."
+          },
+          "cholesterol": "15mg",
+          "sodium": "870mg",
+          "carbohydrate": "16g",
+          "fiber": "<1g",
+          "sugars": "5g",
+          "protein": "8g",
+          "vitamin_a": "0%",
+          "vitamin_b1": "0%",
+          "vitamin_b2": "0%",
+          "calcium": "25%",
+          "iron": "2%",
+          "vitamin_d": "20%"
+        }
+      },
+      "layout": "single-context",
+      "image": null
+    },
+    {
+      "id": "mobile-ocr/IMG_3586",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "fixtureSha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd",
+      "fixtureKey": "IMG_3586",
+      "annotation": {
+        "id": "mobile-ocr/IMG_3586",
+        "productId": "mobile-IMG_3586",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Image-derived nutrient review in docs/nutrition-extraction-2026-09-11.md and parseNutrition.spec.ts; original image unavailable.",
+        "tags": [
+          "prior-image-review",
+          "incomplete-serving-annotation"
+        ],
+        "fields": {
+          "serving.serving_size": {
+            "status": "unreviewed",
+            "note": "Needs image review."
+          },
+          "serving.servings_per_container": {
+            "status": "unreviewed",
+            "note": "Needs image review."
+          },
+          "energy": "180kcal",
+          "total_fat": "0g",
+          "saturated_fat": "0g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "0mg",
+          "carbohydrate": "40g",
+          "fiber": "2g",
+          "sugars": "0g",
+          "added_sugars": "0g",
+          "protein": "5g",
+          "vitamin_d": "0mcg",
+          "calcium": "4mg",
+          "iron": "3mg",
+          "potassium": "65mg",
+          "vitamin_a": "54mcg"
+        }
+      },
+      "layout": "single-context",
+      "image": null
+    },
+    {
+      "id": "mobile-ocr/IMG_3587",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "fixtureSha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd",
+      "fixtureKey": "IMG_3587",
+      "annotation": {
+        "id": "mobile-ocr/IMG_3587",
+        "productId": "mobile-IMG_3587",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Image-derived serving and nutrient review in docs/nutrition-extraction-2026-09-11.md and parseNutrition.spec.ts; original image unavailable.",
+        "tags": [
+          "prior-image-review",
+          "ordered-columns"
+        ],
+        "fields": {
+          "serving.serving_size": "125 mL",
+          "serving.servings_per_container": "2.8",
+          "energy": "133kcal",
+          "energy_from_fat": "93kcal",
+          "total_fat": "10g",
+          "saturated_fat": "5g",
+          "trans_fat": "0g",
+          "cholesterol": "7mg",
+          "sodium": "77mg",
+          "carbohydrate": "8g",
+          "fiber": "2g",
+          "sugars": "7g",
+          "protein": "2g"
+        }
+      },
+      "layout": "single-context",
+      "image": null
+    },
+    {
+      "id": "mobile-ocr/IMG_3588",
+      "fixture": "src/services/nutrition/fixtures/mobile-ocr.json",
+      "fixtureSha256": "87239bc2fd7e8e847b9971c8da54b098fb76d1d7123b93aadb7f242e5a725fcd",
+      "fixtureKey": "IMG_3588",
+      "annotation": {
+        "id": "mobile-ocr/IMG_3588",
+        "productId": "mobile-IMG_3588",
+        "split": "regression",
+        "cohort": "mobile-replay",
+        "provenance": "Image-derived nutrient review in docs/nutrition-extraction-2026-09-11.md and parseNutrition.spec.ts; original image unavailable.",
+        "tags": [
+          "prior-image-review",
+          "incomplete-serving-annotation",
+          "additional-nutrients"
+        ],
+        "fields": {
+          "serving.serving_size": {
+            "status": "unreviewed",
+            "note": "Needs image review."
+          },
+          "serving.servings_per_container": {
+            "status": "unreviewed",
+            "note": "Needs image review."
+          },
+          "energy": "6kcal",
+          "total_fat": "0g",
+          "saturated_fat": "0g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "194mg",
+          "carbohydrate": "3g",
+          "fiber": "0g",
+          "sugars": "0g",
+          "protein": "0g",
+          "vitamin_b3": "20mg",
+          "vitamin_b5": "4.8mg",
+          "vitamin_b6": "1mg",
+          "vitamin_b12": "1.8μg",
+          "taurine": "1015mg",
+          "l_carnitine_l_tartrate": "36mg",
+          "caffeine": "70mg"
+        }
+      },
+      "layout": "single-context",
+      "image": null
+    },
+    {
+      "id": "phase5-development/03_tang_orange_rectangle",
+      "fixture": "src/services/nutrition/fixtures/phase5-development.json",
+      "fixtureSha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522",
+      "fixtureKey": "03_tang_orange_rectangle",
+      "annotation": {
+        "id": "phase5-development/03_tang_orange_rectangle",
+        "productId": "tang-orange",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "small-panel",
+          "split-table",
+          "colored-background"
+        ],
+        "provenance": "labels/nutrition_labels_json/03_tang_orange.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "20kcal",
+          "carbohydrate": "4g",
+          "sugars": "3g",
+          "fiber": "<1g",
+          "protein": "0g",
+          "total_fat": "0g",
+          "saturated_fat": "0g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "45mg",
+          "vitamin_c": "45mg",
+          "vitamin_d": "1.5µg",
+          "zinc": "1.62mg",
+          "serving.serving_size": "Approx. 5g",
+          "serving.servings_per_container": "4"
+        }
+      },
+      "layout": "single-context",
+      "image": "evaluation/results/phase-2-pilot-2026-10-11/crops/03_tang_orange-rectangle.png",
+      "imageSha256": "2d88d0ee711935bf1778fded641c400a59914ff4eac8e90c3a2eec817ded0b5a"
+    },
+    {
+      "id": "phase5-development/03_tang_orange_perspective",
+      "fixture": "src/services/nutrition/fixtures/phase5-development.json",
+      "fixtureSha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522",
+      "fixtureKey": "03_tang_orange_perspective",
+      "annotation": {
+        "id": "phase5-development/03_tang_orange_perspective",
+        "productId": "tang-orange",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "small-panel",
+          "split-table",
+          "colored-background"
+        ],
+        "provenance": "labels/nutrition_labels_json/03_tang_orange.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "20kcal",
+          "carbohydrate": "4g",
+          "sugars": "3g",
+          "fiber": "<1g",
+          "protein": "0g",
+          "total_fat": "0g",
+          "saturated_fat": "0g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "45mg",
+          "vitamin_c": "45mg",
+          "vitamin_d": "1.5µg",
+          "zinc": "1.62mg",
+          "serving.serving_size": "Approx. 5g",
+          "serving.servings_per_container": "4"
+        }
+      },
+      "layout": "single-context",
+      "image": "evaluation/results/phase-2-pilot-2026-10-11/crops/03_tang_orange-perspective.png",
+      "imageSha256": "11b3ff7c3e42c386f45505994c0f9c929739bb3728b58b4d597ee7b38498c4f8"
+    },
+    {
+      "id": "phase5-development/07_cdo_sardines_rectangle",
+      "fixture": "src/services/nutrition/fixtures/phase5-development.json",
+      "fixtureSha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522",
+      "fixtureKey": "07_cdo_sardines_rectangle",
+      "annotation": {
+        "id": "phase5-development/07_cdo_sardines_rectangle",
+        "productId": "cdo-sardines",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "small-panel",
+          "detached-values",
+          "footnote-nutrients"
+        ],
+        "provenance": "labels/nutrition_labels_json/07_cdo_sardines.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "58kcal",
+          "total_fat": "2g",
+          "saturated_fat": "1g",
+          "trans_fat": "0g",
+          "cholesterol": "6mg",
+          "sodium": "393mg",
+          "carbohydrate": "4g",
+          "fiber": "2g",
+          "sugars": "2g",
+          "protein": "6g",
+          "dha": "17mg",
+          "omega_3": "151mg",
+          "serving.serving_size": "56g",
+          "serving.servings_per_container": "about 3"
+        }
+      },
+      "layout": "single-context",
+      "image": "evaluation/results/phase-2-pilot-2026-10-11/crops/07_cdo_sardines-rectangle.png",
+      "imageSha256": "5bcf5112b5c3a1a77df8f7bca1c035f07765c1423e2cfd073afcac24ae52d6d1"
+    },
+    {
+      "id": "phase5-development/07_cdo_sardines_perspective",
+      "fixture": "src/services/nutrition/fixtures/phase5-development.json",
+      "fixtureSha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522",
+      "fixtureKey": "07_cdo_sardines_perspective",
+      "annotation": {
+        "id": "phase5-development/07_cdo_sardines_perspective",
+        "productId": "cdo-sardines",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "small-panel",
+          "detached-values",
+          "footnote-nutrients"
+        ],
+        "provenance": "labels/nutrition_labels_json/07_cdo_sardines.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "58kcal",
+          "total_fat": "2g",
+          "saturated_fat": "1g",
+          "trans_fat": "0g",
+          "cholesterol": "6mg",
+          "sodium": "393mg",
+          "carbohydrate": "4g",
+          "fiber": "2g",
+          "sugars": "2g",
+          "protein": "6g",
+          "dha": "17mg",
+          "omega_3": "151mg",
+          "serving.serving_size": "56g",
+          "serving.servings_per_container": "about 3"
+        }
+      },
+      "layout": "single-context",
+      "image": "evaluation/results/phase-2-pilot-2026-10-11/crops/07_cdo_sardines-perspective.png",
+      "imageSha256": "6a4c9fa531345af588826b7d1743b8132cd5fab6e771b0cecf4fde1f645b7c66"
+    },
+    {
+      "id": "phase5-development/13_green_biscuit_rectangle",
+      "fixture": "src/services/nutrition/fixtures/phase5-development.json",
+      "fixtureSha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522",
+      "fixtureKey": "13_green_biscuit_rectangle",
+      "annotation": {
+        "id": "phase5-development/13_green_biscuit_rectangle",
+        "productId": "green-biscuit",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "folded",
+          "nonplanar",
+          "detached-values"
+        ],
+        "provenance": "labels/nutrition_labels_json/13_green_biscuit.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "19kcal",
+          "total_fat": "1g",
+          "saturated_fat": "0g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "5mg",
+          "carbohydrate": "3g",
+          "fiber": "0g",
+          "sugars": "0g",
+          "added_sugars": "0g",
+          "protein": "0g",
+          "calcium": "10mg",
+          "iron": "0mg",
+          "vitamin_d3": "0µg",
+          "potassium": "9mg",
+          "serving.serving_size": "1 piece (4g)",
+          "serving.servings_per_container": "20"
+        }
+      },
+      "layout": "single-context",
+      "image": "evaluation/results/phase-2-pilot-2026-10-11/crops/13_green_biscuit-rectangle.png",
+      "imageSha256": "330eab05af8d364c865bb6dffd43fa1faa10c73fe5408c7f74137810329f3b7f"
+    },
+    {
+      "id": "phase5-development/15_brown_cream_milk_rectangle",
+      "fixture": "src/services/nutrition/fixtures/phase5-development.json",
+      "fixtureSha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522",
+      "fixtureKey": "15_brown_cream_milk_rectangle",
+      "annotation": {
+        "id": "phase5-development/15_brown_cream_milk_rectangle",
+        "productId": "brown-cream-milk",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "small-panel",
+          "inverted-text",
+          "iu-units"
+        ],
+        "provenance": "labels/nutrition_labels_json/15_brown_cream_milk.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "142kcal",
+          "total_fat": "8g",
+          "saturated_fat": "5g",
+          "trans_fat": "0g",
+          "cholesterol": "30mg",
+          "sodium": "117mg",
+          "carbohydrate": "11g",
+          "fiber": "5g",
+          "sugars": "10g",
+          "protein": "6g",
+          "vitamin_a": "307IU",
+          "vitamin_d": "102IU",
+          "serving.serving_size": "100mL",
+          "serving.servings_per_container": "3.6"
+        }
+      },
+      "layout": "single-context",
+      "image": "evaluation/results/phase-2-pilot-2026-10-11/crops/15_brown_cream_milk-rectangle.png",
+      "imageSha256": "6a2498973a82eee4d6baff35d1cda6789c6cb32386bc035b8fae33befec13a1e"
+    },
+    {
+      "id": "phase5-development/15_brown_cream_milk_perspective",
+      "fixture": "src/services/nutrition/fixtures/phase5-development.json",
+      "fixtureSha256": "43b482d4f922120161033daaa9cbd4737ca84c54ed6fb9046ff08427543cd522",
+      "fixtureKey": "15_brown_cream_milk_perspective",
+      "annotation": {
+        "id": "phase5-development/15_brown_cream_milk_perspective",
+        "productId": "brown-cream-milk",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "small-panel",
+          "inverted-text",
+          "iu-units"
+        ],
+        "provenance": "labels/nutrition_labels_json/15_brown_cream_milk.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "142kcal",
+          "total_fat": "8g",
+          "saturated_fat": "5g",
+          "trans_fat": "0g",
+          "cholesterol": "30mg",
+          "sodium": "117mg",
+          "carbohydrate": "11g",
+          "fiber": "5g",
+          "sugars": "10g",
+          "protein": "6g",
+          "vitamin_a": "307IU",
+          "vitamin_d": "102IU",
+          "serving.serving_size": "100mL",
+          "serving.servings_per_container": "3.6"
+        }
+      },
+      "layout": "single-context",
+      "image": "evaluation/results/phase-2-pilot-2026-10-11/crops/15_brown_cream_milk-perspective.png",
+      "imageSha256": "05965ee8559dfcc797367d7c5d818d496e791d8a36c9629538adb139cf8fbf12"
+    },
+    {
+      "id": "single-basis-phone/03_tang_orange",
+      "fixture": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "fixtureSha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b",
+      "fixtureKey": "03_tang_orange",
+      "annotation": {
+        "id": "single-basis-phone/03_tang_orange",
+        "productId": "tang-orange",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "small-panel",
+          "split-table",
+          "colored-background"
+        ],
+        "provenance": "labels/nutrition_labels_json/03_tang_orange.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "20kcal",
+          "carbohydrate": "4g",
+          "sugars": "3g",
+          "fiber": "<1g",
+          "protein": "0g",
+          "total_fat": "0g",
+          "saturated_fat": "0g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "45mg",
+          "vitamin_c": "45mg",
+          "vitamin_d": "1.5µg",
+          "zinc": "1.62mg",
+          "serving.serving_size": "Approx. 5g",
+          "serving.servings_per_container": "4"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/03_tang_orange-ocr-crop.png",
+      "imageSha256": "c448e9d9d88ad25c70adf2f15b35f1f8969d1ceddc91e52b83df3ba99b2d6e60"
+    },
+    {
+      "id": "single-basis-phone/04_blue_tub",
+      "fixture": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "fixtureSha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b",
+      "fixtureKey": "04_blue_tub",
+      "annotation": {
+        "id": "single-basis-phone/04_blue_tub",
+        "productId": "blue-tub",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "curved",
+          "multiple-panels",
+          "daily-value-columns"
+        ],
+        "provenance": "labels/nutrition_labels_json/04_blue_tub.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "130kcal",
+          "total_fat": "4g",
+          "saturated_fat": "1g",
+          "trans_fat": "0g",
+          "cholesterol": "10mg",
+          "sodium": "70mg",
+          "carbohydrate": "20g",
+          "fiber": "<1g",
+          "sugars": "6g",
+          "added_sugars": "5g",
+          "protein": "3g",
+          "vitamin_d": "0mcg",
+          "calcium": "0mg",
+          "iron": "0.4mg",
+          "potassium": "60mg",
+          "serving.serving_size": "1/2 cup (28g)",
+          "serving.servings_per_container": "about 6"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/04_blue_tub-ocr-crop.png",
+      "imageSha256": "74275d4b2b03b78163e7a4a833fc9de5d68ff2a071ed8ef502c358806972e39f"
+    },
+    {
+      "id": "single-basis-phone/09_golden_fiesta_palm_oil",
+      "fixture": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "fixtureSha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b",
+      "fixtureKey": "09_golden_fiesta_palm_oil",
+      "annotation": {
+        "id": "single-basis-phone/09_golden_fiesta_palm_oil",
+        "productId": "golden-fiesta-palm-oil",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "skew",
+          "glare",
+          "colored-background",
+          "re-units"
+        ],
+        "provenance": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "140kcal",
+          "total_fat": "15g",
+          "saturated_fat": "6g",
+          "unsaturated_fat": "8g",
+          "trans_fat": "0g",
+          "omega_9": "6g",
+          "omega_6": "2g",
+          "cholesterol": "0mg",
+          "sodium": "0mg",
+          "carbohydrate": "0g",
+          "fiber": "0g",
+          "sugars": "0g",
+          "added_sugars": "0g",
+          "protein": "0g",
+          "vitamin_a": "190µg RE",
+          "serving.serving_size": "1 Tbsp (15g)",
+          "serving.servings_per_container": "15"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/09_golden_fiesta_palm_oil-ocr-crop.png",
+      "truth": {
+        "status": "reviewed",
+        "layout": "single-context",
+        "provenance": "Codex visual review 2026-10-12 of 09_golden_fiesta_palm_oil-ocr-crop.png and frozen OCR line geometry. Single per-serving quantity context plus separate %RENI energy and %DV nutrient columns. Not independently human-reviewed.",
+        "intended": "serving",
+        "bases": [
+          {
+            "id": "serving",
+            "category": "per_serving",
+            "kind": "quantity",
+            "headerIndexes": [
+              3
+            ],
+            "valueIndexes": [
+              4,
+              9,
+              11,
+              13,
+              14,
+              15,
+              18,
+              19,
+              21,
+              23,
+              25,
+              27,
+              28,
+              30,
+              33
+            ],
+            "context": "per_serving",
+            "rawHeader": "Amount Per Serving",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 15,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          },
+          {
+            "id": "reni",
+            "category": "percent_dv",
+            "kind": "percent_reference",
+            "headerIndexes": [
+              5
+            ],
+            "valueIndexes": [
+              7
+            ],
+            "context": "serving",
+            "rawHeader": "%DV / %RENI",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 1,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          },
+          {
+            "id": "dv",
+            "category": "percent_dv",
+            "kind": "percent_reference",
+            "headerIndexes": [
+              8
+            ],
+            "valueIndexes": [
+              10,
+              12,
+              20,
+              22,
+              24,
+              26,
+              29,
+              32,
+              34
+            ],
+            "context": "serving",
+            "rawHeader": "%DV / %RENI",
+            "preparation": null,
+            "section": "reviewed-panel",
+            "support": 9,
+            "reasons": [
+              "source-image-and-OCR-geometry-reviewed"
+            ]
+          }
+        ],
+        "fields": {
+          "energy": {
+            "basis": "serving",
+            "valueIndexes": [
+              4
+            ]
+          },
+          "energy_from_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              4
+            ]
+          },
+          "total_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              9
+            ]
+          },
+          "saturated_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              11
+            ]
+          },
+          "unsaturated_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              13
+            ]
+          },
+          "trans_fat": {
+            "basis": "serving",
+            "valueIndexes": [
+              14
+            ]
+          },
+          "omega_9": {
+            "basis": "serving",
+            "valueIndexes": [
+              15
+            ]
+          },
+          "omega_6": {
+            "basis": "serving",
+            "valueIndexes": [
+              18
+            ]
+          },
+          "cholesterol": {
+            "basis": "serving",
+            "valueIndexes": [
+              19
+            ]
+          },
+          "sodium": {
+            "basis": "serving",
+            "valueIndexes": [
+              21
+            ]
+          },
+          "carbohydrate": {
+            "basis": "serving",
+            "valueIndexes": [
+              23
+            ]
+          },
+          "fiber": {
+            "basis": "serving",
+            "valueIndexes": [
+              25
+            ]
+          },
+          "sugars": {
+            "basis": "serving",
+            "valueIndexes": [
+              27
+            ]
+          },
+          "added_sugars": {
+            "basis": "serving",
+            "valueIndexes": [
+              28
+            ]
+          },
+          "protein": {
+            "basis": "serving",
+            "valueIndexes": [
+              30
+            ]
+          },
+          "vitamin_a": {
+            "basis": "serving",
+            "valueIndexes": [
+              33
+            ]
+          }
+        }
+      },
+      "imageSha256": "fb88df7db98913c524cf7aca379bbe3debc29e744b8903d886693a4f309d3eaa"
+    },
+    {
+      "id": "single-basis-phone/10_sandwich_crackers",
+      "fixture": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "fixtureSha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b",
+      "fixtureKey": "10_sandwich_crackers",
+      "annotation": {
+        "id": "single-basis-phone/10_sandwich_crackers",
+        "productId": "sandwich-crackers",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "multiple-panels",
+          "split-table",
+          "skew",
+          "cropped-footnote"
+        ],
+        "provenance": "labels/nutrition_labels_json/10_sandwich_crackers.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "70kcal",
+          "total_fat": "2.5g",
+          "saturated_fat": "1.5g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "45mg",
+          "carbohydrate": "9g",
+          "fiber": "0g",
+          "sugars": "4g",
+          "added_sugars": "4g",
+          "protein": "<1g",
+          "vitamin_d": "0mcg",
+          "calcium": "6mg",
+          "iron": "0mg",
+          "potassium": "17mg",
+          "serving.serving_size": "1 sandwich (13.5g)",
+          "serving.servings_per_container": "14"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/10_sandwich_crackers-ocr-crop.png",
+      "imageSha256": "1e81c4e9a0b6a133e121ad25612af9f02267c87233893300967147acaa9a29e7"
+    },
+    {
+      "id": "single-basis-phone/12_green_potato_snack",
+      "fixture": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "fixtureSha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b",
+      "fixtureKey": "12_green_potato_snack",
+      "annotation": {
+        "id": "single-basis-phone/12_green_potato_snack",
+        "productId": "green-potato-snack",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "packet",
+          "folded",
+          "nonplanar",
+          "daily-value-columns"
+        ],
+        "provenance": "labels/nutrition_labels_json/12_green_potato_snack.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "150kcal",
+          "total_fat": "7g",
+          "saturated_fat": "4g",
+          "trans_fat": "0g",
+          "cholesterol": "0mg",
+          "sodium": "220mg",
+          "carbohydrate": "20g",
+          "fiber": "0g",
+          "sugars": "3g",
+          "protein": "1g",
+          "vitamin_a": "35%",
+          "serving.serving_size": "1.06 oz (30g)",
+          "serving.servings_per_container": "about 2"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/12_green_potato_snack-ocr-crop.png",
+      "imageSha256": "7c7d87bd1320edd8d92d66e81fd93c92088a772a87b1abe4f3ea1c1a1048dcae"
+    },
+    {
+      "id": "single-basis-phone/14_yellow_milk_can",
+      "fixture": "src/services/nutrition/fixtures/single-basis-phone.json",
+      "fixtureSha256": "833f4ad7d871f51372d39b1d583fe43a313f0db09d95aab58a5c99d05b87f25b",
+      "fixtureKey": "14_yellow_milk_can",
+      "annotation": {
+        "id": "single-basis-phone/14_yellow_milk_can",
+        "productId": "yellow-milk-can",
+        "split": "regression",
+        "cohort": "experiment-b-portable",
+        "tags": [
+          "can",
+          "curved",
+          "glare",
+          "detached-values"
+        ],
+        "provenance": "labels/nutrition_labels_json/14_yellow_milk_can.json; Owner verified nutrient/serving JSON. Codex visually reviewed all originals before OCR, selected panel corners, tagged capture conditions, and added separately identified supplemental printed fields. Geometry/tags/supplements await independent human review. Splits frozen before OCR; validation images are visible for annotation, not blind to the annotator.",
+        "fields": {
+          "energy": "121kcal",
+          "total_fat": "9g",
+          "saturated_fat": "4g",
+          "trans_fat": "0g",
+          "cholesterol": "2mg",
+          "sodium": "93mg",
+          "carbohydrate": "8g",
+          "fiber": "0g",
+          "sugars": "6g",
+          "protein": "2g",
+          "serving.serving_size": "125mL",
+          "serving.servings_per_container": "about 3"
+        }
+      },
+      "layout": "single-context",
+      "image": "labels/nutrition_labels_json/14_yellow_milk_can-ocr-crop.png",
+      "imageSha256": "dfd3a654babd0f4455efe53d07dd62b77ed2fda0775b866702102a586e4109f0"
+    }
+  ],
+  "pilotTruth": {
+    "05_spam": {
+      "status": "reviewed",
+      "provenance": "Codex visual review 2026-10-12 of 05_spam-ocr-crop.png and frozen line boxes; owner truth explicitly per 56g. Not independently human-reviewed.",
+      "layout": "multi-basis",
+      "intended": "per56",
+      "bases": [
+        {
+          "id": "per56",
+          "category": "unknown",
+          "kind": "quantity",
+          "rawHeader": "per 56 g",
+          "headerIndexes": [
+            2
+          ],
+          "valueIndexes": [
+            6,
+            8,
+            12,
+            15,
+            19,
+            22,
+            26,
+            30,
+            33,
+            36,
+            39
+          ],
+          "context": "per 56 g",
+          "preparation": null,
+          "section": "reviewed-panel",
+          "support": 11,
+          "reasons": [
+            "source-image-and-OCR-geometry-reviewed"
+          ]
+        },
+        {
+          "id": "per100",
+          "category": "per_100g",
+          "kind": "quantity",
+          "rawHeader": "per 100 g",
+          "headerIndexes": [
+            3
+          ],
+          "valueIndexes": [
+            7,
+            9,
+            13,
+            16,
+            20,
+            23,
+            27,
+            31,
+            34,
+            37,
+            40
+          ],
+          "context": "per100g",
+          "preparation": null,
+          "section": "reviewed-panel",
+          "support": 11,
+          "reasons": [
+            "source-image-and-OCR-geometry-reviewed"
+          ]
+        }
+      ],
+      "fields": {
+        "energy": {
+          "basis": "per56",
+          "valueIndexes": [
+            8
+          ]
+        },
+        "protein": {
+          "basis": "per56",
+          "valueIndexes": [
+            12
+          ]
+        },
+        "total_fat": {
+          "basis": "per56",
+          "valueIndexes": [
+            15
+          ]
+        },
+        "saturated_fat": {
+          "basis": "per56",
+          "valueIndexes": [
+            19
+          ]
+        },
+        "trans_fat": {
+          "basis": "per56",
+          "valueIndexes": [
+            22
+          ]
+        },
+        "cholesterol": {
+          "basis": "per56",
+          "valueIndexes": [
+            26
+          ]
+        },
+        "carbohydrate": {
+          "basis": "per56",
+          "valueIndexes": [
+            30
+          ]
+        },
+        "fiber": {
+          "basis": "per56",
+          "valueIndexes": [
+            33
+          ]
+        },
+        "sugars": {
+          "basis": "per56",
+          "valueIndexes": [
+            36
+          ]
+        },
+        "sodium": {
+          "basis": "per56",
+          "valueIndexes": [
+            39
+          ]
+        }
+      }
+    }
+  },
+  "coverageGaps": [
+    "per-pack + per-serving real label",
+    "three quantity columns real label",
+    "fragmented basis headers real label",
+    "separated headers real label",
+    "fresh product-disjoint reserved data",
+    "reference-phone UX/timings"
+  ],
+  "exposedProducts": [
+    "555-fried-sardines-tausi",
+    "blue-tub",
+    "brown-cream-milk",
+    "cdo-sardines",
+    "golden-fiesta-palm-oil",
+    "green-biscuit",
+    "green-potato-snack",
+    "label-001",
+    "label-002",
+    "label-003",
+    "label-004",
+    "label-005",
+    "label-006",
+    "label-007",
+    "label-008",
+    "label-009",
+    "label-010",
+    "label-011",
+    "label-012",
+    "label-013",
+    "label-014",
+    "label-015",
+    "label-016",
+    "label-017",
+    "label-018",
+    "label-019",
+    "label-020",
+    "label-021",
+    "label-022",
+    "label-023",
+    "label-024",
+    "label-025",
+    "label-026",
+    "label-027",
+    "label-028",
+    "label-029",
+    "label-030",
+    "mega-sardines",
+    "mobile-IMG_3585",
+    "mobile-IMG_3586",
+    "mobile-IMG_3587",
+    "mobile-IMG_3588",
+    "mobile-IMG_3638",
+    "mobile-IMG_3653",
+    "mobile-IMG_3655",
+    "sandwich-crackers",
+    "shrimp-snack",
+    "spam",
+    "tang-orange",
+    "wafer-coconut-creme",
+    "yellow-milk-can",
+    "yellow-snack"
+  ]
+}

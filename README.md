@@ -36,6 +36,8 @@ The [single-basis layout update](docs/single-basis-layout-2026-10-12.md) improve
 
 [Experiment A](evaluation/experiment-a/README.md) re-reads reviewed value/unit crops from original photos at 1×/2× using an isolated evaluation harness. The [development findings](docs/experiment-a-results-2026-10-12.md) retain production behavior: both measured variants lose correct readings and introduce a wrong populated field in hypothetical parser replay. Run `npm run experiment:a -- --help` for reproduction and reserved-data safeguards.
 
+[Experiment B](evaluation/experiment-b/README.md) represents and selects explicit nutrition bases in frozen OCR replay. Its [development findings](docs/experiment-b-results-2026-10-12.md) show useful oracle-selected recovery on Spam, but automatic detection loses correct fields on exposed regressions. The development gate fails; production v5 is retained and fresh reserved validation stays blocked.
+
 ## Scanner pipeline
 
 ```text

@@ -151,6 +151,10 @@ function orderedAlignment(names: Anchor[], values: Amount[]): boolean {
   })
 }
 
+// Experiment tooling reuses the exact v5 recognition/normalization primitives.
+// The production entry point below does not consult experimental basis state.
+export const nutritionPrimitives = Object.freeze({ anchorsInBox, readAmount, groupAmounts, orderedAlignment, core: Object.freeze([...core]), cx, cy, right, median })
+
 /** Pure, conservative post-processing. Never modifies recognition results or infers missing digits. */
 export function parseNutrition(result: OcrResult): NutritionExtraction {
   const output: NutritionExtraction = {

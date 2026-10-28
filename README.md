@@ -1,6 +1,21 @@
 # Juan Nutrisyon Nutrition Label Scanner
 
-Standalone Vue application for capturing, cropping, quality-checking, and OCRing nutrition-label images, with experimental, review-required nutrition extraction. It does not import from, call, or otherwise depend on the Juan Nutrisyon frontend or API.
+Standalone Vue application for reading nutrition-label photos and explaining their nutrition. OCR runs on the device. Nutrition calculations and presentation follow the Juan Nutrisyon food page; pure helpers are copied locally with provenance, and daily references are fetched from the public Juan Nutrisyon API.
+
+## Pages
+
+- `/`: Public scanner. Taking/uploading a photo starts recognition automatically, then shows declared calories, estimated macro calorie contributions, PNPM warnings, nutrition highlights, and a grouped nutrient breakdown. Users can check/edit readings, crop or straighten and rescan, switch supported portions, or explore a multiple of the label amount.
+- `/improve`: The original manual crop → quality inspection → OCR workflow, including raw text, overlays, JSON, and diagnostic exports.
+
+Public results preserve missing values as unknown and require an identifiable nutrition column (per serving, per 100 g, or per 100 mL) for assessments. When the basis is unclear, select it in **Check label values** after comparing the photo. Multiple amount columns remain subject to the existing parser's conservative abstention; crop to one column or enter verified values. Corrections are kept separately from the original OCR and extraction evidence, and **Restore scanned values** resets them. This feature does not change the OCR model or promise unattended extraction accuracy.
+
+### Assessment references
+
+Daily percentages use [the male, age 19 consolidated reference endpoint](https://api.juanutrisyon.info/api/consolidated-recommended-daily-nutrient-intake?gender=male&age=19), with compatible units/forms only. A validated reference-only cache may be used for up to seven days during network failure; its date and cached status are displayed. Without references, amounts and evaluable PNPM warnings remain available, while daily percentages and highlights are unavailable. Images, nutrition readings, and corrections are not stored or sent to this API.
+
+Highlights follow the local food app's ≥20% daily-reference policy for the displayed portion. Sugar highlights remain unavailable while the reference's sugar definition is unverified. PNPM uses the food app's separate fat, saturated-fat, total-sugar, and sodium ratios. The macro bar uses calorie contributions (carbohydrate/protein × 4, fat × 9); estimated macro calories may differ from the declared label calories.
+
+The copied helper source, content hashes, and adaptations are recorded in [`src/services/nutrition/calculation/provenance.json`](src/services/nutrition/calculation/provenance.json). This app has no runtime dependency on a sibling Nuxt checkout.
 
 ## Run locally
 
@@ -42,14 +57,13 @@ The [single-basis layout update](docs/single-basis-layout-2026-10-12.md) improve
 
 ```text
 take/upload photo
-  → rectangular crop + rotation
-  → optional four-corner perspective correction + reviewed preview
+  → optional rectangular crop + rotation / four-corner perspective correction
   → advisory browser-side quality checks
   → grayscale, contrast-stretch, and light sharpening preprocessing
   → provider-independent OCR adapter
   → text, lines, tokens, confidence, bounding boxes
   → conservative spatial nutrition extraction with source evidence
-  → debug output and overlay
+  → public editable assessment at /, or debug output and overlay at /improve
 ```
 
 The original `File` and its object URL remain separate from the generated lossless PNG crop. Crop coordinates, rotation, and confirmed perspective corners are retained in memory so the selection can be reopened. Neither image is persisted or uploaded by this app.

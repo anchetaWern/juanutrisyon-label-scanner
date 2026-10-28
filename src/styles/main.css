@@ -55,3 +55,109 @@ body {
     padding-right: 12px !important;
   }
 }
+
+/* Public assessment follows the food page's outlined sections and nutrient colors. */
+:root {
+  --assessment-ink: #172c28;
+  --assessment-muted: #52645f;
+  --assessment-line: #d8e2dd;
+  --assessment-surface: #ffffff;
+  --assessment-soft: #edf3ef;
+  --assessment-primary: #0b6b56;
+  --assessment-warning: #a96005;
+  --assessment-black: #000000;
+  --macro-carbs: #2563eb;
+  --macro-fat: #f59e0b;
+  --macro-protein: #74b612;
+}
+
+html, body { overflow-x: clip; }
+:focus-visible { outline: 3px solid var(--assessment-primary); outline-offset: 4px; }
+.brand-home { display: flex; align-items: center; color: inherit; text-decoration: none; min-width: 0; }
+.assessment-container { max-width: 1056px !important; color: var(--assessment-ink); }
+.assessment-container h1, .assessment-container h2, .assessment-container h3 { min-width: 0; overflow-wrap: break-word; }
+.assessment-container h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.2; letter-spacing: -.025em; font-weight: 700; }
+.assessment-container h2 { font-size: 1.2rem; line-height: 1.4; font-weight: 700; }
+.assessment-container h3 { font-size: 1rem; line-height: 1.4; font-weight: 600; }
+.assessment-intro { max-width: 700px; margin: 18px auto 28px; text-align: center; }
+.assessment-intro p { color: var(--assessment-muted); font-size: 1.1rem; margin-top: 14px; }
+.assessment-section { background: var(--assessment-surface); border: 1px solid var(--assessment-line); border-radius: 10px; padding: 24px; margin-bottom: 24px; min-width: 0; }
+.upload-section { max-width: 640px; margin: 0 auto 28px; padding: 38px; text-align: center; }
+.upload-icon { width: 76px; height: 76px; display: grid; place-items: center; background: var(--assessment-soft); color: var(--assessment-primary); border-radius: 20px; margin: 0 auto 20px; }
+.section-note { font-size: .8rem; line-height: 1.6; color: var(--assessment-muted); margin-top: 18px; }
+.photo-tips { display: grid; gap: 14px; max-width: 580px; margin: auto; color: var(--assessment-muted); font-size: .9rem; }
+.photo-tips > div { display: flex; gap: 12px; align-items: center; }
+.assessment-page-heading { display: flex; gap: 20px; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.reading-progress { display: flex; align-items: center; gap: 24px; min-height: 142px; }
+.reading-progress > div { min-width: 0; }
+.assessment-actions, .section-heading { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.section-heading { justify-content: space-between; margin-bottom: 8px; }
+.assessment-photo { border: 1px solid var(--assessment-line); border-radius: 10px; background: var(--assessment-surface); padding: 16px; min-width: 0; align-self: start; }
+.assessment-photo summary, .quality-advice summary { cursor: pointer; color: var(--assessment-primary); font-size: .9rem; font-weight: 500; }
+.assessment-photo img { display: block; max-width: 100%; max-height: 680px; object-fit: contain; margin: 16px auto 0; }
+.assessment-review-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px; }
+.assessment-review-grid .assessment-photo { position: sticky; top: 88px; }
+.editor-serving-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.editor-readings { display: grid; gap: 16px; }
+.editor-reading { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .8fr) minmax(0, .8fr); gap: 10px; align-items: center; }
+.editor-reading-label { font-size: .85rem; line-height: 1.3; }
+.editor-reading-label span { display: block; margin-top: 4px; }
+.portion-controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin: 0 0 24px; }
+.portion-controls .v-btn-toggle { max-width: 100%; height: auto; flex-wrap: wrap; border-radius: 6px; }
+.portion-controls .v-btn-toggle .v-btn { height: 44px; min-height: 44px; }
+.custom-portion { max-width: 250px; min-width: 180px; }
+.calorie-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.calorie-heading h2 { font-size: 2rem; }
+.calorie-heading h2 span { font-size: 1.1rem; font-weight: 500; }
+.macro-bar { display: flex; height: 46px; border-radius: 7px; overflow: hidden; margin-top: 24px; }
+.macro-segment { flex-basis: 0; display: flex; align-items: center; justify-content: center; color: var(--assessment-ink); font-weight: 700; font-size: .9rem; min-width: 0; }
+.macro-segment.macro-carbs { color: var(--assessment-surface); }
+.macro-carbs { background: var(--macro-carbs); }
+.macro-fat { background: var(--macro-fat); }
+.macro-protein { background: var(--macro-protein); }
+.macro-legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 20px; }
+.macro-legend-item { display: flex; align-items: start; gap: 9px; font-size: .85rem; }
+.macro-legend-item strong { display: block; margin-bottom: 4px; }
+.macro-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; margin-top: 4px; }
+.assessment-summary { font-size: 1.1rem; font-weight: 600; }
+.pnpm-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.pnpm-warning-badge { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: clamp(82px, 22vw, 112px); aspect-ratio: 1; padding: 14px; background: var(--assessment-black); color: var(--assessment-surface); clip-path: polygon(29% 0%, 71% 0%, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0% 71%, 0% 29%); text-align: center; line-height: 1; letter-spacing: 0; }
+.pnpm-warning-badge span { font-size: .68rem; font-weight: 800; }
+.pnpm-warning-badge strong { margin-top: 4px; max-width: 76px; font-size: .7rem; font-weight: 900; }
+.highlight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.highlight-notable h3 { color: var(--assessment-primary); }
+.highlight-monitor h3 { color: var(--assessment-warning); }
+.highlight-item { margin-top: 18px; }
+.highlight-item > div:first-child { display: flex; gap: 10px; justify-content: space-between; font-size: .85rem; margin-bottom: 8px; flex-wrap: wrap; }
+.nutrient-table-head, .nutrient-row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, .8fr); gap: 16px; align-items: center; }
+.nutrient-table-head { color: var(--assessment-muted); font-size: .8rem; padding-bottom: 12px; }
+.nutrient-group h3 { padding: 12px; background: var(--assessment-soft); border-radius: 5px; }
+.nutrient-row { padding: 13px 12px; border-bottom: 1px solid var(--assessment-line); font-size: .9rem; overflow-wrap: anywhere; }
+.nutrient-row > :last-child { text-align: right; }
+.nutrient-unavailable { display: block; font-size: .75rem; color: var(--assessment-muted); margin-top: 3px; }
+.edited-label { font-size: .65rem; color: var(--assessment-primary); margin-left: 7px; }
+.source-notes a { color: var(--assessment-primary); }
+.warning-detail { padding: 14px 0; border-top: 1px solid var(--assessment-line); font-size: .9rem; }
+.warning-detail p { margin-top: 5px; color: var(--assessment-muted); }
+
+@media (max-width: 700px) {
+  .assessment-container { padding-left: 16px !important; padding-right: 16px !important; }
+  .assessment-page-heading, .calorie-heading { align-items: start; flex-direction: column; gap: 14px; }
+  .assessment-section { padding: 20px; }
+  .assessment-intro { text-align: left; margin-top: 8px; }
+  .upload-section { padding: 26px 20px; }
+  .highlight-grid, .assessment-review-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .assessment-review-grid .assessment-photo { position: static; }
+  .assessment-photo img { max-height: 380px; }
+  .macro-legend { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .macro-legend-item > div { display: flex; gap: 10px; flex-wrap: wrap; }
+  .editor-serving-fields { grid-template-columns: minmax(0, 1fr); }
+  .editor-reading { grid-template-columns: minmax(0, 1fr) minmax(100px, .65fr); gap: 8px; }
+  .editor-reading-label { grid-column: 1 / -1; }
+  .improve-link { max-width: 134px; }
+  .improve-link .v-btn__content { white-space: normal; line-height: 1.2; }
+  .brand-subtitle { font-size: 10px !important; }
+  .nutrient-table-head, .nutrient-row { grid-template-columns: minmax(0, 1.3fr) minmax(0, .85fr) minmax(0, .65fr); gap: 9px; }
+  .nutrient-row { padding: 12px 4px; font-size: .8rem; }
+  .nutrient-table-head { font-size: .7rem; }
+}

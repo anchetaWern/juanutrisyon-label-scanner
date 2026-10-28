@@ -1,0 +1,47 @@
+{
+  "repository": "nuxt-juanutrisyon",
+  "head": "235584362a2bf6e11154ea6b4a144ea8c948631e",
+  "copied": "2026-10-28",
+  "files": [
+    {
+      "source": "calculation/numbers.js",
+      "sha256": "adbaf0ae996c8d41709ce4ff55e55f6265cca4ef5ba672a3de1020be326dfe91"
+    },
+    {
+      "source": "calculation/units.js",
+      "sha256": "9f40433abfaaaac0090d317ec1dddefe7c5c9060a8acb7995f9edb85d661724b"
+    },
+    {
+      "source": "calculation/source.js",
+      "sha256": "9f398b2908662ce34f86eb2e61358fd89f0b127631fe6f6fbc8969333df6467c"
+    },
+    {
+      "source": "calculation/basis.js",
+      "sha256": "1e169d1ed313e90bc355b7064d89444472bfa79a2ceb2824aff7677141aeaed0"
+    },
+    {
+      "source": "calculation/nutrients.js",
+      "sha256": "62899ffd8bdbd18b0a2660dabe555f79f83065937f0393635fcab9400df76d8a"
+    },
+    {
+      "source": "calculation/reference-provenance.js",
+      "sha256": "19ed535c89c983f298913615dcf19a8592c88ca96146229c888f7bec0059c79d"
+    },
+    {
+      "source": "PnpmWarnings.js",
+      "sha256": "93e6dbcb0d98f2af7fc4f9e5ef6bf686f151f517e707a25d735ef86a53d2c9dd"
+    },
+    {
+      "source": "calculation/highlights.js",
+      "sha256": "687670de84dbfe277733a3ab0c71ba039c5d3c1c21ae0062020b189349d55e69"
+    },
+    {
+      "source": "calculation/references.js",
+      "sha256": "ff047349a5d5fce805c24d1e7aab64ea9d13921eacc5fd6dbcd0d1c7da2f46b7"
+    }
+  ],
+  "adaptations": [
+    "references.js retains row normalization and referencePercentage only; references are supplied by the scanner API service.",
+    "highlights.js takes supplied references and defaults to an empty reference set instead of the food app snapshot."
+  ]
+}

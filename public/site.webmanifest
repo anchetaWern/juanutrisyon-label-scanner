@@ -5,5 +5,5 @@
   "display": "standalone",
   "background_color": "#f5f7f3",
   "theme_color": "#0b6b56",
-  "description": "Capture, crop, and OCR nutrition labels."
+  "description": "Read nutrition labels and understand calories, nutrients, and PNPM assessments."
 }

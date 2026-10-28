@@ -10,7 +10,7 @@ function errorMessage(cause: unknown, fallback: string): string {
   return cause instanceof Error && cause.message ? cause.message : fallback
 }
 
-export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
+export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine, options: { automatic?: boolean } = {}) {
   const originalFile = ref<File | null>(null)
   const originalUrl = ref<string | null>(null)
   const croppedBlob = ref<Blob | null>(null)
@@ -23,9 +23,11 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
   const quality = useImageQuality()
   const ocrBusy = ref(false)
   let revision = 0
+  let activeRecognition: Promise<void> | null = null
 
   const hasImage = computed(() => Boolean(originalFile.value && originalUrl.value))
-  const canRecognize = computed(() => Boolean(croppedBlob.value) && !ocrBusy.value && !quality.isAnalyzing.value
+  const recognitionInput = computed(() => croppedBlob.value ?? (options.automatic ? originalFile.value : null))
+  const canRecognize = computed(() => Boolean(recognitionInput.value) && !ocrBusy.value && !quality.isAnalyzing.value
     && (stage.value === 'ready' || stage.value === 'complete'))
 
   const unsubscribe = engine.onProgress?.((update) => {
@@ -61,9 +63,10 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
     quality.reset()
     originalFile.value = file
     originalUrl.value = URL.createObjectURL(file)
-    stage.value = 'cropping'
+    stage.value = options.automatic ? 'ready' : 'cropping'
     await quality.analyze(file)
     if (current === revision && quality.error.value) error.value = quality.error.value
+    if (current === revision && options.automatic) await recognize()
   }
 
   async function confirmCrop(crop: ConfirmedCrop): Promise<void> {
@@ -77,6 +80,7 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
     stage.value = 'ready'
     await quality.analyze(crop.blob, crop.coordinates.perspective)
     if (current === revision && quality.error.value) error.value = quality.error.value
+    if (current === revision && options.automatic) await recognize()
   }
 
   function editCrop(): void {
@@ -89,7 +93,12 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
   }
 
   async function recognize(): Promise<void> {
-    if (!croppedBlob.value) {
+    const requestedRevision = revision
+    // A replaced scan may still be finishing in the worker. Serialize calls,
+    // then recheck the revision rather than dropping the replacement request.
+    if (activeRecognition) await activeRecognition
+    if (requestedRevision !== revision) return
+    if (!recognitionInput.value) {
       error.value = 'Crop the nutrition panel before starting OCR.'
       return
     }
@@ -100,19 +109,25 @@ export function useNutritionLabelScanner(engine: NutritionLabelOcrEngine) {
     error.value = null
     result.value = null
     stage.value = 'recognizing'
-    try {
-      const nextResult = await engine.recognize(croppedBlob.value)
-      if (current !== revision) return
-      result.value = nextResult
-      stage.value = 'complete'
-      if (!nextResult.text.trim() || nextResult.lines.length === 0) {
-        error.value = 'No readable text was found. Adjust the crop or try a clearer photo.'
+    const input = recognitionInput.value
+    activeRecognition = (async () => {
+      try {
+        const nextResult = await engine.recognize(input)
+        if (current !== revision) return
+        result.value = nextResult
+        stage.value = 'complete'
+        if (!nextResult.text.trim() || nextResult.lines.length === 0) {
+          error.value = 'No readable text was found. Adjust the crop or try a clearer photo.'
+        }
+      } catch (cause) {
+        if (current !== revision) return
+        error.value = errorMessage(cause, 'OCR failed. Please retry or choose another image.')
+        stage.value = 'ready'
+      } finally {
+        ocrBusy.value = false
       }
-    } catch (cause) {
-      if (current !== revision) return
-      error.value = errorMessage(cause, 'OCR failed. Please retry or choose another image.')
-      stage.value = 'ready'
-    } finally { ocrBusy.value = false }
+    })()
+    try { await activeRecognition } finally { activeRecognition = null }
   }
 
   function removeImage(): void {

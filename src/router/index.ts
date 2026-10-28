@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ScannerView from '@/views/ScannerView.vue'
 
 export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +6,12 @@ export default createRouter({
     {
       path: '/',
       name: 'scanner',
-      component: ScannerView,
+      component: () => import('@/views/LabelAssessmentView.vue'),
+    },
+    {
+      path: '/improve',
+      name: 'improve',
+      component: () => import('@/views/ScannerView.vue'),
     },
   ],
 })

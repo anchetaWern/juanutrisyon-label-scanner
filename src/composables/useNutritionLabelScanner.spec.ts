@@ -5,7 +5,7 @@ import { useNutritionLabelScanner } from './useNutritionLabelScanner'
 import type { NutritionLabelOcrEngine } from '@/services/ocr/NutritionLabelOcrEngine'
 import type { OcrResult } from '@/services/ocr/types'
 
-function mountScanner(result: OcrResult) {
+function mountScanner(result: OcrResult, automatic = false) {
   const engine: NutritionLabelOcrEngine = {
     id: 'mock',
     initialize: vi.fn().mockResolvedValue(undefined),
@@ -16,7 +16,7 @@ function mountScanner(result: OcrResult) {
   const wrapper = mount(
     defineComponent({
       setup() {
-        scanner = useNutritionLabelScanner(engine)
+        scanner = useNutritionLabelScanner(engine, { automatic })
         return () => null
       },
     }),
@@ -26,6 +26,42 @@ function mountScanner(result: OcrResult) {
 }
 
 describe('scanner state flow', () => {
+  it('automatically reads a full image and reads a confirmed recovery crop again', async () => {
+    const result = { text: 'Protein 3g', lines: [{ text: 'Protein 3g', bbox: { x: 0, y: 0, width: 100, height: 30 } }], engine: 'mock' }
+    const { scanner, engine, wrapper } = mountScanner(result, true)
+    const file = new File(['image'], 'label.png', { type: 'image/png' })
+    await scanner.selectImage(file)
+    expect(engine.recognize).toHaveBeenCalledWith(file)
+    expect(scanner.stage.value).toBe('complete')
+    expect(scanner.croppedBlob.value).toBeNull()
+    scanner.editCrop()
+    const blob = new Blob(['crop'])
+    await scanner.confirmCrop({ blob, coordinates: { x: 0, y: 0, width: 100, height: 200, rotate: 0, scaleX: 1, scaleY: 1 } })
+    expect(engine.recognize).toHaveBeenLastCalledWith(blob)
+    expect(scanner.stage.value).toBe('complete')
+    wrapper.unmount()
+  })
+
+  it('serializes automatic replacements and ignores a late reading from the previous photo', async () => {
+    const result = { text: 'Protein 3g', lines: [{ text: 'Protein 3g', bbox: { x: 0, y: 0, width: 100, height: 30 } }], engine: 'mock' }
+    const { scanner, engine, wrapper } = mountScanner(result, true)
+    let finish!: (result: OcrResult) => void
+    vi.mocked(engine.recognize).mockImplementationOnce(() => new Promise(resolve => { finish = resolve }))
+    const first = scanner.selectImage(new File(['old'], 'old.png', { type: 'image/png' }))
+    await nextTick()
+    scanner.removeImage()
+    const replacement = new File(['new'], 'new.png', { type: 'image/png' })
+    const second = scanner.selectImage(replacement)
+    await nextTick()
+    expect(engine.recognize).toHaveBeenCalledTimes(1)
+    finish({ text: 'obsolete', lines: [], engine: 'mock' })
+    await Promise.all([first, second])
+    expect(engine.recognize).toHaveBeenLastCalledWith(replacement)
+    expect(scanner.result.value?.text).toBe(result.text)
+    expect(scanner.stage.value).toBe('complete')
+    wrapper.unmount()
+  })
+
   it('moves from a confirmed crop through OCR completion', async () => {
     const ocrResult: OcrResult = {
       text: 'Nutrition Facts',
